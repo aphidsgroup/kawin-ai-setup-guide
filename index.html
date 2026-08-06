@@ -427,6 +427,8 @@
       { title: 'Hard-problem escalation', model: 'GPT-5.6 Sol / Claude Fable 5', note: 'Reserve for high-stakes reasoning and difficult decisions.', match: 'GPT-5.6 Sol' },
       { title: 'GPU experiments', model: 'Vast.ai / RunPod', note: 'Best first stop before buying serious hardware.', match: 'Vast.ai RTX 4090' },
       { title: 'Best savings rule', model: 'Model routing', note: 'Use cheap workers first, escalate only when needed.', match: '80% Flash + 18% Sonnet + 2% Fable routing' },
+      { title: 'Best router control layer', model: 'LiteLLM Auto / Adaptive Router', note: 'Best long-term open-source control layer for hybrid local and API agents.', match: 'LiteLLM Auto Routing' },
+      { title: 'Fastest managed router', model: 'OpenRouter Auto Beta', note: 'Best zero-code starting point for automatic routing experiments.', match: 'OpenRouter Auto Beta' },
     ];
 
     const summaries = [
@@ -436,6 +438,9 @@
       { title: 'Economical coding agent', value: 'GLM-5.2', note: '₹238.05 standard workload' },
       { title: 'Best cost-saving method', value: 'Intelligent model routing', note: 'Not automatic GPU replacement' },
       { title: 'GPU experiments', value: 'Vast.ai / RunPod first', note: '₹12.38–₹65.70 per hour range' },
+      { title: 'Best OSS router', value: 'LiteLLM Auto / Adaptive Router', note: 'Best hybrid local + API control layer' },
+      { title: 'Fastest managed router', value: 'OpenRouter Auto Beta', note: 'Best immediate zero-code router test' },
+      { title: 'Biggest savings stack', value: 'Router + cache + pruning', note: 'Routing alone only cuts cost per token' },
     ];
 
     const datasets = [
@@ -576,6 +581,135 @@
           'Rent a cloud GPU only for open-weight models, experiments, privacy-sensitive work or continuously utilised inference.',
           'Consider purchasing a local NVIDIA workstation only after the recurring cloud and API bill consistently approaches the monthly ownership cost.',
           'The strongest cost-saving method is therefore intelligent model routing, not automatically replacing every paid API with an expensive local or cloud GPU.',
+        ]
+      },
+      {
+        id: 'router-categories',
+        title: '12. AI Router Categories',
+        description: 'Different products called “routers” solve different parts of the cost and model-selection problem.',
+        cardFields: ['Category', 'What it actually does', 'Example', 'Best use', 'Main trade-off'],
+        rows: [
+          ['Intelligent model router', 'Examines the task and predicts which model can handle it', 'OpenRouter Auto Beta, Not Diamond, LiteLLM Auto Router', 'Choose cheaper or stronger models dynamically for each task', 'May still need a gateway, cache and validation around it'],
+          ['AI gateway', 'Gives one API for many models, with failover, budgets and provider routing', 'Portkey, Vercel AI Gateway, Requesty', 'Governance, failover, provider routing and observability', 'A gateway is not automatically a semantic model selector'],
+          ['Token-optimization layer', 'Reduces, caches or compresses the tokens sent to models', 'LLMLingua, semantic cache, prompt caching', 'Cut actual token volume and repeated calls', 'Does not by itself decide which model is best for a task'],
+        ]
+      },
+      {
+        id: 'intelligent-router-comparison',
+        title: '13. Intelligent Router Comparison',
+        description: 'Best free, open-source and paid routers compared by learning ability, flexibility and deployment style.',
+        cardFields: ['Router', 'Category', 'Free / open-source status', 'Cross-provider models', 'Custom learning', 'Token reduction built in', 'Pricing position', 'Best use', 'Main limitation'],
+        rows: [
+          ['OpenRouter Auto Beta', 'Managed intelligent router and gateway', 'Managed; router itself free', 'Yes', 'Limited configuration; not privately trained on your results', 'Prompt and response caching are separate features', 'No extra router fee; selected-model cost applies', 'Fastest zero-code way to begin automatic routing', 'Most used for a task is not always best for your exact workflow'],
+          ['Not Diamond', 'Dedicated learned model selector', 'Free tier plus paid SaaS', 'Yes', 'Yes — custom routers from your evaluation data', 'Joint prompt optimisation; caching comes from gateway/provider', '100K routing decisions/month free, then paid', 'Best custom quality-versus-cost router', 'Recommends the model rather than acting as the full gateway'],
+          ['LiteLLM Auto Routing', 'Self-hosted intelligent router and gateway', 'Open-source and self-hostable', 'Yes', 'Adaptive routing can learn from feedback', 'Prompt compression and caching are separate LiteLLM features', 'No router licence cost for self-hosting', 'Best flexible open-source production foundation', 'Needs careful evaluation and configuration for newer auto-routing features'],
+          ['LiteLLM Adaptive Router', 'Feedback-learning router', 'Open-source beta', 'Yes', 'Yes', 'No direct reduction by routing alone', 'Infrastructure and model costs only', 'Best when model effectiveness changes by task type', 'Beta and depends on reliable feedback signals'],
+          ['Microsoft Foundry Model Router', 'Managed enterprise router', 'Paid Azure service', 'Yes, across multiple vendors', 'Microsoft-managed rather than privately trainable', 'Prompt caching supported in the platform', 'Azure router and selected-model usage charges', 'Best enterprise Azure option with governance', 'Azure deployment and regional setup add complexity'],
+          ['Amazon Bedrock Intelligent Prompt Routing', 'Managed cloud router', 'Paid AWS service', 'Limited to same-family variants', 'No private router training', 'Separate Bedrock caching and optimisation features', '₹-equivalent usage fee per routing request plus inference', 'Best AWS-native family routing', 'Cannot freely route across Claude, Gemini and GPT providers'],
+          ['RouteLLM', 'Research-grade router framework', 'Open-source Apache 2.0', 'Technically yes', 'Yes, by training on preference data', 'No', 'Free software plus hosting and inference', 'Best custom two-model cascade research base', 'Designed mainly around weak-versus-strong cascades, not turnkey production'],
+          ['Semantic Router', 'Intent and policy router', 'Open-source MIT', 'Yes through your application', 'Routes and thresholds can be tuned', 'No', 'Free software plus embedding/model costs', 'Best deterministic local/offline routing', 'Does not inherently discover which model gives highest-quality answers'],
+          ['NVIDIA LLM Router Blueprint', 'Trainable experimental router', 'Open-source Apache 2.0', 'Yes', 'Yes', 'No', 'Free software plus infrastructure', 'Best experimental multimodal/on-prem NVIDIA router', 'Returns a recommendation; your app still calls the selected model'],
+          ['Plano', 'Agent and model data plane', 'Open-source', 'Yes', 'Can be extended from traces and signals', 'No direct compression', 'Self-hosting or hosted development access', 'Best multi-agent routing plus traces and guardrails', 'Larger architecture commitment than a simple router'],
+        ]
+      },
+      {
+        id: 'genuinely-free-routers',
+        title: '14. Which Routers Are Genuinely Free?',
+        description: 'Most “free” routers remove licence fees, but inference still costs money unless you stay on free models or local hardware.',
+        cardFields: ['Product', 'Router cost', 'Model inference cost', 'Real meaning of free', 'Best use', 'Main trade-off'],
+        rows: [
+          ['LiteLLM self-hosted', '₹0 licence cost', 'Paid APIs, cloud GPUs or your electricity', 'You operate the proxy and router yourself', 'Best long-term open-source production control layer', 'You own infra, config and maintenance'],
+          ['RouteLLM', '₹0', 'Provider or local-model inference', 'Free software; you train and deploy it', 'Best for custom weak/strong routing research', 'Not a complete production gateway by default'],
+          ['Semantic Router', '₹0', 'Embeddings and destination models', 'Can run fully local with local embeddings', 'Best lightweight fully local routing', 'Intent routing is not the same as learned quality routing'],
+          ['NVIDIA LLM Router', '₹0', 'Router CPU/GPU and destination models', 'Experimental development blueprint', 'Best NVIDIA-centric experimental router', 'Still requires your own deployment work'],
+          ['Plano', '₹0 self-hosted software', 'Infrastructure and model costs', 'Broader agent data plane, not just a router', 'Best for agent routing plus observability', 'Heavier architecture than simple drop-in routers'],
+          ['OpenRouter Auto Beta', '₹0 additional router fee', 'Pay for selected model', 'Managed routing is free but inference is not', 'Best easiest managed router test', 'Quality depends on generic task-type routing'],
+          ['OpenRouter Free Router', '₹0', '₹0 for available free models', 'Chooses compatible free models, not always best-quality ones', 'Best for experimentation and demos', 'Not dependable as the highest-quality selector'],
+          ['Not Diamond Discovery', 'First 100K routing decisions free', 'Destination models billed separately', 'Free recommendation layer, not free inference', 'Best for learning custom routing cheaply at first', 'Paid quickly at scale'],
+          ['Requesty Free', '₹0 plan', 'Free models only on the free tier', '200 free-model requests/day style experimentation', 'Best for quick experiments', 'Too small for serious agent workloads'],
+        ]
+      },
+      {
+        id: 'gateway-vs-router',
+        title: '15. Gateways Mistaken for Intelligent Routers',
+        description: 'Useful gateways often optimise providers and policies, but not semantic task difficulty by default.',
+        cardFields: ['Gateway', 'What it routes intelligently', 'Task-model auto selection?', 'Cost-saving features', 'Pricing position', 'Best use', 'Main limitation'],
+        rows: [
+          ['Portkey / Prisma AIRS AI Gateway', 'Providers, keys, conditions, fallbacks, load and policies', 'Not by default', 'Simple cache, semantic cache, budgets, fallbacks and conditional routes', 'Open-source gateway plus paid enterprise layer', 'Best governance, guardrails and enterprise observability', 'Does not automatically learn the best model for each semantic task without custom logic'],
+          ['Requesty', 'Cost, latency, location, availability, policies and model chains', 'Partly policy-based, not clearly a learned task router', 'Caching, failover, spend limits and custom routing policies', 'Free experimentation tier plus PAYG markup model', 'Best managed production gateway with policy controls', 'More gateway-oriented than a true learned selector'],
+          ['Vercel AI Gateway', 'Same-model providers by uptime and latency plus fallbacks', 'Usually no; you supply the classifier', 'No-markup tokens, budgets, failover and observability', 'Intro credit then PAYG', 'Best for Vercel / Next.js app stacks', 'You normally build the task-difficulty logic yourself'],
+          ['Helicone Gateway', 'Providers hosting the requested model', 'No', 'Cheapest-provider routing, cache, fallbacks and analytics', 'Hosted and open-source components', 'Best analytics plus provider optimisation', 'Does not inherently choose the semantically best model'],
+          ['Martian Gateway', 'Unified access to a large model catalogue', 'Generally expects you to specify the model', 'Can be combined with external routing logic', 'Managed', 'Best unified API for testing many models', 'Not a strong built-in learned router'],
+          ['LiteLLM standard router', 'Rate limits, latency, lowest cost, least busy and weighted deployments', 'No unless Auto/Adaptive Routing is enabled', 'Cache, budgets and lowest-cost provider selection', 'Open-source', 'Best self-hosted universal gateway base', 'Needs Auto/Adaptive mode for true task-based selection'],
+          ['OpenRouter normal API', 'Providers, price ceilings, availability and fallbacks', 'No unless Auto Beta is selected', 'Caching, policies and fallbacks', 'PAYG with platform fee model', 'Best broad managed model catalogue', 'Normal API mode is not the same as intelligent routing'],
+        ]
+      },
+      {
+        id: 'token-optimisation',
+        title: '16. Which Systems Genuinely Reduce Token Usage?',
+        description: 'A router cuts cost per token; caching, pruning and compression cut the number of billed tokens.',
+        cardFields: ['Technique', 'Physically reduces tokens?', 'Reduces billed cost?', 'Saving potential', 'Best for', 'Main trade-off'],
+        rows: [
+          ['Exact response cache', 'Avoids the entire new request', 'Yes', 'Potentially 100% of that model call', 'Repeated identical requests', 'Stale answers if cache invalidation is weak'],
+          ['Semantic response cache', 'Avoids new model calls for sufficiently similar prompts', 'Yes', 'Very high when requests repeat', 'FAQs, standard internal queries and repeated support questions', 'False cache matches can return the wrong answer'],
+          ['Provider prompt caching', 'Usually no, but reuses cached prefixes internally', 'Yes through cheaper cached-token pricing', 'Large on repeated prefixes', 'Long fixed system prompts, tool lists and stable prefixes', 'Model/provider switches can destroy cache hits'],
+          ['LLMLingua / LLMLingua-2', 'Yes', 'Yes', 'Often 2–5× practical compression, more in selective cases', 'Long retrieved documents and verbose context', 'Can remove reasoning-critical evidence'],
+          ['RAG retrieval and reranking', 'Yes', 'Yes', 'Only relevant chunks are sent', 'Large knowledge bases and retrieval-heavy workflows', 'Poor retrieval can omit needed evidence'],
+          ['Conversation summarisation', 'Yes', 'Yes', 'Replaces old turns with compact state', 'Long-running agent sessions', 'Summaries can lose commitments or exact details'],
+          ['Sliding context window', 'Yes', 'Yes', 'Predictable token ceiling', 'Agents where older turns become disposable', 'Important instructions can fall out of context'],
+          ['Tool-schema pruning', 'Yes', 'Yes', 'Only relevant tools are sent per step', 'Agents with many tools or MCP servers', 'Bad tool routing can hide the needed tool'],
+          ['Output-token cap', 'Reduces output tokens', 'Yes', 'Highly predictable', 'Classification, extraction, JSON and routing', 'Answers may truncate'],
+          ['Cheaper-model routing', 'No', 'Yes', 'Saves through lower rates, not fewer tokens', 'Mixed easy and difficult workloads', 'Wrong routes create retries and can increase total cost'],
+        ]
+      },
+      {
+        id: 'best-routers-by-requirement',
+        title: '17. Best Routers Ranked by Requirement',
+        description: 'Quick selection guide for different environments and constraints.',
+        cardFields: ['Requirement', 'Rank 1', 'Rank 2', 'Cost observation'],
+        rows: [
+          ['Easiest immediate setup', 'OpenRouter Auto Beta', 'Not Diamond', 'One OpenAI-compatible API and no router surcharge'],
+          ['Best free self-hosted system', 'LiteLLM Auto Routing', 'Semantic Router + LiteLLM', 'Most complete open-source production foundation'],
+          ['Best custom learned routing', 'Not Diamond Custom Router', 'LiteLLM Adaptive Router', 'Learns from your own evaluations instead of public assumptions'],
+          ['Best fully local / offline routing', 'Semantic Router', 'NVIDIA LLM Router', 'Great when privacy and local inference matter most'],
+          ['Best experimental trainable OSS router', 'NVIDIA LLM Router', 'RouteLLM', 'Best for custom objectives and multimodal experiments'],
+          ['Best Azure enterprise option', 'Microsoft Foundry Model Router', 'Not Diamond over Azure gateway', 'Best governance plus broad vendor pool inside Azure'],
+          ['Best AWS-native option', 'Bedrock Intelligent Prompt Routing', 'LiteLLM on Bedrock', 'Easy AWS integration but same-family restriction matters'],
+          ['Best multi-agent data plane', 'Plano', 'LiteLLM + agent framework', 'Best when routing, traces and guardrails live together'],
+          ['Best gateway and governance', 'Portkey', 'Requesty', 'Strong budgets, policies and observability'],
+          ['Best zero-code experimentation', 'OpenRouter Auto Beta', 'OpenRouter Free Router', 'Fastest way to try task-aware routing without infra'],
+        ]
+      },
+      {
+        id: 'router-architecture',
+        title: '18. Recommended Router Architecture',
+        description: 'How to combine routing, caching, pruning and local/cloud tiers for large multi-agent usage.',
+        cardFields: ['Layer', 'Suggested tool or tier', 'Primary job', 'Best use', 'Main trade-off'],
+        rows: [
+          ['Gateway layer', 'LiteLLM Proxy on Ubuntu', 'Unified API for local and paid models', 'Permanent control layer for Hermes, agents and workflows', 'You operate the proxy and policy stack yourself'],
+          ['Managed backup router', 'OpenRouter Auto Beta', 'Fallback managed task router', 'Unknown or ad-hoc tasks when you want zero-code coverage', 'Generic routing logic is not custom to your workflows'],
+          ['Custom learned router', 'Not Diamond or LiteLLM Adaptive Router', 'Learn from your own task results', 'Optimised production once evaluation data exists', 'Needs feedback collection and quality labels'],
+          ['Local routing layer', 'Semantic Router', 'Fast local intent routing', 'Offline, private or deterministic task splitting', 'Intent routing does not automatically equal best answer quality'],
+          ['Local inference layer', 'Ollama initially, vLLM later', 'Run local models for cheap/private tasks', 'Tier 1 local classification, summaries and extraction', 'Concurrency and hardware ceilings matter'],
+          ['Cache layer', 'Redis exact cache first, semantic cache selectively', 'Avoid repeated model calls', 'High-repeat FAQs and safe repetitive workflows', 'Semantic cache must be carefully isolated'],
+          ['Compression layer', 'LLMLingua-2 for long context', 'Shrink long retrieved context', 'Document-heavy workflows and large retrieval payloads', 'Can remove important details if over-compressed'],
+          ['Escalation policy', 'Cheap model → verifier → stronger model', 'Limit premium usage to genuine failures', 'Best blend of quality and spend control', 'Verification design adds complexity'],
+        ],
+        secondaryTitle: 'Suggested routing tiers',
+        secondaryFields: ['Tier', 'Suggested workload share', 'Recommended model types', 'Tasks'],
+        secondaryRows: [
+          ['Tier 0 — No model', 'Cache or code path', 'Cache or deterministic code', 'Repeated FAQs, known DB values and deterministic calculations'],
+          ['Tier 1 — Local', 'Lowest marginal cost', 'Local 7B–14B model', 'Classification, tagging, short summaries, formatting and simple extraction'],
+          ['Tier 2 — Economy API', 'Routine cheap cloud layer', 'Low-cost API model', 'Routine writing, decomposition, extraction and tool selection'],
+          ['Tier 3 — Skilled', 'Mid-tier problem solving', 'Strong mid-tier model', 'Coding, planning, analysis and multimodal tasks'],
+          ['Tier 4 — Frontier', 'Sparse escalation layer', 'Highest-capability model', 'Critical decisions, unresolved debugging and final review'],
+        ],
+        extra: [
+          'Best immediate managed option: OpenRouter Auto Beta.',
+          'Best long-term permanent control layer: LiteLLM Auto or Adaptive Routing.',
+          'Biggest savings come from router + prompt caching + response caching + context pruning + output limits.',
+          'A router alone usually cuts cost per token, not total token volume.',
+          'For your environment, start with LiteLLM plus explicit task tiers, then add learned routing after you collect real task outcomes.',
         ]
       }
     ];

@@ -93,6 +93,39 @@
     }
     .meta-card .value, .summary-card .value { margin-top: 8px; font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
     .toolbar { margin-top: 16px; display: grid; gap: 12px; }
+    .control-bar {
+      position: sticky; top: 68px; z-index: 20; margin-top: 14px;
+      background: rgba(255,255,255,.94); backdrop-filter: blur(14px);
+      border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 12px;
+    }
+    .control-grid { display: grid; gap: 10px; }
+    .chip-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+    .chip-row::-webkit-scrollbar { height: 6px; }
+    .chip-row::-webkit-scrollbar-thumb { background: #dbe4f0; border-radius: 999px; }
+    .chip {
+      border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px;
+      padding: 10px 12px; font: inherit; font-size: 12px; font-weight: 800; white-space: nowrap; cursor: pointer;
+    }
+    .chip.active { background: var(--surface-accent); color: var(--accent); border-color: #bfdbfe; }
+    .compare-tray {
+      position: sticky; bottom: 12px; z-index: 25; margin-top: 16px;
+      background: rgba(15,23,42,.95); color: #fff; border-radius: 24px; box-shadow: 0 20px 40px rgba(15,23,42,.2);
+      padding: 14px; display: none;
+    }
+    .compare-tray.visible { display: block; }
+    .compare-tray h4 { margin: 0; font-size: 14px; }
+    .compare-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .compare-pill {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px; padding: 8px 10px; font-size: 12px; font-weight: 700;
+    }
+    .compare-pill button { all: unset; cursor: pointer; font-weight: 900; opacity: .85; }
+    .compare-grid { display: grid; gap: 10px; margin-top: 12px; }
+    .compare-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 12px;
+    }
+    .compare-box .t { font-size: 13px; font-weight: 800; }
+    .compare-box .m { margin-top: 6px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.84); }
     .search-wrap { padding: 12px; }
     .search {
       width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px;
@@ -128,9 +161,19 @@
       border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
       padding: 14px; display: grid; gap: 12px;
     }
+    .compare-card.tier-ultra-low { border-color: #bbf7d0; background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%); }
+    .compare-card.tier-very-low, .compare-card.tier-low { border-color: #c7d2fe; background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%); }
+    .compare-card.tier-moderate, .compare-card.tier-upper-middle { border-color: #bfdbfe; background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%); }
+    .compare-card.tier-premium, .compare-card.tier-frontier-premium, .compare-card.tier-maximum-premium { border-color: #fed7aa; background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%); }
     .compare-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
     .compare-title { min-width: 0; }
     .compare-title h4 { margin: 0; font-size: 16px; line-height: 1.25; letter-spacing: -.02em; }
+    .compare-actions { display: flex; align-items: center; gap: 8px; }
+    .select-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 8px 10px;
+      font: inherit; font-size: 11px; font-weight: 800; cursor: pointer;
+    }
+    .select-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     .compare-sub {
       margin-top: 8px; display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center;
     }
@@ -161,6 +204,11 @@
     }
     .panel.good { background: var(--good-bg); color: var(--good-text); border-color: #bbf7d0; }
     .panel.warn { background: var(--warn-bg); color: var(--warn-text); border-color: #fed7aa; }
+    .section-empty {
+      margin: 0 16px 16px; border: 1px dashed var(--line-strong); border-radius: 18px; padding: 16px; color: var(--muted); background: #fff;
+      display: none;
+    }
+    .section-empty.visible { display: block; }
     .panel .head { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
     .panel .body { margin-top: 6px; font-size: 13px; line-height: 1.6; }
     details.table-details { margin: 0 16px 16px; border: 1px solid var(--line); border-radius: 18px; background: #fff; overflow: hidden; }
@@ -191,11 +239,13 @@
       .hero h2 { font-size: 40px; }
       .meta-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .toolbar { grid-template-columns: 1.35fr .65fr; }
+      .control-grid { grid-template-columns: 1fr 1fr; }
       .toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .compare-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 1080px) {
       .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -247,6 +297,19 @@
       </div>
     </div>
 
+    <section class="control-bar">
+      <div class="control-grid">
+        <div>
+          <div class="section-label" style="margin:0 0 8px;">Quick presets</div>
+          <div class="chip-row" id="presetRow"></div>
+        </div>
+        <div>
+          <div class="section-label" style="margin:0 0 8px;">Tier filters</div>
+          <div class="chip-row" id="tierRow"></div>
+        </div>
+      </div>
+    </section>
+
     <div class="section-label">Quick navigation</div>
     <section class="toc"><div id="tocGrid" class="toc-grid"></div></section>
 
@@ -264,6 +327,12 @@
       </details>
     </section>
 
+    <section id="compareTray" class="compare-tray" aria-live="polite">
+      <h4>Selected for quick compare</h4>
+      <div id="compareList" class="compare-list"></div>
+      <div id="compareGrid" class="compare-grid"></div>
+    </section>
+
     <div class="footer">
       Designed for easier comparison on mobile, with the exact original source preserved underneath for fidelity.
     </div>
@@ -278,6 +347,32 @@
     const expandAllBtn = document.getElementById('expandAllBtn');
     const collapseAllBtn = document.getElementById('collapseAllBtn');
     const copyAllBtn = document.getElementById('copyAllBtn');
+    const presetRow = document.getElementById('presetRow');
+    const tierRow = document.getElementById('tierRow');
+    const compareTray = document.getElementById('compareTray');
+    const compareList = document.getElementById('compareList');
+    const compareGrid = document.getElementById('compareGrid');
+
+    const selectedCards = new Map();
+    let activePreset = 'all';
+    let activeTier = 'all';
+
+    const presets = [
+      { id: 'all', label: 'All sections' },
+      { id: 'budget', label: 'Budget-first', terms: ['DeepSeek', 'Mistral Small', 'Cohere Command R', 'Luna', 'Ultra-low', 'Very low'] },
+      { id: 'coding', label: 'Coding', terms: ['WebDev', 'coding', 'repository', 'GLM-5.2', 'Kimi K3', 'Opus'] },
+      { id: 'reasoning', label: 'Reasoning', terms: ['reasoning', 'Fable', 'Sol', 'autonomous', 'difficult decisions'] },
+      { id: 'gpu', label: 'GPU / local', terms: ['GPU', 'Vast.ai', 'RunPod', 'A100', 'H100', 'local'] },
+      { id: 'agents', label: 'Agents', terms: ['agent', 'routing', 'workflow', 'automation'] },
+    ];
+
+    const tierDefs = [
+      { id: 'all', label: 'All tiers' },
+      { id: 'ultra-low', label: 'Ultra-low' },
+      { id: 'very-low', label: 'Very low' },
+      { id: 'moderate', label: 'Moderate' },
+      { id: 'premium', label: 'Premium+' },
+    ];
 
     const summaries = [
       { title: 'Cheapest routine worker', value: 'DeepSeek V4 Flash', note: '₹20 standard workload' },
@@ -449,22 +544,61 @@
       return `<div class="metric-box"><div class="k">${label}</div><div class="v">${value}</div></div>`;
     }
 
+    function getTier(section, row) {
+      const fields = section.cardFields;
+      const priceCategory = row[fields.indexOf('Price category')] || '';
+      const label = priceCategory.toLowerCase();
+      if (label.includes('ultra-low')) return 'ultra-low';
+      if (label.includes('very low')) return 'very-low';
+      if (label.includes('low')) return 'low';
+      if (label.includes('moderate')) return 'moderate';
+      if (label.includes('upper-middle')) return 'upper-middle';
+      if (label.includes('premium')) return 'premium';
+      if (label.includes('frontier premium')) return 'frontier-premium';
+      if (label.includes('maximum premium')) return 'maximum-premium';
+      const standard = row[fields.indexOf('Standard workload')] || row[fields.indexOf('Approximate standard-workload cost')] || '';
+      const numeric = Number(String(standard).replace(/[^0-9.]/g, ''));
+      if (!Number.isNaN(numeric) && numeric) {
+        if (numeric <= 40) return 'ultra-low';
+        if (numeric <= 100) return 'very-low';
+        if (numeric <= 350) return 'moderate';
+        return 'premium';
+      }
+      return 'neutral';
+    }
+
+    function canonicalTier(tier) {
+      if (['premium', 'frontier-premium', 'maximum-premium', 'upper-middle'].includes(tier)) return 'premium';
+      if (tier === 'low') return 'very-low';
+      return tier;
+    }
+
     function makeCompareCard(section, row) {
       const card = document.createElement('article');
       card.className = 'compare-card';
       card.dataset.search = [section.title, ...row].join(' ').toLowerCase();
 
       const fields = section.cardFields;
-      const title = row[0];
+      const title = fields[0] === 'Rank' && row[1] ? row[1] : row[0];
       const primaryTag = row[1] || '';
       const standard = fields.includes('Standard workload') ? row[fields.indexOf('Standard workload')] : '';
       const monthly = fields.includes('Heavy monthly workload') ? row[fields.indexOf('Heavy monthly workload')] : '';
       const context = fields.includes('Context') ? row[fields.indexOf('Context')] : (fields.includes('Context / maximum output') ? row[fields.indexOf('Context / maximum output')] : '');
       const bestFor = row[fields.indexOf('Best suited for')] || row[fields.indexOf('Best use')] || row[fields.indexOf('Reason')] || row[fields.indexOf('Tasks')] || row[fields.indexOf('Recommended model types')] || row[fields.indexOf('Rank 1')] || row[fields.indexOf('Recommended model')] || '';
       const tradeoff = row[fields.indexOf('Main limitation')] || row[fields.indexOf('Main trade-off')] || row[fields.indexOf('Main issue')] || row[fields.indexOf('Cost observation')] || row[fields.indexOf('Rank 2')] || row[fields.indexOf('Approximate monthly cost')] || row[fields.indexOf('Approximate cost versus DeepSeek V4 Flash')] || row[fields.indexOf('Price category')] || row[fields.indexOf('Heavy monthly workload')] || '';
+      const tier = getTier(section, row);
+      const compareKey = `${section.id}::${title}`;
 
       const metricFields = fields.slice(1).filter(label => !['Benchmark signal', 'Best suited for', 'Best use', 'Main limitation', 'Main trade-off', 'Reason', 'Tasks', 'Recommended model types', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation', 'Recommended model', 'Price category'].includes(label)).slice(0, 4);
       const metricsHtml = metricFields.map(label => metricBox(label, row[fields.indexOf(label)])).join('');
+      card.classList.add(`tier-${tier}`);
+      card.dataset.tier = canonicalTier(tier);
+      card.dataset.compareKey = compareKey;
+      card.dataset.title = title;
+      card.dataset.standard = standard;
+      card.dataset.monthly = monthly;
+      card.dataset.bestfor = bestFor;
+      card.dataset.tradeoff = tradeoff;
 
       card.innerHTML = `
         <div class="compare-top">
@@ -475,6 +609,9 @@
               ${context ? `<span class="context-pill">${context}</span>` : ''}
               ${standard ? `<span class="price-pill">${standard}</span>` : ''}
             </div>
+          </div>
+          <div class="compare-actions">
+            <button class="select-btn" type="button" data-compare-key="${compareKey}">Compare</button>
           </div>
         </div>
         <div class="metrics">${metricsHtml}</div>
@@ -532,6 +669,11 @@
       section.rows.forEach(row => grid.appendChild(makeCompareCard(section, row)));
       wrapper.appendChild(grid);
 
+      const empty = document.createElement('div');
+      empty.className = 'section-empty';
+      empty.textContent = 'No cards in this section match the active filters.';
+      wrapper.appendChild(empty);
+
       const details = document.createElement('details');
       details.className = 'table-details';
       details.innerHTML = `<summary>Open full table view</summary>`;
@@ -560,6 +702,124 @@
       return wrapper;
     }
 
+    function renderFilterChips() {
+      presetRow.innerHTML = '';
+      tierRow.innerHTML = '';
+      presets.forEach(preset => {
+        const btn = document.createElement('button');
+        btn.className = `chip${activePreset === preset.id ? ' active' : ''}`;
+        btn.type = 'button';
+        btn.textContent = preset.label;
+        btn.addEventListener('click', () => {
+          activePreset = preset.id;
+          renderFilterChips();
+          applyFilters();
+        });
+        presetRow.appendChild(btn);
+      });
+      tierDefs.forEach(tier => {
+        const btn = document.createElement('button');
+        btn.className = `chip${activeTier === tier.id ? ' active' : ''}`;
+        btn.type = 'button';
+        btn.textContent = tier.label;
+        btn.addEventListener('click', () => {
+          activeTier = tier.id;
+          renderFilterChips();
+          applyFilters();
+        });
+        tierRow.appendChild(btn);
+      });
+    }
+
+    function matchPreset(card) {
+      if (activePreset === 'all') return true;
+      const preset = presets.find(p => p.id === activePreset);
+      const hay = (card.dataset.search || '').toLowerCase();
+      return preset?.terms?.some(term => hay.includes(term.toLowerCase())) ?? true;
+    }
+
+    function matchTier(card) {
+      if (activeTier === 'all') return true;
+      return (card.dataset.tier || '') === activeTier;
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll('.compare-card').forEach(card => {
+        const hay = (card.dataset.search || '').toLowerCase();
+        const visible = (!query || hay.includes(query)) && matchPreset(card) && matchTier(card);
+        card.classList.toggle('hidden', !visible);
+      });
+      document.querySelectorAll('.section-card').forEach(section => {
+        const visibleCards = [...section.querySelectorAll('.compare-card:not(.hidden)')].length;
+        section.classList.toggle('hidden', visibleCards === 0);
+        const empty = section.querySelector('.section-empty');
+        if (empty) empty.classList.toggle('visible', visibleCards === 0);
+      });
+      document.querySelectorAll('#summaryGrid > *').forEach(el => {
+        const hay = (el.dataset.search || el.textContent || '').toLowerCase();
+        el.classList.toggle('hidden', !!query && !hay.includes(query));
+      });
+    }
+
+    function syncCompareButtons() {
+      document.querySelectorAll('.select-btn').forEach(btn => {
+        const active = selectedCards.has(btn.dataset.compareKey);
+        btn.classList.toggle('active', active);
+        btn.textContent = active ? 'Selected' : 'Compare';
+      });
+    }
+
+    function renderCompareTray() {
+      compareList.innerHTML = '';
+      compareGrid.innerHTML = '';
+      const items = [...selectedCards.values()];
+      compareTray.classList.toggle('visible', items.length > 0);
+      items.forEach(item => {
+        const pill = document.createElement('div');
+        pill.className = 'compare-pill';
+        pill.innerHTML = `<span>${item.title}</span><button type="button" aria-label="Remove ${item.title}">×</button>`;
+        pill.querySelector('button').addEventListener('click', () => {
+          selectedCards.delete(item.key);
+          syncCompareButtons();
+          renderCompareTray();
+        });
+        compareList.appendChild(pill);
+
+        const box = document.createElement('div');
+        box.className = 'compare-box';
+        box.innerHTML = `<div class="t">${item.title}</div><div class="m"><strong>Standard:</strong> ${item.standard || '—'}<br /><strong>Monthly:</strong> ${item.monthly || '—'}<br /><strong>Best for:</strong> ${item.bestfor || '—'}<br /><strong>Watch out:</strong> ${item.tradeoff || '—'}</div>`;
+        compareGrid.appendChild(box);
+      });
+    }
+
+    function attachCompareHandlers() {
+      document.querySelectorAll('.select-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.compare-card');
+          const key = btn.dataset.compareKey;
+          if (selectedCards.has(key)) {
+            selectedCards.delete(key);
+          } else {
+            if (selectedCards.size >= 3) {
+              const firstKey = selectedCards.keys().next().value;
+              selectedCards.delete(firstKey);
+            }
+            selectedCards.set(key, {
+              key,
+              title: card.dataset.title,
+              standard: card.dataset.standard,
+              monthly: card.dataset.monthly,
+              bestfor: card.dataset.bestfor,
+              tradeoff: card.dataset.tradeoff,
+            });
+          }
+          syncCompareButtons();
+          renderCompareTray();
+        });
+      });
+    }
+
     async function init() {
       const response = await fetch('./content.txt');
       const raw = await response.text();
@@ -571,13 +831,14 @@
         sectionsEl.appendChild(makeSection(section));
       });
 
+      renderFilterChips();
+      attachCompareHandlers();
+      syncCompareButtons();
+      renderCompareTray();
+      applyFilters();
+
       searchInput.addEventListener('input', () => {
-        const q = searchInput.value.trim().toLowerCase();
-        const searchable = [...document.querySelectorAll('#summaryGrid > *, #sections > *')];
-        searchable.forEach(el => {
-          const hay = (el.dataset.search || el.textContent || '').toLowerCase();
-          el.classList.toggle('hidden', !!q && !hay.includes(q));
-        });
+        applyFilters();
       });
 
       expandAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = true));

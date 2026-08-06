@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Kawin AI Setup Guide icon">
+  <rect width="256" height="256" rx="52" fill="#ffffff"/>
+  <rect x="18" y="18" width="220" height="220" rx="44" fill="#eff6ff" stroke="#dbeafe" stroke-width="8"/>
+  <path d="M74 174V82h21l33 55 33-55h21v92h-20v-56l-28 46h-12l-28-46v56H74Z" fill="#2563eb"/>
+  <circle cx="201" cy="55" r="14" fill="#2563eb"/>
+</svg>

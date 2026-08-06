@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Kawin AI Setup Guide</title>
+  <meta name="description" content="Mobile-first AI setup decision guide with full INR-normalized model, API, and GPU cost comparison." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --line: #e5e7eb;
+      --line-strong: #d1d5db;
+      --text: #0f172a;
+      --muted: #475569;
+      --muted-2: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --success: #15803d;
+      --warning: #b45309;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    a { color: inherit; }
+    .app {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 16px 16px 40px;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,.88);
+      border-bottom: 1px solid rgba(229,231,235,.9);
+    }
+    .topbar-inner {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 20px;
+      flex: 0 0 auto;
+      border: 1px solid #dbeafe;
+    }
+    .brand-copy { min-width: 0; }
+    .brand-copy h1 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .brand-copy p {
+      margin: 2px 0 0;
+      font-size: 11px;
+      color: var(--muted-2);
+      font-weight: 600;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .hero {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid #dbeafe;
+    }
+    .hero h2 {
+      margin: 14px 0 8px;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .meta-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .meta-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .meta-card .label {
+      font-size: 11px;
+      color: var(--muted-2);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .meta-card .value {
+      margin-top: 8px;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .toolbar {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .search-wrap, .note-box, .toc, .content-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .search-wrap {
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .search {
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      padding: 14px 14px;
+      font: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+    }
+    .search:focus {
+      outline: 2px solid #bfdbfe;
+      border-color: #93c5fd;
+    }
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    button.action {
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .note-box {
+      margin-top: 12px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .section-title {
+      margin: 24px 2px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted-2);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .toc {
+      padding: 14px;
+      overflow: hidden;
+    }
+    .toc-grid {
+      display: grid;
+      gap: 8px;
+    }
+    .toc a {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      display: block;
+    }
+    .content-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .content-card {
+      overflow: hidden;
+    }
+    .content-head {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .content-head h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+    .content-body {
+      padding: 0;
+    }
+    .content-body pre {
+      margin: 0;
+      padding: 16px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: #0f172a;
+      background: #fff;
+    }
+    .muted-small {
+      font-size: 11px;
+      color: var(--muted-2);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .footer {
+      margin-top: 18px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .hidden { display: none !important; }
+    @media (min-width: 720px) {
+      .app { padding: 22px 22px 56px; }
+      .hero { padding: 24px; }
+      .hero h2 { font-size: 38px; }
+      .meta-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .toolbar { grid-template-columns: 1.3fr .7fr; align-items: start; }
+      .toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-icon">AI</div>
+        <div class="brand-copy">
+          <h1>Kawin AI Setup Guide</h1>
+          <p>Mobile-first decision page · full source text preserved</p>
+        </div>
+      </div>
+      <a class="pill" href="#source-content">Jump to content</a>
+    </div>
+  </div>
+
+  <main class="app">
+    <section class="hero">
+      <div class="eyebrow">White background · PWA-style · Mobile-friendly</div>
+      <h2>Your AI setup decision board</h2>
+      <p>
+        This page is designed for quick mobile checking on the go while preserving your full provided content exactly.
+        Nothing from the source text is intentionally omitted. Use search, quick navigation, and section cards to review costs,
+        routing strategy, GPU comparisons, and final recommendations faster.
+      </p>
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="label">USD Rate</div>
+          <div class="value">₹95.22</div>
+        </div>
+        <div class="meta-card">
+          <div class="label">CNY Rate</div>
+          <div class="value">₹14.1133</div>
+        </div>
+        <div class="meta-card">
+          <div class="label">Workload Ratio</div>
+          <div class="value">4:1</div>
+        </div>
+        <div class="meta-card">
+          <div class="label">Designed For</div>
+          <div class="value">Mobile review</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input id="searchInput" class="search" type="search" placeholder="Search any model, section, cost, or recommendation..." />
+        <div class="toolbar-actions">
+          <button class="action" id="expandAllBtn" type="button">Expand all</button>
+          <button class="action" id="collapseAllBtn" type="button">Collapse all</button>
+          <button class="action" id="copyAllBtn" type="button">Copy full text</button>
+        </div>
+      </div>
+      <div class="note-box">
+        <strong>Source integrity note:</strong><br />
+        The full comparison text is loaded from a dedicated source file and displayed section-by-section. This keeps the page readable while preserving the original wording for regular reference.
+      </div>
+    </div>
+
+    <div class="section-title">Quick navigation</div>
+    <section class="toc">
+      <div id="tocGrid" class="toc-grid"></div>
+    </section>
+
+    <div class="section-title" id="source-content">Full source content</div>
+    <section id="contentList" class="content-list"></section>
+
+    <div class="footer">
+      Built as a lightweight installable reference page for regular AI setup reviews on mobile.<br />
+      If this gets updated later, your full source content file can be replaced without redesigning the page shell.
+    </div>
+  </main>
+
+  <script>
+    const contentList = document.getElementById('contentList');
+    const tocGrid = document.getElementById('tocGrid');
+    const searchInput = document.getElementById('searchInput');
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const collapseAllBtn = document.getElementById('collapseAllBtn');
+    const copyAllBtn = document.getElementById('copyAllBtn');
+
+    function slugify(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function splitSections(raw) {
+      const normalized = raw.replace(/\r\n/g, '\n').trim();
+      const parts = normalized.split(/\n(?=\d+\. )/g);
+      return parts.map((part, index) => {
+        const firstLine = part.split('\n')[0].trim();
+        return {
+          id: slugify(firstLine || `section-${index + 1}`),
+          title: firstLine || `Section ${index + 1}`,
+          text: part.trim(),
+        };
+      });
+    }
+
+    function createCard(section) {
+      const wrapper = document.createElement('details');
+      wrapper.className = 'content-card';
+      wrapper.id = section.id;
+      wrapper.open = true;
+      wrapper.dataset.search = section.text.toLowerCase();
+
+      const summary = document.createElement('summary');
+      summary.className = 'content-head';
+      summary.innerHTML = `
+        <div>
+          <h3>${section.title}</h3>
+        </div>
+        <div class="muted-small">Tap to collapse</div>
+      `;
+
+      const body = document.createElement('div');
+      body.className = 'content-body';
+      const pre = document.createElement('pre');
+      pre.textContent = section.text;
+      body.appendChild(pre);
+
+      wrapper.appendChild(summary);
+      wrapper.appendChild(body);
+      return wrapper;
+    }
+
+    function createTocLink(section) {
+      const a = document.createElement('a');
+      a.href = `#${section.id}`;
+      a.textContent = section.title;
+      return a;
+    }
+
+    async function init() {
+      const response = await fetch('./content.txt');
+      const raw = await response.text();
+      const sections = splitSections(raw);
+
+      sections.forEach(section => {
+        tocGrid.appendChild(createTocLink(section));
+        contentList.appendChild(createCard(section));
+      });
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim().toLowerCase();
+        const cards = [...contentList.querySelectorAll('.content-card')];
+        cards.forEach(card => {
+          const match = !query || card.dataset.search.includes(query);
+          card.classList.toggle('hidden', !match);
+        });
+      });
+
+      expandAllBtn.addEventListener('click', () => {
+        document.querySelectorAll('.content-card').forEach(card => card.open = true);
+      });
+
+      collapseAllBtn.addEventListener('click', () => {
+        document.querySelectorAll('.content-card').forEach(card => card.open = false);
+      });
+
+      copyAllBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(raw);
+          copyAllBtn.textContent = 'Copied full text';
+          setTimeout(() => copyAllBtn.textContent = 'Copy full text', 1600);
+        } catch {
+          copyAllBtn.textContent = 'Copy failed';
+          setTimeout(() => copyAllBtn.textContent = 'Copy full text', 1600);
+        }
+      });
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+Complete AI Model and API-Cost Comparison in INR
+The conversion below uses:
+US$1 = ₹95.22, based on the latest available Indian market close of 6 August 2026.
+CNY 1 = ₹14.1133, based on the 7 August 2026 reference rate. (Reuters)
+All model names, benchmark positions, context limits and ranking order are carried forward unchanged from the previous comparison. This version converts the financial figures into Indian rupees.
+Calculation assumptions
+Measurement
+Assumption
+API pricing unit
+Per 1 million tokens
+Standard workload
+1M input + 250K output tokens
+Heavy monthly workload
+100M input + 25M output tokens
+Input-to-output ratio
+4:1
+Currency rate
+₹95.22 per US dollar
+Qwen conversion rate
+₹14.1133 per Chinese yuan
+Taxes
+Not included
+Card forex markup
+Not included
+Search, storage and tool charges
+Not included
+Batch or cached discounts
+Not used unless separately shown
+Actual Indian card billing can differ because of exchange-rate movement, payment-gateway conversion, card forex markup and applicable taxes.
+1. Frontier and Benchmark-Leading API Models
+Model
+Benchmark signal from previous comparison
+Input cost / 1M tokens
+Output cost / 1M tokens
+Context / maximum output
+Standard workload
+Heavy monthly workload
+Best suited for
+Main limitation
+Claude Fable 5
+#1 overall text and #1 agent
+₹952.20
+₹4,761.00
+1M / 128K
+₹2,142.45
+₹2,14,245
+Highest-stakes reasoning, autonomous planning, research synthesis and difficult decisions
+Most expensive major model in this comparison
+Claude Opus 5
+#1 WebDev
+₹476.10
+₹2,380.50
+1M / 128K
+₹1,071.23
+₹1,07,122.50
+Complex coding agents, repositories, architecture and debugging
+Too expensive for routine agents and simple extraction
+GPT-5.6 Sol
+#2 agent and #5 WebDev
+₹476.10
+₹2,856.60
+1.05M / 128K
+₹1,190.25
+₹1,19,025
+Advanced reasoning, coding, multimodal agents and computer use
+Premium processing and long contexts can become costly
+Kimi K3
+#3 agent and #2 WebDev
+₹285.66
+₹1,428.30
+1M
+₹642.74
+₹64,273.50
+Long repositories, coding agents, planning and agent workflows
+Smaller integration ecosystem than leading Western providers
+Gemini 3.1 Pro Preview
+Approximately #10 overall text
+₹190.44
+₹1,142.64
+1.048M / 65K
+₹476.10
+₹47,610
+Large documents, multimodal analysis and Google-based workflows
+Preview model and higher pricing beyond long-context thresholds
+Claude Sonnet 5 — introductory pricing
+Approximately #5 agent
+₹190.44
+₹952.20
+1M / 128K
+₹428.49
+₹42,849
+Coding agents, planning, writing and production automation
+Introductory price may later increase
+Grok 4.5
+Approximately #10 WebDev
+₹190.44
+₹571.32
+500K
+₹333.27
+₹33,327
+Current-information research, tool use and web-connected agents
+Long prompts may move to a higher pricing tier
+GLM-5.2
+Approximately #10 agent and #6 WebDev
+₹133.31
+₹418.97
+1M
+₹238.05
+₹23,805
+Coding, browser agents and economical agent swarms
+Smaller third-party ecosystem
+GPT-5.6 Terra
+Balanced GPT-5.6 tier
+₹190.44
+₹1,142.64
+1.05M / 128K
+₹476.10
+₹47,610
+General agents, coding, workflow orchestration and multimodal automation
+More expensive than several open-weight or Chinese alternatives
+Gemini 3.6 Flash
+Approximately #15 overall text
+₹142.83
+₹714.15
+1.048M / 65K
+₹321.37
+₹32,136.75
+High-volume documents, images, video and multimodal extraction
+Lower reasoning ceiling than premium frontier models
+Mistral Medium 3.5
+Competitive open-weight model
+₹142.83
+₹714.15
+256K
+₹321.37
+₹32,136.75
+Private deployment, multilingual work, coding and enterprise agents
+Shorter context than million-token models
+Cohere Command A
+Enterprise RAG-focused model
+₹238.05
+₹952.20
+256K / 8K
+₹476.10
+₹47,610
+Enterprise RAG, internal search, citations and knowledge workflows
+Lower output limit and weaker frontier coding position
+2. Low-Cost and High-Volume API Models
+Model
+Input / 1M
+Output / 1M
+Cached input / 1M
+Context
+Standard workload
+Heavy monthly workload
+Best use
+Main trade-off
+DeepSeek V4 Flash
+₹13.33
+₹26.66
+₹0.27
+1M / 384K
+₹20.00
+₹1,999.62
+Classification, extraction, routing, background processing and large agent swarms
+Important outputs should be verified by a stronger model
+Mistral Small 4
+₹14.28
+₹57.13
+—
+256K
+₹28.57
+₹2,856.60
+Routine coding, tool calls, general automation and self-hosting
+Full local deployment may still need substantial hardware
+Cohere Command R
+₹14.28
+₹57.13
+—
+128K / 4K
+₹28.57
+₹2,856.60
+Low-cost RAG, retrieval and document question answering
+Short output limit and modest frontier reasoning
+GPT-5.6 Luna
+₹19.04
+₹114.26
+₹1.90
+1.05M / 128K
+₹47.61
+₹4,761
+Summarisation, extraction, classification, routing and sub-agents
+Not a replacement for Sol on highly difficult work
+MiniMax M3
+₹28.57
+₹114.26
+₹5.71
+Up to 512K pricing tier
+₹57.13
+₹5,713.20
+Coding agents, economical processing and long-context workflows
+Higher price tier beyond 512K requests
+Gemini 3.1 Flash-Lite
+₹23.81
+₹142.83
+Provider-specific
+1.048M / 65K
+₹59.51
+₹5,951.25
+Large document extraction, multimodal classification and batch tasks
+Lower reasoning ceiling than Flash and Pro
+DeepSeek V4 Pro
+₹41.42
+₹82.84
+₹0.35
+1M / 384K
+₹62.13
+₹6,213.11
+Low-cost reasoning, coding, planning and agent execution
+Production reliability should be validated for critical tasks
+Gemini 3.5 Flash-Lite
+₹28.57
+₹238.05
+Provider-specific
+1.048M / 65K
+₹88.08
+₹8,807.85
+Multimodal extraction when quality matters more than minimum price
+Output cost is higher than several budget alternatives
+GLM-4.7
+₹57.13
+₹209.48
+Provider-specific
+Model-dependent
+₹109.50
+₹10,950.30
+Coding, multilingual automation and economical agents
+Superseded by GLM-5.2 for stronger performance
+Kimi K2.7 Code
+₹90.46
+₹380.88
+Provider-specific
+256K
+₹185.68
+₹18,567.90
+Coding agents, repository analysis and software automation
+Too expensive for simple routing or extraction tasks
+Claude Haiku 4.5
+₹95.22
+₹476.10
+Provider-specific
+200K / 64K
+₹214.25
+₹21,424.50
+Dependable structured extraction, fast agents and Anthropic workflows
+More expensive than budget worker models
+Gemini 3.5 Flash
+₹142.83
+₹856.98
+Provider-specific
+Million-token class
+₹357.08
+₹35,707.50
+Multimodal automation, extraction and general agent workloads
+Gemini 3.6 Flash offers a lower output price
+Mistral Medium 3.5
+₹142.83
+₹714.15
+Provider-specific
+256K
+₹321.37
+₹32,136.75
+Balanced open-weight production deployment
+Considerably more expensive than Mistral Small 4
+3. Qwen API Pricing Converted to INR
+Qwen pricing in the previous comparison was listed in Chinese yuan. The following uses CNY 1 = ₹14.1133. (BookMyForex)
+Model and region
+Input / 1M tokens
+Output / 1M tokens
+Context
+Standard workload
+Heavy monthly workload
+Qwen3.7-Max — most global regions
+₹169.36
+₹508.08
+1M / 131K
+₹296.38
+₹29,637.93
+Qwen3.7-Max — Singapore endpoint
+₹264.43
+₹793.27
+1M / 131K
+₹462.74
+₹46,274.34
+The regional endpoint can therefore materially affect Qwen operating cost.
+4. Complete API Cost Ranking in INR
+This ranks the models only by the cost of:
+1 million input tokens + 250,000 output tokens
+It is not an intelligence ranking.
+Cost rank
+Model
+Standard workload
+Heavy monthly workload
+Price category
+1
+DeepSeek V4 Flash
+₹20.00
+₹1,999.62
+Ultra-low
+2
+Mistral Small 4
+₹28.57
+₹2,856.60
+Ultra-low
+2
+Cohere Command R
+₹28.57
+₹2,856.60
+Ultra-low
+4
+GPT-5.6 Luna
+₹47.61
+₹4,761
+Very low
+5
+MiniMax M3
+₹57.13
+₹5,713.20
+Very low
+6
+Gemini 3.1 Flash-Lite
+₹59.51
+₹5,951.25
+Very low
+7
+DeepSeek V4 Pro
+₹62.13
+₹6,213.11
+Very low
+8
+Gemini 3.5 Flash-Lite
+₹88.08
+₹8,807.85
+Low
+9
+GLM-4.7
+₹109.50
+₹10,950.30
+Low
+10
+Kimi K2.7 Code
+₹185.68
+₹18,567.90
+Low
+11
+Claude Haiku 4.5
+₹214.25
+₹21,424.50
+Moderate
+12
+GLM-5.2
+₹238.05
+₹23,805
+Moderate
+13
+Qwen3.7-Max — global region
+₹296.38
+₹29,637.93
+Moderate
+14
+Gemini 3.6 Flash
+₹321.37
+₹32,136.75
+Moderate
+14
+Mistral Medium 3.5
+₹321.37
+₹32,136.75
+Moderate
+16
+Grok 4.5
+₹333.27
+₹33,327
+Moderate
+17
+Gemini 3.5 Flash
+₹357.08
+₹35,707.50
+Moderate
+18
+Claude Sonnet 5 — introductory
+₹428.49
+₹42,849
+Upper-middle
+19
+Qwen3.7-Max — Singapore
+₹462.74
+₹46,274.34
+Upper-middle
+20
+GPT-5.6 Terra
+₹476.10
+₹47,610
+Upper-middle
+20
+Gemini 3.1 Pro Preview
+₹476.10
+₹47,610
+Upper-middle
+20
+Cohere Command A
+₹476.10
+₹47,610
+Upper-middle
+23
+Kimi K3
+₹642.74
+₹64,273.50
+Premium
+24
+Claude Opus 5
+₹1,071.23
+₹1,07,122.50
+Frontier premium
+25
+GPT-5.6 Sol
+₹1,190.25
+₹1,19,025
+Frontier premium
+26
+Claude Fable 5
+₹2,142.45
+₹2,14,245
+Maximum premium
+5. Relative Cost Multipliers
+This table shows how expensive each model is relative to DeepSeek V4 Flash for the same standard workload.
+Model
+Standard workload
+Approximate cost versus DeepSeek V4 Flash
+DeepSeek V4 Flash
+₹20.00
+1×
+Mistral Small 4
+₹28.57
+1.4×
+GPT-5.6 Luna
+₹47.61
+2.4×
+DeepSeek V4 Pro
+₹62.13
+3.1×
+GLM-4.7
+₹109.50
+5.5×
+Claude Haiku 4.5
+₹214.25
+10.7×
+GLM-5.2
+₹238.05
+11.9×
+Gemini 3.6 Flash
+₹321.37
+16.1×
+Grok 4.5
+₹333.27
+16.7×
+Claude Sonnet 5
+₹428.49
+21.4×
+GPT-5.6 Terra
+₹476.10
+23.8×
+Gemini 3.1 Pro
+₹476.10
+23.8×
+Kimi K3
+₹642.74
+32.1×
+Claude Opus 5
+₹1,071.23
+53.6×
+GPT-5.6 Sol
+₹1,190.25
+59.5×
+Claude Fable 5
+₹2,142.45
+107.1×
+The cost difference is enormous. However, assigning a weak model to a difficult task can cause retries, failures and human correction costs that erase the apparent saving.
+6. Rankings by Workflow Requirement
+Requirement
+Rank 1
+Rank 2
+Rank 3
+Cost observation
+Highest overall intelligence
+Claude Fable 5
+GPT-5.6 Sol
+Claude Opus 5
+Approximately ₹1,071–₹2,142 per standard workload
+Advanced coding and WebDev
+Claude Opus 5
+Kimi K3
+GPT-5.6 Sol
+Kimi K3 is substantially cheaper than Opus and Sol
+Complex autonomous agents
+Claude Fable 5
+GPT-5.6 Sol
+Kimi K3
+Reserve these for difficult escalations
+Premium value
+Claude Sonnet 5
+Kimi K3
+Gemini 3.1 Pro
+Approximately ₹428–₹643 per standard workload
+Balanced production model
+Claude Sonnet 5
+GPT-5.6 Terra
+Gemini 3.6 Flash
+Approximately ₹321–₹476 per workload
+Economical coding agent
+GLM-5.2
+DeepSeek V4 Pro
+Kimi K2.7 Code
+Approximately ₹62–₹238 per workload
+Million-token processing
+Gemini 3.6 Flash
+GPT-5.6 Terra
+GLM-5.2
+Suitable for large documents and repositories
+Multimodal volume processing
+Gemini 3.6 Flash
+Gemini Flash-Lite
+GPT-5.6 Luna
+Worker-model pricing ranges from ₹48 to ₹321
+Cheapest routine worker
+DeepSeek V4 Flash
+Mistral Small 4
+GPT-5.6 Luna
+Approximately ₹20–₹48 per workload
+Enterprise RAG
+Cohere Command A
+Cohere Command R
+Gemini 3.6 Flash
+Command R is extremely economical for focused retrieval
+Open-weight API model
+Mistral Medium 3.5
+Mistral Small 4
+Suitable open Qwen deployment
+Can later be migrated to private infrastructure
+Local-deployment path
+Mistral Small 4
+Mistral Medium 3.5
+Quantized open-weight alternatives
+Hardware cost replaces token cost
+Lowest API expenditure
+DeepSeek V4 Flash
+Mistral Small 4
+Cohere Command R
+Best for high-volume background tasks
+Largest mainstream ecosystem
+GPT-5.6 family
+Claude family
+Gemini family
+Usually easier integration but not always lowest cost
+7. Cloud GPU Pricing in INR
+The table below converts the cloud rates from the previous comparison using ₹95.22 per US dollar. The monthly figure assumes the GPU runs continuously for 720 hours.
+Cloud provider and GPU
+Approximate hourly cost
+8 hours/day for 30 days
+12 hours/day for 30 days
+Continuous 720-hour month
+Suitable model class
+Main issue
+Vast.ai RTX 4090
+From ₹12.38/hour
+₹2,970.86
+₹4,456.30
+₹8,912.59
+Quantized 7B–32B
+Marketplace reliability and availability vary
+RunPod RTX 3090 24GB
+₹47.61/hour
+₹11,426.40
+₹17,139.60
+₹34,279.20
+7B–32B quantized models
+Storage and inactive instances can add costs
+RunPod RTX 4090 24GB
+₹65.70/hour
+₹15,768.43
+₹23,652.65
+₹47,305.30
+Fast 7B–32B inference
+Still limited to 24GB VRAM
+Thunder A100 80GB
+₹103.79/hour
+₹24,909.55
+₹37,364.33
+₹74,728.66
+Quantized 70B and smaller models
+Expensive unless utilised heavily
+Thunder H100 80GB
+₹208.53/hour
+₹50,047.63
+₹75,071.45
+₹1,50,142.90
+High-throughput 70B inference
+Very expensive while idle
+Lambda H100 PCIe 80GB
+₹313.27/hour
+₹75,185.71
+₹1,12,778.57
+₹2,25,557.14
+Large-model and concurrent inference
+Premium infrastructure cost
+Lambda H100 SXM
+₹408.49/hour
+₹98,038.51
+₹1,47,057.76
+₹2,94,115.54
+High-bandwidth large-model workloads
+Difficult to justify for intermittent use
+Lambda B200 180GB
+₹656.07/hour
+₹1,57,457.28
+₹2,36,185.92
+₹4,72,367.38
+Extremely large models
+Intended for enterprise-scale workloads
+The USD–INR conversion uses the latest available close of ₹95.22 per dollar. (Reuters)
+8. API Versus Cloud GPU Cost in INR
+Monthly workload pattern
+Better option
+Reason
+Occasional AI usage
+API
+No idle GPU expense
+Irregular workloads
+API or serverless GPU
+You pay only when requests run
+Millions of simple classification tasks
+Cheap API models
+DeepSeek Flash and similar models can remain cheaper than renting a full GPU
+Continuous private document processing
+Local PC or private cloud GPU
+Privacy and fixed infrastructure become more valuable
+Constant 24/7 open-model inference
+Dedicated cloud or local GPU
+Hardware utilisation can justify fixed cost
+Access to top proprietary reasoning
+API
+Proprietary weights cannot normally be self-hosted
+Temporary 70B model experiments
+A100/H100 rental
+Avoids purchasing very expensive hardware
+Hundreds of routine agents
+API model routing first
+Easier scaling and no always-on hardware
+Stable high-volume workloads
+Compare API bill against GPU utilisation
+Dedicated infrastructure becomes useful only above a sustained threshold
+Example monthly comparison
+Assume the monthly workload is:
+100 million input tokens
+25 million output tokens
+Option
+Approximate monthly cost
+DeepSeek V4 Flash API
+₹1,999.62
+Mistral Small 4 API
+₹2,856.60
+GPT-5.6 Luna API
+₹4,761
+DeepSeek V4 Pro API
+₹6,213.11
+Claude Haiku 4.5 API
+₹21,424.50
+GLM-5.2 API
+₹23,805
+Gemini 3.6 Flash API
+₹32,136.75
+Claude Sonnet 5 API
+₹42,849
+RunPod RTX 3090 running 24/7
+₹34,279.20 plus storage
+RunPod RTX 4090 running 24/7
+₹47,305.30 plus storage
+Kimi K3 API
+₹64,273.50
+Thunder A100 running 24/7
+₹74,728.66 plus storage
+Claude Opus 5 API
+₹1,07,122.50
+GPT-5.6 Sol API
+₹1,19,025
+Thunder H100 running 24/7
+₹1,50,142.90 plus storage
+Claude Fable 5 API
+₹2,14,245
+What this demonstrates
+A cheap API can be dramatically cheaper than maintaining a cloud GPU.
+A cloud RTX 3090 or 4090 may become economical compared with premium APIs.
+An A100 or H100 requires high utilisation to make financial sense.
+A cloud GPU does not include the intelligence of Claude, GPT or Gemini automatically; it only provides hardware on which an open model must be deployed.
+Deployment, monitoring, updates, storage and failures must also be considered.
+9. Three-Tier AI-Agent Architecture
+Using one expensive model for every agent would waste money.
+Tier
+Suggested workload share
+Recommended model types
+Tasks
+Tier 1 — Bulk workers
+70–85%
+DeepSeek V4 Flash, GPT-5.6 Luna, Gemini Flash-Lite, Mistral Small 4
+Extraction, classification, summaries, monitoring, formatting and routing
+Tier 2 — Skilled agents
+12–25%
+Claude Sonnet 5, GPT-5.6 Terra, Gemini 3.6 Flash, GLM-5.2, DeepSeek V4 Pro
+Coding, planning, analysis, content and workflow decisions
+Tier 3 — Expert escalation
+2–5%
+Claude Fable 5, Claude Opus 5, GPT-5.6 Sol, Kimi K3
+Critical reasoning, complex debugging, architecture and final verification
+10. Blended Model-Routing Cost in INR
+Illustrative distribution:
+80% of tokens through DeepSeek V4 Flash
+18% through Claude Sonnet 5
+2% through Claude Fable 5
+Deployment strategy
+Standard workload
+Heavy monthly workload
+Everything through Claude Fable 5
+₹2,142.45
+₹2,14,245
+Everything through Claude Opus 5
+₹1,071.23
+₹1,07,122.50
+Everything through Claude Sonnet 5
+₹428.49
+₹42,849
+80% Flash + 18% Sonnet + 2% Fable routing
+Approximately ₹136.16
+Approximately ₹13,597.42
+Estimated savings from routing
+Compared with
+Approximate saving
+Using Claude Fable 5 for everything
+93.7%
+Using Claude Opus 5 for everything
+87.3%
+Using Claude Sonnet 5 for everything
+68.3%
+11. Final INR-Based Recommendations
+Position in the system
+Recommended model
+Approximate standard-workload cost
+Cheapest background worker
+DeepSeek V4 Flash
+₹20
+Low-cost self-hosting path
+Mistral Small 4
+₹28.57 through API
+Reliable economical worker
+GPT-5.6 Luna
+₹47.61
+Low-cost reasoning model
+DeepSeek V4 Pro
+₹62.13
+Economical coding agent
+GLM-5.2
+₹238.05
+Multimodal high-volume agent
+Gemini 3.6 Flash
+₹321.37
+Balanced premium agent
+Claude Sonnet 5
+₹428.49
+Balanced OpenAI agent
+GPT-5.6 Terra
+₹476.10
+Advanced coding escalation
+Kimi K3 or Claude Opus 5
+₹642.74–₹1,071.23
+Highest-stakes reasoning
+GPT-5.6 Sol or Claude Fable 5
+₹1,190.25–₹2,142.45
+Temporary local-model testing
+Vast.ai or RunPod
+₹12.38–₹65.70 per hour
+Long-running private local model
+Purchase a modern NVIDIA workstation
+Fixed capital expense instead of recurring token charges
+Best overall structure
+A financially sensible setup would be:
+Use DeepSeek V4 Flash, GPT-5.6 Luna or Mistral Small 4 for repetitive high-volume tasks.
+Escalate coding and planning to GLM-5.2, Gemini 3.6 Flash, GPT-5.6 Terra or Claude Sonnet 5.
+Use Claude Opus 5, GPT-5.6 Sol or Claude Fable 5 only when the lower-cost models cannot solve the task reliably.
+Rent a cloud GPU only for open-weight models, experiments, privacy-sensitive work or continuously utilised inference.
+Consider purchasing a local NVIDIA workstation only after the recurring cloud and API bill consistently approaches the monthly ownership cost.
+The strongest cost-saving method is therefore intelligent model routing, not automatically replacing every paid API with an expensive local or cloud GPU.

@@ -12,42 +12,43 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <style>
     :root {
-      --bg: #f8fbff;
+      --bg: #f6f9ff;
       --surface: #ffffff;
       --surface-soft: #f8fafc;
-      --line: #e5e7eb;
+      --surface-accent: #eff6ff;
+      --line: #e2e8f0;
       --line-strong: #cbd5e1;
       --text: #0f172a;
       --muted: #475569;
       --muted-2: #64748b;
       --accent: #2563eb;
-      --accent-soft: #eff6ff;
-      --success: #15803d;
-      --warn: #b45309;
-      --danger: #b91c1c;
-      --shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
-      --radius: 22px;
+      --accent-2: #1d4ed8;
+      --good-bg: #f0fdf4;
+      --good-text: #166534;
+      --warn-bg: #fff7ed;
+      --warn-text: #b45309;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.07);
+      --radius: 24px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
       color: var(--text);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
     }
     a { color: inherit; }
     .topbar {
       position: sticky;
       top: 0;
       z-index: 30;
-      background: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.9);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(229,231,235,.95);
+      border-bottom: 1px solid rgba(226,232,240,.95);
     }
-    .topbar-inner,
-    .app {
-      width: min(100%, 1180px);
+    .topbar-inner, .app {
+      width: min(100%, 1240px);
       margin: 0 auto;
       padding-left: 16px;
       padding-right: 16px;
@@ -60,347 +61,130 @@
       justify-content: space-between;
       gap: 12px;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .brand-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      border: 1px solid #dbeafe;
-      flex: 0 0 auto;
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: var(--surface-accent); color: var(--accent); font-weight: 900; border: 1px solid #dbeafe; flex: 0 0 auto;
     }
-    .brand-copy h1 {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-    }
-    .brand-copy p {
-      margin: 2px 0 0;
-      font-size: 11px;
-      color: var(--muted-2);
-      font-weight: 600;
-    }
+    .brand-copy h1 { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+    .brand-copy p { margin: 2px 0 0; font-size: 11px; color: var(--muted-2); font-weight: 600; }
     .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 999px;
-      padding: 10px 12px;
-      font-size: 12px;
-      font-weight: 800;
-      text-decoration: none;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 10px 12px; font-size: 12px; font-weight: 800;
     }
-    .app {
-      padding-top: 18px;
-      padding-bottom: 48px;
+    .app { padding-top: 18px; padding-bottom: 48px; }
+    .hero, .toc, .section-card, .source-card, .search-wrap, .info-box {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
     }
-    .hero,
-    .block,
-    .table-shell,
-    .section-card,
-    .source-card,
-    .toc {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-    .hero {
-      padding: 20px;
-    }
+    .hero { padding: 20px; }
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      border: 1px solid #dbeafe;
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 7px 10px;
-      font-size: 11px;
-      font-weight: 800;
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; font-size: 11px; font-weight: 800;
+      color: var(--accent); background: var(--surface-accent); border: 1px solid #dbeafe; border-radius: 999px;
     }
-    .hero h2 {
-      margin: 14px 0 8px;
-      font-size: 28px;
-      line-height: 1.02;
-      letter-spacing: -.05em;
+    .hero h2 { margin: 14px 0 8px; font-size: 30px; line-height: 1.02; letter-spacing: -.05em; }
+    .hero p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .meta-grid, .summary-grid, .card-grid { display: grid; gap: 12px; }
+    .meta-grid { margin-top: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .meta-card, .summary-card {
+      background: var(--surface-soft); border: 1px solid var(--line); border-radius: 18px; padding: 14px;
     }
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 14px;
+    .meta-card .label, .summary-card .label {
+      color: var(--muted-2); font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
     }
-    .meta-grid,
-    .summary-grid,
-    .section-grid {
-      display: grid;
-      gap: 12px;
-    }
-    .meta-grid {
-      margin-top: 18px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .meta-card,
-    .summary-card {
-      background: var(--surface-soft);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px;
-    }
-    .meta-card .label,
-    .summary-card .label {
-      color: var(--muted-2);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      font-size: 11px;
-      font-weight: 800;
-    }
-    .meta-card .value,
-    .summary-card .value {
-      margin-top: 8px;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -.02em;
-    }
-    .toolbar {
-      margin-top: 16px;
-      display: grid;
-      gap: 12px;
-    }
-    .search-wrap,
-    .info-box {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-    .search-wrap {
-      padding: 12px;
-    }
+    .meta-card .value, .summary-card .value { margin-top: 8px; font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+    .toolbar { margin-top: 16px; display: grid; gap: 12px; }
+    .search-wrap { padding: 12px; }
     .search {
-      width: 100%;
-      border: 1px solid var(--line-strong);
-      border-radius: 14px;
-      padding: 14px;
-      font: inherit;
-      font-size: 14px;
-      color: var(--text);
-      background: #fff;
+      width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px;
+      font: inherit; font-size: 14px; color: var(--text); background: #fff;
     }
-    .search:focus {
-      outline: 2px solid #bfdbfe;
-      border-color: #93c5fd;
-    }
-    .toolbar-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
+    .search:focus { outline: 2px solid #bfdbfe; border-color: #93c5fd; }
+    .toolbar-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .action {
-      border: 1px solid var(--line);
-      background: var(--surface-soft);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
+      border: 1px solid var(--line); background: var(--surface-soft); color: var(--text); border-radius: 12px;
+      padding: 10px 12px; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
     }
-    .info-box {
-      padding: 14px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
+    .info-box { padding: 14px; color: var(--muted); font-size: 13px; line-height: 1.6; }
     .section-label {
-      margin: 24px 2px 12px;
-      color: var(--muted-2);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+      margin: 24px 2px 12px; color: var(--muted-2); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
     }
-    .toc {
-      padding: 14px;
-    }
-    .toc-grid {
-      display: grid;
-      gap: 8px;
-    }
+    .toc { padding: 14px; }
+    .toc-grid { display: grid; gap: 8px; }
     .toc a {
-      display: block;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: #fff;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.35;
+      display: block; text-decoration: none; padding: 12px; border-radius: 14px; border: 1px solid var(--line);
+      background: #fff; font-size: 13px; font-weight: 700; line-height: 1.35;
     }
-    .section-grid {
-      margin-top: 12px;
-    }
-    .section-card {
-      overflow: hidden;
-    }
-    .section-head {
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 12px;
-    }
-    .section-head h3 {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.2;
-      letter-spacing: -.02em;
-    }
-    .section-head p {
-      margin: 6px 0 0;
-      font-size: 12px;
-      color: var(--muted-2);
-      line-height: 1.5;
-    }
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    table.data {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 760px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-    table.data th,
-    table.data td {
-      padding: 12px 12px;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-      text-align: left;
-    }
-    table.data thead th {
-      position: sticky;
-      top: 0;
-      background: #f8fafc;
-      color: var(--muted-2);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      font-weight: 800;
-      z-index: 1;
-    }
-    table.data tbody tr:nth-child(even) {
-      background: #fcfdff;
-    }
-    .num {
-      white-space: nowrap;
-      font-weight: 800;
-    }
-    .card-list {
-      display: grid;
-      gap: 12px;
-      padding: 14px;
-    }
-    .mini-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: #fff;
-      padding: 14px;
-    }
-    .mini-card h4 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      line-height: 1.3;
-    }
-    .mini-card dl {
-      margin: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .mini-card dt {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      color: var(--muted-2);
-      font-weight: 800;
-      margin-bottom: 3px;
-    }
-    .mini-card dd {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .source-card {
-      margin-top: 16px;
-      overflow: hidden;
-    }
-    .source-card details summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      font-size: 16px;
-      font-weight: 800;
-    }
-    .source-card details[open] summary {
-      background: #f8fafc;
-    }
-    .source-card pre {
-      margin: 0;
-      padding: 16px;
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12.5px;
-      line-height: 1.7;
-      color: #0f172a;
-      background: #fff;
-    }
+    .section-stack { display: grid; gap: 16px; }
+    .section-card { overflow: hidden; }
+    .section-head { padding: 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .section-head h3 { margin: 0; font-size: 19px; line-height: 1.2; letter-spacing: -.02em; }
+    .section-head p { margin: 6px 0 0; font-size: 12px; color: var(--muted-2); line-height: 1.55; }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
+      display: inline-flex; align-items: center; border-radius: 999px; background: var(--surface-accent); color: var(--accent);
+      border: 1px solid #dbeafe; padding: 7px 10px; font-size: 11px; font-weight: 800; white-space: nowrap;
+    }
+    .card-grid { padding: 16px; grid-template-columns: 1fr; }
+    .compare-card {
+      border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      padding: 14px; display: grid; gap: 12px;
+    }
+    .compare-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .compare-title { min-width: 0; }
+    .compare-title h4 { margin: 0; font-size: 16px; line-height: 1.25; letter-spacing: -.02em; }
+    .compare-sub {
+      margin-top: 8px; display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+    .tag, .context-pill, .price-pill {
+      display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 800;
       border: 1px solid var(--line);
-      background: var(--surface-soft);
-      padding: 6px 10px;
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--muted);
-      white-space: nowrap;
+    }
+    .tag { background: #fff; color: var(--muted); }
+    .context-pill { background: #f8fafc; color: var(--muted); }
+    .price-pill { background: var(--surface-accent); color: var(--accent); border-color: #dbeafe; }
+    .metrics {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+    }
+    .metric-box {
+      border: 1px solid var(--line); border-radius: 16px; padding: 12px; background: #fff;
+    }
+    .metric-box .k {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted-2); font-weight: 800;
+    }
+    .metric-box .v {
+      margin-top: 6px; font-size: 15px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25;
+    }
+    .panels {
+      display: grid; gap: 10px;
+    }
+    .panel {
+      border-radius: 18px; padding: 12px; border: 1px solid var(--line);
+    }
+    .panel.good { background: var(--good-bg); color: var(--good-text); border-color: #bbf7d0; }
+    .panel.warn { background: var(--warn-bg); color: var(--warn-text); border-color: #fed7aa; }
+    .panel .head { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .panel .body { margin-top: 6px; font-size: 13px; line-height: 1.6; }
+    details.table-details { margin: 0 16px 16px; border: 1px solid var(--line); border-radius: 18px; background: #fff; overflow: hidden; }
+    details.table-details summary {
+      cursor: pointer; list-style: none; padding: 14px 16px; font-size: 13px; font-weight: 800; color: var(--muted);
+      background: var(--surface-soft); border-bottom: 1px solid var(--line);
+    }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.data { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 13px; line-height: 1.5; }
+    table.data th, table.data td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    table.data thead th { background: #f8fafc; color: var(--muted-2); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; }
+    table.data tbody tr:nth-child(even) { background: #fcfdff; }
+    .num { white-space: nowrap; font-weight: 800; }
+    .source-card { overflow: hidden; }
+    .source-card details summary {
+      cursor: pointer; list-style: none; padding: 16px; border-bottom: 1px solid var(--line); font-size: 16px; font-weight: 800;
+    }
+    .source-card details[open] summary { background: #f8fafc; }
+    .source-card pre {
+      margin: 0; padding: 16px; white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px; line-height: 1.7; color: #0f172a; background: #fff;
     }
     .hidden { display: none !important; }
-    .footer {
-      margin-top: 18px;
-      padding: 18px;
-      text-align: center;
-      color: var(--muted-2);
-      font-size: 12px;
-      line-height: 1.7;
-    }
+    .footer { margin-top: 18px; padding: 18px; text-align: center; color: var(--muted-2); font-size: 12px; line-height: 1.7; }
     @media (min-width: 760px) {
       .topbar-inner, .app { padding-left: 22px; padding-right: 22px; }
       .hero { padding: 24px; }
@@ -409,14 +193,12 @@
       .toolbar { grid-template-columns: 1.35fr .65fr; }
       .toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .section-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
-    @media (max-width: 759px) {
-      table.data { display: none; }
-      .table-shell .card-list { display: grid; }
-    }
-    @media (min-width: 760px) {
-      .table-shell .card-list { display: none; }
+    @media (min-width: 1080px) {
+      .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -427,7 +209,7 @@
         <div class="brand-icon">AI</div>
         <div class="brand-copy">
           <h1>Kawin AI Setup Guide</h1>
-          <p>Structured comparison view + full exact source</p>
+          <p>Card-first comparison UI + exact source preserved</p>
         </div>
       </div>
       <a class="pill" href="#exact-source">Exact source text</a>
@@ -437,31 +219,31 @@
   <main class="app">
     <section class="hero">
       <div class="eyebrow">White background · PWA-style · Mobile-friendly</div>
-      <h2>Faster AI setup decisions on mobile</h2>
+      <h2>Visual comparison cards, not plain text blocks</h2>
       <p>
-        I’ve upgraded the page so the comparison-heavy sections are shown as proper tables and mobile cards first.
-        Your full provided content is still preserved exactly below in the source section, so nothing is neglected.
+        The comparison sections below are now card-first and boxy by design: cost bands, context pills, benchmark tags,
+        and separate “best for” versus “watch out” panels. Your full exact source is still preserved below so nothing is lost.
       </p>
       <div class="meta-grid">
         <div class="meta-card"><div class="label">USD Rate</div><div class="value">₹95.22</div></div>
         <div class="meta-card"><div class="label">CNY Rate</div><div class="value">₹14.1133</div></div>
         <div class="meta-card"><div class="label">Workload Ratio</div><div class="value">4:1</div></div>
-        <div class="meta-card"><div class="label">Best Mode</div><div class="value">Model routing</div></div>
+        <div class="meta-card"><div class="label">Best Strategy</div><div class="value">Model routing</div></div>
       </div>
     </section>
 
     <div class="toolbar">
       <div class="search-wrap">
-        <input id="searchInput" class="search" type="search" placeholder="Search model names, costs, sections, workflow types, recommendations..." />
+        <input id="searchInput" class="search" type="search" placeholder="Search models, costs, context, sections, recommendations..." />
         <div class="toolbar-actions">
-          <button class="action" id="expandAllBtn" type="button">Expand all source</button>
-          <button class="action" id="collapseAllBtn" type="button">Collapse all source</button>
+          <button class="action" id="expandAllBtn" type="button">Expand source</button>
+          <button class="action" id="collapseAllBtn" type="button">Collapse source</button>
           <button class="action" id="copyAllBtn" type="button">Copy full source</button>
         </div>
       </div>
       <div class="info-box">
-        <strong>Why it looks better now:</strong><br />
-        The important table-like content is rendered as structured comparison UI first, while the exact original wording is retained in the source section underneath. So you get both readability and fidelity.
+        <strong>Better comparison UX:</strong><br />
+        Instead of reading one paragraph-like card, you now compare structured boxes inside each card: benchmark, standard cost, monthly cost, context, best-fit usage, and trade-off.
       </div>
     </div>
 
@@ -469,10 +251,10 @@
     <section class="toc"><div id="tocGrid" class="toc-grid"></div></section>
 
     <div class="section-label">Decision shortcuts</div>
-    <section class="section-grid" id="summaryGrid"></section>
+    <section id="summaryGrid" class="summary-grid"></section>
 
-    <div class="section-label">Structured comparison view</div>
-    <section id="structuredSections"></section>
+    <div class="section-label">Visual comparison sections</div>
+    <section id="sections" class="section-stack"></section>
 
     <div class="section-label" id="exact-source">Exact source text</div>
     <section class="source-card">
@@ -483,8 +265,7 @@
     </section>
 
     <div class="footer">
-      Structured for quick mobile reading, but with the full exact source preserved below so no word is lost.<br />
-      Installable as a lightweight PWA-style reference page for regular AI setup reviews.
+      Designed for easier comparison on mobile, with the exact original source preserved underneath for fidelity.
     </div>
   </main>
 
@@ -492,7 +273,7 @@
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
     const summaryGrid = document.getElementById('summaryGrid');
-    const structuredSections = document.getElementById('structuredSections');
+    const sectionsEl = document.getElementById('sections');
     const fullSourcePre = document.getElementById('fullSourcePre');
     const expandAllBtn = document.getElementById('expandAllBtn');
     const collapseAllBtn = document.getElementById('collapseAllBtn');
@@ -512,7 +293,7 @@
         id: 'frontier-models',
         title: '1. Frontier and Benchmark-Leading API Models',
         description: 'Premium and benchmark-leading models for coding, high-stakes reasoning, multimodal work, and advanced autonomous agents.',
-        columns: ['Model', 'Benchmark signal', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best suited for', 'Main limitation'],
+        cardFields: ['Model', 'Benchmark signal', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best suited for', 'Main limitation'],
         rows: [
           ['Claude Fable 5', '#1 overall text and #1 agent', '₹952.20', '₹4,761.00', '1M / 128K', '₹2,142.45', '₹2,14,245', 'Highest-stakes reasoning, autonomous planning, research synthesis and difficult decisions', 'Most expensive major model in this comparison'],
           ['Claude Opus 5', '#1 WebDev', '₹476.10', '₹2,380.50', '1M / 128K', '₹1,071.23', '₹1,07,122.50', 'Complex coding agents, repositories, architecture and debugging', 'Too expensive for routine agents and simple extraction'],
@@ -532,7 +313,7 @@
         id: 'budget-models',
         title: '2. Low-Cost and High-Volume API Models',
         description: 'Worker-model tier for high-volume routing, extraction, classification, and economical coding/agent tasks.',
-        columns: ['Model', 'Input / 1M', 'Output / 1M', 'Cached input / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best use', 'Main trade-off'],
+        cardFields: ['Model', 'Input / 1M', 'Output / 1M', 'Cached input / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best use', 'Main trade-off'],
         rows: [
           ['DeepSeek V4 Flash', '₹13.33', '₹26.66', '₹0.27', '1M / 384K', '₹20.00', '₹1,999.62', 'Classification, extraction, routing, background processing and large agent swarms', 'Important outputs should be verified by a stronger model'],
           ['Mistral Small 4', '₹14.28', '₹57.13', '—', '256K', '₹28.57', '₹2,856.60', 'Routine coding, tool calls, general automation and self-hosting', 'Full local deployment may still need substantial hardware'],
@@ -553,7 +334,7 @@
         id: 'qwen-pricing',
         title: '3. Qwen API Pricing Converted to INR',
         description: 'Regional endpoint pricing matters materially for Qwen.',
-        columns: ['Model and region', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload'],
+        cardFields: ['Model and region', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload'],
         rows: [
           ['Qwen3.7-Max — most global regions', '₹169.36', '₹508.08', '1M / 131K', '₹296.38', '₹29,637.93'],
           ['Qwen3.7-Max — Singapore endpoint', '₹264.43', '₹793.27', '1M / 131K', '₹462.74', '₹46,274.34'],
@@ -563,183 +344,80 @@
         id: 'cost-ranking',
         title: '4. Complete API Cost Ranking in INR',
         description: 'Cost ranking only for 1M input + 250K output tokens. This is not an intelligence ranking.',
-        columns: ['Rank', 'Model', 'Standard workload', 'Heavy monthly workload', 'Price category'],
+        cardFields: ['Rank', 'Model', 'Standard workload', 'Heavy monthly workload', 'Price category'],
         rows: [
-          ['1', 'DeepSeek V4 Flash', '₹20.00', '₹1,999.62', 'Ultra-low'],
-          ['2', 'Mistral Small 4', '₹28.57', '₹2,856.60', 'Ultra-low'],
-          ['2', 'Cohere Command R', '₹28.57', '₹2,856.60', 'Ultra-low'],
-          ['4', 'GPT-5.6 Luna', '₹47.61', '₹4,761', 'Very low'],
-          ['5', 'MiniMax M3', '₹57.13', '₹5,713.20', 'Very low'],
-          ['6', 'Gemini 3.1 Flash-Lite', '₹59.51', '₹5,951.25', 'Very low'],
-          ['7', 'DeepSeek V4 Pro', '₹62.13', '₹6,213.11', 'Very low'],
-          ['8', 'Gemini 3.5 Flash-Lite', '₹88.08', '₹8,807.85', 'Low'],
-          ['9', 'GLM-4.7', '₹109.50', '₹10,950.30', 'Low'],
-          ['10', 'Kimi K2.7 Code', '₹185.68', '₹18,567.90', 'Low'],
-          ['11', 'Claude Haiku 4.5', '₹214.25', '₹21,424.50', 'Moderate'],
-          ['12', 'GLM-5.2', '₹238.05', '₹23,805', 'Moderate'],
-          ['13', 'Qwen3.7-Max — global region', '₹296.38', '₹29,637.93', 'Moderate'],
-          ['14', 'Gemini 3.6 Flash', '₹321.37', '₹32,136.75', 'Moderate'],
-          ['14', 'Mistral Medium 3.5', '₹321.37', '₹32,136.75', 'Moderate'],
-          ['16', 'Grok 4.5', '₹333.27', '₹33,327', 'Moderate'],
-          ['17', 'Gemini 3.5 Flash', '₹357.08', '₹35,707.50', 'Moderate'],
-          ['18', 'Claude Sonnet 5 — introductory', '₹428.49', '₹42,849', 'Upper-middle'],
-          ['19', 'Qwen3.7-Max — Singapore', '₹462.74', '₹46,274.34', 'Upper-middle'],
-          ['20', 'GPT-5.6 Terra', '₹476.10', '₹47,610', 'Upper-middle'],
-          ['20', 'Gemini 3.1 Pro Preview', '₹476.10', '₹47,610', 'Upper-middle'],
-          ['20', 'Cohere Command A', '₹476.10', '₹47,610', 'Upper-middle'],
-          ['23', 'Kimi K3', '₹642.74', '₹64,273.50', 'Premium'],
-          ['24', 'Claude Opus 5', '₹1,071.23', '₹1,07,122.50', 'Frontier premium'],
-          ['25', 'GPT-5.6 Sol', '₹1,190.25', '₹1,19,025', 'Frontier premium'],
-          ['26', 'Claude Fable 5', '₹2,142.45', '₹2,14,245', 'Maximum premium'],
+          ['1', 'DeepSeek V4 Flash', '₹20.00', '₹1,999.62', 'Ultra-low'], ['2', 'Mistral Small 4', '₹28.57', '₹2,856.60', 'Ultra-low'], ['2', 'Cohere Command R', '₹28.57', '₹2,856.60', 'Ultra-low'], ['4', 'GPT-5.6 Luna', '₹47.61', '₹4,761', 'Very low'], ['5', 'MiniMax M3', '₹57.13', '₹5,713.20', 'Very low'], ['6', 'Gemini 3.1 Flash-Lite', '₹59.51', '₹5,951.25', 'Very low'], ['7', 'DeepSeek V4 Pro', '₹62.13', '₹6,213.11', 'Very low'], ['8', 'Gemini 3.5 Flash-Lite', '₹88.08', '₹8,807.85', 'Low'], ['9', 'GLM-4.7', '₹109.50', '₹10,950.30', 'Low'], ['10', 'Kimi K2.7 Code', '₹185.68', '₹18,567.90', 'Low'], ['11', 'Claude Haiku 4.5', '₹214.25', '₹21,424.50', 'Moderate'], ['12', 'GLM-5.2', '₹238.05', '₹23,805', 'Moderate'], ['13', 'Qwen3.7-Max — global region', '₹296.38', '₹29,637.93', 'Moderate'], ['14', 'Gemini 3.6 Flash', '₹321.37', '₹32,136.75', 'Moderate'], ['14', 'Mistral Medium 3.5', '₹321.37', '₹32,136.75', 'Moderate'], ['16', 'Grok 4.5', '₹333.27', '₹33,327', 'Moderate'], ['17', 'Gemini 3.5 Flash', '₹357.08', '₹35,707.50', 'Moderate'], ['18', 'Claude Sonnet 5 — introductory', '₹428.49', '₹42,849', 'Upper-middle'], ['19', 'Qwen3.7-Max — Singapore', '₹462.74', '₹46,274.34', 'Upper-middle'], ['20', 'GPT-5.6 Terra', '₹476.10', '₹47,610', 'Upper-middle'], ['20', 'Gemini 3.1 Pro Preview', '₹476.10', '₹47,610', 'Upper-middle'], ['20', 'Cohere Command A', '₹476.10', '₹47,610', 'Upper-middle'], ['23', 'Kimi K3', '₹642.74', '₹64,273.50', 'Premium'], ['24', 'Claude Opus 5', '₹1,071.23', '₹1,07,122.50', 'Frontier premium'], ['25', 'GPT-5.6 Sol', '₹1,190.25', '₹1,19,025', 'Frontier premium'], ['26', 'Claude Fable 5', '₹2,142.45', '₹2,14,245', 'Maximum premium'],
         ]
       },
       {
         id: 'relative-multipliers',
         title: '5. Relative Cost Multipliers',
         description: 'How expensive each model is relative to DeepSeek V4 Flash for the same standard workload.',
-        columns: ['Model', 'Standard workload', 'Approximate cost versus DeepSeek V4 Flash'],
+        cardFields: ['Model', 'Standard workload', 'Approximate cost versus DeepSeek V4 Flash'],
         rows: [
-          ['DeepSeek V4 Flash', '₹20.00', '1×'],
-          ['Mistral Small 4', '₹28.57', '1.4×'],
-          ['GPT-5.6 Luna', '₹47.61', '2.4×'],
-          ['DeepSeek V4 Pro', '₹62.13', '3.1×'],
-          ['GLM-4.7', '₹109.50', '5.5×'],
-          ['Claude Haiku 4.5', '₹214.25', '10.7×'],
-          ['GLM-5.2', '₹238.05', '11.9×'],
-          ['Gemini 3.6 Flash', '₹321.37', '16.1×'],
-          ['Grok 4.5', '₹333.27', '16.7×'],
-          ['Claude Sonnet 5', '₹428.49', '21.4×'],
-          ['GPT-5.6 Terra', '₹476.10', '23.8×'],
-          ['Gemini 3.1 Pro', '₹476.10', '23.8×'],
-          ['Kimi K3', '₹642.74', '32.1×'],
-          ['Claude Opus 5', '₹1,071.23', '53.6×'],
-          ['GPT-5.6 Sol', '₹1,190.25', '59.5×'],
-          ['Claude Fable 5', '₹2,142.45', '107.1×'],
+          ['DeepSeek V4 Flash', '₹20.00', '1×'], ['Mistral Small 4', '₹28.57', '1.4×'], ['GPT-5.6 Luna', '₹47.61', '2.4×'], ['DeepSeek V4 Pro', '₹62.13', '3.1×'], ['GLM-4.7', '₹109.50', '5.5×'], ['Claude Haiku 4.5', '₹214.25', '10.7×'], ['GLM-5.2', '₹238.05', '11.9×'], ['Gemini 3.6 Flash', '₹321.37', '16.1×'], ['Grok 4.5', '₹333.27', '16.7×'], ['Claude Sonnet 5', '₹428.49', '21.4×'], ['GPT-5.6 Terra', '₹476.10', '23.8×'], ['Gemini 3.1 Pro', '₹476.10', '23.8×'], ['Kimi K3', '₹642.74', '32.1×'], ['Claude Opus 5', '₹1,071.23', '53.6×'], ['GPT-5.6 Sol', '₹1,190.25', '59.5×'], ['Claude Fable 5', '₹2,142.45', '107.1×'],
         ]
       },
       {
         id: 'workflow-rankings',
         title: '6. Rankings by Workflow Requirement',
         description: 'Best model picks by actual workload type, with the cost observation preserved.',
-        columns: ['Requirement', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation'],
+        cardFields: ['Requirement', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation'],
         rows: [
-          ['Highest overall intelligence', 'Claude Fable 5', 'GPT-5.6 Sol', 'Claude Opus 5', 'Approximately ₹1,071–₹2,142 per standard workload'],
-          ['Advanced coding and WebDev', 'Claude Opus 5', 'Kimi K3', 'GPT-5.6 Sol', 'Kimi K3 is substantially cheaper than Opus and Sol'],
-          ['Complex autonomous agents', 'Claude Fable 5', 'GPT-5.6 Sol', 'Kimi K3', 'Reserve these for difficult escalations'],
-          ['Premium value', 'Claude Sonnet 5', 'Kimi K3', 'Gemini 3.1 Pro', 'Approximately ₹428–₹643 per standard workload'],
-          ['Balanced production model', 'Claude Sonnet 5', 'GPT-5.6 Terra', 'Gemini 3.6 Flash', 'Approximately ₹321–₹476 per workload'],
-          ['Economical coding agent', 'GLM-5.2', 'DeepSeek V4 Pro', 'Kimi K2.7 Code', 'Approximately ₹62–₹238 per workload'],
-          ['Million-token processing', 'Gemini 3.6 Flash', 'GPT-5.6 Terra', 'GLM-5.2', 'Suitable for large documents and repositories'],
-          ['Multimodal volume processing', 'Gemini 3.6 Flash', 'Gemini Flash-Lite', 'GPT-5.6 Luna', 'Worker-model pricing ranges from ₹48 to ₹321'],
-          ['Cheapest routine worker', 'DeepSeek V4 Flash', 'Mistral Small 4', 'GPT-5.6 Luna', 'Approximately ₹20–₹48 per workload'],
-          ['Enterprise RAG', 'Cohere Command A', 'Cohere Command R', 'Gemini 3.6 Flash', 'Command R is extremely economical for focused retrieval'],
-          ['Open-weight API model', 'Mistral Medium 3.5', 'Mistral Small 4', 'Suitable open Qwen deployment', 'Can later be migrated to private infrastructure'],
-          ['Local-deployment path', 'Mistral Small 4', 'Mistral Medium 3.5', 'Quantized open-weight alternatives', 'Hardware cost replaces token cost'],
-          ['Lowest API expenditure', 'DeepSeek V4 Flash', 'Mistral Small 4', 'Cohere Command R', 'Best for high-volume background tasks'],
-          ['Largest mainstream ecosystem', 'GPT-5.6 family', 'Claude family', 'Gemini family', 'Usually easier integration but not always lowest cost'],
+          ['Highest overall intelligence', 'Claude Fable 5', 'GPT-5.6 Sol', 'Claude Opus 5', 'Approximately ₹1,071–₹2,142 per standard workload'], ['Advanced coding and WebDev', 'Claude Opus 5', 'Kimi K3', 'GPT-5.6 Sol', 'Kimi K3 is substantially cheaper than Opus and Sol'], ['Complex autonomous agents', 'Claude Fable 5', 'GPT-5.6 Sol', 'Kimi K3', 'Reserve these for difficult escalations'], ['Premium value', 'Claude Sonnet 5', 'Kimi K3', 'Gemini 3.1 Pro', 'Approximately ₹428–₹643 per standard workload'], ['Balanced production model', 'Claude Sonnet 5', 'GPT-5.6 Terra', 'Gemini 3.6 Flash', 'Approximately ₹321–₹476 per workload'], ['Economical coding agent', 'GLM-5.2', 'DeepSeek V4 Pro', 'Kimi K2.7 Code', 'Approximately ₹62–₹238 per workload'], ['Million-token processing', 'Gemini 3.6 Flash', 'GPT-5.6 Terra', 'GLM-5.2', 'Suitable for large documents and repositories'], ['Multimodal volume processing', 'Gemini 3.6 Flash', 'Gemini Flash-Lite', 'GPT-5.6 Luna', 'Worker-model pricing ranges from ₹48 to ₹321'], ['Cheapest routine worker', 'DeepSeek V4 Flash', 'Mistral Small 4', 'GPT-5.6 Luna', 'Approximately ₹20–₹48 per workload'], ['Enterprise RAG', 'Cohere Command A', 'Cohere Command R', 'Gemini 3.6 Flash', 'Command R is extremely economical for focused retrieval'], ['Open-weight API model', 'Mistral Medium 3.5', 'Mistral Small 4', 'Suitable open Qwen deployment', 'Can later be migrated to private infrastructure'], ['Local-deployment path', 'Mistral Small 4', 'Mistral Medium 3.5', 'Quantized open-weight alternatives', 'Hardware cost replaces token cost'], ['Lowest API expenditure', 'DeepSeek V4 Flash', 'Mistral Small 4', 'Cohere Command R', 'Best for high-volume background tasks'], ['Largest mainstream ecosystem', 'GPT-5.6 family', 'Claude family', 'Gemini family', 'Usually easier integration but not always lowest cost'],
         ]
       },
       {
         id: 'gpu-pricing',
         title: '7. Cloud GPU Pricing in INR',
         description: 'Cloud GPU price comparison converted to INR, with monthly equivalents at different usage levels.',
-        columns: ['Cloud provider and GPU', 'Approx. hourly cost', '8h/day for 30 days', '12h/day for 30 days', 'Continuous 720-hour month', 'Suitable model class', 'Main issue'],
+        cardFields: ['Cloud provider and GPU', 'Approximate hourly cost', '8 hours/day for 30 days', '12 hours/day for 30 days', 'Continuous 720-hour month', 'Suitable model class', 'Main issue'],
         rows: [
-          ['Vast.ai RTX 4090', 'From ₹12.38/hour', '₹2,970.86', '₹4,456.30', '₹8,912.59', 'Quantized 7B–32B', 'Marketplace reliability and availability vary'],
-          ['RunPod RTX 3090 24GB', '₹47.61/hour', '₹11,426.40', '₹17,139.60', '₹34,279.20', '7B–32B quantized models', 'Storage and inactive instances can add costs'],
-          ['RunPod RTX 4090 24GB', '₹65.70/hour', '₹15,768.43', '₹23,652.65', '₹47,305.30', 'Fast 7B–32B inference', 'Still limited to 24GB VRAM'],
-          ['Thunder A100 80GB', '₹103.79/hour', '₹24,909.55', '₹37,364.33', '₹74,728.66', 'Quantized 70B and smaller models', 'Expensive unless utilised heavily'],
-          ['Thunder H100 80GB', '₹208.53/hour', '₹50,047.63', '₹75,071.45', '₹1,50,142.90', 'High-throughput 70B inference', 'Very expensive while idle'],
-          ['Lambda H100 PCIe 80GB', '₹313.27/hour', '₹75,185.71', '₹1,12,778.57', '₹2,25,557.14', 'Large-model and concurrent inference', 'Premium infrastructure cost'],
-          ['Lambda H100 SXM', '₹408.49/hour', '₹98,038.51', '₹1,47,057.76', '₹2,94,115.54', 'High-bandwidth large-model workloads', 'Difficult to justify for intermittent use'],
-          ['Lambda B200 180GB', '₹656.07/hour', '₹1,57,457.28', '₹2,36,185.92', '₹4,72,367.38', 'Extremely large models', 'Intended for enterprise-scale workloads'],
+          ['Vast.ai RTX 4090', 'From ₹12.38/hour', '₹2,970.86', '₹4,456.30', '₹8,912.59', 'Quantized 7B–32B', 'Marketplace reliability and availability vary'], ['RunPod RTX 3090 24GB', '₹47.61/hour', '₹11,426.40', '₹17,139.60', '₹34,279.20', '7B–32B quantized models', 'Storage and inactive instances can add costs'], ['RunPod RTX 4090 24GB', '₹65.70/hour', '₹15,768.43', '₹23,652.65', '₹47,305.30', 'Fast 7B–32B inference', 'Still limited to 24GB VRAM'], ['Thunder A100 80GB', '₹103.79/hour', '₹24,909.55', '₹37,364.33', '₹74,728.66', 'Quantized 70B and smaller models', 'Expensive unless utilised heavily'], ['Thunder H100 80GB', '₹208.53/hour', '₹50,047.63', '₹75,071.45', '₹1,50,142.90', 'High-throughput 70B inference', 'Very expensive while idle'], ['Lambda H100 PCIe 80GB', '₹313.27/hour', '₹75,185.71', '₹1,12,778.57', '₹2,25,557.14', 'Large-model and concurrent inference', 'Premium infrastructure cost'], ['Lambda H100 SXM', '₹408.49/hour', '₹98,038.51', '₹1,47,057.76', '₹2,94,115.54', 'High-bandwidth large-model workloads', 'Difficult to justify for intermittent use'], ['Lambda B200 180GB', '₹656.07/hour', '₹1,57,457.28', '₹2,36,185.92', '₹4,72,367.38', 'Extremely large models', 'Intended for enterprise-scale workloads'],
         ]
       },
       {
         id: 'api-vs-gpu',
         title: '8. API Versus Cloud GPU Cost in INR',
         description: 'Decision guidance by workload pattern, followed by the monthly comparison example.',
-        columns: ['Monthly workload pattern', 'Better option', 'Reason'],
+        cardFields: ['Monthly workload pattern', 'Better option', 'Reason'],
         rows: [
-          ['Occasional AI usage', 'API', 'No idle GPU expense'],
-          ['Irregular workloads', 'API or serverless GPU', 'You pay only when requests run'],
-          ['Millions of simple classification tasks', 'Cheap API models', 'DeepSeek Flash and similar models can remain cheaper than renting a full GPU'],
-          ['Continuous private document processing', 'Local PC or private cloud GPU', 'Privacy and fixed infrastructure become more valuable'],
-          ['Constant 24/7 open-model inference', 'Dedicated cloud or local GPU', 'Hardware utilisation can justify fixed cost'],
-          ['Access to top proprietary reasoning', 'API', 'Proprietary weights cannot normally be self-hosted'],
-          ['Temporary 70B model experiments', 'A100/H100 rental', 'Avoids purchasing very expensive hardware'],
-          ['Hundreds of routine agents', 'API model routing first', 'Easier scaling and no always-on hardware'],
-          ['Stable high-volume workloads', 'Compare API bill against GPU utilisation', 'Dedicated infrastructure becomes useful only above a sustained threshold'],
+          ['Occasional AI usage', 'API', 'No idle GPU expense'], ['Irregular workloads', 'API or serverless GPU', 'You pay only when requests run'], ['Millions of simple classification tasks', 'Cheap API models', 'DeepSeek Flash and similar models can remain cheaper than renting a full GPU'], ['Continuous private document processing', 'Local PC or private cloud GPU', 'Privacy and fixed infrastructure become more valuable'], ['Constant 24/7 open-model inference', 'Dedicated cloud or local GPU', 'Hardware utilisation can justify fixed cost'], ['Access to top proprietary reasoning', 'API', 'Proprietary weights cannot normally be self-hosted'], ['Temporary 70B model experiments', 'A100/H100 rental', 'Avoids purchasing very expensive hardware'], ['Hundreds of routine agents', 'API model routing first', 'Easier scaling and no always-on hardware'], ['Stable high-volume workloads', 'Compare API bill against GPU utilisation', 'Dedicated infrastructure becomes useful only above a sustained threshold'],
         ],
         secondaryTitle: 'Example monthly comparison',
-        secondaryColumns: ['Option', 'Approximate monthly cost'],
+        secondaryFields: ['Option', 'Approximate monthly cost'],
         secondaryRows: [
-          ['DeepSeek V4 Flash API', '₹1,999.62'],
-          ['Mistral Small 4 API', '₹2,856.60'],
-          ['GPT-5.6 Luna API', '₹4,761'],
-          ['DeepSeek V4 Pro API', '₹6,213.11'],
-          ['Claude Haiku 4.5 API', '₹21,424.50'],
-          ['GLM-5.2 API', '₹23,805'],
-          ['Gemini 3.6 Flash API', '₹32,136.75'],
-          ['Claude Sonnet 5 API', '₹42,849'],
-          ['RunPod RTX 3090 running 24/7', '₹34,279.20 plus storage'],
-          ['RunPod RTX 4090 running 24/7', '₹47,305.30 plus storage'],
-          ['Kimi K3 API', '₹64,273.50'],
-          ['Thunder A100 running 24/7', '₹74,728.66 plus storage'],
-          ['Claude Opus 5 API', '₹1,07,122.50'],
-          ['GPT-5.6 Sol API', '₹1,19,025'],
-          ['Thunder H100 running 24/7', '₹1,50,142.90 plus storage'],
-          ['Claude Fable 5 API', '₹2,14,245'],
+          ['DeepSeek V4 Flash API', '₹1,999.62'], ['Mistral Small 4 API', '₹2,856.60'], ['GPT-5.6 Luna API', '₹4,761'], ['DeepSeek V4 Pro API', '₹6,213.11'], ['Claude Haiku 4.5 API', '₹21,424.50'], ['GLM-5.2 API', '₹23,805'], ['Gemini 3.6 Flash API', '₹32,136.75'], ['Claude Sonnet 5 API', '₹42,849'], ['RunPod RTX 3090 running 24/7', '₹34,279.20 plus storage'], ['RunPod RTX 4090 running 24/7', '₹47,305.30 plus storage'], ['Kimi K3 API', '₹64,273.50'], ['Thunder A100 running 24/7', '₹74,728.66 plus storage'], ['Claude Opus 5 API', '₹1,07,122.50'], ['GPT-5.6 Sol API', '₹1,19,025'], ['Thunder H100 running 24/7', '₹1,50,142.90 plus storage'], ['Claude Fable 5 API', '₹2,14,245'],
         ]
       },
       {
         id: 'three-tier-architecture',
         title: '9. Three-Tier AI-Agent Architecture',
         description: 'The core routing architecture recommended by the source text.',
-        columns: ['Tier', 'Suggested workload share', 'Recommended model types', 'Tasks'],
+        cardFields: ['Tier', 'Suggested workload share', 'Recommended model types', 'Tasks'],
         rows: [
-          ['Tier 1 — Bulk workers', '70–85%', 'DeepSeek V4 Flash, GPT-5.6 Luna, Gemini Flash-Lite, Mistral Small 4', 'Extraction, classification, summaries, monitoring, formatting and routing'],
-          ['Tier 2 — Skilled agents', '12–25%', 'Claude Sonnet 5, GPT-5.6 Terra, Gemini 3.6 Flash, GLM-5.2, DeepSeek V4 Pro', 'Coding, planning, analysis, content and workflow decisions'],
-          ['Tier 3 — Expert escalation', '2–5%', 'Claude Fable 5, Claude Opus 5, GPT-5.6 Sol, Kimi K3', 'Critical reasoning, complex debugging, architecture and final verification'],
+          ['Tier 1 — Bulk workers', '70–85%', 'DeepSeek V4 Flash, GPT-5.6 Luna, Gemini Flash-Lite, Mistral Small 4', 'Extraction, classification, summaries, monitoring, formatting and routing'], ['Tier 2 — Skilled agents', '12–25%', 'Claude Sonnet 5, GPT-5.6 Terra, Gemini 3.6 Flash, GLM-5.2, DeepSeek V4 Pro', 'Coding, planning, analysis, content and workflow decisions'], ['Tier 3 — Expert escalation', '2–5%', 'Claude Fable 5, Claude Opus 5, GPT-5.6 Sol, Kimi K3', 'Critical reasoning, complex debugging, architecture and final verification'],
         ]
       },
       {
         id: 'blended-routing',
         title: '10. Blended Model-Routing Cost in INR',
         description: 'Why routing beats using one expensive model for everything.',
-        columns: ['Deployment strategy', 'Standard workload', 'Heavy monthly workload'],
+        cardFields: ['Deployment strategy', 'Standard workload', 'Heavy monthly workload'],
         rows: [
-          ['Everything through Claude Fable 5', '₹2,142.45', '₹2,14,245'],
-          ['Everything through Claude Opus 5', '₹1,071.23', '₹1,07,122.50'],
-          ['Everything through Claude Sonnet 5', '₹428.49', '₹42,849'],
-          ['80% Flash + 18% Sonnet + 2% Fable routing', 'Approximately ₹136.16', 'Approximately ₹13,597.42'],
+          ['Everything through Claude Fable 5', '₹2,142.45', '₹2,14,245'], ['Everything through Claude Opus 5', '₹1,071.23', '₹1,07,122.50'], ['Everything through Claude Sonnet 5', '₹428.49', '₹42,849'], ['80% Flash + 18% Sonnet + 2% Fable routing', 'Approximately ₹136.16', 'Approximately ₹13,597.42'],
         ],
         secondaryTitle: 'Estimated savings from routing',
-        secondaryColumns: ['Compared with', 'Approximate saving'],
-        secondaryRows: [
-          ['Using Claude Fable 5 for everything', '93.7%'],
-          ['Using Claude Opus 5 for everything', '87.3%'],
-          ['Using Claude Sonnet 5 for everything', '68.3%'],
-        ]
+        secondaryFields: ['Compared with', 'Approximate saving'],
+        secondaryRows: [ ['Using Claude Fable 5 for everything', '93.7%'], ['Using Claude Opus 5 for everything', '87.3%'], ['Using Claude Sonnet 5 for everything', '68.3%'] ]
       },
       {
         id: 'final-recommendations',
         title: '11. Final INR-Based Recommendations',
         description: 'The final recommended system positions, model picks, and costs.',
-        columns: ['Position in the system', 'Recommended model', 'Approximate standard-workload cost'],
+        cardFields: ['Position in the system', 'Recommended model', 'Approximate standard-workload cost'],
         rows: [
-          ['Cheapest background worker', 'DeepSeek V4 Flash', '₹20'],
-          ['Low-cost self-hosting path', 'Mistral Small 4', '₹28.57 through API'],
-          ['Reliable economical worker', 'GPT-5.6 Luna', '₹47.61'],
-          ['Low-cost reasoning model', 'DeepSeek V4 Pro', '₹62.13'],
-          ['Economical coding agent', 'GLM-5.2', '₹238.05'],
-          ['Multimodal high-volume agent', 'Gemini 3.6 Flash', '₹321.37'],
-          ['Balanced premium agent', 'Claude Sonnet 5', '₹428.49'],
-          ['Balanced OpenAI agent', 'GPT-5.6 Terra', '₹476.10'],
-          ['Advanced coding escalation', 'Kimi K3 or Claude Opus 5', '₹642.74–₹1,071.23'],
-          ['Highest-stakes reasoning', 'GPT-5.6 Sol or Claude Fable 5', '₹1,190.25–₹2,142.45'],
-          ['Temporary local-model testing', 'Vast.ai or RunPod', '₹12.38–₹65.70 per hour'],
-          ['Long-running private local model', 'Purchase a modern NVIDIA workstation', 'Fixed capital expense instead of recurring token charges'],
+          ['Cheapest background worker', 'DeepSeek V4 Flash', '₹20'], ['Low-cost self-hosting path', 'Mistral Small 4', '₹28.57 through API'], ['Reliable economical worker', 'GPT-5.6 Luna', '₹47.61'], ['Low-cost reasoning model', 'DeepSeek V4 Pro', '₹62.13'], ['Economical coding agent', 'GLM-5.2', '₹238.05'], ['Multimodal high-volume agent', 'Gemini 3.6 Flash', '₹321.37'], ['Balanced premium agent', 'Claude Sonnet 5', '₹428.49'], ['Balanced OpenAI agent', 'GPT-5.6 Terra', '₹476.10'], ['Advanced coding escalation', 'Kimi K3 or Claude Opus 5', '₹642.74–₹1,071.23'], ['Highest-stakes reasoning', 'GPT-5.6 Sol or Claude Fable 5', '₹1,190.25–₹2,142.45'], ['Temporary local-model testing', 'Vast.ai or RunPod', '₹12.38–₹65.70 per hour'], ['Long-running private local model', 'Purchase a modern NVIDIA workstation', 'Fixed capital expense instead of recurring token charges'],
         ],
         extra: [
           'Use DeepSeek V4 Flash, GPT-5.6 Luna or Mistral Small 4 for repetitive high-volume tasks.',
@@ -767,56 +445,75 @@
       return a;
     }
 
-    function makeTable(section, columns, rows) {
-      const shell = document.createElement('div');
-      shell.className = 'table-shell';
-      shell.style.margin = '0 16px 16px';
-      shell.style.border = '1px solid var(--line)';
-      shell.style.borderRadius = '18px';
-      shell.style.overflow = 'hidden';
-      shell.dataset.search = [section.title, section.description, ...rows.flat()].join(' ').toLowerCase();
+    function metricBox(label, value) {
+      return `<div class="metric-box"><div class="k">${label}</div><div class="v">${value}</div></div>`;
+    }
 
-      const tableWrap = document.createElement('div');
-      tableWrap.className = 'table-wrap';
+    function makeCompareCard(section, row) {
+      const card = document.createElement('article');
+      card.className = 'compare-card';
+      card.dataset.search = [section.title, ...row].join(' ').toLowerCase();
+
+      const fields = section.cardFields;
+      const title = row[0];
+      const primaryTag = row[1] || '';
+      const standard = fields.includes('Standard workload') ? row[fields.indexOf('Standard workload')] : '';
+      const monthly = fields.includes('Heavy monthly workload') ? row[fields.indexOf('Heavy monthly workload')] : '';
+      const context = fields.includes('Context') ? row[fields.indexOf('Context')] : (fields.includes('Context / maximum output') ? row[fields.indexOf('Context / maximum output')] : '');
+      const bestFor = row[fields.indexOf('Best suited for')] || row[fields.indexOf('Best use')] || row[fields.indexOf('Reason')] || row[fields.indexOf('Tasks')] || row[fields.indexOf('Recommended model types')] || row[fields.indexOf('Rank 1')] || row[fields.indexOf('Recommended model')] || '';
+      const tradeoff = row[fields.indexOf('Main limitation')] || row[fields.indexOf('Main trade-off')] || row[fields.indexOf('Main issue')] || row[fields.indexOf('Cost observation')] || row[fields.indexOf('Rank 2')] || row[fields.indexOf('Approximate monthly cost')] || row[fields.indexOf('Approximate cost versus DeepSeek V4 Flash')] || row[fields.indexOf('Price category')] || row[fields.indexOf('Heavy monthly workload')] || '';
+
+      const metricFields = fields.slice(1).filter(label => !['Benchmark signal', 'Best suited for', 'Best use', 'Main limitation', 'Main trade-off', 'Reason', 'Tasks', 'Recommended model types', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation', 'Recommended model', 'Price category'].includes(label)).slice(0, 4);
+      const metricsHtml = metricFields.map(label => metricBox(label, row[fields.indexOf(label)])).join('');
+
+      card.innerHTML = `
+        <div class="compare-top">
+          <div class="compare-title">
+            <h4>${title}</h4>
+            <div class="compare-sub">
+              ${primaryTag ? `<span class="tag">${primaryTag}</span>` : ''}
+              ${context ? `<span class="context-pill">${context}</span>` : ''}
+              ${standard ? `<span class="price-pill">${standard}</span>` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="metrics">${metricsHtml}</div>
+        <div class="panels">
+          ${bestFor ? `<div class="panel good"><div class="head">Best for</div><div class="body">${bestFor}</div></div>` : ''}
+          ${tradeoff ? `<div class="panel warn"><div class="head">Watch out</div><div class="body">${tradeoff}</div></div>` : ''}
+        </div>
+      `;
+      return card;
+    }
+
+    function makeTable(fields, rows) {
+      const wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
       const table = document.createElement('table');
       table.className = 'data';
       const thead = document.createElement('thead');
-      const thr = document.createElement('tr');
-      columns.forEach(c => {
+      const trh = document.createElement('tr');
+      fields.forEach(field => {
         const th = document.createElement('th');
-        th.textContent = c;
-        thr.appendChild(th);
+        th.textContent = field;
+        trh.appendChild(th);
       });
-      thead.appendChild(thr);
+      thead.appendChild(trh);
       const tbody = document.createElement('tbody');
       rows.forEach(row => {
         const tr = document.createElement('tr');
         row.forEach((cell, index) => {
           const td = document.createElement('td');
           td.textContent = cell;
-          if (/₹|×|%/.test(cell) || index === 0 && /^\d+$/.test(cell)) td.classList.add('num');
+          if (/₹|×|%/.test(cell) || /^\d+$/.test(cell) || index === 0 && /^\d+$/.test(cell)) td.classList.add('num');
           tr.appendChild(td);
         });
         tbody.appendChild(tr);
       });
       table.appendChild(thead);
       table.appendChild(tbody);
-      tableWrap.appendChild(table);
-
-      const cardList = document.createElement('div');
-      cardList.className = 'card-list';
-      rows.forEach(row => {
-        const card = document.createElement('div');
-        card.className = 'mini-card';
-        const title = row[0];
-        const dl = row.slice(1).map((value, i) => `<div><dt>${columns[i + 1]}</dt><dd>${value}</dd></div>`).join('');
-        card.innerHTML = `<h4>${title}</h4><dl>${dl}</dl>`;
-        cardList.appendChild(card);
-      });
-
-      shell.appendChild(tableWrap);
-      shell.appendChild(cardList);
-      return shell;
+      wrap.appendChild(table);
+      return wrap;
     }
 
     function makeSection(section) {
@@ -824,25 +521,42 @@
       wrapper.className = 'section-card';
       wrapper.id = section.id;
       wrapper.dataset.search = JSON.stringify(section).toLowerCase();
+
       const head = document.createElement('div');
       head.className = 'section-head';
-      head.innerHTML = `<div><h3>${section.title}</h3><p>${section.description || ''}</p></div><div class="badge">Structured view</div>`;
+      head.innerHTML = `<div><h3>${section.title}</h3><p>${section.description || ''}</p></div><div class="badge">Visual compare</div>`;
       wrapper.appendChild(head);
-      wrapper.appendChild(makeTable(section, section.columns, section.rows));
-      if (section.secondaryTitle && section.secondaryColumns && section.secondaryRows) {
-        const divider = document.createElement('div');
-        divider.style.padding = '0 16px';
-        divider.style.marginTop = '2px';
-        divider.innerHTML = `<div class="section-label" style="margin:0 0 12px;">${section.secondaryTitle}</div>`;
-        wrapper.appendChild(divider);
-        wrapper.appendChild(makeTable(section, section.secondaryColumns, section.secondaryRows));
+
+      const grid = document.createElement('div');
+      grid.className = 'card-grid';
+      section.rows.forEach(row => grid.appendChild(makeCompareCard(section, row)));
+      wrapper.appendChild(grid);
+
+      const details = document.createElement('details');
+      details.className = 'table-details';
+      details.innerHTML = `<summary>Open full table view</summary>`;
+      details.appendChild(makeTable(section.cardFields, section.rows));
+      wrapper.appendChild(details);
+
+      if (section.secondaryTitle && section.secondaryFields && section.secondaryRows) {
+        const second = document.createElement('details');
+        second.className = 'table-details';
+        second.innerHTML = `<summary>${section.secondaryTitle}</summary>`;
+        const secondGrid = document.createElement('div');
+        secondGrid.className = 'card-grid';
+        section.secondaryRows.forEach(row => secondGrid.appendChild(makeCompareCard({ title: section.secondaryTitle, cardFields: section.secondaryFields }, row)));
+        second.appendChild(secondGrid);
+        second.appendChild(makeTable(section.secondaryFields, section.secondaryRows));
+        wrapper.appendChild(second);
       }
+
       if (section.extra) {
-        const extraWrap = document.createElement('div');
-        extraWrap.style.padding = '0 16px 16px';
-        extraWrap.innerHTML = `<div class="info-box" style="box-shadow:none;margin-top:0;border-radius:18px;background:var(--surface-soft);">${section.extra.map(line => `• ${line}`).join('<br />')}</div>`;
-        wrapper.appendChild(extraWrap);
+        const extra = document.createElement('div');
+        extra.style.padding = '0 16px 16px';
+        extra.innerHTML = `<div class="info-box" style="box-shadow:none;border-radius:18px;background:var(--surface-soft);">${section.extra.map(x => `• ${x}`).join('<br />')}</div>`;
+        wrapper.appendChild(extra);
       }
+
       return wrapper;
     }
 
@@ -854,24 +568,20 @@
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {
         tocGrid.appendChild(makeTocLink(section));
-        structuredSections.appendChild(makeSection(section));
+        sectionsEl.appendChild(makeSection(section));
       });
 
       searchInput.addEventListener('input', () => {
         const q = searchInput.value.trim().toLowerCase();
-        const searchable = [...document.querySelectorAll('#summaryGrid > *, #structuredSections > *')];
+        const searchable = [...document.querySelectorAll('#summaryGrid > *, #sections > *')];
         searchable.forEach(el => {
           const hay = (el.dataset.search || el.textContent || '').toLowerCase();
           el.classList.toggle('hidden', !!q && !hay.includes(q));
         });
       });
 
-      expandAllBtn.addEventListener('click', () => {
-        document.querySelectorAll('.source-card details').forEach(d => d.open = true);
-      });
-      collapseAllBtn.addEventListener('click', () => {
-        document.querySelectorAll('.source-card details').forEach(d => d.open = false);
-      });
+      expandAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = true));
+      collapseAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = false));
       copyAllBtn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(raw);
@@ -885,9 +595,7 @@
     }
 
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
-      });
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
     }
 
     init();

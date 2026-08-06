@@ -126,6 +126,36 @@
     }
     .compare-box .t { font-size: 13px; font-weight: 800; }
     .compare-box .m { margin-top: 6px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.84); }
+    .tray-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .tray-btn {
+      border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.1); color: #fff; border-radius: 999px;
+      padding: 10px 12px; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
+    }
+    .dashboard-grid { display: grid; gap: 12px; }
+    .dash-card {
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); border: 1px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow);
+    }
+    .dash-card .ey { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-2); font-weight: 900; }
+    .dash-card h4 { margin: 8px 0 4px; font-size: 17px; line-height: 1.25; letter-spacing: -.02em; }
+    .dash-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .sort-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+    .compare-modal {
+      position: fixed; inset: 0; z-index: 60; background: rgba(15,23,42,.58); display: none; align-items: center; justify-content: center; padding: 18px;
+    }
+    .compare-modal.visible { display: flex; }
+    .compare-dialog {
+      width: min(100%, 1120px); max-height: 88vh; overflow: auto; background: #fff; border-radius: 28px; border: 1px solid var(--line); box-shadow: 0 30px 60px rgba(15,23,42,.25);
+    }
+    .compare-dialog-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 18px; border-bottom: 1px solid var(--line); }
+    .compare-dialog-head h3 { margin: 0; font-size: 18px; }
+    .icon-btn { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 10px 12px; font: inherit; cursor: pointer; font-weight: 800; }
+    .modal-grid { display: grid; gap: 12px; padding: 18px; }
+    .modal-card { border: 1px solid var(--line); border-radius: 22px; padding: 16px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); }
+    .favorite-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 8px 10px;
+      font: inherit; font-size: 11px; font-weight: 800; cursor: pointer;
+    }
+    .favorite-btn.active { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
     .search-wrap { padding: 12px; }
     .search {
       width: 100%; border: 1px solid var(--line-strong); border-radius: 14px; padding: 14px;
@@ -242,10 +272,12 @@
       .control-grid { grid-template-columns: 1fr 1fr; }
       .toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .compare-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .modal-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 1080px) {
       .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -313,8 +345,16 @@
     <div class="section-label">Quick navigation</div>
     <section class="toc"><div id="tocGrid" class="toc-grid"></div></section>
 
+    <div class="section-label">Recommended for Kawin</div>
+    <section id="recommendedGrid" class="dashboard-grid"></section>
+
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
+
+    <div class="section-label">Sort visible cards</div>
+    <section class="control-bar" style="top:138px;">
+      <div class="sort-row" id="sortRow"></div>
+    </section>
 
     <div class="section-label">Visual comparison sections</div>
     <section id="sections" class="section-stack"></section>
@@ -331,6 +371,20 @@
       <h4>Selected for quick compare</h4>
       <div id="compareList" class="compare-list"></div>
       <div id="compareGrid" class="compare-grid"></div>
+      <div class="tray-actions">
+        <button id="openCompareModalBtn" class="tray-btn" type="button">Open side-by-side compare</button>
+        <button id="clearCompareBtn" class="tray-btn" type="button">Clear selected</button>
+      </div>
+    </section>
+
+    <section id="compareModal" class="compare-modal" aria-hidden="true">
+      <div class="compare-dialog">
+        <div class="compare-dialog-head">
+          <h3>Side-by-side compare</h3>
+          <button id="closeCompareModalBtn" class="icon-btn" type="button">Close</button>
+        </div>
+        <div id="compareModalGrid" class="modal-grid"></div>
+      </div>
     </section>
 
     <div class="footer">
@@ -341,6 +395,7 @@
   <script>
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
+    const recommendedGrid = document.getElementById('recommendedGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const fullSourcePre = document.getElementById('fullSourcePre');
@@ -352,10 +407,19 @@
     const compareTray = document.getElementById('compareTray');
     const compareList = document.getElementById('compareList');
     const compareGrid = document.getElementById('compareGrid');
+    const sortRow = document.getElementById('sortRow');
+    const openCompareModalBtn = document.getElementById('openCompareModalBtn');
+    const clearCompareBtn = document.getElementById('clearCompareBtn');
+    const compareModal = document.getElementById('compareModal');
+    const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
+    const compareModalGrid = document.getElementById('compareModalGrid');
 
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
+    let activeSort = 'recommended';
+    const favoriteKeys = new Set();
+    const FAVORITES_KEY = 'kawin-ai-favorites-v1';
 
     const presets = [
       { id: 'all', label: 'All sections' },
@@ -372,6 +436,23 @@
       { id: 'very-low', label: 'Very low' },
       { id: 'moderate', label: 'Moderate' },
       { id: 'premium', label: 'Premium+' },
+    ];
+
+    const sortDefs = [
+      { id: 'recommended', label: 'Recommended' },
+      { id: 'cheapest', label: 'Cheapest first' },
+      { id: 'monthly', label: 'Lowest monthly' },
+      { id: 'alpha', label: 'A–Z' },
+      { id: 'favorites', label: 'Favorites first' },
+    ];
+
+    const recommendedDefs = [
+      { title: 'Budget-first setup', model: 'DeepSeek V4 Flash', note: 'Best for bulk workers and cheap routing.', match: 'DeepSeek V4 Flash' },
+      { title: 'Coding default', model: 'GLM-5.2', note: 'Economical coding/agent balance for regular work.', match: 'GLM-5.2' },
+      { title: 'Balanced premium', model: 'Claude Sonnet 5', note: 'Strong day-to-day premium planning/coding choice.', match: 'Claude Sonnet 5' },
+      { title: 'Hard-problem escalation', model: 'GPT-5.6 Sol / Claude Fable 5', note: 'Reserve for high-stakes reasoning and difficult decisions.', match: 'GPT-5.6 Sol' },
+      { title: 'GPU experiments', model: 'Vast.ai / RunPod', note: 'Best first stop before buying serious hardware.', match: 'Vast.ai RTX 4090' },
+      { title: 'Best savings rule', model: 'Model routing', note: 'Use cheap workers first, escalate only when needed.', match: '80% Flash + 18% Sonnet + 2% Fable routing' },
     ];
 
     const summaries = [
@@ -533,6 +614,14 @@
       return card;
     }
 
+    function makeRecommendedCard(item) {
+      const card = document.createElement('article');
+      card.className = 'dash-card';
+      card.dataset.search = `${item.title} ${item.model} ${item.note}`.toLowerCase();
+      card.innerHTML = `<div class="ey">Recommended for Kawin</div><h4>${item.title}</h4><p><strong>${item.model}</strong><br />${item.note}</p>`;
+      return card;
+    }
+
     function makeTocLink(section) {
       const a = document.createElement('a');
       a.href = `#${section.id}`;
@@ -542,6 +631,52 @@
 
     function metricBox(label, value) {
       return `<div class="metric-box"><div class="k">${label}</div><div class="v">${value}</div></div>`;
+    }
+
+    function parseCurrency(text) {
+      const num = Number(String(text || '').replace(/[^0-9.]/g, ''));
+      return Number.isFinite(num) ? num : Number.POSITIVE_INFINITY;
+    }
+
+    function saveFavorites() {
+      try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoriteKeys])); } catch {}
+    }
+
+    function loadFavorites() {
+      try {
+        const raw = localStorage.getItem(FAVORITES_KEY);
+        if (!raw) return;
+        JSON.parse(raw).forEach(key => favoriteKeys.add(key));
+      } catch {}
+    }
+
+    function getRecommendedScore(card) {
+      const hay = (card.dataset.search || '').toLowerCase();
+      let score = 0;
+      if (favoriteKeys.has(card.dataset.compareKey)) score += 1000;
+      if (hay.includes('deepseek v4 flash')) score += 120;
+      if (hay.includes('glm-5.2')) score += 110;
+      if (hay.includes('claude sonnet 5')) score += 100;
+      if (hay.includes('gpt-5.6 sol') || hay.includes('claude fable 5')) score += 90;
+      if (hay.includes('vast.ai') || hay.includes('runpod')) score += 80;
+      score -= parseCurrency(card.dataset.standard) / 1000;
+      return score;
+    }
+
+    function getSortValue(card) {
+      if (activeSort === 'cheapest') return parseCurrency(card.dataset.standard);
+      if (activeSort === 'monthly') return parseCurrency(card.dataset.monthly);
+      if (activeSort === 'alpha') return (card.dataset.title || '').toLowerCase();
+      if (activeSort === 'favorites') return favoriteKeys.has(card.dataset.compareKey) ? 0 : 1;
+      return -getRecommendedScore(card);
+    }
+
+    function getCompareCardByTitle(match) {
+      return [...document.querySelectorAll('.compare-card')].find(card => (card.dataset.title || '').includes(match));
+    }
+
+    function getCompareCardMarkup(item) {
+      return `<div class="modal-card"><div class="tag">${item.section || 'Selected item'}</div><h4 style="margin:10px 0 8px;font-size:18px;">${item.title}</h4><div class="metrics" style="margin-bottom:10px;">${metricBox('Standard', item.standard || '—')}${metricBox('Monthly', item.monthly || '—')}</div><div class="panel good"><div class="head">Best for</div><div class="body">${item.bestfor || '—'}</div></div><div class="panel warn" style="margin-top:10px;"><div class="head">Watch out</div><div class="body">${item.tradeoff || '—'}</div></div></div>`;
     }
 
     function getTier(section, row) {
@@ -599,6 +734,7 @@
       card.dataset.monthly = monthly;
       card.dataset.bestfor = bestFor;
       card.dataset.tradeoff = tradeoff;
+      card.dataset.section = section.title;
 
       card.innerHTML = `
         <div class="compare-top">
@@ -611,6 +747,7 @@
             </div>
           </div>
           <div class="compare-actions">
+            <button class="favorite-btn" type="button" data-favorite-key="${compareKey}">Favorite</button>
             <button class="select-btn" type="button" data-compare-key="${compareKey}">Compare</button>
           </div>
         </div>
@@ -702,6 +839,23 @@
       return wrapper;
     }
 
+    function renderSortChips() {
+      sortRow.innerHTML = '';
+      sortDefs.forEach(sort => {
+        const btn = document.createElement('button');
+        btn.className = `chip${activeSort === sort.id ? ' active' : ''}`;
+        btn.type = 'button';
+        btn.textContent = sort.label;
+        btn.addEventListener('click', () => {
+          activeSort = sort.id;
+          renderSortChips();
+          sortCards();
+          applyFilters();
+        });
+        sortRow.appendChild(btn);
+      });
+    }
+
     function renderFilterChips() {
       presetRow.innerHTML = '';
       tierRow.innerHTML = '';
@@ -743,6 +897,19 @@
       return (card.dataset.tier || '') === activeTier;
     }
 
+    function sortCards() {
+      document.querySelectorAll('.card-grid').forEach(grid => {
+        const cards = [...grid.querySelectorAll('.compare-card')];
+        cards.sort((a, b) => {
+          const av = getSortValue(a);
+          const bv = getSortValue(b);
+          if (typeof av === 'string' || typeof bv === 'string') return String(av).localeCompare(String(bv));
+          return av - bv;
+        });
+        cards.forEach(card => grid.appendChild(card));
+      });
+    }
+
     function applyFilters() {
       const query = searchInput.value.trim().toLowerCase();
       document.querySelectorAll('.compare-card').forEach(card => {
@@ -768,6 +935,28 @@
         btn.classList.toggle('active', active);
         btn.textContent = active ? 'Selected' : 'Compare';
       });
+      document.querySelectorAll('.favorite-btn').forEach(btn => {
+        const active = favoriteKeys.has(btn.dataset.favoriteKey);
+        btn.classList.toggle('active', active);
+        btn.textContent = active ? 'Favorited' : 'Favorite';
+      });
+    }
+
+    function renderRecommendedGrid() {
+      recommendedGrid.innerHTML = '';
+      recommendedDefs.forEach(def => {
+        const card = makeRecommendedCard(def);
+        const match = getCompareCardByTitle(def.match);
+        if (match) card.dataset.search += ' ' + (match.dataset.search || '');
+        recommendedGrid.appendChild(card);
+      });
+    }
+
+    function renderCompareModal() {
+      compareModalGrid.innerHTML = '';
+      [...selectedCards.values()].forEach(item => {
+        compareModalGrid.innerHTML += getCompareCardMarkup(item);
+      });
     }
 
     function renderCompareTray() {
@@ -775,6 +964,7 @@
       compareGrid.innerHTML = '';
       const items = [...selectedCards.values()];
       compareTray.classList.toggle('visible', items.length > 0);
+      openCompareModalBtn.disabled = items.length < 2;
       items.forEach(item => {
         const pill = document.createElement('div');
         pill.className = 'compare-pill';
@@ -790,6 +980,21 @@
         box.className = 'compare-box';
         box.innerHTML = `<div class="t">${item.title}</div><div class="m"><strong>Standard:</strong> ${item.standard || '—'}<br /><strong>Monthly:</strong> ${item.monthly || '—'}<br /><strong>Best for:</strong> ${item.bestfor || '—'}<br /><strong>Watch out:</strong> ${item.tradeoff || '—'}</div>`;
         compareGrid.appendChild(box);
+      });
+      renderCompareModal();
+    }
+
+    function attachFavoriteHandlers() {
+      document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.favoriteKey;
+          if (favoriteKeys.has(key)) favoriteKeys.delete(key);
+          else favoriteKeys.add(key);
+          saveFavorites();
+          syncCompareButtons();
+          sortCards();
+          applyFilters();
+        });
       });
     }
 
@@ -812,6 +1017,7 @@
               monthly: card.dataset.monthly,
               bestfor: card.dataset.bestfor,
               tradeoff: card.dataset.tradeoff,
+              section: card.dataset.section,
             });
           }
           syncCompareButtons();
@@ -825,6 +1031,8 @@
       const raw = await response.text();
       fullSourcePre.textContent = raw;
 
+      loadFavorites();
+      renderRecommendedGrid();
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {
         tocGrid.appendChild(makeTocLink(section));
@@ -832,13 +1040,38 @@
       });
 
       renderFilterChips();
+      renderSortChips();
+      attachFavoriteHandlers();
       attachCompareHandlers();
       syncCompareButtons();
+      sortCards();
       renderCompareTray();
       applyFilters();
 
       searchInput.addEventListener('input', () => {
         applyFilters();
+      });
+
+      openCompareModalBtn.addEventListener('click', () => {
+        if (selectedCards.size < 2) return;
+        renderCompareModal();
+        compareModal.classList.add('visible');
+        compareModal.setAttribute('aria-hidden', 'false');
+      });
+      closeCompareModalBtn.addEventListener('click', () => {
+        compareModal.classList.remove('visible');
+        compareModal.setAttribute('aria-hidden', 'true');
+      });
+      compareModal.addEventListener('click', (e) => {
+        if (e.target === compareModal) {
+          compareModal.classList.remove('visible');
+          compareModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+      clearCompareBtn.addEventListener('click', () => {
+        selectedCards.clear();
+        syncCompareButtons();
+        renderCompareTray();
       });
 
       expandAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = true));

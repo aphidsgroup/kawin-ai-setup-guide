@@ -73,7 +73,7 @@
       border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 10px 12px; font-size: 12px; font-weight: 800;
     }
     .app { padding-top: 18px; padding-bottom: 48px; }
-    .hero, .toc, .section-card, .source-card, .search-wrap, .info-box {
+    .hero, .toc, .section-card, .search-wrap, .info-box {
       background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
     }
     .hero { padding: 20px; }
@@ -252,15 +252,6 @@
     table.data thead th { background: #f8fafc; color: var(--muted-2); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; }
     table.data tbody tr:nth-child(even) { background: #fcfdff; }
     .num { white-space: nowrap; font-weight: 800; }
-    .source-card { overflow: hidden; }
-    .source-card details summary {
-      cursor: pointer; list-style: none; padding: 16px; border-bottom: 1px solid var(--line); font-size: 16px; font-weight: 800;
-    }
-    .source-card details[open] summary { background: #f8fafc; }
-    .source-card pre {
-      margin: 0; padding: 16px; white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12.5px; line-height: 1.7; color: #0f172a; background: #fff;
-    }
     .hidden { display: none !important; }
     .footer { margin-top: 18px; padding: 18px; text-align: center; color: var(--muted-2); font-size: 12px; line-height: 1.7; }
     @media (min-width: 760px) {
@@ -291,10 +282,10 @@
         <div class="brand-icon">AI</div>
         <div class="brand-copy">
           <h1>Kawin AI Setup Guide</h1>
-          <p>Card-first comparison UI + exact source preserved</p>
+          <p>Card-first comparison UI for fast model comparison</p>
         </div>
       </div>
-      <a class="pill" href="#exact-source">Exact source text</a>
+      <span class="pill">Comparison dashboard</span>
     </div>
   </div>
 
@@ -304,7 +295,7 @@
       <h2>Visual comparison cards, not plain text blocks</h2>
       <p>
         The comparison sections below are now card-first and boxy by design: cost bands, context pills, benchmark tags,
-        and separate “best for” versus “watch out” panels. Your full exact source is still preserved below so nothing is lost.
+        and separate “best for” versus “watch out” panels for faster scanning and easier comparison.
       </p>
       <div class="meta-grid">
         <div class="meta-card"><div class="label">USD Rate</div><div class="value">₹95.22</div></div>
@@ -317,11 +308,6 @@
     <div class="toolbar">
       <div class="search-wrap">
         <input id="searchInput" class="search" type="search" placeholder="Search models, costs, context, sections, recommendations..." />
-        <div class="toolbar-actions">
-          <button class="action" id="expandAllBtn" type="button">Expand source</button>
-          <button class="action" id="collapseAllBtn" type="button">Collapse source</button>
-          <button class="action" id="copyAllBtn" type="button">Copy full source</button>
-        </div>
       </div>
       <div class="info-box">
         <strong>Better comparison UX:</strong><br />
@@ -359,14 +345,6 @@
     <div class="section-label">Visual comparison sections</div>
     <section id="sections" class="section-stack"></section>
 
-    <div class="section-label" id="exact-source">Exact source text</div>
-    <section class="source-card">
-      <details open>
-        <summary>Full exact source content</summary>
-        <pre id="fullSourcePre"></pre>
-      </details>
-    </section>
-
     <section id="compareTray" class="compare-tray" aria-live="polite">
       <h4>Selected for quick compare</h4>
       <div id="compareList" class="compare-list"></div>
@@ -388,7 +366,7 @@
     </section>
 
     <div class="footer">
-      Designed for easier comparison on mobile, with the exact original source preserved underneath for fidelity.
+      Designed for easier comparison on mobile with visual cards, presets, sorting, and side-by-side comparison.
     </div>
   </main>
 
@@ -398,10 +376,6 @@
     const recommendedGrid = document.getElementById('recommendedGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
-    const fullSourcePre = document.getElementById('fullSourcePre');
-    const expandAllBtn = document.getElementById('expandAllBtn');
-    const collapseAllBtn = document.getElementById('collapseAllBtn');
-    const copyAllBtn = document.getElementById('copyAllBtn');
     const presetRow = document.getElementById('presetRow');
     const tierRow = document.getElementById('tierRow');
     const compareTray = document.getElementById('compareTray');
@@ -1027,10 +1001,6 @@
     }
 
     async function init() {
-      const response = await fetch('./content.txt');
-      const raw = await response.text();
-      fullSourcePre.textContent = raw;
-
       loadFavorites();
       renderRecommendedGrid();
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
@@ -1074,18 +1044,6 @@
         renderCompareTray();
       });
 
-      expandAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = true));
-      collapseAllBtn.addEventListener('click', () => document.querySelectorAll('.source-card details').forEach(d => d.open = false));
-      copyAllBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(raw);
-          copyAllBtn.textContent = 'Copied full source';
-          setTimeout(() => copyAllBtn.textContent = 'Copy full source', 1400);
-        } catch {
-          copyAllBtn.textContent = 'Copy failed';
-          setTimeout(() => copyAllBtn.textContent = 'Copy full source', 1400);
-        }
-      });
     }
 
     if ('serviceWorker' in navigator) {

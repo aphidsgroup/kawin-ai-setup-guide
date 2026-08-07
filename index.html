@@ -193,6 +193,13 @@
       display: inline-flex; align-items: center; border-radius: 999px; background: #ecfccb; color: #365314; border: 1px solid #bef264; padding: 6px 10px; font-size: 11px; font-weight: 900; white-space: nowrap;
     }
     .score-badge.warn { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .confidence-badge {
+      display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 900; white-space: nowrap; border: 1px solid var(--line); background: #eef2ff; color: #3730a3;
+    }
+    .confidence-badge.official { background: #dcfce7; color: #166534; border-color: #86efac; }
+    .confidence-badge.verified { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+    .confidence-badge.watchlist { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .confidence-badge.discovery { background: #f3e8ff; color: #7e22ce; border-color: #d8b4fe; }
     .radar-shell {
       margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden;
     }
@@ -502,6 +509,12 @@
     <div class="section-label">Weekly MCP / A2A / workflow movers</div>
     <section id="workflowChangeGrid" class="change-cycle-grid"></section>
 
+    <div class="section-label">MCP category winners right now</div>
+    <section id="mcpWinnerGrid" class="winner-strip"></section>
+
+    <div class="section-label">New workflows worth cloning</div>
+    <section id="workflowCloneGrid" class="change-cycle-grid"></section>
+
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
 
@@ -549,6 +562,8 @@
     const repoChangesGrid = document.getElementById('repoChangesGrid');
     const protocolRadarGrid = document.getElementById('protocolRadarGrid');
     const workflowChangeGrid = document.getElementById('workflowChangeGrid');
+    const mcpWinnerGrid = document.getElementById('mcpWinnerGrid');
+    const workflowCloneGrid = document.getElementById('workflowCloneGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const presetRow = document.getElementById('presetRow');
@@ -671,19 +686,33 @@
     ];
 
     const protocolRadarDefs = [
-      { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Best weekly signal for rising MCP servers because it exposes week and month popularity views.', score: '94/100' },
-      { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100' },
-      { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100' },
-      { title: 'A2A discovery posture', value: 'Official A2A Project first', note: 'A2A Registry and Awesome A2A are useful, but the review/ranking layer is still too immature to trust blindly.', score: '88/100' },
-      { title: 'Best workflow trust rule', value: 'Official template libraries first', note: 'Use n8n, Make and Zapier official libraries before buying random template bundles.', score: '92/100' },
-      { title: 'Best universal connector stack', value: 'Composio / Pipedream / Zapier MCP', note: 'Dynamic tool discovery and large SaaS coverage are increasingly better than hand-loading dozens of separate connectors.', score: '93/100' },
+      { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Best weekly signal for rising MCP servers because it exposes week and month popularity views.', score: '94/100', confidence: 'Verified' },
+      { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100', confidence: 'Verified' },
+      { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100', confidence: 'Official + verified' },
+      { title: 'A2A discovery posture', value: 'Official A2A Project first', note: 'A2A Registry and Awesome A2A are useful, but the review/ranking layer is still too immature to trust blindly.', score: '88/100', confidence: 'Official first' },
+      { title: 'Best workflow trust rule', value: 'Official template libraries first', note: 'Use n8n, Make and Zapier official libraries before buying random template bundles.', score: '92/100', confidence: 'Official' },
+      { title: 'Best universal connector stack', value: 'Composio / Pipedream / Zapier MCP', note: 'Dynamic tool discovery and large SaaS coverage are increasingly better than hand-loading dozens of separate connectors.', score: '93/100', confidence: 'Verified' },
     ];
 
     const workflowChangeDefs = [
-      { category: 'MCP trends', repo: 'PulseMCP weekly leaders', shift: 'Trending MCP view should drive weekly watchlist changes', score: '91/100', note: 'Use it as early discovery, then validate through MCPpedia and the Official Registry before promotion.', metrics: [['cadence', 'Weekly'], ['gate', 'Security first']], audit: ['Popularity alone is not enough for MCP promotion.', 'Quality and publisher checks should happen before installation.', 'This card changes when new weekly leaders keep holding their signal.'] },
-      { category: 'A2A watch', repo: 'A2A Registry + Official A2A Project', shift: 'Discovery is improving, but ranking is still immature', score: '83/100', note: 'Track new public Agent Cards and official SDK/TCK activity, but keep ratings conservative.', metrics: [['cadence', 'Weekly'], ['gate', 'TCK first']], audit: ['A2A reviews remain too sparse for a universal leaderboard.', 'Official compatibility and identity matter more than public hype.', 'Raise scores only when reliability and task success evidence strengthens.'] },
-      { category: 'Automation templates', repo: 'n8n / Make / Zapier official libraries', shift: 'Official template libraries should outrank random bundles', score: '90/100', note: 'Weekly checks should watch new verified templates, official creators and popular maintained scenarios.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Creator verification matters for workflow trust.', 'Recent updates and error handling matter more than raw popularity.', 'This card changes when official libraries surface materially better workflow candidates.'] },
-      { category: 'Universal connectors', repo: 'Composio / Pipedream / Zapier MCP', shift: 'Connector platforms deserve weekly tracking as app coverage expands', score: '89/100', note: 'These platforms reduce schema overload while expanding app/tool reach for agents.', metrics: [['cadence', 'Weekly'], ['gate', 'OAuth + scope']], audit: ['Dynamic discovery is useful only if auth and scope remain well governed.', 'Broadest coverage is not always the safest choice.', 'Raise scores when governance and operational metrics improve together.'] },
+      { category: 'MCP trends', repo: 'PulseMCP weekly leaders', shift: 'Trending MCP view should drive weekly watchlist changes', score: '91/100', confidence: 'Verified', note: 'Use it as early discovery, then validate through MCPpedia and the Official Registry before promotion.', metrics: [['cadence', 'Weekly'], ['gate', 'Security first']], audit: ['Popularity alone is not enough for MCP promotion.', 'Quality and publisher checks should happen before installation.', 'This card changes when new weekly leaders keep holding their signal.'] },
+      { category: 'A2A watch', repo: 'A2A Registry + Official A2A Project', shift: 'Discovery is improving, but ranking is still immature', score: '83/100', confidence: 'Watchlist', note: 'Track new public Agent Cards and official SDK/TCK activity, but keep ratings conservative.', metrics: [['cadence', 'Weekly'], ['gate', 'TCK first']], audit: ['A2A reviews remain too sparse for a universal leaderboard.', 'Official compatibility and identity matter more than public hype.', 'Raise scores only when reliability and task success evidence strengthens.'] },
+      { category: 'Automation templates', repo: 'n8n / Make / Zapier official libraries', shift: 'Official template libraries should outrank random bundles', score: '90/100', confidence: 'Official', note: 'Weekly checks should watch new verified templates, official creators and popular maintained scenarios.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Creator verification matters for workflow trust.', 'Recent updates and error handling matter more than raw popularity.', 'This card changes when official libraries surface materially better workflow candidates.'] },
+      { category: 'Universal connectors', repo: 'Composio / Pipedream / Zapier MCP', shift: 'Connector platforms deserve weekly tracking as app coverage expands', score: '89/100', confidence: 'Verified', note: 'These platforms reduce schema overload while expanding app/tool reach for agents.', metrics: [['cadence', 'Weekly'], ['gate', 'OAuth + scope']], audit: ['Dynamic discovery is useful only if auth and scope remain well governed.', 'Broadest coverage is not always the safest choice.', 'Raise scores when governance and operational metrics improve together.'] },
+    ];
+
+    const mcpWinnerDefs = [
+      { title: 'Trending discovery', winner: 'PulseMCP', why: 'Best weekly mover feed before trust gating. Use it to spot what is rising, not to approve installs blindly.', confidence: 'Verified' },
+      { title: 'Breadth search', winner: 'Glama', why: 'Best broad searchable registry when you need to compare many MCP candidates fast.', confidence: 'Verified' },
+      { title: 'Security / trust gate', winner: 'MCPpedia + Docker + Official Registry', why: 'Best trio for maintenance, CVEs, provenance and publisher verification before enabling sensitive servers.', confidence: 'Official + verified' },
+      { title: 'Universal connector winner', winner: 'Composio Connect', why: 'Best current balance of app breadth, dynamic discovery and agent-native tool exposure.', confidence: 'Verified' },
+    ];
+
+    const workflowCloneDefs = [
+      { category: 'Technical AI workflow', repo: 'n8n verified AI ops templates', shift: 'Best first source for clone-worthy technical automations this week', score: '92/100', confidence: 'Official', note: 'Clone official or verified n8n workflows before buying random bundles or rebuilding common flows from scratch.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Strongest when the template is official or from a verified creator.', 'Look for recent updates, retries, and credential hygiene before cloning.', 'Promote only when the workflow is maintained and still aligned with supported nodes/APIs.'] },
+      { category: 'Visual branching workflow', repo: 'Make most-popular reviewed templates', shift: 'Best visual branching scenarios worth cloning right now', score: '90/100', confidence: 'Official', note: 'Use reviewed public templates as the default starting point for complex visual automations.', metrics: [['cadence', 'Weekly'], ['gate', 'Reviewed template']], audit: ['Make popularity is useful because the public library is reviewed.', 'Still inspect variables, auth scopes and branch logic before cloning.', 'Rotate winners when better reviewed templates materially outperform older favourites.'] },
+      { category: 'Simple SaaS automation', repo: 'Zapier guided templates', shift: 'Best low-friction workflows for business teams to clone', score: '89/100', confidence: 'Official', note: 'Guided templates beat copying untrusted community zaps when the goal is safe fast rollout.', metrics: [['cadence', 'Weekly'], ['gate', 'Guided template']], audit: ['Breadth is huge, but guided and official flows should outrank raw community popularity.', 'Clone workflows that expose editable variables and clear app permissions.', 'Raise only when maintenance and ease-of-rollout remain strong.'] },
+      { category: 'Developer / API automation', repo: 'Pipedream reusable workflows', shift: 'Best API-first flows worth adapting instead of rebuilding', score: '88/100', confidence: 'Verified', note: 'Best choice when the workflow should mix code, APIs and reusable connector steps.', metrics: [['cadence', 'Weekly'], ['gate', 'Docs + reuse']], audit: ['Developer workflows should be judged on docs, reuse quality and auth setup clarity.', 'A smaller review count is fine if operational quality is obvious.', 'Promote only when the workflow remains compatible with current APIs and deployment posture.'] },
     ];
 
     const summaries = [
@@ -1796,8 +1825,8 @@
     function makeWinnerCard(item) {
       const card = document.createElement('article');
       card.className = 'winner-card';
-      card.dataset.search = `${item.title} ${item.winner} ${item.why}`.toLowerCase();
-      card.innerHTML = `<div class="ey">${item.title}</div><div class="winner">${item.winner}</div><div class="why">${item.why}</div><div class="fresh-time">Winner checked: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
+      card.dataset.search = `${item.title} ${item.winner} ${item.why} ${item.confidence || ''}`.toLowerCase();
+      card.innerHTML = `<div class="topline"><div class="ey">${item.title}</div>${confidenceBadge(item.confidence)}</div><div class="winner">${item.winner}</div><div class="why">${item.why}</div><div class="fresh-time">Winner checked: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
       return card;
     }
 
@@ -1830,6 +1859,17 @@
       return `<span class="${cls}">Score ${score}</span>`;
     }
 
+    function confidenceBadge(confidence) {
+      if (!confidence) return '';
+      const key = String(confidence).toLowerCase();
+      let cls = 'confidence-badge';
+      if (key.includes('official')) cls += ' official';
+      else if (key.includes('verified')) cls += ' verified';
+      else if (key.includes('watchlist')) cls += ' watchlist';
+      else if (key.includes('discovery')) cls += ' discovery';
+      return `<span class="${cls}">${confidence}</span>`;
+    }
+
     function formatTimestamp(iso) {
       try {
         return new Intl.DateTimeFormat('en-IN', {
@@ -1844,19 +1884,29 @@
     function makeAgentRadarCard(item) {
       const card = document.createElement('article');
       card.className = 'summary-card';
-      card.dataset.search = `${item.title} ${item.value} ${item.note} ${item.score || ''}`.toLowerCase();
-      card.innerHTML = `<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;"><div class="label">${item.title}</div>${scoreBadge(item.score)}</div><div class="value">${item.value}</div><div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">${item.note}</div>`;
+      card.dataset.search = `${item.title} ${item.value} ${item.note} ${item.score || ''} ${item.confidence || ''}`.toLowerCase();
+      card.innerHTML = `<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;"><div class="label">${item.title}</div><div class="badge-stack">${scoreBadge(item.score)}${confidenceBadge(item.confidence)}</div></div><div class="value">${item.value}</div><div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">${item.note}</div>`;
       return card;
     }
 
     function makeRepoChangeCard(item) {
       const card = document.createElement('article');
       card.className = 'change-card';
-      card.dataset.search = `${item.category} ${item.repo} ${item.shift} ${item.note} ${item.score || ''} ${(item.metrics || []).flat().join(' ')}`.toLowerCase();
+      card.dataset.search = `${item.category} ${item.repo} ${item.shift} ${item.note} ${item.score || ''} ${item.confidence || ''} ${(item.metrics || []).flat().join(' ')}`.toLowerCase();
       const metrics = (item.metrics || []).map(pair => `<div class="micro-box"><div class="k">${pair[0]}</div><div class="v">${pair[1]}</div></div>`).join('');
       const audit = item.audit?.length ? `<details class="audit-details"><summary>Why score changed</summary><div class="audit-body">${item.audit.map(line => `• ${line}`).join('<br />')}</div></details>` : '';
-      card.innerHTML = `<div class="topline"><div class="kicker">${item.category}</div>${scoreBadge(item.score)}</div><div class="repo">${item.repo}</div><div class="note"><strong>${item.shift}</strong><br />${item.note}</div><div class="micro-metrics">${metrics}</div>${audit}<div class="fresh-time">Cycle reviewed: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
+      card.innerHTML = `<div class="topline"><div class="kicker">${item.category}</div><div class="badge-stack">${scoreBadge(item.score)}${confidenceBadge(item.confidence)}</div></div><div class="repo">${item.repo}</div><div class="note"><strong>${item.shift}</strong><br />${item.note}</div><div class="micro-metrics">${metrics}</div>${audit}<div class="fresh-time">Cycle reviewed: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
       return card;
+    }
+
+    function renderMcpWinners() {
+      mcpWinnerGrid.innerHTML = '';
+      mcpWinnerDefs.forEach(item => mcpWinnerGrid.appendChild(makeWinnerCard(item)));
+    }
+
+    function renderWorkflowClones() {
+      workflowCloneGrid.innerHTML = '';
+      workflowCloneDefs.forEach(item => workflowCloneGrid.appendChild(makeRepoChangeCard(item)));
     }
 
     function renderRepoChanges() {
@@ -2246,7 +2296,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #protocolRadarGrid > *, #workflowChangeGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #protocolRadarGrid > *, #workflowChangeGrid > *, #mcpWinnerGrid > *, #workflowCloneGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -2359,6 +2409,8 @@
       renderRepoChanges();
       renderProtocolRadar();
       renderWorkflowChanges();
+      renderMcpWinners();
+      renderWorkflowClones();
       syncRadarTimestamps();
       summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));

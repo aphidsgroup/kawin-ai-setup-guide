@@ -478,6 +478,7 @@
       { id: 'economics', label: 'Costs, rankings and recommendations', sectionIds: ['frontier-models', 'budget-models', 'qwen-pricing', 'cost-ranking', 'relative-multipliers', 'workflow-rankings', 'gpu-pricing', 'api-vs-gpu', 'three-tier-architecture', 'blended-routing', 'final-recommendations'] },
       { id: 'routers', label: 'Routers and routing tools', sectionIds: ['router-categories', 'intelligent-router-comparison', 'genuinely-free-routers', 'gateway-vs-router', 'token-optimisation', 'best-routers-by-requirement', 'router-architecture'] },
       { id: 'decision-system', label: 'Future-proof decision system', sectionIds: ['router-of-routers', 'best-router-by-work', 'coding-specialist-router', 'model-pools-today', 'everyday-routing-map', 'privacy-registry-rule', 'launch-shadow-adaptation', 'litellm-tier-overrides'] },
+      { id: 'agents-landscape', label: 'AI agents and takeover watch', sectionIds: ['agent-landscape', 'general-agents', 'hermes-vs-openclaw-goose', 'managed-workers', 'managed-by-work', 'coding-agents', 'claude-vs-codex', 'browser-computer-agents', 'buzz-workspace', 'agent-frameworks', 'agent-category-winners', 'agent-monitoring-signals', 'agent-benchmarks-watch', 'agent-watchlist-security'] },
     ];
 
     const recommendedDefs = [
@@ -493,6 +494,10 @@
       { title: 'Coding specialist route', model: 'OpenRouter Pareto Code', note: 'Do not force generic routers to handle all code decisions.', match: 'OpenRouter Pareto Code' },
       { title: 'Benchmark change rule', model: 'Re-rank pools, not agents', note: 'When leaders shift, rotate pool candidates and keep workflow rules stable.', match: 'Benchmark change response' },
       { title: 'Model naming rule', model: 'Do not hardcode model names', note: 'Route by capabilities, cost ceilings, risk and benchmark class instead.', match: 'Do not hardcode model names' },
+      { title: 'Best open general agent', model: 'Hermes Agent', note: 'Strongest persistent memory, skills, scheduling and subagents for a self-improving personal/work agent.', match: 'Hermes Agent' },
+      { title: 'Best managed digital worker', model: 'Manus', note: 'Best fit when you want a cloud worker that can research and execute without self-hosting.', match: 'Manus' },
+      { title: 'Coding frontier watch', model: 'Claude Code / Codex / Muse Code', note: 'Benchmark this category continuously instead of hardcoding one coding agent forever.', match: 'Claude Code' },
+      { title: 'Agent takeover rule', model: 'Monitor releases + benchmarks + adoption', note: 'An agent is not taking over just because it trends for a day.', match: 'GitHub Trending' },
     ];
 
     const summaries = [
@@ -508,6 +513,10 @@
       { title: 'Coding specialist', value: 'Pareto Code pool', note: 'Coding should not stay inside a generic catch-all route' },
       { title: 'Change management', value: 'Re-rank pools when leaders move', note: 'Keep agent rules stable while model candidates rotate underneath' },
       { title: 'Biggest savings stack', value: 'Router + cache + pruning', note: 'Routing alone only cuts cost per token' },
+      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Best current self-improving open general-purpose agent' },
+      { title: 'Managed worker leader', value: 'Manus', note: 'Strongest managed general digital worker right now' },
+      { title: 'Coding watch', value: 'Claude Code / Codex / Muse Code', note: 'Fastest-moving agent category; leaders can change quickly' },
+      { title: 'Takeover signal', value: 'Benchmarks + adoption + releases', note: 'Do not treat X hype or stars alone as a category takeover' },
     ];
 
     const datasets = [
@@ -962,6 +971,267 @@
         extra: [
           'Cron-driven updates should re-evaluate these candidate pools as leaderboards, provider economics and internal success signals move.',
           'The section recommendations above should be recalculated only when those changes alter real decision quality, not merely public hype.'
+        ]
+
+      },
+      {
+        id: 'agent-landscape',
+        title: '27. AI Agent Landscape in 2026',
+        description: 'There is no single agent taking over every category. The market has split into layers, from general personal agents to coding agents, workspaces and orchestration frameworks.',
+        cardFields: ['Category', 'What it means', 'Leading examples today', 'Typical work', 'Main distinction'],
+        rows: [
+          ['General personal agents', 'Persistent assistants that use tools and perform many kinds of tasks', 'Hermes, OpenClaw, Goose, Agent Zero', 'Research, files, terminal, email, scheduled jobs and automation', 'Closest to an AI employee that can keep learning and working over time'],
+          ['Managed general agents', 'Cloud digital workers where the provider manages execution', 'Manus, Claude Cowork, Gemini Spark, Genspark', 'Research, presentations, documents, web work and recurring workflows', 'Provider-managed convenience instead of self-hosted control'],
+          ['Coding agents', 'Autonomous software engineers', 'Claude Code, Codex, Cursor, Muse Code, Devin, Jules, OpenHands, OpenCode', 'Code, testing, debugging, PRs, repos and deployment', 'Fastest-moving and most benchmark-sensitive category'],
+          ['Browser / computer agents', 'Agents that operate browsers or desktops rather than only APIs', 'Gemini Spark, Browser Use, Manus, Comet, Hermes + computer MCP', 'Websites, forms, research, bookings and computer workflows', 'Measures real computer-use ability, not only text quality'],
+          ['Agent workspace / collaboration layer', 'Human and multiple-agent shared environment', 'Buzz, OpenHands Agent Canvas', 'Coordination, repos, workflows and agent teams', 'Workspace layer, not the same as one end-user agent'],
+          ['Agent frameworks', 'Developer toolkits for building your own agents', 'LangGraph, CrewAI, AutoGen, Google ADK, OpenAI Agents SDK, Semantic Kernel', 'Custom enterprise agent systems', 'Frameworks orchestrate agents rather than being the finished worker'],
+          ['Agent / model infrastructure', 'Routing and provider selection under agents', 'LiteLLM, OpenRouter, Not Diamond', 'Cost optimization, failover and model choice', 'Infrastructure beneath the agents instead of the visible worker'],
+          ['Agent protocols', 'Standards that let agents and tools communicate', 'MCP, ACP, A2A', 'Interoperability and tool exchange', 'Protocol layer rather than end-user work product'],
+        ],
+        extra: [
+          'A good mental model is: agent runtime → specialist worker → browser/computer control → multi-agent workspace → orchestration framework.',
+          'The page should therefore not call every product with “agent” in its marketing the same kind of winner.'
+        ]
+      },
+      {
+        id: 'general-agents',
+        title: '28. General-Purpose AI Agents',
+        description: 'This category is closest to a persistent AI worker that can live somewhere and continue doing useful work over time.',
+        cardFields: ['Agent', 'Free / open / paid', 'Runs where', 'Memory', 'Scheduling', 'Subagents', 'Best use', 'Main weakness'],
+        rows: [
+          ['Hermes Agent', 'Free + MIT open source', 'Local PC, server, VPS, cloud', 'Excellent persistent memory + skills', 'Yes', 'Yes', 'Self-improving persistent personal/work agent', 'Requires setup and appropriate permissions'],
+          ['OpenClaw', 'Free + open source', 'Self-hosted', 'Strong', 'Excellent cron system', 'Yes', 'Always-on personal assistant and communication hub', 'Large skill/plugin attack surface needs care'],
+          ['Goose', 'Free + Apache 2.0', 'Local desktop / CLI / API', 'Good', 'Possible via tooling', 'Yes', 'Clean model-neutral local general agent for coding, research and automation', 'Less messaging/personal-assistant oriented than Hermes/OpenClaw'],
+          ['Agent Zero', 'Free/open source', 'Docker/Linux environment', 'Strong', 'Yes', 'Yes', 'Autonomous Linux/computer agent', 'More technically demanding than lighter agents'],
+          ['Manus', 'Free tier + paid', 'Managed cloud VM', 'Project/context based', 'Yes', 'Wide Research and parallel tasking', 'General cloud digital worker', 'Credits can become expensive'],
+          ['Claude Cowork', 'Paid Claude plans', 'Local computer + cloud', 'Claude/project context', 'Growing', 'Agentic delegation', 'Professional knowledge work across folders and tools', 'Claude ecosystem lock-in'],
+          ['Gemini Spark', 'Paid Google AI subscription', 'Google cloud + Chrome/browser', 'Personal Intelligence/context', 'Excellent', 'Internal', 'Google/browser executive assistant', 'Google subscription/ecosystem dependency'],
+          ['Genspark Super Agent', 'Free + paid', 'Managed cloud', 'Hubs/project context', 'Workflow dependent', 'Specialist subagents', 'Research, slides, docs, media and business deliverables', 'Cloud/credit-based execution model'],
+        ]
+      },
+      {
+        id: 'hermes-vs-openclaw-goose',
+        title: '29. Hermes vs OpenClaw vs Goose',
+        description: 'These three are easy to confuse, but they are strongest in different versions of the general-agent role.',
+        cardFields: ['Criteria', 'Hermes', 'OpenClaw', 'Goose', 'Best current interpretation'],
+        rows: [
+          ['Open source', 'MIT', 'Open source', 'Apache 2.0', 'All three are serious open choices'],
+          ['Model agnostic', 'Excellent', 'Excellent', 'Excellent', 'All are strong at avoiding single-model lock-in'],
+          ['Personal memory', 'Best', 'Very good', 'Good', 'Hermes leads for persistent personal memory'],
+          ['Learns new skills from experience', 'Best', 'Good', 'Good', 'Hermes has the strongest learning loop'],
+          ['Messaging channels', 'Excellent', 'Best', 'Limited', 'OpenClaw is strongest as a multi-channel always-on communication agent'],
+          ['Terminal and coding', 'Strong', 'Very good', 'Best', 'Goose is strongest as a clean developer/general local agent'],
+          ['Scheduled work', 'Excellent', 'Best', 'Good', 'OpenClaw and Hermes are the best persistent automation choices'],
+          ['Persistent personal assistant', 'Best', 'Excellent', 'Good', 'Hermes leads when you want a self-improving personal/work companion'],
+        ],
+        extra: [
+          'Current ranking for persistent general-purpose open agents in this page: Hermes → OpenClaw → Goose → Agent Zero.',
+          'That ranking is for persistent general work, not coding alone.'
+        ]
+      },
+      {
+        id: 'managed-workers',
+        title: '30. Managed AI Digital Workers',
+        description: 'These products remove most self-hosting and runtime-management burden, but trade that for provider control and recurring spend.',
+        cardFields: ['Criteria', 'Manus', 'Claude Cowork', 'Gemini Spark', 'Genspark', 'Best use'],
+        rows: [
+          ['Infrastructure setup', 'None', 'Minimal', 'None', 'None', 'All are easier than self-hosting'],
+          ['Research', 'Excellent', 'Strong', 'Excellent', 'Excellent', 'Manus and Genspark are strongest for broad cloud-delivered research'],
+          ['Documents and office work', 'Strong', 'Best', 'Good', 'Strong', 'Cowork is strongest for knowledge-work style execution'],
+          ['Presentations', 'Strong', 'Strong', 'Moderate', 'Best', 'Genspark is the standout for slides and presentation production'],
+          ['Browser actions', 'Excellent', 'Strong', 'Excellent', 'Strong', 'Manus and Gemini Spark are strongest browser-oriented managed workers'],
+          ['Recurring tasks', 'Excellent', 'Growing', 'Excellent', 'Good', 'Spark and Manus are especially notable here'],
+          ['Local files', 'Desktop/cloud', 'Excellent', 'Google ecosystem', 'Upload/Drive', 'Cowork handles local work best among managed choices'],
+        ]
+      },
+      {
+        id: 'managed-by-work',
+        title: '31. Best Managed Agent by Work',
+        description: 'No single managed worker is best at everything; category fit matters more than generic marketing strength.',
+        cardFields: ['Work', 'Winner today', 'Runner-up', 'Why this page ranks it that way'],
+        rows: [
+          ['General cloud autonomous work', 'Manus', 'Claude Cowork', 'Best general cloud digital worker'],
+          ['Office files and knowledge work', 'Claude Cowork', 'Manus', 'Best for professional folders, files and office-style execution'],
+          ['Google Gmail / Calendar / Chrome ecosystem', 'Gemini Spark', 'Manus', 'Best native Google/browser integration'],
+          ['Deep broad research', 'Manus Wide Research', 'Gemini Spark', 'Strongest broad multi-subagent cloud research posture'],
+          ['Presentations', 'Genspark AI Slides', 'Manus', 'Most mature specialist presentation workflow'],
+          ['Docs + slides + sheets + media', 'Genspark', 'Manus', 'Best multi-media business-production suite'],
+          ['Recurring personal workflows', 'Gemini Spark / Manus', 'Hermes', 'Managed convenience matters heavily in this category'],
+          ['Maximum self-hosted control', 'Hermes', 'OpenClaw', 'Managed systems are not the right answer when sovereignty matters most'],
+        ]
+      },
+      {
+        id: 'coding-agents',
+        title: '32. Coding Agents — Fastest-Moving Category',
+        description: 'Coding agents are evolving too quickly for one frozen winner. Use this section as an active watchlist rather than a permanent conclusion.',
+        cardFields: ['Agent', 'Type', 'Free / open', 'Works asynchronously', 'Parallel agents', 'Best for', 'Main watch-out'],
+        rows: [
+          ['Claude Code', 'Terminal / IDE coding agent', 'Paid Claude ecosystem', 'Yes', 'Agent teams / subagents', 'Complex repositories, refactoring and architecture', 'Do not assume it permanently wins all coding tasks'],
+          ['OpenAI Codex', 'Multi-agent coding command center', 'Subscription + usage', 'Excellent', 'Excellent', 'Parallel software engineering and async engineering work', 'Benchmark position depends on task slice and harness'],
+          ['Meta Muse Code', 'Terminal coding agent', 'Paid usage / beta', 'Persistent', 'Persistent subagents', 'Long-running large-repository work', 'Too new to call the category winner yet'],
+          ['Cursor', 'Agentic IDE', 'Freemium + paid', 'Yes', 'Yes', 'Interactive development plus agent workflow', 'Blend of IDE and agent changes how you compare it'],
+          ['OpenHands', 'Open-source agent platform', 'MIT + cloud options', 'Yes', 'Agent Canvas', 'Self-hosted coding agents and coding workflows', 'Platform orientation differs from pure local terminal agents'],
+          ['OpenCode', 'Open-source coding agent', 'MIT', 'CLI / desktop', 'Growing', 'Open-source Claude-Code-like experience', 'Still maturing compared with biggest incumbents'],
+          ['Cline', 'Open-source IDE / CLI agent', 'Free OSS + BYOK', 'CLI/headless', 'Growing', 'VS Code, terminals and MCP-heavy workflows', 'Not the same async command-center posture as Codex'],
+          ['Aider', 'Terminal pair programmer', 'Open source', 'Less autonomous', 'No focus', 'Lightweight Git-centric pair programming', 'Not intended to be a full autonomous coding workforce'],
+        ],
+        extra: [
+          'Current coding-frontier interpretation on this page: Claude Code and Codex are still the first two systems to benchmark against, while Muse Code is the new challenger to watch immediately.',
+          'This category should be updated whenever a new coding agent launch or benchmark overtaking event materially changes the practical ranking.'
+        ]
+      },
+      {
+        id: 'claude-vs-codex',
+        title: '33. Claude Code vs Codex Right Now',
+        description: 'Harness-specific coding-agent benchmarks show near parity overall, but with different strengths in cost, runtime and task slices.',
+        cardFields: ['Metric', 'Claude Code + Opus 5', 'Codex + GPT-5.6 Sol', 'Practical reading'],
+        rows: [
+          ['Overall Coding Agent Index', 'About 67', 'About 67', 'Effectively tied in the referenced comparison'],
+          ['DeepSWE', 'About 60', 'About 69', 'Codex currently stronger in that harness slice'],
+          ['Terminal-Bench v2', 'About 85', 'About 88', 'Codex currently ahead on terminal benchmark in that test'],
+          ['SWE-Atlas Q&A', 'About 55', 'About 43', 'Claude Code stronger on that question-answering slice'],
+          ['Approximate execution time', 'About 23.6 min', 'About 10.2 min', 'Codex faster in the tested harness'],
+          ['Approximate tokens per task', 'About 21.8M', 'About 13.2M', 'Codex used fewer tokens in the cited comparison'],
+          ['Approximate cost per tested task', 'About $8.23', 'About $7.08', 'Codex cheaper in that tested harness'],
+          ['Cache-hit rate', 'About 97%', 'About 90%', 'Claude Code showed stronger cache-hit behavior there'],
+        ],
+        extra: [
+          'These are harness-specific, not universal guarantees.',
+          'This is exactly why the page should route coding tasks and keep benchmarking instead of permanently freezing one coding-agent winner.'
+        ]
+      },
+      {
+        id: 'browser-computer-agents',
+        title: '34. Browser and Computer-Use Agents',
+        description: 'Computer-use agents should be judged on browser/desktop reliability, not just chat-model intelligence.',
+        cardFields: ['Agent', 'Browser navigation', 'Logged-in websites', 'Desktop / files', 'Autonomous multi-step work', 'Self-hosted', 'Best use'],
+        rows: [
+          ['Gemini Spark', 'Excellent', 'Yes', 'Google ecosystem', 'Excellent', 'No', 'End-user browser and Google-workflow agent'],
+          ['Browser Use', 'Excellent', 'Yes', 'Browser-oriented', 'Excellent', 'Yes', 'Best infrastructure layer for browser automation by agents'],
+          ['Manus', 'Excellent', 'Managed/connectors', 'Cloud VM', 'Excellent', 'No', 'Managed browser + cloud computer worker'],
+          ['Perplexity Comet', 'Excellent', 'Browser context', 'Browser', 'Strong', 'No', 'Research/browser assistant'],
+          ['Hermes + computer MCP', 'Strong', 'Configurable', 'Excellent', 'Strong', 'Yes', 'Self-hosted browser/file/tool agent with broader personal-agent powers'],
+          ['OpenClaw', 'Strong', 'Configurable', 'Local', 'Strong', 'Yes', 'Persistent local communication + browser workflows'],
+          ['Agent Zero', 'Own Linux desktop', 'Configurable', 'Excellent', 'Strong', 'Yes', 'Linux/desktop-centric autonomous computer agent'],
+        ]
+      },
+      {
+        id: 'buzz-workspace',
+        title: '35. Buzz Is a Workspace, Not a Manus/Hermes Replacement',
+        description: 'Buzz belongs to the collaboration/workspace layer, not the same category as a single personal or managed worker agent.',
+        cardFields: ['Layer', 'What Buzz is', 'What it is not', 'Best use'],
+        rows: [
+          ['Workspace layer', 'Agent-native Slack + GitHub + workflow environment', 'Not the same thing as one end-user digital worker', 'Human + AI teamwork around repos, workflows and agent identities'],
+          ['Agent hosting', 'Can host agents such as Goose, Codex and Claude Code', 'Does not erase the need for the actual worker agent', 'Shared office for multiple agents and humans'],
+          ['Workflow/audit layer', 'Shared conversations, workflow state, personas and audit logs', 'Not a category winner for general personal work by itself', 'Organising a future swarm of agents'],
+        ],
+        extra: [
+          'Helpful mental model: Buzz = AI workforce office, while Hermes / Goose / Codex are workers inside the office.'
+        ]
+      },
+      {
+        id: 'agent-frameworks',
+        title: '36. Agent-Development Frameworks',
+        description: 'If you are building a permanent AI workforce rather than using a ready-made assistant, frameworks matter more than end-user agent branding.',
+        cardFields: ['Framework', 'Open source', 'Best for', 'Multi-agent', 'Persistent workflows', 'Learning curve'],
+        rows: [
+          ['LangGraph', 'Yes', 'Reliable stateful production agents', 'Excellent', 'Excellent', 'High'],
+          ['Google ADK', 'Yes Apache 2.0', 'Google/cloud + multi-agent systems', 'Excellent', 'Strong', 'Medium'],
+          ['CrewAI', 'Yes', 'Role-based teams / crews', 'Excellent', 'Strong', 'Medium'],
+          ['OpenAI Agents SDK', 'Yes SDK', 'OpenAI-centric production agents', 'Excellent', 'Strong', 'Medium'],
+          ['AutoGen', 'Yes', 'Research / enterprise multi-agent work', 'Excellent', 'Strong', 'Medium/high'],
+          ['Semantic Kernel', 'Yes', 'Microsoft /.NET enterprise agents', 'Strong', 'Strong', 'Medium'],
+        ],
+        extra: [
+          'Current framework interpretation on this page: LangGraph is the current overall choice for custom durable agent systems, Google ADK is the most important Google/cloud multi-agent toolkit, and CrewAI remains strong for role-based teams.'
+        ]
+      },
+      {
+        id: 'agent-category-winners',
+        title: '37. Current Winners by Agent Category',
+        description: 'This page intentionally avoids one fake universal #1. Different layers of the AI workforce stack need different leaders.',
+        cardFields: ['Category', 'Current choice', 'Alternative', 'Why this matters'],
+        rows: [
+          ['Self-hosted personal agent', 'Hermes', 'OpenClaw', 'Best current persistent self-improving open personal/work agent'],
+          ['Always-on messaging agent', 'OpenClaw', 'Hermes', 'Best category for multi-channel always-running assistance'],
+          ['General developer / local agent', 'Goose', 'Hermes', 'Best clean local general developer agent posture'],
+          ['Managed general AI worker', 'Manus', 'Claude Cowork', 'Best cloud digital worker interpretation'],
+          ['Google ecosystem worker', 'Gemini Spark', 'Manus', 'Best when Chrome, Gmail and Google context matter most'],
+          ['Slides / presentations', 'Genspark', 'Manus', 'Most mature presentation-production specialist'],
+          ['Coding frontier', 'Claude Code / Codex', 'Muse Code', 'Coding category must be benchmarked continuously'],
+          ['Open-source coding agent', 'OpenHands', 'OpenCode', 'Best current open-source coding-platform interpretation'],
+          ['Browser automation infrastructure', 'Browser Use', 'Hermes + computer MCP', 'Infrastructure and end-user agent are not the same layer'],
+          ['Human + AI workspace', 'Buzz', 'OpenHands Agent Canvas', 'Workspace layer is distinct from the worker agent'],
+          ['Custom enterprise framework', 'LangGraph', 'Google ADK', 'Framework choice matters for long-term durable automation'],
+        ]
+      },
+      {
+        id: 'agent-monitoring-signals',
+        title: '38. How to Know When an Agent Is Taking Over',
+        description: 'There is no perfect Artificial Analysis equivalent for every agent product, so agent leadership needs multiple aligned signals.',
+        cardFields: ['Priority', 'Source', 'What it tells you', 'Speed', 'Trust level'],
+        rows: [
+          ['High', 'GitHub Trending', 'Which open-source agent repos are exploding', 'Hours', 'High discovery signal'],
+          ['High', 'GitHub Releases / Watch', 'New Hermes / OpenClaw / OpenHands / Browser Use / framework releases', 'Minutes', 'Very high launch truth'],
+          ['High', 'Artificial Analysis Coding Agent Index', 'Performance + cost + runtime for coding-agent harnesses', 'Days', 'Very high for coding-agent category'],
+          ['High', 'Arena Agent leaderboard', 'Model-level agent capability on agentic tasks', 'Days', 'Very high for model-agent capability'],
+          ['Medium', 'OpenHands Index', 'Coding model/agent ability + cost + runtime', 'Days', 'Very high for coding-related comparison'],
+          ['Medium', 'SWE-bench / Terminal-Bench / OSWorld', 'Real coding, terminal and computer-use progress', 'Days/weeks', 'Very high benchmark quality'],
+          ['Early', 'Product Hunt / Hacker News / Reddit / X', 'Earliest launch buzz and developer attention', 'Minutes to hours', 'Useful only as discovery, not final ranking'],
+          ['Early', 'GitHub star velocity trackers', 'Which agent repos are accelerating fastest', 'Hours', 'Discovery signal rather than authoritative rank'],
+        ],
+        extra: [
+          'An agent should not be declared the new leader because it trends on X for a day or gets viral stars alone.',
+          'Treat momentum as discovery; treat benchmark + adoption + reliability as promotion evidence.'
+        ]
+      },
+      {
+        id: 'agent-benchmarks-watch',
+        title: '39. Benchmarks and Watch Sources by Agent Category',
+        description: 'Different agent work types need different watch sources. This page should update when these category-specific leaders change materially.',
+        cardFields: ['AI work', 'Benchmark / watch source', 'Why it matters'],
+        rows: [
+          ['Autonomous coding', 'SWE-bench', 'Real software issue resolution matters more than generic chat quality'],
+          ['Terminal / DevOps', 'Terminal-Bench', 'Measures CLI and terminal-agent competence'],
+          ['GUI computer operation', 'OSWorld / OSWorld 2.0', 'Best signal for long-horizon computer-use agents'],
+          ['Browser agents', 'WebArena and browser-use tracking', 'Browser workflows are a separate competence band'],
+          ['Business-tool agents', 'Tau-Bench', 'Business-tool reliability is not equal to coding strength'],
+          ['General agentic reasoning', 'Arena Agent', 'Large-scale signal for model-level agentic capability'],
+          ['Coding agent cost/performance', 'Artificial Analysis Coding Agent Index', 'Combines success with runtime, tokens and cost'],
+          ['Open-source popularity', 'GitHub stars + 7-day star velocity + contributors', 'Momentum matters, but only as one signal'],
+          ['New launches', 'GitHub Releases + Product Hunt + Hacker News + X', 'Fastest way to notice new challengers such as Muse Code'],
+        ]
+      },
+      {
+        id: 'agent-watchlist-security',
+        title: '40. Agent Watchlist, Overtake Rules and Security Boundary',
+        description: 'The landscape is changing weekly, so this page should track challengers and overtakes carefully while remembering that more autonomy also means a larger security boundary.',
+        cardFields: ['Watch area', 'What to watch now', 'Update rule', 'Main caution'],
+        rows: [
+          ['General open agents', 'Hermes, OpenClaw, Goose, Agent Zero', 'Update only when releases + adoption + practical capability shift the ranking', 'Do not confuse communication-first and coding-first agents'],
+          ['Managed workers', 'Manus, Claude Cowork, Gemini Spark, Genspark', 'Re-rank when product capability or availability materially shifts', 'Ecosystem lock-in and credits can change practical value quickly'],
+          ['Coding frontier', 'Claude Code, Codex, Muse Code, Cursor', 'Update aggressively when coding harnesses or real adoption patterns change', 'Most likely category to overtake rapidly'],
+          ['Coding open source', 'OpenHands, OpenCode, Cline, Aider', 'Promote when open-source reliability and adoption materially improve', 'Open-source popularity alone is not enough'],
+          ['Workspace layer', 'Buzz, OpenHands Agent Canvas', 'Treat as separate from worker-agent rankings', 'Workspace winners are not worker winners'],
+          ['Framework layer', 'LangGraph, Google ADK, CrewAI, OpenAI Agents SDK', 'Re-rank when durable execution, protocol support or adoption changes', 'Framework choice should reflect architecture, not hype'],
+          ['Security boundary', 'Shell, browser, email, files, credentials, databases and cloud access', 'Promote agents only inside permissions you are willing to grant', 'Most autonomous is not automatically best'],
+        ],
+        secondaryTitle: 'Current short watchlist',
+        secondaryFields: ['Category', 'Watch these first'],
+        secondaryRows: [
+          ['General open agent', 'Hermes, OpenClaw, Goose, Agent Zero'],
+          ['Managed general agent', 'Manus, Claude Cowork, Gemini Spark, Genspark'],
+          ['Coding frontier', 'Claude Code, Codex, Muse Code, Cursor'],
+          ['Coding open source', 'OpenHands, OpenCode, Cline, Aider'],
+          ['Browser', 'Browser Use, Gemini Spark, Comet, Manus'],
+          ['Workspace', 'Buzz, OpenHands Agent Canvas'],
+          ['Frameworks', 'LangGraph, Google ADK, CrewAI, OpenAI Agents SDK, AutoGen'],
+        ],
+        extra: [
+          'This page should treat Muse Code as an immediate watchlist entrant rather than calling it the winner before evidence arrives.',
+          'A real “takeover” requires aligned signals: releases, benchmarks, adoption, cost efficiency, reliability and ecosystem growth.',
+          'Winning agent = most capable agent that can complete the work inside permissions you are willing to grant.'
         ]
       }
     ];

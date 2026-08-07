@@ -346,6 +346,9 @@
         The comparison sections below are now card-first and boxy by design: cost bands, context pills, benchmark tags,
         and separate “best for” versus “watch out” panels for faster scanning and easier comparison.
       </p>
+      <p style="margin-top:10px;color:var(--muted);font-size:14px;">
+        <strong>Pricing rule:</strong> every price shown on this page is displayed in <strong>INR only</strong> for India-based comparison.
+      </p>
       <div class="meta-grid">
         <div class="meta-card"><div class="label">USD Rate</div><div class="value">₹95.22</div></div>
         <div class="meta-card"><div class="label">CNY Rate</div><div class="value">₹14.1133</div></div>
@@ -360,7 +363,7 @@
       </div>
       <div class="info-box">
         <strong>Better comparison UX:</strong><br />
-        Instead of reading one paragraph-like card, you now compare structured boxes inside each card: benchmark, standard cost, monthly cost, context, best-fit usage, and trade-off.
+        Instead of reading one paragraph-like card, you now compare structured boxes inside each card: benchmark, standard cost, monthly cost, context, best-fit usage, and trade-off. Any price-related comparison shown here should remain INR-only.
       </div>
     </div>
 
@@ -384,6 +387,9 @@
 
     <div class="section-label">Recommended for Kawin</div>
     <section id="recommendedGrid" class="dashboard-grid"></section>
+
+    <div class="section-label">Agent radar</div>
+    <section id="agentRadarGrid" class="summary-grid"></section>
 
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
@@ -425,6 +431,7 @@
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
     const recommendedGrid = document.getElementById('recommendedGrid');
+    const agentRadarGrid = document.getElementById('agentRadarGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const presetRow = document.getElementById('presetRow');
@@ -498,6 +505,15 @@
       { title: 'Best managed digital worker', model: 'Manus', note: 'Best fit when you want a cloud worker that can research and execute without self-hosting.', match: 'Manus' },
       { title: 'Coding frontier watch', model: 'Claude Code / Codex / Muse Code', note: 'Benchmark this category continuously instead of hardcoding one coding agent forever.', match: 'Claude Code' },
       { title: 'Agent takeover rule', model: 'Monitor releases + benchmarks + adoption', note: 'An agent is not taking over just because it trends for a day.', match: 'GitHub Trending' },
+    ];
+
+    const agentRadarDefs = [
+      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents make it the strongest open general agent today.' },
+      { title: 'Managed agent leader', value: 'Manus', note: 'Best managed cloud digital worker when you want strong general execution without self-hosting.' },
+      { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'The coding-agent category is moving fastest, so this radar should refresh when benchmarks or adoption shift.' },
+      { title: 'Newest challenger', value: 'Muse Code', note: 'New enough to watch immediately, but not yet mature enough to call the category winner.' },
+      { title: 'Takeover confidence', value: 'Medium confidence only after aligned signals', note: 'Require releases, benchmarks, adoption, reliability and cost/runtime evidence before calling an overtake.' },
+      { title: 'Price display rule', value: 'INR only', note: 'Any existing or future price shown anywhere on this page should remain in Indian rupees only.' },
     ];
 
     const summaries = [
@@ -1093,7 +1109,7 @@
           ['SWE-Atlas Q&A', 'About 55', 'About 43', 'Claude Code stronger on that question-answering slice'],
           ['Approximate execution time', 'About 23.6 min', 'About 10.2 min', 'Codex faster in the tested harness'],
           ['Approximate tokens per task', 'About 21.8M', 'About 13.2M', 'Codex used fewer tokens in the cited comparison'],
-          ['Approximate cost per tested task', 'About $8.23', 'About $7.08', 'Codex cheaper in that tested harness'],
+          ['Approximate cost per tested task', 'About ₹783.66', 'About ₹674.16', 'Codex cheaper in that tested harness'],
           ['Cache-hit rate', 'About 97%', 'About 90%', 'Claude Code showed stronger cache-hit behavior there'],
         ],
         extra: [
@@ -1250,6 +1266,20 @@
       card.dataset.search = `${item.title} ${item.model} ${item.note}`.toLowerCase();
       card.innerHTML = `<div class="ey">Recommended for Kawin</div><h4>${item.title}</h4><p><strong>${item.model}</strong><br />${item.note}</p>`;
       return card;
+    }
+
+
+    function makeAgentRadarCard(item) {
+      const card = document.createElement('article');
+      card.className = 'summary-card';
+      card.dataset.search = `${item.title} ${item.value} ${item.note}`.toLowerCase();
+      card.innerHTML = `<div class="label">${item.title}</div><div class="value">${item.value}</div><div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">${item.note}</div>`;
+      return card;
+    }
+
+    function renderAgentRadar() {
+      agentRadarGrid.innerHTML = '';
+      agentRadarDefs.forEach(item => agentRadarGrid.appendChild(makeAgentRadarCard(item)));
     }
 
     function makeTocLink(section) {
@@ -1707,6 +1737,8 @@
     async function init() {
       loadFavorites();
       renderRecommendedGrid();
+      renderAgentRadar();
+      summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {
         tocGrid.appendChild(makeTocLink(section));

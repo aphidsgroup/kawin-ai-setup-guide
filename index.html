@@ -177,6 +177,18 @@
     .micro-box { border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); padding: 10px; }
     .micro-box .k { color: var(--muted-2); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
     .micro-box .v { margin-top: 5px; font-size: 13px; font-weight: 800; }
+    .winner-strip { display: grid; gap: 12px; }
+    .winner-card {
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); border: 1px solid var(--line); border-radius: 20px; padding: 16px; box-shadow: var(--shadow);
+    }
+    .winner-card .ey { color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .winner-card .winner { margin-top: 8px; font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
+    .winner-card .why { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .fresh-time { margin-top: 8px; color: var(--muted-2); font-size: 11px; font-weight: 700; }
+    .audit-details { margin-top: 10px; border: 1px solid var(--line); border-radius: 14px; background: #fff; overflow: hidden; }
+    .audit-details summary { cursor: pointer; list-style: none; padding: 10px 12px; font-size: 12px; font-weight: 800; color: var(--accent); }
+    .audit-details summary::-webkit-details-marker { display: none; }
+    .audit-body { padding: 0 12px 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
     .score-badge {
       display: inline-flex; align-items: center; border-radius: 999px; background: #ecfccb; color: #365314; border: 1px solid #bef264; padding: 6px 10px; font-size: 11px; font-weight: 900; white-space: nowrap;
     }
@@ -336,6 +348,7 @@
       .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .change-cycle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .winner-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -432,6 +445,9 @@
     <div class="section-label">Update status</div>
     <section id="freshnessGrid" class="meta-grid freshness-grid"></section>
 
+    <div class="section-label">Repo category winners right now</div>
+    <section id="repoWinnerGrid" class="winner-strip"></section>
+
     <details class="radar-shell sticky-mobile" id="agentRadarShell" open>
       <summary>
         <div class="radar-copy">
@@ -439,7 +455,7 @@
           <span>Mobile-collapsible watchlist for open agents, managed workers, coding challengers, and last-known leader shifts.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge">Updated 7 Aug 2026</span>
+          <span class="mini-badge" id="agentRadarUpdatedBadge">Updated 7 Aug 2026</span>
           <span class="mini-badge">Tap to collapse</span>
         </div>
       </summary>
@@ -455,7 +471,7 @@
           <span>Leaderboard-oriented repo discovery stack for new rising repositories across AI agents, coding tools, MCP, web, self-hosted, DevOps, security and research.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge">3-day cron maintained</span>
+          <span class="mini-badge" id="repoRadarUpdatedBadge">3-day cron maintained</span>
           <span class="mini-badge">Trend shifts rotate leaders</span>
         </div>
       </summary>
@@ -508,6 +524,7 @@
     const tocGrid = document.getElementById('tocGrid');
     const recommendedGrid = document.getElementById('recommendedGrid');
     const freshnessGrid = document.getElementById('freshnessGrid');
+    const repoWinnerGrid = document.getElementById('repoWinnerGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
     const repoRadarGrid = document.getElementById('repoRadarGrid');
     const repoChangesGrid = document.getElementById('repoChangesGrid');
@@ -528,6 +545,7 @@
     const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
     const compareModalGrid = document.getElementById('compareModalGrid');
 
+    const BUILD_TIMESTAMP = '2026-08-07T14:48:03+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -588,10 +606,17 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Updated 7 Aug 2026', note: '3-day launch radar should rotate model leaders whenever pricing or benchmarks shift.' },
-      { title: 'Routers', value: 'Updated 7 Aug 2026', note: 'Router pools should refresh when coding, reasoning or agent leaders move.' },
-      { title: 'Agents', value: 'Updated 7 Aug 2026', note: 'Agent winners should change only after aligned benchmarks, adoption and releases.' },
+      { title: 'Models', value: '3-day launch radar active', note: 'Rotate model leaders whenever pricing or benchmarks shift.' },
+      { title: 'Routers', value: '10-day router re-check active', note: 'Router pools should refresh when coding, reasoning or agent leaders move.' },
+      { title: 'Agents', value: '3-day agent review active', note: 'Agent winners should change only after aligned benchmarks, adoption and releases.' },
       { title: 'GitHub repo radar', value: '3-day leaderboard refresh', note: 'Trendshift, OSS Insight, GitHub Topics, GitStar, Snyk and OpenSSF should keep repo watchlists current.' },
+    ];
+
+    const repoWinnerDefs = [
+      { title: 'AI agents', winner: 'Trendshift + OSS Insight', why: 'Best pairing for early momentum plus deeper validation before promoting a repo.' },
+      { title: 'Coding tools', winner: 'Best of JS + GitStar', why: 'Best combo for web-adjacent tool movement and repeatable star-velocity checks.' },
+      { title: 'MCP / infra', winner: 'GitHub Topics + OpenSSF', why: 'Discovery needs topic coverage, but trust should be gated by security posture.' },
+      { title: 'Self-hosted', winner: 'selfh.st/apps', why: 'Better signal than generic trending for practical self-hosted alternatives.' },
     ];
 
     const agentRadarDefs = [
@@ -613,9 +638,9 @@
     ];
 
     const repoChangeDefs = [
-      { category: 'AI agents', repo: 'Muse Code', shift: 'New challenger entered coding-agent watchlists', score: '84/100', note: 'Watch momentum and contributor activity before promoting it above established coding-agent leaders.', metrics: [['7-day signal', 'Rising'], ['Gate', 'Health not final']] },
-      { category: 'MCP / tooling', repo: 'Awesome MCP ecosystem movers', shift: 'Discovery lists and topic pages deserve rotation checks', score: '82/100', note: 'MCP infrastructure should be re-ranked only after trust and maintenance signals strengthen.', metrics: [['7-day signal', 'Mixed'], ['Gate', 'OpenSSF first']] },
-      { category: 'Web / JS tools', repo: 'Best of JS leaderboard movers', shift: 'Use monthly star-gain changes to rotate web tool watchlists', score: '89/100', note: 'Best of JS is a better source than raw total stars when web tooling momentum changes quickly.', metrics: [['30-day signal', 'Strong'], ['Gate', 'Snyk first']] },
+      { category: 'AI agents', repo: 'Muse Code', shift: 'New challenger entered coding-agent watchlists', score: '84/100', note: 'Watch momentum and contributor activity before promoting it above established coding-agent leaders.', metrics: [['7-day signal', 'Rising'], ['Gate', 'Health not final']], audit: ['Momentum improved fast enough to join the visible watchlist.', 'Security/maintenance evidence is still weaker than established leaders.', 'Score remains below production-grade promotion threshold.'] },
+      { category: 'MCP / tooling', repo: 'Awesome MCP ecosystem movers', shift: 'Discovery lists and topic pages deserve rotation checks', score: '82/100', note: 'MCP infrastructure should be re-ranked only after trust and maintenance signals strengthen.', metrics: [['7-day signal', 'Mixed'], ['Gate', 'OpenSSF first']], audit: ['Discovery is broad, but the signal is still mixed across quality gates.', 'OpenSSF review remains a prerequisite before raising rank.', 'Score stays conservative because trust matters more than hype here.'] },
+      { category: 'Web / JS tools', repo: 'Best of JS leaderboard movers', shift: 'Use monthly star-gain changes to rotate web tool watchlists', score: '89/100', note: 'Best of JS is a better source than raw total stars when web tooling momentum changes quickly.', metrics: [['30-day signal', 'Strong'], ['Gate', 'Snyk first']], audit: ['Monthly movement is stronger than one-day trending noise.', 'Web ecosystem adoption signal is better here than raw GitHub stars alone.', 'Score is higher because momentum and practical usage line up more cleanly.'] },
     ];
 
     const summaries = [
@@ -1487,13 +1512,26 @@
       const card = document.createElement('article');
       card.className = 'freshness-card';
       card.dataset.search = `${item.title} ${item.value} ${item.note}`.toLowerCase();
-      card.innerHTML = `<div class="kicker">${item.title}</div><div class="value">${item.value}</div><div class="note">${item.note}</div>`;
+      card.innerHTML = `<div class="kicker">${item.title}</div><div class="value">${item.value}</div><div class="note">${item.note}</div><div class="fresh-time">Last updated: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
       return card;
     }
 
     function renderFreshness() {
       freshnessGrid.innerHTML = '';
       freshnessDefs.forEach(item => freshnessGrid.appendChild(makeFreshnessCard(item)));
+    }
+
+    function makeWinnerCard(item) {
+      const card = document.createElement('article');
+      card.className = 'winner-card';
+      card.dataset.search = `${item.title} ${item.winner} ${item.why}`.toLowerCase();
+      card.innerHTML = `<div class="ey">${item.title}</div><div class="winner">${item.winner}</div><div class="why">${item.why}</div><div class="fresh-time">Winner checked: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
+      return card;
+    }
+
+    function renderRepoWinners() {
+      repoWinnerGrid.innerHTML = '';
+      repoWinnerDefs.forEach(item => repoWinnerGrid.appendChild(makeWinnerCard(item)));
     }
 
     function makeSummaryCard(item) {
@@ -1520,6 +1558,17 @@
       return `<span class="${cls}">Score ${score}</span>`;
     }
 
+    function formatTimestamp(iso) {
+      try {
+        return new Intl.DateTimeFormat('en-IN', {
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        }).format(new Date(iso));
+      } catch {
+        return iso;
+      }
+    }
+
     function makeAgentRadarCard(item) {
       const card = document.createElement('article');
       card.className = 'summary-card';
@@ -1533,7 +1582,8 @@
       card.className = 'change-card';
       card.dataset.search = `${item.category} ${item.repo} ${item.shift} ${item.note} ${item.score || ''} ${(item.metrics || []).flat().join(' ')}`.toLowerCase();
       const metrics = (item.metrics || []).map(pair => `<div class="micro-box"><div class="k">${pair[0]}</div><div class="v">${pair[1]}</div></div>`).join('');
-      card.innerHTML = `<div class="topline"><div class="kicker">${item.category}</div>${scoreBadge(item.score)}</div><div class="repo">${item.repo}</div><div class="note"><strong>${item.shift}</strong><br />${item.note}</div><div class="micro-metrics">${metrics}</div>`;
+      const audit = item.audit?.length ? `<details class="audit-details"><summary>Why score changed</summary><div class="audit-body">${item.audit.map(line => `• ${line}`).join('<br />')}</div></details>` : '';
+      card.innerHTML = `<div class="topline"><div class="kicker">${item.category}</div>${scoreBadge(item.score)}</div><div class="repo">${item.repo}</div><div class="note"><strong>${item.shift}</strong><br />${item.note}</div><div class="micro-metrics">${metrics}</div>${audit}<div class="fresh-time">Cycle reviewed: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
       return card;
     }
 
@@ -1550,6 +1600,13 @@
     function renderRepoRadar() {
       repoRadarGrid.innerHTML = '';
       repoRadarDefs.forEach(item => repoRadarGrid.appendChild(makeAgentRadarCard(item)));
+    }
+
+    function syncRadarTimestamps() {
+      const agentBadge = document.getElementById('agentRadarUpdatedBadge');
+      const repoBadge = document.getElementById('repoRadarUpdatedBadge');
+      if (agentBadge) agentBadge.textContent = `Updated ${formatTimestamp(BUILD_TIMESTAMP)}`;
+      if (repoBadge) repoBadge.textContent = `Updated ${formatTimestamp(BUILD_TIMESTAMP)}`;
     }
 
     function makeTocLink(section) {
@@ -1905,7 +1962,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #freshnessGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -2012,9 +2069,11 @@
       loadFavorites();
       renderRecommendedGrid();
       renderFreshness();
+      renderRepoWinners();
       renderAgentRadar();
       renderRepoRadar();
       renderRepoChanges();
+      syncRadarTimestamps();
       summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {

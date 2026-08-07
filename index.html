@@ -165,6 +165,22 @@
     .freshness-card .kicker { color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
     .freshness-card .value { margin-top: 8px; font-size: 16px; font-weight: 800; letter-spacing: -.02em; }
     .freshness-card .note { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .change-cycle-grid { display: grid; gap: 12px; }
+    .change-card {
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); border: 1px solid var(--line); border-radius: 20px; padding: 16px; box-shadow: var(--shadow);
+    }
+    .change-card .topline { display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .change-card .kicker { color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .change-card .repo { margin-top: 8px; font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
+    .change-card .note { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .micro-metrics { margin-top: 10px; display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .micro-box { border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); padding: 10px; }
+    .micro-box .k { color: var(--muted-2); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+    .micro-box .v { margin-top: 5px; font-size: 13px; font-weight: 800; }
+    .score-badge {
+      display: inline-flex; align-items: center; border-radius: 999px; background: #ecfccb; color: #365314; border: 1px solid #bef264; padding: 6px 10px; font-size: 11px; font-weight: 900; white-space: nowrap;
+    }
+    .score-badge.warn { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
     .radar-shell {
       margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden;
     }
@@ -319,6 +335,7 @@
       .toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .change-cycle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -447,6 +464,9 @@
       </div>
     </details>
 
+    <div class="section-label">Top repos changed this cycle</div>
+    <section id="repoChangesGrid" class="change-cycle-grid"></section>
+
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
 
@@ -490,6 +510,7 @@
     const freshnessGrid = document.getElementById('freshnessGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
     const repoRadarGrid = document.getElementById('repoRadarGrid');
+    const repoChangesGrid = document.getElementById('repoChangesGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const presetRow = document.getElementById('presetRow');
@@ -583,12 +604,18 @@
     ];
 
     const repoRadarDefs = [
-      { title: 'Best emerging repo source', value: 'Trendshift', note: 'Best first stop for catching repositories while they are starting to explode rather than after the peak.' },
-      { title: 'Best deep ranking source', value: 'OSS Insight', note: 'Best analytics stack for comparing stars, contributors, issues, PRs and historical movement before choosing a repo.' },
-      { title: 'Best native discovery source', value: 'GitHub Explore + Topics', note: 'Best official broad discovery layer when you want category pages, curated collections and recent updates.' },
-      { title: 'Best star-velocity source', value: 'GitStar / GitStarClub', note: 'Use star growth rather than all-time stars when the goal is to catch what is becoming important now.' },
-      { title: 'Best health + security gate', value: 'Snyk Advisor + OpenSSF Scorecard', note: 'Use them before installing important packages, agents, MCP servers or infrastructure tools.' },
-      { title: 'Leaderboard rule', value: 'Momentum → adoption → health → security', note: 'Repo radar should re-rank categories whenever trend, activity or trust signals move materially.' },
+      { title: 'Best emerging repo source', value: 'Trendshift', note: 'Best first stop for catching repositories while they are starting to explode rather than after the peak.', score: '95/100' },
+      { title: 'Best deep ranking source', value: 'OSS Insight', note: 'Best analytics stack for comparing stars, contributors, issues, PRs and historical movement before choosing a repo.', score: '94/100' },
+      { title: 'Best native discovery source', value: 'GitHub Explore + Topics', note: 'Best official broad discovery layer when you want category pages, curated collections and recent updates.', score: '90/100' },
+      { title: 'Best star-velocity source', value: 'GitStar / GitStarClub', note: 'Use star growth rather than all-time stars when the goal is to catch what is becoming important now.', score: '88/100' },
+      { title: 'Best health + security gate', value: 'Snyk Advisor + OpenSSF Scorecard', note: 'Use them before installing important packages, agents, MCP servers or infrastructure tools.', score: '93/100' },
+      { title: 'Leaderboard rule', value: 'Momentum → adoption → health → security', note: 'Repo radar should re-rank categories whenever trend, activity or trust signals move materially.', score: '92/100' },
+    ];
+
+    const repoChangeDefs = [
+      { category: 'AI agents', repo: 'Muse Code', shift: 'New challenger entered coding-agent watchlists', score: '84/100', note: 'Watch momentum and contributor activity before promoting it above established coding-agent leaders.', metrics: [['7-day signal', 'Rising'], ['Gate', 'Health not final']] },
+      { category: 'MCP / tooling', repo: 'Awesome MCP ecosystem movers', shift: 'Discovery lists and topic pages deserve rotation checks', score: '82/100', note: 'MCP infrastructure should be re-ranked only after trust and maintenance signals strengthen.', metrics: [['7-day signal', 'Mixed'], ['Gate', 'OpenSSF first']] },
+      { category: 'Web / JS tools', repo: 'Best of JS leaderboard movers', shift: 'Use monthly star-gain changes to rotate web tool watchlists', score: '89/100', note: 'Best of JS is a better source than raw total stars when web tooling momentum changes quickly.', metrics: [['30-day signal', 'Strong'], ['Gate', 'Snyk first']] },
     ];
 
     const summaries = [
@@ -1439,15 +1466,15 @@
         title: '46. GitHub Repo Radar Leaderboard Logic',
         description: 'This leaderboard should keep changing when trend, adoption, health or security signals shift. It should never be frozen to total stars or one-time hype.',
         updated: 'Updated 7 Aug 2026',
-        cardFields: ['Category', 'Leaderboard should watch', 'Primary source stack', 'When leader should change', 'Security gate'],
+        cardFields: ['Category', 'Leaderboard should watch', 'Primary source stack', 'When leader should change', 'Security gate', 'Current score'],
         rows: [
-          ['AI agents', 'Rising open agent repos and tools', 'Trendshift + GitHub Topics + OSS Insight', 'When 7-day momentum, contributor growth and health beat the current leader', 'OpenSSF + manual audit'],
-          ['MCP / agent infrastructure', 'New MCP servers, bridges and tool runtimes', 'GitHub Topics + Trendshift + Awesome MCP', 'When activity and security posture improve materially', 'OpenSSF required'],
-          ['AI coding tools', 'New coding-agent repos and open IDE agents', 'Trendshift + Best of JS + GitStar', 'When momentum and real adoption trend higher across more than one source', 'Health + release activity'],
-          ['Web / UI tooling', 'Front-end and design-system repos', 'Best of JS + GitHub Topics + LibHunt', 'When stars gained, mentions and usage shift together', 'Snyk Advisor'],
-          ['Self-hosted', 'Open-source software alternatives', 'selfh.st/apps + GitHub + activity checks', 'When freshness, stars and search interest realign', 'Activity + security review'],
-          ['DevOps / security / infra', 'Cloud-native and operational repos', 'CNCF Landscape + Trendshift + OSS Insight', 'When project health and trust signals surpass incumbents', 'OpenSSF mandatory'],
-          ['AI research / models', 'Implementation repos behind new techniques', 'Papers with Code + Hugging Face + GitHub', 'When benchmark-backed implementations start to win attention', 'Reproducibility + maintenance'],
+          ['AI agents', 'Rising open agent repos and tools', 'Trendshift + GitHub Topics + OSS Insight', 'When 7-day momentum, contributor growth and health beat the current leader', 'OpenSSF + manual audit', '91/100'],
+          ['MCP / agent infrastructure', 'New MCP servers, bridges and tool runtimes', 'GitHub Topics + Trendshift + Awesome MCP', 'When activity and security posture improve materially', 'OpenSSF required', '86/100'],
+          ['AI coding tools', 'New coding-agent repos and open IDE agents', 'Trendshift + Best of JS + GitStar', 'When momentum and real adoption trend higher across more than one source', 'Health + release activity', '90/100'],
+          ['Web / UI tooling', 'Front-end and design-system repos', 'Best of JS + GitHub Topics + LibHunt', 'When stars gained, mentions and usage shift together', 'Snyk Advisor', '88/100'],
+          ['Self-hosted', 'Open-source software alternatives', 'selfh.st/apps + GitHub + activity checks', 'When freshness, stars and search interest realign', 'Activity + security review', '85/100'],
+          ['DevOps / security / infra', 'Cloud-native and operational repos', 'CNCF Landscape + Trendshift + OSS Insight', 'When project health and trust signals surpass incumbents', 'OpenSSF mandatory', '89/100'],
+          ['AI research / models', 'Implementation repos behind new techniques', 'Papers with Code + Hugging Face + GitHub', 'When benchmark-backed implementations start to win attention', 'Reproducibility + maintenance', '87/100'],
         ],
         extra: [
           'Repo Radar should alert on rising repositories, but the leaderboard should only rotate after momentum, adoption, health and security agree.',
@@ -1486,12 +1513,33 @@
     }
 
 
+    function scoreBadge(score) {
+      if (!score) return '';
+      const n = Number(String(score).replace(/[^0-9.]/g, ''));
+      const cls = Number.isFinite(n) && n < 85 ? 'score-badge warn' : 'score-badge';
+      return `<span class="${cls}">Score ${score}</span>`;
+    }
+
     function makeAgentRadarCard(item) {
       const card = document.createElement('article');
       card.className = 'summary-card';
-      card.dataset.search = `${item.title} ${item.value} ${item.note}`.toLowerCase();
-      card.innerHTML = `<div class="label">${item.title}</div><div class="value">${item.value}</div><div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">${item.note}</div>`;
+      card.dataset.search = `${item.title} ${item.value} ${item.note} ${item.score || ''}`.toLowerCase();
+      card.innerHTML = `<div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;"><div class="label">${item.title}</div>${scoreBadge(item.score)}</div><div class="value">${item.value}</div><div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.55;">${item.note}</div>`;
       return card;
+    }
+
+    function makeRepoChangeCard(item) {
+      const card = document.createElement('article');
+      card.className = 'change-card';
+      card.dataset.search = `${item.category} ${item.repo} ${item.shift} ${item.note} ${item.score || ''} ${(item.metrics || []).flat().join(' ')}`.toLowerCase();
+      const metrics = (item.metrics || []).map(pair => `<div class="micro-box"><div class="k">${pair[0]}</div><div class="v">${pair[1]}</div></div>`).join('');
+      card.innerHTML = `<div class="topline"><div class="kicker">${item.category}</div>${scoreBadge(item.score)}</div><div class="repo">${item.repo}</div><div class="note"><strong>${item.shift}</strong><br />${item.note}</div><div class="micro-metrics">${metrics}</div>`;
+      return card;
+    }
+
+    function renderRepoChanges() {
+      repoChangesGrid.innerHTML = '';
+      repoChangeDefs.forEach(item => repoChangesGrid.appendChild(makeRepoChangeCard(item)));
     }
 
     function renderAgentRadar() {
@@ -1606,7 +1654,8 @@
       const tier = getTier(section, row);
       const compareKey = `${section.id}::${title}`;
 
-      const metricFields = fields.slice(1).filter(label => !['Benchmark signal', 'Best suited for', 'Best use', 'Main limitation', 'Main trade-off', 'Reason', 'Tasks', 'Recommended model types', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation', 'Recommended model', 'Price category'].includes(label)).slice(0, 4);
+      const repoScore = fields.includes('Current score') ? row[fields.indexOf('Current score')] : (fields.includes('Repo quality score') ? row[fields.indexOf('Repo quality score')] : '');
+      const metricFields = fields.slice(1).filter(label => !['Benchmark signal', 'Best suited for', 'Best use', 'Main limitation', 'Main trade-off', 'Reason', 'Tasks', 'Recommended model types', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation', 'Recommended model', 'Price category', 'Current score', 'Repo quality score'].includes(label)).slice(0, 4);
       const metricsHtml = metricFields.map(label => metricBox(label, row[fields.indexOf(label)])).join('');
       card.classList.add(`tier-${tier}`);
       card.dataset.tier = canonicalTier(tier);
@@ -1626,6 +1675,7 @@
               ${primaryTag ? `<span class="tag">${primaryTag}</span>` : ''}
               ${context ? `<span class="context-pill">${context}</span>` : ''}
               ${standard ? `<span class="price-pill">${standard}</span>` : ''}
+              ${repoScore ? scoreBadge(repoScore) : ''}
             </div>
           </div>
           <div class="compare-actions">
@@ -1855,7 +1905,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #freshnessGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -1964,6 +2014,7 @@
       renderFreshness();
       renderAgentRadar();
       renderRepoRadar();
+      renderRepoChanges();
       summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {
@@ -2010,7 +2061,9 @@
     }
 
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => reg.update()).catch(() => {});
+      });
     }
 
     init();

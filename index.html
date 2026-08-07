@@ -483,6 +483,25 @@
     <div class="section-label">Top repos changed this cycle</div>
     <section id="repoChangesGrid" class="change-cycle-grid"></section>
 
+    <details class="radar-shell" id="protocolRadarShell" open>
+      <summary>
+        <div class="radar-copy">
+          <strong>MCP / A2A / Automation Radar</strong>
+          <span>Weekly discovery stack for trending MCP servers, A2A agents, universal connectors, automation platforms and trusted workflow libraries.</span>
+        </div>
+        <div class="radar-meta">
+          <span class="mini-badge" id="protocolRadarUpdatedBadge">Weekly watch active</span>
+          <span class="mini-badge">Trend + trust gated</span>
+        </div>
+      </summary>
+      <div class="radar-inner">
+        <section id="protocolRadarGrid" class="summary-grid"></section>
+      </div>
+    </details>
+
+    <div class="section-label">Weekly MCP / A2A / workflow movers</div>
+    <section id="workflowChangeGrid" class="change-cycle-grid"></section>
+
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
 
@@ -528,6 +547,8 @@
     const agentRadarGrid = document.getElementById('agentRadarGrid');
     const repoRadarGrid = document.getElementById('repoRadarGrid');
     const repoChangesGrid = document.getElementById('repoChangesGrid');
+    const protocolRadarGrid = document.getElementById('protocolRadarGrid');
+    const workflowChangeGrid = document.getElementById('workflowChangeGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const presetRow = document.getElementById('presetRow');
@@ -545,7 +566,7 @@
     const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
     const compareModalGrid = document.getElementById('compareModalGrid');
 
-    const BUILD_TIMESTAMP = '2026-08-07T14:48:03+05:30';
+    const BUILD_TIMESTAMP = '2026-08-07T15:07:16+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -584,6 +605,7 @@
       { id: 'decision-system', label: 'Future-proof decision system', sectionIds: ['router-of-routers', 'best-router-by-work', 'coding-specialist-router', 'model-pools-today', 'everyday-routing-map', 'privacy-registry-rule', 'launch-shadow-adaptation', 'litellm-tier-overrides'] },
       { id: 'agents-landscape', label: 'AI agents and takeover watch', sectionIds: ['agent-landscape', 'general-agents', 'hermes-vs-openclaw-goose', 'managed-workers', 'managed-by-work', 'coding-agents', 'claude-vs-codex', 'browser-computer-agents', 'buzz-workspace', 'agent-frameworks', 'agent-category-winners', 'agent-monitoring-signals', 'agent-benchmarks-watch', 'agent-watchlist-security'] },
       { id: 'repo-radar', label: 'GitHub repo radar and leaderboards', sectionIds: ['repo-discovery-sites', 'repo-source-by-segment', 'repo-quality-score', 'repo-stars-warning', 'repo-radar-workflow', 'repo-radar-leaderboard'] },
+      { id: 'mcp-a2a-automation', label: 'MCP, A2A and automation discovery', sectionIds: ['mcp-vs-a2a-automation', 'mcp-discovery-ranking', 'mcp-work-category-map', 'universal-mcp-platforms', 'mcp-scoring', 'a2a-discovery-stack', 'a2a-scoring', 'automation-platform-comparison', 'workflow-template-sources', 'automation-platform-segment-map', 'weekly-monitoring-stack'] },
     ];
 
     const recommendedDefs = [
@@ -603,6 +625,10 @@
       { title: 'Best managed digital worker', model: 'Manus', note: 'Best fit when you want a cloud worker that can research and execute without self-hosting.', match: 'Manus' },
       { title: 'Coding frontier watch', model: 'Claude Code / Codex / Muse Code', note: 'Benchmark this category continuously instead of hardcoding one coding agent forever.', match: 'Claude Code' },
       { title: 'Agent takeover rule', model: 'Monitor releases + benchmarks + adoption', note: 'An agent is not taking over just because it trends for a day.', match: 'GitHub Trending' },
+      { title: 'Best MCP trend feed', model: 'PulseMCP', note: 'Best weekly source for rising MCP servers before they become obvious everywhere.', match: 'PulseMCP' },
+      { title: 'Best MCP trust gate', model: 'MCPpedia + Official Registry + Docker', note: 'Verify maintenance, provenance and security before enabling sensitive MCPs.', match: 'MCPpedia' },
+      { title: 'Best A2A discovery posture', model: 'Official A2A Project first', note: 'Use public registries for discovery, but keep ratings conservative until trust signals mature.', match: 'Official A2A Project GitHub' },
+      { title: 'Best workflow source', model: 'Official template libraries', note: 'n8n, Make and Zapier libraries beat random template bundles for trustworthy workflow discovery.', match: 'Official workflow libraries outperform random template bundles' },
     ];
 
     const freshnessDefs = [
@@ -610,6 +636,7 @@
       { title: 'Routers', value: '10-day router re-check active', note: 'Router pools should refresh when coding, reasoning or agent leaders move.' },
       { title: 'Agents', value: '3-day agent review active', note: 'Agent winners should change only after aligned benchmarks, adoption and releases.' },
       { title: 'GitHub repo radar', value: '3-day leaderboard refresh', note: 'Trendshift, OSS Insight, GitHub Topics, GitStar, Snyk and OpenSSF should keep repo watchlists current.' },
+      { title: 'MCP / A2A / automations', value: 'Weekly trend review active', note: 'PulseMCP, Glama, MCPpedia, A2A sources and official workflow libraries should refresh this radar weekly.' },
     ];
 
     const repoWinnerDefs = [
@@ -643,6 +670,22 @@
       { category: 'Web / JS tools', repo: 'Best of JS leaderboard movers', shift: 'Use monthly star-gain changes to rotate web tool watchlists', score: '89/100', note: 'Best of JS is a better source than raw total stars when web tooling momentum changes quickly.', metrics: [['30-day signal', 'Strong'], ['Gate', 'Snyk first']], audit: ['Monthly movement is stronger than one-day trending noise.', 'Web ecosystem adoption signal is better here than raw GitHub stars alone.', 'Score is higher because momentum and practical usage line up more cleanly.'] },
     ];
 
+    const protocolRadarDefs = [
+      { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Best weekly signal for rising MCP servers because it exposes week and month popularity views.', score: '94/100' },
+      { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100' },
+      { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100' },
+      { title: 'A2A discovery posture', value: 'Official A2A Project first', note: 'A2A Registry and Awesome A2A are useful, but the review/ranking layer is still too immature to trust blindly.', score: '88/100' },
+      { title: 'Best workflow trust rule', value: 'Official template libraries first', note: 'Use n8n, Make and Zapier official libraries before buying random template bundles.', score: '92/100' },
+      { title: 'Best universal connector stack', value: 'Composio / Pipedream / Zapier MCP', note: 'Dynamic tool discovery and large SaaS coverage are increasingly better than hand-loading dozens of separate connectors.', score: '93/100' },
+    ];
+
+    const workflowChangeDefs = [
+      { category: 'MCP trends', repo: 'PulseMCP weekly leaders', shift: 'Trending MCP view should drive weekly watchlist changes', score: '91/100', note: 'Use it as early discovery, then validate through MCPpedia and the Official Registry before promotion.', metrics: [['cadence', 'Weekly'], ['gate', 'Security first']], audit: ['Popularity alone is not enough for MCP promotion.', 'Quality and publisher checks should happen before installation.', 'This card changes when new weekly leaders keep holding their signal.'] },
+      { category: 'A2A watch', repo: 'A2A Registry + Official A2A Project', shift: 'Discovery is improving, but ranking is still immature', score: '83/100', note: 'Track new public Agent Cards and official SDK/TCK activity, but keep ratings conservative.', metrics: [['cadence', 'Weekly'], ['gate', 'TCK first']], audit: ['A2A reviews remain too sparse for a universal leaderboard.', 'Official compatibility and identity matter more than public hype.', 'Raise scores only when reliability and task success evidence strengthens.'] },
+      { category: 'Automation templates', repo: 'n8n / Make / Zapier official libraries', shift: 'Official template libraries should outrank random bundles', score: '90/100', note: 'Weekly checks should watch new verified templates, official creators and popular maintained scenarios.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Creator verification matters for workflow trust.', 'Recent updates and error handling matter more than raw popularity.', 'This card changes when official libraries surface materially better workflow candidates.'] },
+      { category: 'Universal connectors', repo: 'Composio / Pipedream / Zapier MCP', shift: 'Connector platforms deserve weekly tracking as app coverage expands', score: '89/100', note: 'These platforms reduce schema overload while expanding app/tool reach for agents.', metrics: [['cadence', 'Weekly'], ['gate', 'OAuth + scope']], audit: ['Dynamic discovery is useful only if auth and scope remain well governed.', 'Broadest coverage is not always the safest choice.', 'Raise scores when governance and operational metrics improve together.'] },
+    ];
+
     const summaries = [
       { title: 'Cheapest routine worker', value: 'DeepSeek V4 Flash', note: '₹20 standard workload' },
       { title: 'Balanced premium agent', value: 'Claude Sonnet 5', note: '₹428.49 standard workload' },
@@ -660,6 +703,9 @@
       { title: 'Managed worker leader', value: 'Manus', note: 'Strongest managed general digital worker right now' },
       { title: 'Coding watch', value: 'Claude Code / Codex / Muse Code', note: 'Fastest-moving agent category; leaders can change quickly' },
       { title: 'Takeover signal', value: 'Benchmarks + adoption + releases', note: 'Do not treat X hype or stars alone as a category takeover' },
+      { title: 'MCP trend radar', value: 'PulseMCP → Glama → MCPpedia', note: 'Weekly MCP discovery should move from trend signal to security and provenance verification' },
+      { title: 'A2A trust rule', value: 'Official + TCK before hype', note: 'A2A leaderboards should stay conservative until task success and compatibility signals mature' },
+      { title: 'Workflow trust rule', value: 'Official libraries first', note: 'Prefer n8n, Make and Zapier official templates over random paid bundles' },
     ];
 
     const datasets = [
@@ -1505,6 +1551,232 @@
           'Repo Radar should alert on rising repositories, but the leaderboard should only rotate after momentum, adoption, health and security agree.',
           'This mini dashboard and these sections should be maintained by the existing 3-day cron job, alongside model and agent launch monitoring.'
         ]
+      },
+      {
+        id: 'mcp-vs-a2a-automation',
+        title: '47. MCP vs A2A vs Automation',
+        description: 'These are complementary layers, not substitutes. MCP gives capabilities, A2A gives inter-agent collaboration, and automation platforms run repeatable workflows.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Technology', 'Connection', 'What it is for', 'Best example', 'Decision rule'],
+        rows: [
+          ['MCP', 'Agent ↔ tool/data', 'Gives an agent capabilities', 'GitHub, Gmail, PostgreSQL, browser, CRM', 'Use MCP when an agent needs tools or data access'],
+          ['A2A', 'Agent ↔ agent', 'Lets independent agents collaborate or delegate', 'Research agent hires coding agent', 'Use A2A when different agents should negotiate or hand work across boundaries'],
+          ['Automation platform', 'Trigger → workflow → actions', 'Runs repeatable deterministic processes', 'n8n, Make, Zapier', 'Use automation when the process should run predictably every time'],
+          ['MCP + automation', 'Agent → MCP → workflow', 'Lets an agent trigger deterministic systems', 'AI tells n8n workflow to process a lead', 'Use this when an agent should call a repeatable workflow dynamically'],
+          ['A2A + MCP + automation', 'Agent → agent → tools/workflows', 'Full multi-agent operating stack', 'Manager agent delegates to sales agent, which uses CRM MCP', 'Use this only when the process really benefits from multiple specialists']
+        ],
+        extra: [
+          'A2A does not replace MCP: MCP is for tools, while A2A is for communication between independent agents.',
+          'The best architecture usually layers them instead of choosing just one.'
+        ]
+      },
+      {
+        id: 'mcp-discovery-ranking',
+        title: '48. Best Places to Discover MCP Servers',
+        description: 'MCP is large enough that popularity alone is no longer safe. The best stack combines trending discovery, broad search, security scoring and official verification.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Rank', 'Source', 'Signal', 'Security signal', 'Best use', 'Current score'],
+        rows: [
+          ['1', 'Glama', '65K+ broad registry search', 'Strong quality/safety scoring', 'Best broad searchable MCP registry', '97/100'],
+          ['2', 'MCPpedia', '34K+ indexed quality comparisons', 'Excellent CVE, maintenance and compatibility signals', 'Best quality/security comparison', '96/100'],
+          ['3', 'PulseMCP', 'Week/month/all-time popularity views', 'Moderate', 'Best weekly trending MCP discovery', '94/100'],
+          ['4', 'Official MCP Registry', 'Canonical publisher/source-of-truth layer', 'Namespace ownership verification', 'Confirm authenticity and publisher identity', '93/100'],
+          ['5', 'Docker MCP Catalog', 'Smaller curated catalog', 'Excellent provenance + SBOM', 'Safest local/server deployment source', '93/100'],
+          ['6', 'Smithery', 'Hosted operational metrics', 'Good', 'Best instant hosted testing/usage metrics', '91/100'],
+          ['7', 'MCP.so', 'Featured/new/category discovery', 'Moderate', 'Finding new niche servers', '87/100'],
+          ['8', 'Apify MCP Store', 'Thousands of data/web actors', 'Platform managed', 'Best for web scraping and data jobs', '93/100'],
+          ['9', 'GitHub MCP repos / awesome lists', 'Long-tail OSS discovery', 'Manual verification needed', 'Raw OSS discovery only after vetting', '85/100']
+        ],
+        extra: [
+          'Use PulseMCP for weekly movers, Glama for breadth, MCPpedia for trust scoring, and the Official Registry or Docker for final verification.',
+          'Do not install sensitive MCPs based on directory popularity alone.'
+        ]
+      },
+      {
+        id: 'mcp-work-category-map',
+        title: '49. Best MCP Source by Work Category',
+        description: 'Different MCP categories need different discovery sources. Browser, payments, security and enterprise SaaS should not be sourced the same way.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Work category', 'Best first source', 'Alternative', 'Preferred rule', 'Current score'],
+        rows: [
+          ['GitHub / coding / dev tools', 'Docker MCP', 'Official Registry', 'Official publisher first', '92/100'],
+          ['Databases / SQL', 'Docker / Official Registry', 'Glama', 'Read-only credentials first', '91/100'],
+          ['Browser automation', 'PulseMCP', 'Glama / Apify', 'Prefer Playwright or official implementations', '89/100'],
+          ['Web scraping / data', 'Apify', 'Glama', 'Use platform-managed actors where possible', '93/100'],
+          ['Research / search', 'Glama', 'Smithery', 'Choose search-quality based servers for the task', '90/100'],
+          ['Gmail / Calendar / Docs', 'Official/provider MCP', 'Zapier / Composio / Pipedream', 'OAuth + restricted scope', '92/100'],
+          ['CRM / sales', 'Zapier / Composio', 'Pipedream', 'Managed OAuth first', '90/100'],
+          ['Payments / Stripe', 'Official Stripe MCP', 'Docker / Workato', 'Tight approval controls', '94/100'],
+          ['Cloud / DevOps / security', 'Docker', 'Official Registry', 'Containerized and heavily vetted', '95/100']
+        ]
+      },
+      {
+        id: 'universal-mcp-platforms',
+        title: '50. Universal MCP Platforms',
+        description: 'Universal connectors are becoming more important because they expose thousands of applications without forcing the model to load dozens of separate single-purpose servers.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Rank', 'Platform', 'Apps / tools', 'Free availability', 'Best use', 'Current score'],
+        rows: [
+          ['1', 'Composio Connect', '1,000+ apps', '20K tool calls/month free', 'Best agent-native dynamic application actions', '94/100'],
+          ['2', 'Pipedream MCP', '3,000+ APIs / 10K+ tools', 'Development mode free', 'Best for developers and APIs', '93/100'],
+          ['3', 'Zapier MCP', '9,000+ apps', 'Available on free plan', 'Best raw SaaS breadth', '92/100'],
+          ['4', 'Apify MCP', '7,000+ actors/tools', 'Low free monthly usage', 'Best open-web and data jobs', '91/100'],
+          ['5', 'Workato Enterprise MCP', 'Enterprise catalog + workflows', 'Commercial', 'Best governance-heavy enterprise agents', '89/100']
+        ],
+        extra: [
+          'Composio is especially attractive because meta-tools reduce tool-schema bloat in prompts.',
+          'Universal connectors should still be gated by auth scope, governance and operational reliability.'
+        ]
+      },
+      {
+        id: 'mcp-scoring',
+        title: '51. How to Rank an MCP',
+        description: 'MCP discovery should be stricter than GitHub-star browsing because vulnerable or hijackable servers can create real security and data-exfiltration risks.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Signal', 'Weight', 'Why it matters'],
+        rows: [
+          ['Official/verified publisher', '15%', 'Publisher authenticity matters before granting tool access'],
+          ['Security vulnerabilities/CVEs', '15%', 'Known vulnerabilities should strongly suppress ranking'],
+          ['Permission scope', '10%', 'Over-broad permissions increase blast radius'],
+          ['Active maintenance', '10%', 'Dormant servers age badly and break quietly'],
+          ['Real usage', '10%', 'Operational evidence matters more than hype'],
+          ['Reliability/uptime', '10%', 'A tool that fails often is not a top choice'],
+          ['Tool/schema quality', '10%', 'Bad schemas waste tokens and break agents'],
+          ['Token efficiency', '5%', 'Large tool costs matter at scale'],
+          ['Documentation', '5%', 'Fast onboarding reduces misconfiguration risk'],
+          ['Latency', '5%', 'Operational speed changes workflow quality'],
+          ['Community/adoption', '5%', 'Helpful but weaker than trust and security']
+        ],
+        extra: [
+          'MCP is now large enough that quality/security scoring should outrank raw directory popularity.',
+          'A high-star MCP with weak provenance should lose to a verified and maintained alternative.'
+        ]
+      },
+      {
+        id: 'a2a-discovery-stack',
+        title: '52. Best Places to Discover A2A Agents',
+        description: 'A2A discovery is still early. The best approach is to start from official protocol sources and treat public registries as discovery aids rather than mature leaderboards.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Rank', 'Source', 'What it contains', 'Trending signal', 'Best use', 'Current score'],
+        rows: [
+          ['1', 'Official A2A Project GitHub', 'Protocol, SDKs, TCK, Inspector, samples', 'GitHub activity', 'Source of truth', '92/100'],
+          ['2', 'A2A Registry', 'Public Agent Cards', 'Registration / activity', 'Discover live public agents', '87/100'],
+          ['3', 'Awesome A2A', 'Agents, frameworks, clients, bridges', 'Commits / stars', 'Community implementation discovery', '86/100'],
+          ['4', 'A2A Net', 'Hosted specialist agents', 'Usage / community', 'Hiring specialist agents', '82/100'],
+          ['5', 'GitHub A2A topics', 'Long-tail projects', 'Star velocity / activity', 'Early discovery only', '80/100']
+        ],
+        extra: [
+          'There is not yet a true Glama + Smithery + MCPpedia + PulseMCP equivalent for A2A.',
+          'Use official compatibility and identity signals before trusting public reviews.'
+        ]
+      },
+      {
+        id: 'a2a-scoring',
+        title: '53. How to Rank an A2A Agent',
+        description: 'Because A2A reviews are still sparse, stars and reviews should be secondary. The strongest long-term metric is cost per successful delegated job.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Signal', 'Weight', 'Why it matters'],
+        rows: [
+          ['Task success rate', '25%', 'Actual delegated completion matters more than marketing claims'],
+          ['Official/verified identity', '15%', 'Identity is a trust gate for inter-agent work'],
+          ['A2A compatibility/TCK', '15%', 'Protocol compliance should be explicit'],
+          ['Response reliability', '10%', 'Delegation fails if responses are flaky'],
+          ['Latency', '10%', 'Slow delegation reduces workflow usefulness'],
+          ['Cost per successful task', '10%', 'This should become the core economic metric'],
+          ['Security/authentication', '10%', 'Weak auth can invalidate the whole network'],
+          ['Community/adoption', '5%', 'Helpful context, but not decisive yet']
+        ],
+        extra: [
+          'Capability advertisements do not prove competence; A2A needs a stronger trust layer than hype or stars.',
+          'Conservative ranking is better than premature public-leader claims.'
+        ]
+      },
+      {
+        id: 'automation-platform-comparison',
+        title: '54. Automation Platform Comparison',
+        description: 'Automation discovery is different again: here official template ecosystems and creator verification matter more than random marketplace bundles.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Platform', 'Type', 'Free', 'Open-source status', 'Best ecosystem signal', 'Best for'],
+        rows: [
+          ['n8n', 'Visual automation + AI', 'Self-host free', 'Fair-code / source-available, not truly OSS', '11K+ workflow templates', 'Powerful AI and business workflows'],
+          ['Make', 'Visual no-code', 'Free tier', 'Closed SaaS', '8,233 public templates', 'Complex visual branching workflows'],
+          ['Zapier', 'SaaS automation', 'Free tier', 'Closed SaaS', '9,000+ apps + template hub', 'Easiest SaaS automation'],
+          ['Activepieces', 'AI/no-code automation', 'Free', 'MIT core', 'Marketplace + pieces', 'Best truly OSS Zapier-style alternative'],
+          ['Pipedream', 'Developer automation', 'Free', 'Source-available components', '2,700+ apps / 10K actions', 'APIs + code-heavy automations'],
+          ['Windmill', 'Developer workflows/internal tools', 'Free', 'AGPLv3', 'Scripts/flows/apps', 'Internal tools and code workflows'],
+          ['Kestra', 'Orchestration', 'Free', 'Apache 2.0', '1,200+ plugins + blueprints', 'Production orchestration'],
+          ['Node-RED', 'Flow / IoT automation', 'Free', 'Apache 2.0', 'Huge flow library', 'IoT, edge and hardware'],
+          ['Huginn', 'Monitoring agents', 'Free', 'MIT', 'Community agents', 'Watchers and monitoring'],
+          ['Workato', 'Enterprise iPaaS', 'Commercial', 'Closed', 'Enterprise catalog', 'Governed enterprise automation']
+        ],
+        extra: [
+          'n8n is often called open source, but its own licence posture is fair-code/source-available rather than fully open-source.',
+          'For fully OSS/private-heavy teams, Activepieces, Windmill, Kestra, Node-RED and Huginn matter more.'
+        ]
+      },
+      {
+        id: 'workflow-template-sources',
+        title: '55. Best Workflow Libraries and Template Sources',
+        description: 'For workflow discovery, official libraries are usually the strongest source because they combine search, maintained examples and increasingly better trust signals.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Workflow source', 'Best current signal', 'Why it wins', 'Current score'],
+        rows: [
+          ['n8n Workflow Library', '11,013 official/community workflows', 'Best starting point for technical AI/business workflow discovery', '95/100'],
+          ['Verified n8n Creators', 'Hundreds of workflows from trusted authors', 'Better trust signal than random JSON bundles', '93/100'],
+          ['Make Templates', 'Most Popular sorting + reviewed public templates', 'Excellent native template ranking', '94/100'],
+          ['Zapier Templates', 'Largest mainstream SaaS template ecosystem', 'Best for easy SaaS automation discovery', '92/100'],
+          ['Pipedream Workflows', 'API/dev automations', 'Strong for developer/API-first workflows', '90/100'],
+          ['Kestra Blueprints', 'Curated blueprints', 'Best for production orchestration patterns', '89/100'],
+          ['Node-RED Flow Library', 'Ratings, downloads, version, update date, OpenSSF links', 'Best dependency-level signal for edge/IoT style flows', '91/100'],
+          ['Apify Actor Store', 'Web-data automation specialists', 'Best workflow discovery for scraping/data jobs', '92/100']
+        ],
+        extra: [
+          'Trust hierarchy for workflows: official/template team → verified creator → established GitHub repo → community post → random paid bundle.',
+          'Most popular should not outrank better-maintained verified workflows automatically.'
+        ]
+      },
+      {
+        id: 'automation-platform-segment-map',
+        title: '56. Best Automation Platform by Segment',
+        description: 'The best automation platform depends on whether the goal is SaaS simplicity, visual branching, self-hosting, orchestration, developer APIs, IoT or web-data work.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Segment', 'Winner', 'Alternative', 'Why'],
+        rows: [
+          ['Easiest no-code automation', 'Zapier', 'Make', 'Massive integration ecosystem and low learning curve'],
+          ['Best visual complex workflow', 'Make', 'n8n', 'Excellent visual branching and scenario design'],
+          ['Best powerful self-hosted workflow', 'n8n', 'Activepieces', 'Huge community and flexible AI workflow stack'],
+          ['Best truly OSS Zapier replacement', 'Activepieces', 'Automatisch', 'MIT core and simpler OSS posture'],
+          ['Developer/API workflows', 'Pipedream', 'n8n', 'Strong code + managed API integration posture'],
+          ['AI-agent workflows', 'n8n', 'Activepieces', 'Strong agent and workflow combination'],
+          ['Internal developer tools', 'Windmill', 'n8n', 'Scripts + flows + internal UIs'],
+          ['Data engineering / orchestration', 'Kestra', 'Windmill', 'Production orchestration focus'],
+          ['IoT / edge / hardware', 'Node-RED', '—', 'Most mature flow ecosystem for device-side automation'],
+          ['Website monitoring / watchers', 'Huginn', 'n8n', 'Purpose-built event/watcher posture'],
+          ['Web scraping / data collection', 'Apify', 'n8n', 'Specialized actor marketplace and data focus'],
+          ['Private / air-gapped automation', 'Activepieces / Windmill', 'Kestra', 'True self-host/private-first options']
+        ]
+      },
+      {
+        id: 'weekly-monitoring-stack',
+        title: '57. Weekly Monitoring Stack for MCP, A2A and Automation',
+        description: 'These ecosystems move quickly enough that the page should keep tracking weekly movers, trusted template sources and new connector/registry shifts instead of staying frozen.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Need', 'Best weekly source', 'How to use it', 'Change rule'],
+        rows: [
+          ['Trending MCPs', 'PulseMCP', 'Scan weekly leaders and new movers first', 'Promote only after MCPpedia + Official Registry / Docker checks'],
+          ['Search all MCPs', 'Glama', 'Compare broad candidate sets by task', 'Rotate recommendations when better breadth + quality signals appear'],
+          ['MCP trust/security', 'MCPpedia', 'Check CVEs, maintenance, docs, token efficiency and compatibility', 'Lower scores immediately if security or maintenance worsens'],
+          ['A2A ecosystem', 'Official A2A Project + A2A Registry + Awesome A2A', 'Track new Agent Cards, SDK/TCK activity and serious implementations', 'Keep scores conservative until reliability evidence improves'],
+          ['Trending automation platforms', 'Product Hunt Automation', 'Use as an early market signal only', 'Never approve production use from hype alone'],
+          ['n8n workflows', 'Official workflow library + verified creators', 'Check new official and verified templates weekly', 'Prefer verified and maintained flows over random bundles'],
+          ['Make automations', 'Make Templates → Most Popular', 'Track new high-signal official templates', 'Re-rank when reviewed public templates become materially better'],
+          ['Zapier automations', 'Zapier Templates', 'Track new mainstream SaaS workflows', 'Prefer guided and officially supported templates'],
+          ['Developer/API automations', 'Pipedream Workflows', 'Watch new API-oriented flows and connectors', 'Raise only when docs, support and reuse quality stay strong']
+        ],
+        extra: [
+          'Weekly trend tracking should focus on discovery first, then trust/security/maintenance gates second.',
+          'This page should update when weekly signals materially change, not for every minor new listing.'
+        ]
       }
     ];
 
@@ -1592,6 +1864,16 @@
       repoChangeDefs.forEach(item => repoChangesGrid.appendChild(makeRepoChangeCard(item)));
     }
 
+    function renderProtocolRadar() {
+      protocolRadarGrid.innerHTML = '';
+      protocolRadarDefs.forEach(item => protocolRadarGrid.appendChild(makeAgentRadarCard(item)));
+    }
+
+    function renderWorkflowChanges() {
+      workflowChangeGrid.innerHTML = '';
+      workflowChangeDefs.forEach(item => workflowChangeGrid.appendChild(makeRepoChangeCard(item)));
+    }
+
     function renderAgentRadar() {
       agentRadarGrid.innerHTML = '';
       agentRadarDefs.forEach(item => agentRadarGrid.appendChild(makeAgentRadarCard(item)));
@@ -1605,8 +1887,10 @@
     function syncRadarTimestamps() {
       const agentBadge = document.getElementById('agentRadarUpdatedBadge');
       const repoBadge = document.getElementById('repoRadarUpdatedBadge');
+      const protocolBadge = document.getElementById('protocolRadarUpdatedBadge');
       if (agentBadge) agentBadge.textContent = `Updated ${formatTimestamp(BUILD_TIMESTAMP)}`;
       if (repoBadge) repoBadge.textContent = `Updated ${formatTimestamp(BUILD_TIMESTAMP)}`;
+      if (protocolBadge) protocolBadge.textContent = `Updated ${formatTimestamp(BUILD_TIMESTAMP)}`;
     }
 
     function makeTocLink(section) {
@@ -1962,7 +2246,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #protocolRadarGrid > *, #workflowChangeGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -2073,6 +2357,8 @@
       renderAgentRadar();
       renderRepoRadar();
       renderRepoChanges();
+      renderProtocolRadar();
+      renderWorkflowChanges();
       syncRadarTimestamps();
       summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));

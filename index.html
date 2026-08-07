@@ -160,6 +160,30 @@
     .dash-card .ey { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-2); font-weight: 900; }
     .dash-card h4 { margin: 8px 0 4px; font-size: 17px; line-height: 1.25; letter-spacing: -.02em; overflow-wrap: anywhere; }
     .dash-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+    .freshness-grid { margin-top: 14px; }
+    .freshness-card { background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%); border: 1px solid var(--line); border-radius: 18px; padding: 14px; box-shadow: var(--shadow); }
+    .freshness-card .kicker { color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .freshness-card .value { margin-top: 8px; font-size: 16px; font-weight: 800; letter-spacing: -.02em; }
+    .freshness-card .note { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .radar-shell {
+      margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .sticky-mobile { position: sticky; top: calc(var(--topbar-offset) + 8px); z-index: 24; }
+    .radar-shell > summary {
+      list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 16px 18px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+    }
+    .radar-shell > summary::-webkit-details-marker { display: none; }
+    .radar-copy { min-width: 0; }
+    .radar-copy strong { display: block; font-size: 17px; line-height: 1.15; letter-spacing: -.02em; }
+    .radar-copy span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .radar-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end; }
+    .mini-badge {
+      display: inline-flex; align-items: center; border-radius: 999px; background: var(--surface-accent); color: var(--accent);
+      border: 1px solid #dbeafe; padding: 7px 10px; font-size: 11px; font-weight: 800; white-space: nowrap;
+    }
+    .radar-inner { padding: 0 16px 16px; }
+    .badge-stack { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .updated-badge { background: #eef2ff; color: #4338ca; border-color: #c7d2fe; }
     .sort-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
     .compare-modal {
       position: fixed; inset: 0; z-index: 60; background: rgba(15,23,42,.58); display: none; align-items: center; justify-content: center; padding: 18px;
@@ -388,8 +412,40 @@
     <div class="section-label">Recommended for Kawin</div>
     <section id="recommendedGrid" class="dashboard-grid"></section>
 
-    <div class="section-label">Agent radar</div>
-    <section id="agentRadarGrid" class="summary-grid"></section>
+    <div class="section-label">Update status</div>
+    <section id="freshnessGrid" class="meta-grid freshness-grid"></section>
+
+    <details class="radar-shell sticky-mobile" id="agentRadarShell" open>
+      <summary>
+        <div class="radar-copy">
+          <strong>Agent Radar</strong>
+          <span>Mobile-collapsible watchlist for open agents, managed workers, coding challengers, and last-known leader shifts.</span>
+        </div>
+        <div class="radar-meta">
+          <span class="mini-badge">Updated 7 Aug 2026</span>
+          <span class="mini-badge">Tap to collapse</span>
+        </div>
+      </summary>
+      <div class="radar-inner">
+        <section id="agentRadarGrid" class="summary-grid"></section>
+      </div>
+    </details>
+
+    <details class="radar-shell" id="repoRadarShell" open>
+      <summary>
+        <div class="radar-copy">
+          <strong>GitHub Repo Radar</strong>
+          <span>Leaderboard-oriented repo discovery stack for new rising repositories across AI agents, coding tools, MCP, web, self-hosted, DevOps, security and research.</span>
+        </div>
+        <div class="radar-meta">
+          <span class="mini-badge">3-day cron maintained</span>
+          <span class="mini-badge">Trend shifts rotate leaders</span>
+        </div>
+      </summary>
+      <div class="radar-inner">
+        <section id="repoRadarGrid" class="summary-grid"></section>
+      </div>
+    </details>
 
     <div class="section-label">Decision shortcuts</div>
     <section id="summaryGrid" class="summary-grid"></section>
@@ -431,7 +487,9 @@
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
     const recommendedGrid = document.getElementById('recommendedGrid');
+    const freshnessGrid = document.getElementById('freshnessGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
+    const repoRadarGrid = document.getElementById('repoRadarGrid');
     const summaryGrid = document.getElementById('summaryGrid');
     const sectionsEl = document.getElementById('sections');
     const presetRow = document.getElementById('presetRow');
@@ -486,6 +544,7 @@
       { id: 'routers', label: 'Routers and routing tools', sectionIds: ['router-categories', 'intelligent-router-comparison', 'genuinely-free-routers', 'gateway-vs-router', 'token-optimisation', 'best-routers-by-requirement', 'router-architecture'] },
       { id: 'decision-system', label: 'Future-proof decision system', sectionIds: ['router-of-routers', 'best-router-by-work', 'coding-specialist-router', 'model-pools-today', 'everyday-routing-map', 'privacy-registry-rule', 'launch-shadow-adaptation', 'litellm-tier-overrides'] },
       { id: 'agents-landscape', label: 'AI agents and takeover watch', sectionIds: ['agent-landscape', 'general-agents', 'hermes-vs-openclaw-goose', 'managed-workers', 'managed-by-work', 'coding-agents', 'claude-vs-codex', 'browser-computer-agents', 'buzz-workspace', 'agent-frameworks', 'agent-category-winners', 'agent-monitoring-signals', 'agent-benchmarks-watch', 'agent-watchlist-security'] },
+      { id: 'repo-radar', label: 'GitHub repo radar and leaderboards', sectionIds: ['repo-discovery-sites', 'repo-source-by-segment', 'repo-quality-score', 'repo-stars-warning', 'repo-radar-workflow', 'repo-radar-leaderboard'] },
     ];
 
     const recommendedDefs = [
@@ -507,13 +566,29 @@
       { title: 'Agent takeover rule', model: 'Monitor releases + benchmarks + adoption', note: 'An agent is not taking over just because it trends for a day.', match: 'GitHub Trending' },
     ];
 
+    const freshnessDefs = [
+      { title: 'Models', value: 'Updated 7 Aug 2026', note: '3-day launch radar should rotate model leaders whenever pricing or benchmarks shift.' },
+      { title: 'Routers', value: 'Updated 7 Aug 2026', note: 'Router pools should refresh when coding, reasoning or agent leaders move.' },
+      { title: 'Agents', value: 'Updated 7 Aug 2026', note: 'Agent winners should change only after aligned benchmarks, adoption and releases.' },
+      { title: 'GitHub repo radar', value: '3-day leaderboard refresh', note: 'Trendshift, OSS Insight, GitHub Topics, GitStar, Snyk and OpenSSF should keep repo watchlists current.' },
+    ];
+
     const agentRadarDefs = [
-      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents make it the strongest open general agent today.' },
-      { title: 'Managed agent leader', value: 'Manus', note: 'Best managed cloud digital worker when you want strong general execution without self-hosting.' },
+      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents make it the strongest open general agent today. Updated 7 Aug 2026.' },
+      { title: 'Managed agent leader', value: 'Manus', note: 'Best managed cloud digital worker when you want strong general execution without self-hosting. Updated 7 Aug 2026.' },
       { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'The coding-agent category is moving fastest, so this radar should refresh when benchmarks or adoption shift.' },
-      { title: 'Newest challenger', value: 'Muse Code', note: 'New enough to watch immediately, but not yet mature enough to call the category winner.' },
+      { title: 'Newest challenger this week', value: 'Muse Code', note: 'Fresh Meta coding-agent entrant that belongs on the watchlist immediately while evidence catches up.' },
       { title: 'Takeover confidence', value: 'Medium confidence only after aligned signals', note: 'Require releases, benchmarks, adoption, reliability and cost/runtime evidence before calling an overtake.' },
       { title: 'Price display rule', value: 'INR only', note: 'Any existing or future price shown anywhere on this page should remain in Indian rupees only.' },
+    ];
+
+    const repoRadarDefs = [
+      { title: 'Best emerging repo source', value: 'Trendshift', note: 'Best first stop for catching repositories while they are starting to explode rather than after the peak.' },
+      { title: 'Best deep ranking source', value: 'OSS Insight', note: 'Best analytics stack for comparing stars, contributors, issues, PRs and historical movement before choosing a repo.' },
+      { title: 'Best native discovery source', value: 'GitHub Explore + Topics', note: 'Best official broad discovery layer when you want category pages, curated collections and recent updates.' },
+      { title: 'Best star-velocity source', value: 'GitStar / GitStarClub', note: 'Use star growth rather than all-time stars when the goal is to catch what is becoming important now.' },
+      { title: 'Best health + security gate', value: 'Snyk Advisor + OpenSSF Scorecard', note: 'Use them before installing important packages, agents, MCP servers or infrastructure tools.' },
+      { title: 'Leaderboard rule', value: 'Momentum → adoption → health → security', note: 'Repo radar should re-rank categories whenever trend, activity or trust signals move materially.' },
     ];
 
     const summaries = [
@@ -1249,8 +1324,150 @@
           'A real “takeover” requires aligned signals: releases, benchmarks, adoption, cost efficiency, reliability and ecosystem growth.',
           'Winning agent = most capable agent that can complete the work inside permissions you are willing to grant.'
         ]
+
+      },
+      {
+        id: 'repo-discovery-sites',
+        title: '41. Best GitHub Repository Discovery Sites Today',
+        description: 'There is no trustworthy universal 5-star rating for GitHub repositories. Better discovery combines momentum, adoption, project health and security.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['My rank', 'Platform', 'Best at', 'Trend power', 'Analytics depth', 'Health / security value', 'Overall usefulness'],
+        rows: [
+          ['1', 'Trendshift', 'Finding repositories while they are starting to explode', 'Excellent', 'Strong', 'Moderate', '9.5/10'],
+          ['2', 'OSS Insight', 'Deep GitHub analytics and category rankings', 'Excellent', 'Excellent', 'Strong', '9.5/10'],
+          ['3', 'GitHub Explore / Topics', 'Official broad discovery and category browsing', 'Strong', 'Strong', 'Moderate', '9/10'],
+          ['4', 'GitStar / GitStarClub', 'Star-velocity and historical growth ranking', 'Excellent', 'Strong', 'Light', '8.8/10'],
+          ['5', 'Git Stars', 'Large categorized repository directory', 'Moderate', 'Strong', 'Moderate', '8.6/10'],
+          ['6', 'LibHunt', 'Alternatives and community mentions', 'Strong', 'Strong', 'Strong', '8.5/10'],
+          ['7', 'Snyk Open Source Advisor', 'Package health scoring', 'Light', 'Moderate', 'Excellent', '9/10 for dependencies'],
+          ['8', 'OpenSSF Scorecard', 'Security trustworthiness', 'None', 'Moderate', 'Excellent', '9/10 for security'],
+          ['9', 'Best of JS', 'JavaScript / TypeScript / web repo movement', 'Excellent', 'Strong', 'Strong', '9/10 for web'],
+          ['10', 'selfh.st/apps', 'Self-hosted software discovery', 'Strong', 'Strong', 'Strong', '9/10 for self-hosting'],
+        ],
+        extra: [
+          'The strongest discovery stack on this page is not total stars alone: use Trendshift + OSS Insight + GitHub Topics + Snyk Advisor + OpenSSF Scorecard.',
+          'GitHub stars measure interest, not trustworthy quality.'
+        ]
+      },
+      {
+        id: 'repo-source-by-segment',
+        title: '42. Best Sources by Software Segment',
+        description: 'Different software segments need different repo-discovery stacks. The best source for AI agents is not the same as the best source for cloud-native infra or web UI libraries.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Segment', 'Best discovery source', 'Second source', 'Third source', 'Validation gate'],
+        rows: [
+          ['AI agents', 'Trendshift', 'GitHub Topics', 'OSS Insight', 'GitHub activity + security review'],
+          ['LLM apps / frameworks', 'Trendshift', 'GitStar', 'LibHunt', 'Snyk + OpenSSF'],
+          ['MCP servers', 'GitHub Topics', 'Trendshift', 'Awesome MCP lists', 'OpenSSF + manual audit'],
+          ['AI coding tools', 'Trendshift', 'Best of JS', 'GitStar', 'OSS Insight'],
+          ['Frontend / web', 'Best of JS', 'GitHub Topics', 'LibHunt', 'Snyk Advisor'],
+          ['JavaScript / TypeScript', 'Best of JS', 'npm ecosystem', 'GitHub', 'Snyk'],
+          ['Python', 'GitHub Topics', 'LibHunt', 'Awesome Python', 'Package health + maintenance'],
+          ['DevOps / cloud', 'CNCF Landscape', 'Trendshift', 'LibHunt', 'OpenSSF'],
+          ['Cybersecurity', 'GitHub Topics', 'Trendshift', 'Awesome Security', 'OpenSSF'],
+          ['Self-hosted', 'selfh.st/apps', 'Awesome Selfhosted', 'community discovery', 'Activity + security'],
+          ['AI models', 'Hugging Face Trending', 'Papers with Code', 'GitHub', 'Benchmarks'],
+          ['AI research / code', 'Papers with Code', 'Hugging Face', 'GitHub', 'Benchmarks + reproducibility'],
+        ]
+      },
+      {
+        id: 'repo-quality-score',
+        title: '43. Repository Quality Score /100',
+        description: 'The page should not trust stars alone. Repositories deserve a weighted score that blends momentum, adoption, health and trust.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Signal', 'Weight', 'Why it matters'],
+        rows: [
+          ['Recent star momentum', '15', 'Measures what is becoming important now rather than what was historically popular'],
+          ['Active contributors', '15', 'Growing contributor base is a strong maintenance and adoption signal'],
+          ['Recent commits / releases', '15', 'Healthy projects should move and ship consistently'],
+          ['Actual adoption / dependents / downloads', '15', 'Real usage is often more valuable than stars'],
+          ['Security health', '10', 'OpenSSF / security posture matters before installation'],
+          ['Issue resolution health', '10', 'Responsive maintainers matter for operational trust'],
+          ['PR activity / merge health', '5', 'Shows development throughput and maintainer attention'],
+          ['Documentation quality', '5', 'Good install docs and examples reduce risk'],
+          ['Clear open-source licence', '5', 'Mandatory before business use'],
+          ['Real users / deployments / community', '5', 'Shows practical value beyond internet hype'],
+        ],
+        secondaryTitle: 'Rating interpretation',
+        secondaryFields: ['Score', 'Classification'],
+        secondaryRows: [
+          ['90–100', 'Exceptional / production-grade candidate'],
+          ['80–89', 'Excellent'],
+          ['70–79', 'Strong'],
+          ['60–69', 'Promising but investigate'],
+          ['50–59', 'Experimental'],
+          ['Below 50', 'Do not depend on it without strong reason'],
+        ]
+      },
+      {
+        id: 'repo-stars-warning',
+        title: '44. Why Stars Alone Fail',
+        description: 'A repository with huge historic stars can still be a worse choice than a smaller project with stronger growth, healthier maintenance and better security.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Repository profile', 'Stars', 'Momentum', 'Maintenance health', 'Security / trust', 'Practical reading'],
+        rows: [
+          ['Legacy popular but slowing', '100K', 'About +100 per month', 'Few contributors, stale releases, large unresolved issue pile', 'Weak security posture', 'Do not assume this is the better deployment choice'],
+          ['Smaller but surging', '12K', 'About +4K per month', 'Many active contributors, frequent releases and maintainer response', 'Stronger trust signals', 'Often the healthier modern choice despite fewer stars'],
+          ['One-day viral spike', 'Rapid short-term jump', 'High daily but weak weekly/monthly support', 'Unknown', 'Unknown', 'Treat as discovery, not a recommendation yet'],
+          ['Repeated weekly mover', 'Growing steadily', 'Strong daily + weekly + monthly consistency', 'Active', 'Check security gate next', 'Much more interesting than a one-day meme repo'],
+        ],
+        extra: [
+          'Momentum should be read together with project health and security, not instead of them.',
+          'Stars are interest; they are not a universal quality rating.'
+        ]
+      },
+      {
+        id: 'repo-radar-workflow',
+        title: '45. GitHub Repo Radar Workflow',
+        description: 'The useful workflow is to discover what is rising, confirm momentum, compare alternatives, validate health, then check security before installing anything.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Step', 'What to do', 'Best source stack', 'Decision output'],
+        rows: [
+          ['1', 'Discover what is rising', 'Trendshift', 'Initial candidate list'],
+          ['2', 'Confirm momentum', 'GitStar + OSS Insight', 'Separate sustained movers from one-day spikes'],
+          ['3', 'Compare alternatives', 'LibHunt + GitHub Topics', 'See adjacent options and category peers'],
+          ['4', 'Check historical growth', 'OSS Insight / star-history views', 'Decide whether growth is durable'],
+          ['5', 'Check actual usage', 'Downloads, dependents, forks, contributors, mentions', 'See if people really use it'],
+          ['6', 'Check project health', 'Commits, releases, issues, PR merge health', 'Know whether maintainers actually keep it alive'],
+          ['7', 'Check security', 'OpenSSF Scorecard + Snyk Advisor', 'Filter out risky installs'],
+          ['8', 'Read real-user feedback', 'Reddit, Hacker News, Discussions, recent issues', 'Catch hidden pain before installation'],
+          ['9', 'Only then install', 'Full stack together', 'Move from hype to trusted shortlist'],
+        ]
+      },
+      {
+        id: 'repo-radar-leaderboard',
+        title: '46. GitHub Repo Radar Leaderboard Logic',
+        description: 'This leaderboard should keep changing when trend, adoption, health or security signals shift. It should never be frozen to total stars or one-time hype.',
+        updated: 'Updated 7 Aug 2026',
+        cardFields: ['Category', 'Leaderboard should watch', 'Primary source stack', 'When leader should change', 'Security gate'],
+        rows: [
+          ['AI agents', 'Rising open agent repos and tools', 'Trendshift + GitHub Topics + OSS Insight', 'When 7-day momentum, contributor growth and health beat the current leader', 'OpenSSF + manual audit'],
+          ['MCP / agent infrastructure', 'New MCP servers, bridges and tool runtimes', 'GitHub Topics + Trendshift + Awesome MCP', 'When activity and security posture improve materially', 'OpenSSF required'],
+          ['AI coding tools', 'New coding-agent repos and open IDE agents', 'Trendshift + Best of JS + GitStar', 'When momentum and real adoption trend higher across more than one source', 'Health + release activity'],
+          ['Web / UI tooling', 'Front-end and design-system repos', 'Best of JS + GitHub Topics + LibHunt', 'When stars gained, mentions and usage shift together', 'Snyk Advisor'],
+          ['Self-hosted', 'Open-source software alternatives', 'selfh.st/apps + GitHub + activity checks', 'When freshness, stars and search interest realign', 'Activity + security review'],
+          ['DevOps / security / infra', 'Cloud-native and operational repos', 'CNCF Landscape + Trendshift + OSS Insight', 'When project health and trust signals surpass incumbents', 'OpenSSF mandatory'],
+          ['AI research / models', 'Implementation repos behind new techniques', 'Papers with Code + Hugging Face + GitHub', 'When benchmark-backed implementations start to win attention', 'Reproducibility + maintenance'],
+        ],
+        extra: [
+          'Repo Radar should alert on rising repositories, but the leaderboard should only rotate after momentum, adoption, health and security agree.',
+          'This mini dashboard and these sections should be maintained by the existing 3-day cron job, alongside model and agent launch monitoring.'
+        ]
       }
     ];
+
+    function makeFreshnessCard(item) {
+      const card = document.createElement('article');
+      card.className = 'freshness-card';
+      card.dataset.search = `${item.title} ${item.value} ${item.note}`.toLowerCase();
+      card.innerHTML = `<div class="kicker">${item.title}</div><div class="value">${item.value}</div><div class="note">${item.note}</div>`;
+      return card;
+    }
+
+    function renderFreshness() {
+      freshnessGrid.innerHTML = '';
+      freshnessDefs.forEach(item => freshnessGrid.appendChild(makeFreshnessCard(item)));
+    }
 
     function makeSummaryCard(item) {
       const card = document.createElement('div');
@@ -1280,6 +1497,11 @@
     function renderAgentRadar() {
       agentRadarGrid.innerHTML = '';
       agentRadarDefs.forEach(item => agentRadarGrid.appendChild(makeAgentRadarCard(item)));
+    }
+
+    function renderRepoRadar() {
+      repoRadarGrid.innerHTML = '';
+      repoRadarDefs.forEach(item => repoRadarGrid.appendChild(makeAgentRadarCard(item)));
     }
 
     function makeTocLink(section) {
@@ -1458,7 +1680,9 @@
 
       const head = document.createElement('div');
       head.className = 'section-head';
-      head.innerHTML = `<div><h3>${section.title}</h3><p>${section.description || ''}</p></div><div class="badge">Visual compare</div>`;
+      const badgeHtml = [`<span class="badge">Visual compare</span>`];
+      if (section.updated) badgeHtml.push(`<span class="badge updated-badge">${section.updated}</span>`);
+      head.innerHTML = `<div><h3>${section.title}</h3><p>${section.description || ''}</p></div><div class="badge-stack">${badgeHtml.join('')}</div>`;
       wrapper.appendChild(head);
 
       const grid = document.createElement('div');
@@ -1631,7 +1855,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -1737,7 +1961,9 @@
     async function init() {
       loadFavorites();
       renderRecommendedGrid();
+      renderFreshness();
       renderAgentRadar();
+      renderRepoRadar();
       summaryGrid.innerHTML = '';
       summaries.forEach(item => summaryGrid.appendChild(makeSummaryCard(item)));
       datasets.forEach(section => {

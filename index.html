@@ -549,6 +549,133 @@
       #recommendedGrid .dash-card:nth-child(n+7) {
         display: none;
       }
+      .section-stack {
+        gap: 12px;
+      }
+      .section-card {
+        border-radius: 18px;
+      }
+      .section-head {
+        padding: 14px;
+        gap: 8px;
+      }
+      .section-head h3 {
+        font-size: 17px;
+        line-height: 1.18;
+      }
+      .section-head p {
+        margin-top: 4px;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+      .section-head .badge-stack {
+        width: 100%;
+      }
+      .section-head .badge-stack .updated-badge,
+      .section-head .badge-stack .badge:not(:first-child) {
+        display: none;
+      }
+      .card-grid {
+        padding: 12px;
+        gap: 10px;
+      }
+      .compare-card {
+        padding: 11px;
+        gap: 8px;
+        box-shadow: none;
+      }
+      .compare-top {
+        gap: 8px;
+      }
+      .compare-title h4 {
+        font-size: 15px;
+      }
+      .compare-sub {
+        margin-top: 6px;
+        gap: 5px;
+      }
+      .tag,
+      .context-pill,
+      .price-pill,
+      .badge,
+      .mini-badge,
+      .score-badge,
+      .confidence-badge {
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+      .select-btn,
+      .favorite-btn {
+        min-height: 38px;
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+      .metric-box {
+        padding: 10px;
+      }
+      .metric-box .k,
+      .panel .head {
+        font-size: 9px;
+      }
+      .metric-box .v {
+        margin-top: 4px;
+        font-size: 14px;
+      }
+      .panels {
+        gap: 8px;
+      }
+      .panel {
+        border-radius: 14px;
+        padding: 10px;
+      }
+      .panel .body {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .section-empty {
+        margin: 0 12px 12px;
+        padding: 12px;
+        border-radius: 14px;
+      }
+      details.table-details {
+        margin: 0 12px 12px;
+        border-radius: 14px;
+      }
+      details.table-details summary {
+        padding: 12px 14px;
+        font-size: 12px;
+      }
+      .radar-shell {
+        margin-top: 10px;
+        border-radius: 18px;
+      }
+      .radar-shell > summary {
+        padding: 14px;
+        gap: 8px;
+      }
+      .radar-copy strong {
+        font-size: 15px;
+      }
+      .radar-copy span {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+      .radar-meta {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .radar-meta .mini-badge:nth-child(n+2) {
+        display: none;
+      }
+      .radar-inner {
+        padding: 0 12px 12px;
+      }
+      .summary-grid,
+      .change-cycle-grid,
+      .winner-strip {
+        gap: 8px;
+      }
       .dashboard-grid,
       .summary-grid,
       .winner-strip,
@@ -2562,6 +2689,16 @@
       tocShell.open = window.innerWidth >= 760;
     }
 
+    function syncMobileSectionDetails() {
+      const isDesktop = window.innerWidth >= 760;
+      document.querySelectorAll('.table-details').forEach((el) => {
+        el.open = false;
+      });
+      document.querySelectorAll('.radar-shell').forEach((el) => {
+        el.open = isDesktop;
+      });
+    }
+
     function renderSortChips() {
       sortRow.innerHTML = '';
       sortDefs.forEach(sort => {
@@ -2771,6 +2908,7 @@
 
       renderMobileNav();
       syncTocShell();
+      syncMobileSectionDetails();
       renderFilterChips();
       renderSortChips();
       attachFavoriteHandlers();
@@ -2807,6 +2945,7 @@
       });
 
       window.addEventListener('resize', syncTocShell);
+      window.addEventListener('resize', syncMobileSectionDetails);
 
     }
 

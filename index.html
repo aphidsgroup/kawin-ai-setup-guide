@@ -365,6 +365,87 @@
     .compare-box .m, .modal-card, .modal-card h4, .summary-card, .summary-card .value { overflow-wrap: anywhere; word-break: break-word; }
     .hidden { display: none !important; }
     .footer { margin-top: 18px; padding: 18px; text-align: center; color: var(--muted-2); font-size: 12px; line-height: 1.7; }
+    @media (max-width: 759px) {
+      .chip-row, .sort-row {
+        flex-wrap: wrap;
+        overflow-x: visible;
+      }
+      .chip,
+      .score-badge,
+      .confidence-badge,
+      .mini-badge,
+      .badge,
+      .compare-pill,
+      .pill,
+      .tray-btn,
+      .select-btn,
+      .favorite-btn {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        text-align: left;
+      }
+      .compare-pill {
+        align-items: flex-start;
+      }
+      .compare-pill button {
+        align-self: flex-start;
+      }
+      .table-wrap {
+        overflow-x: visible;
+      }
+      table.data,
+      table.data tbody,
+      table.data tr,
+      table.data td {
+        display: block;
+        width: 100%;
+      }
+      table.data {
+        min-width: 0;
+        border-collapse: separate;
+      }
+      table.data thead {
+        display: none;
+      }
+      table.data tbody {
+        padding: 12px;
+      }
+      table.data tbody tr {
+        margin-bottom: 12px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+      }
+      table.data tbody tr:last-child {
+        margin-bottom: 0;
+      }
+      table.data td {
+        display: grid;
+        grid-template-columns: minmax(0, 116px) minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      table.data td:last-child {
+        border-bottom: none;
+      }
+      table.data td::before {
+        content: attr(data-label);
+        color: var(--muted-2);
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+      }
+      .num {
+        white-space: normal;
+      }
+    }
     @media (min-width: 760px) {
       .topbar-inner, .app { padding-left: 22px; padding-right: 22px; }
       .mobile-jump { display: none; }
@@ -2125,6 +2206,7 @@
         row.forEach((cell, index) => {
           const td = document.createElement('td');
           td.textContent = cell;
+          td.setAttribute('data-label', fields[index] || `Column ${index + 1}`);
           if (/₹|×|%/.test(cell) || /^\d+$/.test(cell) || index === 0 && /^\d+$/.test(cell)) td.classList.add('num');
           tr.appendChild(td);
         });

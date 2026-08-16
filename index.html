@@ -82,6 +82,30 @@
       border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 10px 12px; font-size: 12px; font-weight: 800;
       max-width: 100%; text-align: center;
     }
+    .mobile-note {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .mobile-note summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      background: var(--surface-soft);
+    }
+    .mobile-note summary::-webkit-details-marker { display: none; }
+    .mobile-note .info-box {
+      margin: 0;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+      background: #fff;
+    }
     .mobile-jump {
       position: static; margin-top: 14px;
       background: var(--surface);
@@ -387,6 +411,9 @@
         font-size: 10px;
       }
       .topbar .pill {
+        display: none;
+      }
+      .topbar .pill {
         padding: 8px 10px;
       }
       .app {
@@ -432,6 +459,14 @@
         font-size: 13px;
         line-height: 1.55;
       }
+      .hero .hero-lead {
+        font-size: 14px;
+        color: var(--text);
+      }
+      .hero .hero-note {
+        margin-top: 8px !important;
+        font-size: 12px !important;
+      }
       .meta-grid {
         margin-top: 14px;
         gap: 10px;
@@ -468,6 +503,15 @@
         font-size: 12px;
         line-height: 1.55;
       }
+      .toolbar {
+        margin-top: 12px;
+      }
+      .toolbar > .info-box {
+        display: none;
+      }
+      .mobile-note {
+        display: block;
+      }
       .section-label {
         margin: 18px 2px 10px;
         font-size: 11px;
@@ -476,6 +520,14 @@
       .toc-shell {
         margin-top: 10px;
         border-radius: 18px;
+      }
+      .toc-shell > summary {
+        padding: 12px 14px;
+        min-height: 44px;
+        font-size: 12px;
+      }
+      .toc-shell > summary .hint {
+        font-size: 10px;
       }
       .toc-grid {
         gap: 6px;
@@ -486,6 +538,15 @@
         line-height: 1.3;
       }
       .toc-grid a:nth-child(n+9) {
+        display: none;
+      }
+      .recommended-priority {
+        margin-top: 14px;
+      }
+      .recommended-priority + .dashboard-grid {
+        gap: 8px;
+      }
+      #recommendedGrid .dash-card:nth-child(n+7) {
         display: none;
       }
       .dashboard-grid,
@@ -619,6 +680,7 @@
       .topbar-inner, .app { padding-left: 22px; padding-right: 22px; }
       .mobile-jump { display: none; }
       .toc-shell { display: block; }
+      .mobile-note { display: none; }
       .control-bar { position: relative; top: auto; }
       .hero { padding: 24px; }
       .hero h2 { font-size: 40px; }
@@ -678,12 +740,12 @@
 
     <section class="hero">
       <div class="eyebrow">White background · PWA-style · Mobile-friendly</div>
-      <h2>Visual comparison cards, not plain text blocks</h2>
-      <p>
+      <h2>Choose the right AI setup faster on mobile</h2>
+      <p class="hero-lead">
         The comparison sections below are now card-first and boxy by design: cost bands, context pills, benchmark tags,
         and separate “best for” versus “watch out” panels for faster scanning and easier comparison.
       </p>
-      <p style="margin-top:10px;color:var(--muted);font-size:14px;">
+      <p class="hero-note" style="margin-top:10px;color:var(--muted);font-size:14px;">
         <strong>Pricing rule:</strong> every price shown on this page is displayed in <strong>INR only</strong> for India-based comparison.
       </p>
       <div class="meta-grid">
@@ -704,6 +766,13 @@
       </div>
     </div>
 
+    <details class="mobile-note">
+      <summary>How to use this page on mobile</summary>
+      <div class="info-box">
+        Start with <strong>Recommended for Kawin</strong>, then use presets and filters, and only open the full navigation when you want a specific deep section.
+      </div>
+    </details>
+
     <section class="control-bar">
       <div class="control-grid">
         <div>
@@ -717,12 +786,17 @@
       </div>
     </section>
 
-    <div class="toc-shell">
-      <div class="section-label">Quick navigation</div>
-      <section class="toc"><div id="tocGrid" class="toc-grid"></div></section>
-    </div>
+    <details class="toc-shell" id="tocShell">
+      <summary>
+        <span>Quick navigation</span>
+        <span class="hint">Open only when needed</span>
+      </summary>
+      <div class="toc-body">
+        <section class="toc"><div id="tocGrid" class="toc-grid"></div></section>
+      </div>
+    </details>
 
-    <div class="section-label">Recommended for Kawin</div>
+    <div class="section-label recommended-priority">Recommended for Kawin</div>
     <section id="recommendedGrid" class="dashboard-grid"></section>
 
     <div class="section-label">Update status</div>
@@ -830,6 +904,7 @@
   <script>
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
+    const tocShell = document.getElementById('tocShell');
     const recommendedGrid = document.getElementById('recommendedGrid');
     const freshnessGrid = document.getElementById('freshnessGrid');
     const repoWinnerGrid = document.getElementById('repoWinnerGrid');
@@ -2482,6 +2557,11 @@
       });
     }
 
+    function syncTocShell() {
+      if (!tocShell) return;
+      tocShell.open = window.innerWidth >= 760;
+    }
+
     function renderSortChips() {
       sortRow.innerHTML = '';
       sortDefs.forEach(sort => {
@@ -2690,6 +2770,7 @@
       });
 
       renderMobileNav();
+      syncTocShell();
       renderFilterChips();
       renderSortChips();
       attachFavoriteHandlers();
@@ -2724,6 +2805,8 @@
         syncCompareButtons();
         renderCompareTray();
       });
+
+      window.addEventListener('resize', syncTocShell);
 
     }
 

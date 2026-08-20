@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kawin-ai-setup-guide-v4';
+const CACHE_NAME = 'kawin-ai-setup-guide-v5';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

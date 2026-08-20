@@ -939,7 +939,7 @@
           <span>Mobile-collapsible watchlist for open agents, managed workers, coding challengers, and last-known leader shifts.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="agentRadarUpdatedBadge">Updated 16 Aug 2026</span>
+          <span class="mini-badge" id="agentRadarUpdatedBadge">Audited 20 Aug 2026</span>
           <span class="mini-badge">Tap to collapse</span>
         </div>
       </summary>
@@ -955,7 +955,7 @@
           <span>Leaderboard-oriented repo discovery stack for new rising repositories across AI agents, coding tools, MCP, web, self-hosted, DevOps, security and research.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="repoRadarUpdatedBadge">3-day cron maintained</span>
+          <span class="mini-badge" id="repoRadarUpdatedBadge">Audited 20 Aug 2026</span>
           <span class="mini-badge">Trend shifts rotate leaders</span>
         </div>
       </summary>
@@ -974,7 +974,7 @@
           <span>Weekly discovery stack for trending MCP servers, A2A agents, universal connectors, automation platforms and trusted workflow libraries.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="protocolRadarUpdatedBadge">Weekly watch active</span>
+          <span class="mini-badge" id="protocolRadarUpdatedBadge">Audited 20 Aug 2026</span>
           <span class="mini-badge">Trend + trust gated</span>
         </div>
       </summary>
@@ -1069,9 +1069,9 @@
 
     const presets = [
       { id: 'all', label: 'All sections' },
-      { id: 'budget', label: 'Budget-first', terms: ['DeepSeek', 'Mistral Small', 'Cohere Command R', 'Luna', 'Ultra-low', 'Very low'] },
-      { id: 'coding', label: 'Coding', terms: ['WebDev', 'coding', 'repository', 'Seed-2.0-Code', 'Qwen3.8 27B', 'Opus'] },
-      { id: 'reasoning', label: 'Reasoning', terms: ['reasoning', 'Fable', 'Sol', 'autonomous', 'difficult decisions'] },
+      { id: 'budget', label: 'Budget-first', terms: ['Qwen3 Coder', 'GPT-5-mini', 'Gemini 2.5 Flash', 'Kimi K2', 'Very low', 'Low'] },
+      { id: 'coding', label: 'Coding', terms: ['WebDev', 'coding', 'repository', 'Qwen3 Coder', 'GPT-5', 'Claude Sonnet 4'] },
+      { id: 'reasoning', label: 'Reasoning', terms: ['reasoning', 'Claude Opus 4.1', 'Claude Sonnet 4', 'GPT-5', 'difficult decisions'] },
       { id: 'gpu', label: 'GPU / local', terms: ['GPU', 'Vast.ai', 'RunPod', 'A100', 'H100', 'local'] },
       { id: 'agents', label: 'Agents', terms: ['agent', 'routing', 'workflow', 'automation'] },
     ];
@@ -1102,14 +1102,14 @@
     ];
 
     const recommendedDefs = [
-      { title: 'Budget-first setup', model: 'DeepSeek V4 Flash', note: 'Best for bulk workers and cheap routing.', match: 'DeepSeek V4 Flash' },
-      { title: 'Coding default', model: 'Seed-2.0-Code / Qwen3.8 27B', note: 'New economical coding pool after the August price and launch refresh.', match: 'Seed-2.0-Code' },
-      { title: 'Balanced premium', model: 'Claude Sonnet 5', note: 'Strong day-to-day premium planning/coding choice.', match: 'Claude Sonnet 5' },
-      { title: 'Hard-problem escalation', model: 'GPT-5.6 Sol / Claude Fable Latest', note: 'Reserve for high-stakes reasoning and difficult decisions.', match: 'GPT-5.6 Sol' },
+      { title: 'Budget-first setup', model: 'GPT-5-mini / Gemini 2.5 Flash', note: 'Best mainstream low-cost worker pair after the current OpenRouter pricing audit.', match: 'GPT-5-mini' },
+      { title: 'Coding default', model: 'Qwen3 Coder', note: 'Lowest-cost tracked coding-specialist lane in the 20 Aug 2026 refresh.', match: 'Qwen3 Coder' },
+      { title: 'Balanced premium', model: 'GPT-5 / Gemini 2.5 Pro', note: 'Current price-parity premium pair for broad agent and reasoning work.', match: 'GPT-5' },
+      { title: 'Hard-problem escalation', model: 'Claude Sonnet 4 → Claude Opus 4.1', note: 'Use Anthropic escalation only when the quality gain justifies the premium jump.', match: 'Claude Sonnet 4' },
       { title: 'GPU experiments', model: 'Vast.ai / RunPod', note: 'Best first stop before buying serious hardware.', match: 'Vast.ai RTX 4090' },
-      { title: 'Best savings rule', model: 'Model routing', note: 'Use cheap workers first, escalate only when needed.', match: '80% Flash + 18% Sonnet + 2% Fable routing' },
+      { title: 'Best savings rule', model: 'Model routing', note: 'Use cheap workers first, escalate only when needed.', match: '60% Qwen3 Coder + 25% GPT-5-mini + 13% GPT-5 + 2% Claude Opus 4.1 routing' },
       { title: 'Best router control layer', model: 'LiteLLM Auto / Adaptive Router', note: 'Best long-term open-source control layer for hybrid local and API agents.', match: 'LiteLLM Auto Routing' },
-      { title: 'Fastest managed router', model: 'OpenRouter Auto Beta', note: 'Best zero-code starting point for automatic routing experiments.', match: 'OpenRouter Auto Beta' },
+      { title: 'Fastest managed router', model: 'OpenRouter Auto', note: 'Best zero-code starting point for automatic routing experiments.', match: 'OpenRouter Auto' },
       { title: 'Future-proof architecture', model: 'Router-of-routers', note: 'Classify work, choose specialist pool, then escalate only when needed.', match: 'LiteLLM Auto Router' },
       { title: 'Coding specialist route', model: 'OpenRouter Pareto Code', note: 'Do not force generic routers to handle all code decisions.', match: 'OpenRouter Pareto Code' },
       { title: 'Benchmark change rule', model: 'Re-rank pools, not agents', note: 'When leaders shift, rotate pool candidates and keep workflow rules stable.', match: 'Benchmark change response' },
@@ -1125,8 +1125,8 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: '3-day launch radar active', note: 'Rotate model leaders whenever pricing or benchmarks shift.' },
-      { title: 'Routers', value: '10-day router re-check active', note: 'Router pools should refresh when coding, reasoning or agent leaders move.' },
+      { title: 'Models', value: 'Audited 20 Aug 2026', note: 'OpenRouter pricing and current tracked launch set were re-checked before this refresh.' },
+      { title: 'Routers', value: 'Audited 20 Aug 2026', note: 'LiteLLM releases and OpenRouter Auto posture still support the same routing recommendations.' },
       { title: 'Agents', value: '3-day agent review active', note: 'Agent winners should change only after aligned benchmarks, adoption and releases.' },
       { title: 'GitHub repo radar', value: '3-day leaderboard refresh', note: 'Trendshift, OSS Insight, GitHub Topics, GitStar, Snyk and OpenSSF should keep repo watchlists current.' },
       { title: 'MCP / A2A / automations', value: 'Weekly trend review active', note: 'PulseMCP, Glama, MCPpedia, A2A sources and official workflow libraries should refresh this radar weekly.' },
@@ -1140,10 +1140,10 @@
     ];
 
     const agentRadarDefs = [
-      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents still make it the strongest open general agent in this review. Updated 16 Aug 2026.' },
-      { title: 'Managed agent leader', value: 'Manus', note: 'Still the strongest managed cloud digital worker in this review when you want strong general execution without self-hosting. Updated 16 Aug 2026.' },
-      { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'The coding-agent category is moving fastest, so this radar should refresh when benchmarks or adoption shift.' },
-      { title: 'Newest challenger this week', value: 'Muse Code', note: 'Fresh Meta coding-agent entrant that belongs on the watchlist immediately while evidence catches up.' },
+      { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents still make it the strongest open general agent in this review after the 20 Aug 2026 audit.' },
+      { title: 'Managed agent leader', value: 'Manus', note: 'No stronger managed general digital worker signal displaced it in this cycle, so the leader stays unchanged.' },
+      { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'Codex repo momentum strengthened, but the category is still benchmark-sensitive enough that the practical winner depends on harness and workflow.' },
+      { title: 'Newest challenger this week', value: 'Muse Code', note: 'Still a valid watchlist entry, but not yet strong enough on public evidence to displace Claude Code or Codex.' },
       { title: 'Takeover confidence', value: 'Medium confidence only after aligned signals', note: 'Require releases, benchmarks, adoption, reliability and cost/runtime evidence before calling an overtake.' },
       { title: 'Price display rule', value: 'INR only', note: 'Any existing or future price shown anywhere on this page should remain in Indian rupees only.' },
     ];
@@ -1158,25 +1158,25 @@
     ];
 
     const repoChangeDefs = [
-      { category: 'AI agents', repo: 'Muse Code', shift: 'New challenger entered coding-agent watchlists', score: '84/100', note: 'Watch momentum and contributor activity before promoting it above established coding-agent leaders.', metrics: [['7-day signal', 'Rising'], ['Gate', 'Health not final']], audit: ['Momentum improved fast enough to join the visible watchlist.', 'Security/maintenance evidence is still weaker than established leaders.', 'Score remains below production-grade promotion threshold.'] },
-      { category: 'MCP / tooling', repo: 'Awesome MCP ecosystem movers', shift: 'Discovery lists and topic pages deserve rotation checks', score: '82/100', note: 'MCP infrastructure should be re-ranked only after trust and maintenance signals strengthen.', metrics: [['7-day signal', 'Mixed'], ['Gate', 'OpenSSF first']], audit: ['Discovery is broad, but the signal is still mixed across quality gates.', 'OpenSSF review remains a prerequisite before raising rank.', 'Score stays conservative because trust matters more than hype here.'] },
-      { category: 'Web / JS tools', repo: 'Best of JS leaderboard movers', shift: 'Use monthly star-gain changes to rotate web tool watchlists', score: '89/100', note: 'Best of JS is a better source than raw total stars when web tooling momentum changes quickly.', metrics: [['30-day signal', 'Strong'], ['Gate', 'Snyk first']], audit: ['Monthly movement is stronger than one-day trending noise.', 'Web ecosystem adoption signal is better here than raw GitHub stars alone.', 'Score is higher because momentum and practical usage line up more cleanly.'] },
+      { category: 'AI coding tools', repo: 'openai/codex', shift: 'Crossed the 100k-star tier and stayed actively pushed on 20 Aug 2026', score: '95/100', note: 'Massive adoption plus current activity keep Codex in the top coding-tool radar lane, but the issue backlog means quality still needs benchmark confirmation.', metrics: [['stars', '107k'], ['push', '20 Aug']], audit: ['Adoption is now too large to ignore in leaderboard ordering.', 'Recent pushes confirm the repo is active rather than only historically popular.', 'Open issue volume stops this from being treated as an unquestioned quality winner.'] },
+      { category: 'AI agents', repo: 'All-Hands-AI/OpenHands', shift: 'Stayed above 84k stars with same-day pushes, preserving its open coding-agent platform lead', score: '93/100', note: 'OpenHands still deserves prominent placement because adoption, contributor breadth and active maintenance remain aligned.', metrics: [['stars', '84.6k'], ['push', '20 Aug']], audit: ['This is stronger evidence than one-day trending alone.', 'Platform orientation keeps it distinct from pure terminal coding agents.', 'The leader holds because maintenance and adoption stayed strong together.'] },
+      { category: 'MCP / agent infra', repo: 'BerriAI/litellm', shift: 'Aug 19 dev release plus Aug 20 pushes keep it the most active open routing control layer in this stack', score: '94/100', note: 'LiteLLM remains the repo to watch most closely for router-of-routers implementation changes, provider support and adaptive-routing maturity.', metrics: [['stars', '56.8k'], ['release', '19 Aug']], audit: ['Release cadence materially matters for routing infrastructure.', 'Recent pushes and releases reinforce the recommendation rather than weakening it.', 'Large open-issue volume means ops teams should still validate upgrade discipline before blind adoption.'] },
     ];
 
     const protocolRadarDefs = [
       { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Best weekly signal for rising MCP servers because it exposes week and month popularity views.', score: '94/100', confidence: 'Verified' },
       { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100', confidence: 'Verified' },
       { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100', confidence: 'Official + verified' },
-      { title: 'A2A discovery posture', value: 'Official A2A Project first', note: 'A2A Registry and Awesome A2A are useful, but the review/ranking layer is still too immature to trust blindly.', score: '88/100', confidence: 'Official first' },
+      { title: 'A2A discovery posture', value: 'Official A2A Project first', note: 'Google A2A remains active, but public ranking quality is still too immature to trust without TCK and identity checks.', score: '88/100', confidence: 'Watchlist' },
       { title: 'Best workflow trust rule', value: 'Official template libraries first', note: 'Use n8n, Make and Zapier official libraries before buying random template bundles.', score: '92/100', confidence: 'Official' },
       { title: 'Best universal connector stack', value: 'Composio / Pipedream / Zapier MCP', note: 'Dynamic tool discovery and large SaaS coverage are increasingly better than hand-loading dozens of separate connectors.', score: '93/100', confidence: 'Verified' },
     ];
 
     const workflowChangeDefs = [
-      { category: 'MCP trends', repo: 'PulseMCP weekly leaders', shift: 'Trending MCP view should drive weekly watchlist changes', score: '91/100', confidence: 'Verified', note: 'Use it as early discovery, then validate through MCPpedia and the Official Registry before promotion.', metrics: [['cadence', 'Weekly'], ['gate', 'Security first']], audit: ['Popularity alone is not enough for MCP promotion.', 'Quality and publisher checks should happen before installation.', 'This card changes when new weekly leaders keep holding their signal.'] },
-      { category: 'A2A watch', repo: 'A2A Registry + Official A2A Project', shift: 'Discovery is improving, but ranking is still immature', score: '83/100', confidence: 'Watchlist', note: 'Track new public Agent Cards and official SDK/TCK activity, but keep ratings conservative.', metrics: [['cadence', 'Weekly'], ['gate', 'TCK first']], audit: ['A2A reviews remain too sparse for a universal leaderboard.', 'Official compatibility and identity matter more than public hype.', 'Raise scores only when reliability and task success evidence strengthens.'] },
-      { category: 'Automation templates', repo: 'n8n / Make / Zapier official libraries', shift: 'Official template libraries should outrank random bundles', score: '90/100', confidence: 'Official', note: 'Weekly checks should watch new verified templates, official creators and popular maintained scenarios.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Creator verification matters for workflow trust.', 'Recent updates and error handling matter more than raw popularity.', 'This card changes when official libraries surface materially better workflow candidates.'] },
-      { category: 'Universal connectors', repo: 'Composio / Pipedream / Zapier MCP', shift: 'Connector platforms deserve weekly tracking as app coverage expands', score: '89/100', confidence: 'Verified', note: 'These platforms reduce schema overload while expanding app/tool reach for agents.', metrics: [['cadence', 'Weekly'], ['gate', 'OAuth + scope']], audit: ['Dynamic discovery is useful only if auth and scope remain well governed.', 'Broadest coverage is not always the safest choice.', 'Raise scores when governance and operational metrics improve together.'] },
+      { category: 'MCP trends', repo: 'Official MCP Registry v1.8.1 + PulseMCP', shift: 'The trend layer is still useful, but current registry release activity now matters more in weekly trust checks', score: '93/100', confidence: 'Official', note: 'Use PulseMCP for discovery, then confirm against the actively maintained Official Registry before promotion.', metrics: [['registry release', '6 Aug'], ['gate', 'Official first']], audit: ['This cycle reinforced the value of an official trust gate.', 'Registry release cadence is a stronger signal than directory size alone.', 'PulseMCP still matters, but it is not enough on its own.'] },
+      { category: 'A2A watch', repo: 'google/A2A + A2A Registry', shift: 'Core protocol remains active, but public trust posture stays conservative', score: '84/100', confidence: 'Watchlist', note: 'Google A2A shows healthy repo activity and a stable v1.0.1 release line, yet public interoperability proof is still thinner than the hype.', metrics: [['release line', 'v1.0.1'], ['gate', 'TCK first']], audit: ['Activity improved enough to keep A2A visible.', 'That is still not the same as mature ecosystem trust.', 'Leave the confidence badge conservative until more compatibility evidence appears.'] },
+      { category: 'Automation templates', repo: 'n8n official library + verified creators', shift: 'n8n still leads weekly clone-worthiness because the ecosystem keeps compounding faster than rivals', score: '92/100', confidence: 'Official', note: 'n8n remains the first workflow library to check because ecosystem strength, official docs and current repo momentum all line up.', metrics: [['repo stars', '201k'], ['gate', 'Verified creator']], audit: ['This is not just raw popularity; maintenance remains active.', 'Verified and official templates still outrank random marketplace packs.', 'No rival produced enough evidence this cycle to displace n8n in the technical workflow lane.'] },
+      { category: 'Universal connectors', repo: 'Composio Connect / Pipedream / Zapier MCP', shift: 'Composio remained the strongest app-breadth connector while Pipedream and Zapier stayed relevant as trusted alternatives', score: '90/100', confidence: 'Verified', note: 'These platforms still reduce schema sprawl, but OAuth scope review remains the mandatory promotion gate.', metrics: [['Composio stars', '29.8k'], ['gate', 'OAuth + scope']], audit: ['Connector breadth improved without changing the core trust rule.', 'Composio kept the lead because repo activity stayed current.', 'Alternatives remain strong enough that this is a winner strip, not a monopoly.'] },
     ];
 
     const mcpWinnerDefs = [
@@ -1187,21 +1187,21 @@
     ];
 
     const workflowCloneDefs = [
-      { category: 'Technical AI workflow', repo: 'n8n verified AI ops templates', shift: 'Best first source for clone-worthy technical automations this week', score: '92/100', confidence: 'Official', note: 'Clone official or verified n8n workflows before buying random bundles or rebuilding common flows from scratch.', metrics: [['cadence', 'Weekly'], ['gate', 'Verified creator']], audit: ['Strongest when the template is official or from a verified creator.', 'Look for recent updates, retries, and credential hygiene before cloning.', 'Promote only when the workflow is maintained and still aligned with supported nodes/APIs.'] },
-      { category: 'Visual branching workflow', repo: 'Make most-popular reviewed templates', shift: 'Best visual branching scenarios worth cloning right now', score: '90/100', confidence: 'Official', note: 'Use reviewed public templates as the default starting point for complex visual automations.', metrics: [['cadence', 'Weekly'], ['gate', 'Reviewed template']], audit: ['Make popularity is useful because the public library is reviewed.', 'Still inspect variables, auth scopes and branch logic before cloning.', 'Rotate winners when better reviewed templates materially outperform older favourites.'] },
-      { category: 'Simple SaaS automation', repo: 'Zapier guided templates', shift: 'Best low-friction workflows for business teams to clone', score: '89/100', confidence: 'Official', note: 'Guided templates beat copying untrusted community zaps when the goal is safe fast rollout.', metrics: [['cadence', 'Weekly'], ['gate', 'Guided template']], audit: ['Breadth is huge, but guided and official flows should outrank raw community popularity.', 'Clone workflows that expose editable variables and clear app permissions.', 'Raise only when maintenance and ease-of-rollout remain strong.'] },
-      { category: 'Developer / API automation', repo: 'Pipedream reusable workflows', shift: 'Best API-first flows worth adapting instead of rebuilding', score: '88/100', confidence: 'Verified', note: 'Best choice when the workflow should mix code, APIs and reusable connector steps.', metrics: [['cadence', 'Weekly'], ['gate', 'Docs + reuse']], audit: ['Developer workflows should be judged on docs, reuse quality and auth setup clarity.', 'A smaller review count is fine if operational quality is obvious.', 'Promote only when the workflow remains compatible with current APIs and deployment posture.'] },
+      { category: 'Technical AI workflow', repo: 'n8n official AI agent templates', shift: 'Still the best clone-first source for technical AI operations this week', score: '93/100', confidence: 'Official', note: 'Official and verified n8n templates remain the safest starting point for multi-step AI ops, data movement and fallback logic.', metrics: [['repo stars', '201k'], ['gate', 'Verified creator']], audit: ['The ecosystem remains active enough to keep this card on top.', 'Clone only maintained flows with clear retries and credentials.', 'n8n stays first because both platform strength and workflow supply remain superior.'] },
+      { category: 'Visual branching workflow', repo: 'Make reviewed templates', shift: 'Still the best branch-heavy visual workflows to adapt quickly', score: '90/100', confidence: 'Official', note: 'Reviewed Make templates still beat unreviewed marketplace bundles when business users need complex branching without code.', metrics: [['cadence', 'Weekly'], ['gate', 'Reviewed template']], audit: ['The trust signal comes from reviewed templates, not brand alone.', 'Variable, auth and branch review still matter before cloning.', 'No stronger visual-template challenger surfaced this cycle.'] },
+      { category: 'Simple SaaS automation', repo: 'Zapier guided templates', shift: 'Still the easiest official library for business-team rollout', score: '89/100', confidence: 'Official', note: 'Guided Zapier templates remain the low-friction default when the goal is fast rollout with minimal custom branching.', metrics: [['cadence', 'Weekly'], ['gate', 'Guided template']], audit: ['Official guided flows still outrank raw community popularity.', 'Permission clarity matters before cloning.', 'The recommendation stayed stable because simplicity remains the main buying criterion here.'] },
+      { category: 'Developer / API automation', repo: 'Pipedream reusable workflows', shift: 'Still the best code-plus-connector workflow base worth adapting instead of rebuilding', score: '88/100', confidence: 'Verified', note: 'Pipedream remains the first library to clone when API workflows need custom code, connector breadth and deployable reuse together.', metrics: [['repo stars', '11.6k'], ['gate', 'Docs + reuse']], audit: ['Docs and reuse quality are stronger trust signals than raw template count.', 'Operational clarity still matters more than hype.', 'The card held because no other API-first workflow library produced stronger public evidence this cycle.'] },
     ];
 
     const summaries = [
-      { title: 'Cheapest routine worker', value: 'Qwen3.7 Flash', note: '₹5.97 standard workload' },
-      { title: 'Balanced premium agent', value: 'Claude Sonnet 5', note: '₹428.49 standard workload' },
-      { title: 'Highest-stakes reasoning', value: 'Claude Fable Latest / GPT-5.6 Sol', note: '₹1,193.79–₹2,148.83 standard workload' },
-      { title: 'Economical coding agent', value: 'Seed-2.0-Code / Qwen3.8 27B', note: '₹119.38 standard workload' },
+      { title: 'Cheapest paid worker', value: 'Qwen3 Coder', note: '₹52.53 standard workload' },
+      { title: 'Balanced premium agent', value: 'GPT-5 / Gemini 2.5 Pro', note: '₹358.13 standard workload' },
+      { title: 'Highest-stakes reasoning', value: 'Claude Opus 4.1', note: '₹3,223.13 standard workload' },
+      { title: 'Economical coding agent', value: 'Qwen3 Coder', note: '₹52.53 standard workload' },
       { title: 'Best cost-saving method', value: 'Intelligent model routing', note: 'Not automatic GPU replacement' },
       { title: 'GPU experiments', value: 'Vast.ai / RunPod first', note: '₹12.38–₹65.70 per hour range' },
       { title: 'Best OSS router', value: 'LiteLLM Auto / Adaptive Router', note: 'Best hybrid local + API control layer' },
-      { title: 'Fastest managed router', value: 'OpenRouter Auto Beta', note: 'Best immediate zero-code router test' },
+      { title: 'Fastest managed router', value: 'OpenRouter Auto', note: 'Best immediate zero-code router test' },
       { title: 'Future-proof design', value: 'Router-of-routers', note: 'Policy → reduction → classifier → specialist pool → verifier' },
       { title: 'Coding specialist', value: 'Pareto Code pool', note: 'Coding should not stay inside a generic catch-all route' },
       { title: 'Change management', value: 'Re-rank pools when leaders move', note: 'Keep agent rules stable while model candidates rotate underneath' },
@@ -1219,67 +1219,62 @@
       {
         id: 'frontier-models',
         title: '1. Frontier and Benchmark-Leading API Models',
-        description: 'Premium and benchmark-leading models for coding, high-stakes reasoning, multimodal work, and advanced autonomous agents.',
+        description: 'Tracked premium models after the 20 Aug 2026 OpenRouter pricing audit, normalized to INR for direct agent-routing decisions.',
         cardFields: ['Model', 'Benchmark signal', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best suited for', 'Main limitation'],
         rows: [
-          ['Claude Fable Latest', 'Anthropic top-end latest', '₹955.03', '₹4,775.17', '1M', '₹2,148.83', '₹2,14,882.83', 'Highest-stakes reasoning, autonomous planning and difficult research synthesis', 'Most expensive major model in this comparison'],
-          ['Claude Opus 5', 'Anthropic premium coding tier', '₹477.52', '₹2,387.59', '1M', '₹1,074.41', '₹1,07,441.42', 'Complex coding agents, repositories, architecture and debugging', 'Too expensive for routine agents and simple extraction'],
-          ['GPT-5.6 Sol', 'OpenAI premium reasoning tier', '₹477.52', '₹2,865.10', '1.05M', '₹1,193.79', '₹1,19,379.35', 'Advanced reasoning, coding, multimodal agents and computer use', 'Premium processing and long contexts can become costly'],
-          ['Claude Sonnet 5', 'Balanced premium agent tier', '₹191.01', '₹955.03', '1M', '₹429.77', '₹42,976.57', 'Coding agents, planning, writing and production automation', 'Still far costlier than new worker-model launches'],
-          ['Qwen3.8 Max', 'New Qwen flagship', '₹191.01', '₹573.02', '1M', '₹334.26', '₹33,426.22', 'Broad general reasoning and long-context production work', 'Quality must still be benchmarked against the strongest Western premium models'],
-          ['Grok 4.6', 'xAI current flagship', '₹191.01', '₹573.02', '500K', '₹334.26', '₹33,426.22', 'Current-information research, tool use and web-connected agents', 'Shorter context than 1M-token rivals'],
-          ['GPT-5.6 Terra', 'Balanced GPT-5.6 tier', '₹95.50', '₹573.02', '1.05M', '₹238.76', '₹23,875.87', 'General agents, coding, workflow orchestration and multimodal automation', 'More expensive than several newer value launches'],
-          ['Meta Muse Spark 1.2', 'Meta 1M-context launch', '₹119.38', '₹405.89', '1.048M', '₹220.85', '₹22,085.18', 'Large-context reasoning when you want a newer Meta option before going to premium Anthropic/OpenAI tiers', 'Still needs more public benchmark and ecosystem validation'],
-          ['Qwen3.8 27B', 'Efficient large-model launch', '₹42.98', '₹305.61', '262K', '₹119.38', '₹11,937.94', 'Economical coding, structured generation and long-form assistant work', 'Not a frontier replacement for the hardest agent tasks'],
-          ['Seed-2.0-Code', 'Coding-tuned new release', '₹47.75', '₹286.51', '262K', '₹119.38', '₹11,937.94', 'Economical coding agents, repo transforms and software automation', 'Smaller ecosystem than the most established coding stacks'],
-          ['Gemini 3.7 Flash', 'Google 1M-context value launch', '₹35.81', '₹179.07', '1.048M', '₹80.58', '₹8,058.11', 'Long documents, multimodal extraction and million-token pipelines', 'Lower ceiling than premium frontier reasoning models'],
+          ['Claude Opus 4.1', 'Highest-cost tracked premium escalation', '₹1,432.50', '₹7,162.50', '200K', '₹3,223.13', '₹3,22,312.50', 'Hardest reasoning, premium coding reviews and expensive final-verification passes', 'Cost is extreme enough that it should stay behind a router gate'],
+          ['Claude Sonnet 4', 'Anthropic premium day-to-day tier', '₹286.50', '₹1,432.50', '1M', '₹644.63', '₹64,462.50', 'Premium coding, planning and difficult agent turns before Opus escalation', 'Nearly 2× the cost of GPT-5 or Gemini 2.5 Pro for the tracked workload'],
+          ['GPT-5', 'OpenAI premium reasoning tier', '₹119.38', '₹955.00', '400K', '₹358.13', '₹35,812.50', 'General premium agents, reasoning, coding and multimodal workflows', 'Still too expensive for bulk worker traffic'],
+          ['Gemini 2.5 Pro', 'Google million-context premium tier', '₹119.38', '₹955.00', '1.048M', '₹358.13', '₹35,812.50', 'Large-context premium orchestration, documents and high-context reasoning', 'Value is strongest only when the million-token context is actually useful'],
+          ['Kimi K2', 'Value-premium long-context challenger', '₹54.44', '₹219.65', '131K', '₹109.35', '₹10,934.75', 'Mid-tier research, assistants and cost-aware premium fallback lanes', 'Shorter context and thinner ecosystem than the biggest mainstream leaders'],
+          ['Gemini 2.5 Flash', 'Google mainstream high-context worker', '₹28.65', '₹238.75', '1.048M', '₹88.34', '₹8,833.75', 'Long-document extraction, multimodal background work and large-context pipelines', 'Not the best value if you do not need the huge context window'],
+          ['GPT-5-mini', 'OpenAI low-cost mainstream worker', '₹23.87', '₹191.00', '400K', '₹71.62', '₹7,162.50', 'Cheap OpenAI routing lane for summaries, extraction and lower-risk subagents', 'Meaningful savings disappear if you route difficult work here too aggressively'],
+          ['Qwen3 Coder', 'Lowest-cost tracked coding specialist', '₹28.65', '₹95.50', '262K', '₹52.53', '₹5,252.50', 'Economical coding agents, repo transforms and structured generation', 'Context and ecosystem remain smaller than the biggest premium stacks'],
         ]
       },
       {
         id: 'budget-models',
         title: '2. Low-Cost and High-Volume API Models',
-        description: 'Worker-model tier for high-volume routing, extraction, classification, and economical coding/agent tasks.',
+        description: 'Worker-model tier after the current price audit, with free-preview entries separated mentally from dependable production lanes.',
         cardFields: ['Model', 'Input / 1M', 'Output / 1M', 'Cached input / 1M', 'Context', 'Standard workload', 'Heavy monthly workload', 'Best use', 'Main trade-off'],
         rows: [
-          ['Qwen3.7 Flash', '₹2.87', '₹12.42', '—', '1M', '₹5.97', '₹596.90', 'Cheapest general worker with full million-token context in this refresh', 'Needs validation before taking critical decisions alone'],
-          ['Solar Pro 4', '₹2.87', '₹11.46', '—', '524K', '₹5.73', '₹573.02', 'Ultra-cheap summarisation, extraction and assistant background work', 'Less benchmark visibility than the most mainstream worker models'],
-          ['DeepSeek V4 Flash Latest', '₹5.76', '₹11.52', '—', '1.048M', '₹8.64', '₹863.83', 'Classification, extraction, routing and large agent swarms', 'Important outputs should be verified by a stronger model'],
-          ['Nemotron 3.5 Lightning', '₹9.55', '₹23.88', '—', '1M', '₹15.52', '₹1,551.93', 'Large-context background agents and fast structured generation', 'Still less battle-tested than the biggest proprietary families'],
-          ['GPT-5.6 Luna', '₹9.55', '₹57.30', '—', '1.05M', '₹23.88', '₹2,387.59', 'Summarisation, extraction, classification, routing and sub-agents', 'Not a replacement for Sol on highly difficult work'],
-          ['DeepSeek V4 Pro 0813', '₹41.54', '₹83.09', '—', '1.048M', '₹62.32', '₹6,231.60', 'Low-cost reasoning, coding, planning and agent execution', 'Production reliability should still be validated for critical tasks'],
-          ['Muse Glimmer 30B', '₹33.43', '₹143.26', '—', '131K', '₹69.24', '₹6,924.00', 'Cost-aware general agent work when you want a newer Meta option', 'Shorter context than the million-token leaders'],
-          ['Gemini 3.7 Flash', '₹35.81', '₹179.07', '—', '1.048M', '₹80.58', '₹8,058.11', 'Large document extraction, multimodal pipelines and long-context workflows', 'More expensive than the new ultra-cheap worker tier'],
-          ['Qwen3.8 27B', '₹42.98', '₹305.61', '—', '262K', '₹119.38', '₹11,937.94', 'Economical coding and structured assistants', 'More limited context than 1M-token worker models'],
-          ['Seed-2.0-Code', '₹47.75', '₹286.51', '—', '262K', '₹119.38', '₹11,937.94', 'Coding agents, repo analysis and software automation', 'Narrower ecosystem than the most widely deployed coding stacks'],
+          ['OpenAI GPT-OSS-20B (free preview)', '₹0.00', '₹0.00', '—', '131K', '₹0.00', '₹0.00', 'Zero-rupee experimentation and non-critical local-style agent trials through OpenRouter free lanes', 'Availability and quotas make this a discovery path, not a guaranteed production tier'],
+          ['NVIDIA Nemotron 3.5 Lightning (free preview)', '₹0.00', '₹0.00', '—', '1M', '₹0.00', '₹0.00', 'Cheap experimentation for long-context background work when a free preview is enough', 'Free routing lanes can change or disappear without production guarantees'],
+          ['Qwen3 Coder', '₹28.65', '₹95.50', '—', '262K', '₹52.53', '₹5,252.50', 'Cheapest tracked paid coding lane for repo transforms and structured outputs', 'Not the best option when you need million-token context'],
+          ['GPT-5-mini', '₹23.87', '₹191.00', '—', '400K', '₹71.62', '₹7,162.50', 'Low-cost mainstream worker for OpenAI-centric stacks and generic background agents', 'Output tokens are still materially pricier than Qwen3 Coder'],
+          ['Gemini 2.5 Flash', '₹28.65', '₹238.75', '—', '1.048M', '₹88.34', '₹8,833.75', 'Long-document extraction, multimodal pipelines and million-token routing', 'Context is the main reason to pay above Qwen3 Coder'],
+          ['Kimi K2', '₹54.44', '₹219.65', '—', '131K', '₹109.35', '₹10,934.75', 'Mid-tier assistants and value-premium fallback lanes', 'Not the cheapest worker and not the strongest premium option'],
+          ['GPT-5', '₹119.38', '₹955.00', '—', '400K', '₹358.13', '₹35,812.50', 'Premium escalation for harder reasoning and stronger coding turns', 'Should not be treated as a background worker model'],
         ]
       },
       {
         id: 'qwen-pricing',
-        title: '3. Qwen API Pricing Snapshot in INR',
-        description: 'Current Qwen launch pricing matters more than stale regional snapshots after the 3.7/3.8 refresh.',
-        cardFields: ['Model and region', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload'],
+        title: '3. Coding-Value Pricing Snapshot in INR',
+        description: 'The practical low-cost coding lane is now clearer: compare coding specialists directly against the mainstream worker models they may replace.',
+        cardFields: ['Model', 'Input / 1M', 'Output / 1M', 'Context', 'Standard workload', 'Heavy monthly workload'],
         rows: [
-          ['Qwen3.7 Flash', '₹2.87', '₹12.42', '1M', '₹5.97', '₹596.90'],
-          ['Qwen3.8 27B', '₹42.98', '₹305.61', '262K', '₹119.38', '₹11,937.94'],
-          ['Qwen3.8 Max', '₹191.01', '₹573.02', '1M', '₹334.26', '₹33,426.22'],
+          ['Qwen3 Coder', '₹28.65', '₹95.50', '262K', '₹52.53', '₹5,252.50'],
+          ['GPT-5-mini', '₹23.87', '₹191.00', '400K', '₹71.62', '₹7,162.50'],
+          ['Gemini 2.5 Flash', '₹28.65', '₹238.75', '1.048M', '₹88.34', '₹8,833.75'],
+          ['Kimi K2', '₹54.44', '₹219.65', '131K', '₹109.35', '₹10,934.75'],
         ]
       },
       {
         id: 'cost-ranking',
         title: '4. Complete API Cost Ranking in INR',
-        description: 'Cost ranking only for 1M input + 250K output tokens. This is not an intelligence ranking.',
+        description: 'Cost ranking only for 1M input + 250K output tokens across the currently tracked paid production models. This is not an intelligence ranking.',
         cardFields: ['Rank', 'Model', 'Standard workload', 'Heavy monthly workload', 'Price category'],
         rows: [
-          ['1', 'Solar Pro 4', '₹5.73', '₹573.02', 'Ultra-low'], ['2', 'Qwen3.7 Flash', '₹5.97', '₹596.90', 'Ultra-low'], ['3', 'DeepSeek V4 Flash Latest', '₹8.64', '₹863.83', 'Ultra-low'], ['4', 'Nemotron 3.5 Lightning', '₹15.52', '₹1,551.93', 'Ultra-low'], ['5', 'GPT-5.6 Luna', '₹23.88', '₹2,387.59', 'Very low'], ['6', 'DeepSeek V4 Pro 0813', '₹62.32', '₹6,231.60', 'Very low'], ['7', 'Muse Glimmer 30B', '₹69.24', '₹6,924.00', 'Very low'], ['8', 'Gemini 3.7 Flash', '₹80.58', '₹8,058.11', 'Low'], ['9', 'Qwen3.8 27B', '₹119.38', '₹11,937.94', 'Low'], ['9', 'Seed-2.0-Code', '₹119.38', '₹11,937.94', 'Low'], ['11', 'Meta Muse Spark 1.2', '₹220.85', '₹22,085.18', 'Moderate'], ['12', 'GPT-5.6 Terra', '₹238.76', '₹23,875.87', 'Moderate'], ['13', 'Qwen3.8 Max', '₹334.26', '₹33,426.22', 'Moderate'], ['13', 'Grok 4.6', '₹334.26', '₹33,426.22', 'Moderate'], ['15', 'Claude Sonnet 5', '₹429.77', '₹42,976.57', 'Upper-middle'], ['16', 'Claude Opus 5', '₹1,074.41', '₹1,07,441.42', 'Frontier premium'], ['17', 'GPT-5.6 Sol', '₹1,193.79', '₹1,19,379.35', 'Frontier premium'], ['18', 'Claude Fable Latest', '₹2,148.83', '₹2,14,882.83', 'Maximum premium'],
+          ['1', 'Qwen3 Coder', '₹52.53', '₹5,252.50', 'Very low'], ['2', 'GPT-5-mini', '₹71.62', '₹7,162.50', 'Very low'], ['3', 'Gemini 2.5 Flash', '₹88.34', '₹8,833.75', 'Low'], ['4', 'Kimi K2', '₹109.35', '₹10,934.75', 'Low'], ['5', 'GPT-5', '₹358.13', '₹35,812.50', 'Moderate'], ['5', 'Gemini 2.5 Pro', '₹358.13', '₹35,812.50', 'Moderate'], ['7', 'Claude Sonnet 4', '₹644.63', '₹64,462.50', 'Frontier premium'], ['8', 'Claude Opus 4.1', '₹3,223.13', '₹3,22,312.50', 'Maximum premium'],
         ]
       },
       {
         id: 'relative-multipliers',
         title: '5. Relative Cost Multipliers',
-        description: 'How expensive each model is relative to Qwen3.7 Flash for the same standard workload.',
-        cardFields: ['Model', 'Standard workload', 'Approximate cost versus Qwen3.7 Flash'],
+        description: 'How expensive each tracked paid model is relative to Qwen3 Coder for the same standard workload.',
+        cardFields: ['Model', 'Standard workload', 'Approximate cost versus Qwen3 Coder'],
         rows: [
-          ['Solar Pro 4', '₹5.73', '1.0×'], ['Qwen3.7 Flash', '₹5.97', '1×'], ['DeepSeek V4 Flash Latest', '₹8.64', '1.4×'], ['Nemotron 3.5 Lightning', '₹15.52', '2.6×'], ['GPT-5.6 Luna', '₹23.88', '4.0×'], ['DeepSeek V4 Pro 0813', '₹62.32', '10.4×'], ['Muse Glimmer 30B', '₹69.24', '11.6×'], ['Gemini 3.7 Flash', '₹80.58', '13.5×'], ['Qwen3.8 27B', '₹119.38', '20×'], ['Seed-2.0-Code', '₹119.38', '20×'], ['Meta Muse Spark 1.2', '₹220.85', '37×'], ['GPT-5.6 Terra', '₹238.76', '40×'], ['Qwen3.8 Max', '₹334.26', '56×'], ['Grok 4.6', '₹334.26', '56×'], ['Claude Sonnet 5', '₹429.77', '72×'], ['Claude Opus 5', '₹1,074.41', '180×'], ['GPT-5.6 Sol', '₹1,193.79', '200×'], ['Claude Fable Latest', '₹2,148.83', '360×'],
+          ['Qwen3 Coder', '₹52.53', '1×'], ['GPT-5-mini', '₹71.62', '1.4×'], ['Gemini 2.5 Flash', '₹88.34', '1.7×'], ['Kimi K2', '₹109.35', '2.1×'], ['GPT-5', '₹358.13', '6.8×'], ['Gemini 2.5 Pro', '₹358.13', '6.8×'], ['Claude Sonnet 4', '₹644.63', '12.3×'], ['Claude Opus 4.1', '₹3,223.13', '61.4×'],
         ]
       },
       {
@@ -1288,7 +1283,7 @@
         description: 'Best model picks by actual workload type, with the cost observation preserved.',
         cardFields: ['Requirement', 'Rank 1', 'Rank 2', 'Rank 3', 'Cost observation'],
         rows: [
-          ['Highest overall intelligence', 'Claude Fable Latest', 'GPT-5.6 Sol', 'Claude Opus 5', 'Approximately ₹1,074–₹2,149 per standard workload'], ['Advanced coding and WebDev', 'Claude Opus 5', 'Seed-2.0-Code', 'Qwen3.8 27B', 'Seed and Qwen are dramatically cheaper than Opus for routine coding lanes'], ['Complex autonomous agents', 'Claude Fable Latest', 'GPT-5.6 Sol', 'Claude Sonnet 5', 'Reserve the top tier for difficult escalations'], ['Premium value', 'Claude Sonnet 5', 'Qwen3.8 Max', 'GPT-5.6 Terra', 'Approximately ₹239–₹430 per standard workload'], ['Balanced production model', 'Claude Sonnet 5', 'GPT-5.6 Terra', 'Gemini 3.7 Flash', 'Sonnet remains strong, but Gemini 3.7 materially improved the value lane'], ['Economical coding agent', 'Seed-2.0-Code', 'Qwen3.8 27B', 'DeepSeek V4 Pro 0813', 'Approximately ₹62–₹119 per workload'], ['Million-token processing', 'Gemini 3.7 Flash', 'GPT-5.6 Luna', 'DeepSeek V4 Pro 0813', 'Suitable for very large documents and repositories'], ['Multimodal volume processing', 'Gemini 3.7 Flash', 'GPT-5.6 Luna', 'Qwen3.7 Flash', 'Worker-model pricing ranges from ₹5.97 to ₹80.58'], ['Cheapest routine worker', 'Qwen3.7 Flash', 'DeepSeek V4 Flash Latest', 'Solar Pro 4', 'Approximately ₹5.73–₹8.64 per workload'], ['Research with fresh web signal', 'Grok 4.6', 'Claude Sonnet 5', 'Qwen3.8 Max', 'Use only when current-information value outweighs the extra cost'], ['Low-cost reasoning upgrade', 'DeepSeek V4 Pro 0813', 'Muse Glimmer 30B', 'GPT-5.6 Terra', 'Upgrade from worker models before jumping to Sonnet or Sol'], ['Open-weight migration path', 'Qwen3.8 27B', 'Muse Glimmer 30B', 'Suitable local Qwen/Meta deployments', 'Can later be migrated to private infrastructure'], ['Lowest API expenditure', 'Solar Pro 4', 'Qwen3.7 Flash', 'DeepSeek V4 Flash Latest', 'Best for high-volume background tasks'], ['Largest mainstream ecosystem', 'GPT-5.6 family', 'Claude family', 'Gemini family', 'Usually easier integration but not always lowest cost'],
+          ['Highest overall premium escalation', 'Claude Opus 4.1', 'Claude Sonnet 4', 'GPT-5', 'Use Opus only after cheaper tiers fail because the cost jump is extreme'], ['Advanced coding and WebDev', 'Qwen3 Coder', 'GPT-5', 'Claude Sonnet 4', 'Qwen3 Coder is the strongest cost-first default, then escalate only when harder repo work demands it'], ['Complex autonomous agents', 'GPT-5', 'Gemini 2.5 Pro', 'Claude Sonnet 4', 'Keep the premium middle tier wide before reaching for Opus'], ['Premium value', 'GPT-5', 'Gemini 2.5 Pro', 'Kimi K2', 'GPT-5 and Gemini 2.5 Pro currently sit at the same tracked workload cost'], ['Balanced production model', 'GPT-5', 'Gemini 2.5 Pro', 'Claude Sonnet 4', 'Choose between parity-priced GPT and Gemini by eval fit, then escalate to Sonnet only when justified'], ['Economical coding agent', 'Qwen3 Coder', 'GPT-5-mini', 'GPT-5', 'Qwen3 Coder is the cheapest paid specialist in the current tracked set'], ['Million-token processing', 'Gemini 2.5 Flash', 'Gemini 2.5 Pro', 'Claude Sonnet 4', 'Google owns the context-value lane in the current tracked table'], ['Multimodal volume processing', 'Gemini 2.5 Flash', 'GPT-5-mini', 'GPT-5', 'Pay for the giant context only when the workflow actually needs it'], ['Cheapest paid routine worker', 'Qwen3 Coder', 'GPT-5-mini', 'Gemini 2.5 Flash', 'Current tracked paid worker range is about ₹52.53 to ₹88.34 per workload'], ['Low-cost reasoning upgrade', 'Kimi K2', 'GPT-5', 'Gemini 2.5 Pro', 'Kimi is the mid-tier price step before the parity-priced premium pair'], ['Open-weight or free experimentation', 'GPT-OSS-20B free preview', 'Nemotron 3.5 Lightning free preview', 'Local open-weight stack', 'Free lanes are useful for testing, but not stable enough to anchor production advice'], ['Largest mainstream ecosystem', 'OpenAI GPT-5 family', 'Google Gemini 2.5 family', 'Anthropic Claude 4 family', 'Integration breadth still matters, but routing economics should decide the default lane'],
         ]
       },
       {
@@ -1311,7 +1306,7 @@
         secondaryTitle: 'Example monthly comparison',
         secondaryFields: ['Option', 'Approximate monthly cost'],
         secondaryRows: [
-          ['Solar Pro 4 API', '₹573.02'], ['Qwen3.7 Flash API', '₹596.90'], ['DeepSeek V4 Flash Latest API', '₹863.83'], ['Nemotron 3.5 Lightning API', '₹1,551.93'], ['GPT-5.6 Luna API', '₹2,387.59'], ['DeepSeek V4 Pro 0813 API', '₹6,231.60'], ['Gemini 3.7 Flash API', '₹8,058.11'], ['Qwen3.8 27B API', '₹11,937.94'], ['GPT-5.6 Terra API', '₹23,875.87'], ['RunPod RTX 3090 running 24/7', '₹34,279.20 plus storage'], ['Claude Sonnet 5 API', '₹42,976.57'], ['Thunder A100 running 24/7', '₹74,728.66 plus storage'], ['Claude Opus 5 API', '₹1,07,441.42'], ['GPT-5.6 Sol API', '₹1,19,379.35'], ['Thunder H100 running 24/7', '₹1,50,142.90 plus storage'], ['Claude Fable Latest API', '₹2,14,882.83'],
+          ['Qwen3 Coder API', '₹5,252.50'], ['GPT-5-mini API', '₹7,162.50'], ['Gemini 2.5 Flash API', '₹8,833.75'], ['Kimi K2 API', '₹10,934.75'], ['RunPod RTX 3090 running 24/7', '₹34,279.20 plus storage'], ['GPT-5 API', '₹35,812.50'], ['Gemini 2.5 Pro API', '₹35,812.50'], ['Claude Sonnet 4 API', '₹64,462.50'], ['Thunder A100 running 24/7', '₹74,728.66 plus storage'], ['Thunder H100 running 24/7', '₹1,50,142.90 plus storage'], ['Claude Opus 4.1 API', '₹3,22,312.50'],
         ]
       },
       {
@@ -1320,7 +1315,7 @@
         description: 'The core routing architecture recommended by the source text.',
         cardFields: ['Tier', 'Suggested workload share', 'Recommended model types', 'Tasks'],
         rows: [
-          ['Tier 1 — Bulk workers', '70–85%', 'Solar Pro 4, Qwen3.7 Flash, DeepSeek V4 Flash Latest, GPT-5.6 Luna', 'Extraction, classification, summaries, monitoring, formatting and routing'], ['Tier 2 — Skilled agents', '12–25%', 'Claude Sonnet 5, GPT-5.6 Terra, Gemini 3.7 Flash, Seed-2.0-Code, DeepSeek V4 Pro 0813', 'Coding, planning, analysis, content and workflow decisions'], ['Tier 3 — Expert escalation', '2–5%', 'Claude Fable Latest, Claude Opus 5, GPT-5.6 Sol, Qwen3.8 Max', 'Critical reasoning, complex debugging, architecture and final verification'],
+          ['Tier 1 — Bulk workers', '70–85%', 'Qwen3 Coder, GPT-5-mini, Gemini 2.5 Flash', 'Extraction, classification, summaries, monitoring, formatting and cheap coding turns'], ['Tier 2 — Skilled agents', '12–25%', 'GPT-5, Gemini 2.5 Pro, Kimi K2', 'Planning, premium analysis, stronger coding and workflow decisions'], ['Tier 3 — Expert escalation', '2–5%', 'Claude Sonnet 4, Claude Opus 4.1', 'Critical reasoning, difficult debugging, architecture and final verification'],
         ]
       },
       {
@@ -1329,11 +1324,11 @@
         description: 'Why routing beats using one expensive model for everything.',
         cardFields: ['Deployment strategy', 'Standard workload', 'Heavy monthly workload'],
         rows: [
-          ['Everything through Claude Fable Latest', '₹2,148.83', '₹2,14,882.83'], ['Everything through Claude Opus 5', '₹1,074.41', '₹1,07,441.42'], ['Everything through Claude Sonnet 5', '₹429.77', '₹42,976.57'], ['60% Qwen3.7 Flash + 25% DeepSeek V4 Pro 0813 + 13% Claude Sonnet 5 + 2% Claude Fable routing', 'Approximately ₹79.81', 'Approximately ₹7,981.44'],
+          ['Everything through Claude Opus 4.1', '₹3,223.13', '₹3,22,312.50'], ['Everything through Claude Sonnet 4', '₹644.63', '₹64,462.50'], ['Everything through GPT-5 / Gemini 2.5 Pro', '₹358.13', '₹35,812.50'], ['60% Qwen3 Coder + 25% GPT-5-mini + 13% GPT-5 + 2% Claude Opus 4.1 routing', 'Approximately ₹160.44', 'Approximately ₹16,044.25'],
         ],
         secondaryTitle: 'Estimated savings from routing',
         secondaryFields: ['Compared with', 'Approximate saving'],
-        secondaryRows: [ ['Using Claude Fable Latest for everything', '96.3%'], ['Using Claude Opus 5 for everything', '92.6%'], ['Using Claude Sonnet 5 for everything', '81.4%'] ]
+        secondaryRows: [ ['Using Claude Opus 4.1 for everything', '95.0%'], ['Using Claude Sonnet 4 for everything', '75.1%'], ['Using GPT-5 / Gemini 2.5 Pro for everything', '55.2%'] ]
       },
       {
         id: 'final-recommendations',
@@ -1341,12 +1336,12 @@
         description: 'The final recommended system positions, model picks, and costs.',
         cardFields: ['Position in the system', 'Recommended model', 'Approximate standard-workload cost'],
         rows: [
-          ['Cheapest background worker', 'Solar Pro 4 or Qwen3.7 Flash', '₹5.73–₹5.97'], ['Reliable economical worker', 'DeepSeek V4 Flash Latest or GPT-5.6 Luna', '₹8.64–₹23.88'], ['Low-cost reasoning model', 'DeepSeek V4 Pro 0813', '₹62.32'], ['Economical coding agent', 'Seed-2.0-Code or Qwen3.8 27B', '₹119.38'], ['Multimodal high-volume agent', 'Gemini 3.7 Flash', '₹80.58'], ['Balanced premium agent', 'Claude Sonnet 5', '₹429.77'], ['Balanced OpenAI agent', 'GPT-5.6 Terra', '₹238.76'], ['Advanced coding escalation', 'Claude Opus 5 or GPT-5.6 Sol', '₹1,074.41–₹1,193.79'], ['Highest-stakes reasoning', 'GPT-5.6 Sol or Claude Fable Latest', '₹1,193.79–₹2,148.83'], ['Temporary local-model testing', 'Vast.ai or RunPod', '₹12.38–₹65.70 per hour'], ['Long-running private local model', 'Purchase a modern NVIDIA workstation', 'Fixed capital expense instead of recurring token charges'],
+          ['Cheapest paid coding/background worker', 'Qwen3 Coder', '₹52.53'], ['Reliable economical worker', 'GPT-5-mini or Gemini 2.5 Flash', '₹71.62–₹88.34'], ['Low-cost reasoning model', 'Kimi K2', '₹109.35'], ['Economical coding agent', 'Qwen3 Coder', '₹52.53'], ['Multimodal high-volume agent', 'Gemini 2.5 Flash', '₹88.34'], ['Balanced premium agent', 'GPT-5 or Gemini 2.5 Pro', '₹358.13'], ['Premium Anthropic escalation', 'Claude Sonnet 4', '₹644.63'], ['Highest-stakes reasoning', 'Claude Opus 4.1', '₹3,223.13'], ['Temporary local-model testing', 'Vast.ai or RunPod', '₹12.38–₹65.70 per hour'], ['Long-running private local model', 'Purchase a modern NVIDIA workstation', 'Fixed capital expense instead of recurring token charges'],
         ],
         extra: [
-          'Use Solar Pro 4, Qwen3.7 Flash, DeepSeek V4 Flash Latest or GPT-5.6 Luna for repetitive high-volume tasks.',
-          'Escalate coding and planning to Seed-2.0-Code, Qwen3.8 27B, Gemini 3.7 Flash, GPT-5.6 Terra or Claude Sonnet 5.',
-          'Use Claude Opus 5, GPT-5.6 Sol or Claude Fable Latest only when the lower-cost models cannot solve the task reliably.',
+          'Use Qwen3 Coder, GPT-5-mini or Gemini 2.5 Flash for repetitive high-volume tasks.',
+          'Escalate coding and planning to GPT-5, Gemini 2.5 Pro or Claude Sonnet 4 only when the worker tier stops being reliable enough.',
+          'Use Claude Opus 4.1 only when the lower-cost tiers cannot solve the task reliably and the stakes justify the spend.',
           'Rent a cloud GPU only for open-weight models, experiments, privacy-sensitive work or continuously utilised inference.',
           'Consider purchasing a local NVIDIA workstation only after the recurring cloud and API bill consistently approaches the monthly ownership cost.',
           'The strongest cost-saving method is therefore intelligent model routing, not automatically replacing every paid API with an expensive local or cloud GPU.',
@@ -1358,7 +1353,7 @@
         description: 'Different products called “routers” solve different parts of the cost and model-selection problem.',
         cardFields: ['Category', 'What it actually does', 'Example', 'Best use', 'Main trade-off'],
         rows: [
-          ['Intelligent model router', 'Examines the task and predicts which model can handle it', 'OpenRouter Auto Beta, Not Diamond, LiteLLM Auto Router', 'Choose cheaper or stronger models dynamically for each task', 'May still need a gateway, cache and validation around it'],
+          ['Intelligent model router', 'Examines the task and predicts which model can handle it', 'OpenRouter Auto, Not Diamond, LiteLLM Auto Router', 'Choose cheaper or stronger models dynamically for each task', 'May still need a gateway, cache and validation around it'],
           ['AI gateway', 'Gives one API for many models, with failover, budgets and provider routing', 'Portkey, Vercel AI Gateway, Requesty', 'Governance, failover, provider routing and observability', 'A gateway is not automatically a semantic model selector'],
           ['Token-optimization layer', 'Reduces, caches or compresses the tokens sent to models', 'LLMLingua, semantic cache, prompt caching', 'Cut actual token volume and repeated calls', 'Does not by itself decide which model is best for a task'],
         ]
@@ -1369,7 +1364,7 @@
         description: 'Best free, open-source and paid routers compared by learning ability, flexibility and deployment style.',
         cardFields: ['Router', 'Category', 'Free / open-source status', 'Cross-provider models', 'Custom learning', 'Token reduction built in', 'Pricing position', 'Best use', 'Main limitation'],
         rows: [
-          ['OpenRouter Auto Beta', 'Managed intelligent router and gateway', 'Managed; router itself free', 'Yes', 'Limited configuration; not privately trained on your results', 'Prompt and response caching are separate features', 'No extra router fee; selected-model cost applies', 'Fastest zero-code way to begin automatic routing', 'Most used for a task is not always best for your exact workflow'],
+          ['OpenRouter Auto', 'Managed intelligent router and gateway', 'Managed; router itself free', 'Yes', 'Limited configuration; not privately trained on your results', 'Prompt and response caching are separate features', 'No extra router fee; selected-model cost applies', 'Fastest zero-code way to begin automatic routing', 'Most used for a task is not always best for your exact workflow'],
           ['Not Diamond', 'Dedicated learned model selector', 'Free tier plus paid SaaS', 'Yes', 'Yes — custom routers from your evaluation data', 'Joint prompt optimisation; caching comes from gateway/provider', '100K routing decisions/month free, then paid', 'Best custom quality-versus-cost router', 'Recommends the model rather than acting as the full gateway'],
           ['LiteLLM Auto Routing', 'Self-hosted intelligent router and gateway', 'Open-source and self-hostable', 'Yes', 'Adaptive routing can learn from feedback', 'Prompt compression and caching are separate LiteLLM features', 'No router licence cost for self-hosting', 'Best flexible open-source production foundation', 'Needs careful evaluation and configuration for newer auto-routing features'],
           ['LiteLLM Adaptive Router', 'Feedback-learning router', 'Open-source beta', 'Yes', 'Yes', 'No direct reduction by routing alone', 'Infrastructure and model costs only', 'Best when model effectiveness changes by task type', 'Beta and depends on reliable feedback signals'],
@@ -1392,7 +1387,7 @@
           ['Semantic Router', '₹0', 'Embeddings and destination models', 'Can run fully local with local embeddings', 'Best lightweight fully local routing', 'Intent routing is not the same as learned quality routing'],
           ['NVIDIA LLM Router', '₹0', 'Router CPU/GPU and destination models', 'Experimental development blueprint', 'Best NVIDIA-centric experimental router', 'Still requires your own deployment work'],
           ['Plano', '₹0 self-hosted software', 'Infrastructure and model costs', 'Broader agent data plane, not just a router', 'Best for agent routing plus observability', 'Heavier architecture than simple drop-in routers'],
-          ['OpenRouter Auto Beta', '₹0 additional router fee', 'Pay for selected model', 'Managed routing is free but inference is not', 'Best easiest managed router test', 'Quality depends on generic task-type routing'],
+          ['OpenRouter Auto', '₹0 additional router fee', 'Pay for selected model', 'Managed routing is free but inference is not', 'Best easiest managed router test', 'Quality depends on generic task-type routing'],
           ['OpenRouter Free Router', '₹0', '₹0 for available free models', 'Chooses compatible free models, not always best-quality ones', 'Best for experimentation and demos', 'Not dependable as the highest-quality selector'],
           ['Not Diamond Discovery', 'First 100K routing decisions free', 'Destination models billed separately', 'Free recommendation layer, not free inference', 'Best for learning custom routing cheaply at first', 'Paid quickly at scale'],
           ['Requesty Free', '₹0 plan', 'Free models only on the free tier', '200 free-model requests/day style experimentation', 'Best for quick experiments', 'Too small for serious agent workloads'],
@@ -1437,7 +1432,7 @@
         description: 'Quick selection guide for different environments and constraints.',
         cardFields: ['Requirement', 'Rank 1', 'Rank 2', 'Cost observation'],
         rows: [
-          ['Easiest immediate setup', 'OpenRouter Auto Beta', 'Not Diamond', 'One OpenAI-compatible API and no router surcharge'],
+          ['Easiest immediate setup', 'OpenRouter Auto', 'Not Diamond', 'One OpenAI-compatible API and no router surcharge'],
           ['Best free self-hosted system', 'LiteLLM Auto Routing', 'Semantic Router + LiteLLM', 'Most complete open-source production foundation'],
           ['Best custom learned routing', 'Not Diamond Custom Router', 'LiteLLM Adaptive Router', 'Learns from your own evaluations instead of public assumptions'],
           ['Best fully local / offline routing', 'Semantic Router', 'NVIDIA LLM Router', 'Great when privacy and local inference matter most'],
@@ -1446,7 +1441,7 @@
           ['Best AWS-native option', 'Bedrock Intelligent Prompt Routing', 'LiteLLM on Bedrock', 'Easy AWS integration but same-family restriction matters'],
           ['Best multi-agent data plane', 'Plano', 'LiteLLM + agent framework', 'Best when routing, traces and guardrails live together'],
           ['Best gateway and governance', 'Portkey', 'Requesty', 'Strong budgets, policies and observability'],
-          ['Best zero-code experimentation', 'OpenRouter Auto Beta', 'OpenRouter Free Router', 'Fastest way to try task-aware routing without infra'],
+          ['Best zero-code experimentation', 'OpenRouter Auto', 'OpenRouter Free Router', 'Fastest way to try task-aware routing without infra'],
         ]
       },
       {
@@ -1456,7 +1451,7 @@
         cardFields: ['Layer', 'Suggested tool or tier', 'Primary job', 'Best use', 'Main trade-off'],
         rows: [
           ['Gateway layer', 'LiteLLM Proxy on Ubuntu', 'Unified API for local and paid models', 'Permanent control layer for Hermes, agents and workflows', 'You operate the proxy and policy stack yourself'],
-          ['Managed backup router', 'OpenRouter Auto Beta', 'Fallback managed task router', 'Unknown or ad-hoc tasks when you want zero-code coverage', 'Generic routing logic is not custom to your workflows'],
+          ['Managed backup router', 'OpenRouter Auto', 'Fallback managed task router', 'Unknown or ad-hoc tasks when you want zero-code coverage', 'Generic routing logic is not custom to your workflows'],
           ['Custom learned router', 'Not Diamond or LiteLLM Adaptive Router', 'Learn from your own task results', 'Optimised production once evaluation data exists', 'Needs feedback collection and quality labels'],
           ['Local routing layer', 'Semantic Router', 'Fast local intent routing', 'Offline, private or deterministic task splitting', 'Intent routing does not automatically equal best answer quality'],
           ['Local inference layer', 'Ollama initially, vLLM later', 'Run local models for cheap/private tasks', 'Tier 1 local classification, summaries and extraction', 'Concurrency and hardware ceilings matter'],
@@ -1474,7 +1469,7 @@
           ['Tier 4 — Frontier', 'Sparse escalation layer', 'Highest-capability model', 'Critical decisions, unresolved debugging and final review'],
         ],
         extra: [
-          'Best immediate managed option: OpenRouter Auto Beta.',
+          'Best immediate managed option: OpenRouter Auto.',
           'Best long-term permanent control layer: LiteLLM Auto or Adaptive Routing.',
           'Biggest savings come from router + prompt caching + response caching + context pruning + output limits.',
           'A router alone usually cuts cost per token, not total token volume.',
@@ -1521,7 +1516,7 @@
         cardFields: ['Work type', 'Preferred router', 'Best use', 'Main trade-off'],
         rows: [
           ['General mixed work', 'LiteLLM Auto Router', 'Maximum self-hosted control across broad mixed workloads', 'Needs thoughtful pool setup and feedback loops'],
-          ['Unknown or unclassified prompts', 'OpenRouter Auto Beta', 'Discovers task classes quickly and adapts as community usage shifts', 'Aggregate behaviour is not the same as your private workflow truth'],
+          ['Unknown or unclassified prompts', 'OpenRouter Auto', 'Discovers task classes quickly and adapts as community usage shifts', 'Aggregate behaviour is not the same as your private workflow truth'],
           ['Coding', 'OpenRouter Pareto Code', 'Continuously updated coding-specific routing and value selection', 'Coding leaderboards can shift rapidly and must be rechecked often'],
           ['Repeated production workloads', 'Not Diamond Custom Router', 'Learns your own success data and private preferences', 'Becomes valuable only after enough representative eval data exists'],
           ['Deterministic business rules', 'LiteLLM keywords / policy rules', 'Zero classifier cost and fully explicit routing', 'Rules can become stale if task taxonomy changes'],
@@ -1540,8 +1535,8 @@
         rows: [
           ['Default coding route', 'OpenRouter Pareto Code', 'Cheapest eligible model within the current coding-quality tier', 'Whenever coding benchmark leaders or value leaders change'],
           ['Small function / obvious fix', 'Pareto Low / Medium pool', 'Avoids overspending on routine programming work', 'If cheaper models begin failing tests or tool use'],
-          ['Repo-wide reasoning', 'Pareto High pool + Claude Opus 5 / GPT-5.6 Sol candidates', 'Large-repo and architecture tasks need deeper coding specialists', 'When WebDev or coding-agent leaderboards materially shift'],
-          ['Reference-to-UI work', 'Qwen3.8 Max / GPT Sol / Opus-class frontend pool', 'UI reproduction is a different subdomain from generic coding', 'When reference-based design leaders or webdev leaders change'],
+          ['Repo-wide reasoning', 'Pareto High pool + GPT-5 / Claude Sonnet 4 candidates', 'Large-repo and architecture tasks need deeper coding specialists', 'When WebDev or coding-agent leaderboards materially shift'],
+          ['Reference-to-UI work', 'Gemini 2.5 Pro / GPT-5 / Claude Sonnet 4 frontend pool', 'UI reproduction is a different subdomain from generic coding', 'When reference-based design leaders or webdev leaders change'],
           ['Security-sensitive code', 'Strong model + independent review', 'False confidence is too costly in risky code paths', 'Whenever verifier performance or top secure-code models change'],
         ],
         secondaryTitle: 'Current Pareto-code lesson',
@@ -1563,11 +1558,11 @@
         cardFields: ['Tier', 'Purpose', 'Primary candidates today', 'Approximate position', 'Re-evaluate when'],
         rows: [
           ['T0', 'No LLM required', 'Code, SQL, rules, cache', 'Essentially free', 'A task can be solved deterministically or served from cache'],
-          ['T1 Ultra-Economy', 'Bulk work', 'Solar Pro 4, Qwen3.7 Flash, DeepSeek V4 Flash Latest, smaller local models', 'Extremely cheap', 'A new model materially wins cost-per-success for high-volume worker tasks'],
-          ['T2 Economy+', 'Reasoning at scale', 'DeepSeek V4 Pro 0813, Seed-2.0-Code, Gemini 3.7 Flash', 'High capability per rupee', 'Benchmarks or internal results shift the value frontier'],
-          ['T3 Balanced', 'Professional work', 'GPT-5.6 Terra, Gemini 3.7 Flash, selected Claude tier', 'More reliability and tooling', 'Tool use, latency or quality rankings meaningfully change'],
-          ['T4 Specialist', 'Coding, research, vision and domain specialists', 'Qwen3.8 Max, Opus 5, GPT-5.6 Sol and specialist pools', 'Use when category warrants', 'A specialist leaderboard moves or a new domain leader appears'],
-          ['T5 Frontier', 'Difficult or high-risk work', 'Claude Fable Latest, Claude Opus 5, GPT-5.6 Sol', 'Maximum capability', 'A challenger proves stronger and durable on hard tasks'],
+          ['T1 Ultra-Economy', 'Bulk work', 'Qwen3 Coder, GPT-5-mini, Gemini 2.5 Flash, smaller local models', 'Extremely cheap', 'A new model materially wins cost-per-success for high-volume worker tasks'],
+          ['T2 Economy+', 'Reasoning at scale', 'Kimi K2, Gemini 2.5 Flash, GPT-5-mini', 'High capability per rupee', 'Benchmarks or internal results shift the value frontier'],
+          ['T3 Balanced', 'Professional work', 'GPT-5, Gemini 2.5 Pro, selected Claude tier', 'More reliability and tooling', 'Tool use, latency or quality rankings meaningfully change'],
+          ['T4 Specialist', 'Coding, research, vision and domain specialists', 'Qwen3 Coder, GPT-5, Gemini 2.5 Pro and specialist pools', 'Use when category warrants', 'A specialist leaderboard moves or a new domain leader appears'],
+          ['T5 Frontier', 'Difficult or high-risk work', 'Claude Sonnet 4, Claude Opus 4.1, GPT-5', 'Maximum capability', 'A challenger proves stronger and durable on hard tasks'],
           ['T6 Consensus', 'Being wrong is very costly', '2–3 independent T4/T5 models + judge', 'Maximum confidence, high cost', 'Verifier or consensus economics improve enough to justify use'],
         ]
       },
@@ -1577,14 +1572,14 @@
         description: 'Decision-ready routing guidance for common work categories so the page stays useful as benchmarks update.',
         cardFields: ['Work category', 'Economy default', 'Balanced / escalation', 'Maximum-quality route', 'Decision rule'],
         rows: [
-          ['Simple classification and tagging', 'Qwen3.7 Flash / DeepSeek V4 Flash Latest', 'Gemini 3.7 Flash or GPT-5.6 Luna', '—', 'Never spend frontier pricing on routine labels or schema-safe extraction'],
-          ['Long summarisation and document understanding', 'Gemini 3.7 Flash', 'GPT-5.6 Terra', 'Claude Opus 5 / Claude Fable Latest', 'Route by document size, modality and risk rather than by vendor loyalty'],
-          ['Research and web synthesis', 'Gemini 3.7 Flash + retrieval', 'GPT-5.6 Terra / Qwen3.8 Max', 'Claude Fable Latest / Opus + verifier', 'Ground first, then escalate for synthesis or recommendation quality'],
-          ['Coding and repository work', 'DeepSeek V4 Pro 0813 / Seed-2.0-Code', 'Qwen3.8 27B / Pareto Code specialist pool', 'Claude Opus 5 / GPT-5.6 Sol', 'Use coding-specific routing instead of generic text rankings'],
-          ['Agentic automation and tool orchestration', 'DeepSeek V4 Pro 0813 / Seed-2.0-Code', 'GPT-5.6 Terra / Qwen3.8 27B', 'Fable / Opus / GPT Sol supervisor', 'Cheap models should be workers; frontier models should supervise, verify and handle exceptions'],
-          ['Business and financial analysis', 'DeepSeek V4 Pro 0813', 'GPT-5.6 Terra / Qwen3.8 Max', 'Claude Fable Latest / GPT-5.6 Sol + deterministic calculations', 'Optimize for cost per successful analysis, not price per million tokens'],
-          ['Writing, brand voice and public comms', 'DeepSeek V4 Pro 0813 / Gemini 3.7 Flash', 'GPT-5.6 Terra', 'Claude Fable Latest', 'Pay premium only when copy quality and reputation matter materially'],
-          ['Vision and screenshot analysis', 'Gemini 3.7 Flash', 'GPT-5.6 Terra', 'Claude Fable Latest / Opus 5', 'Use Gemini as worker when value matters, then escalate for harder visual reasoning'],
+          ['Simple classification and tagging', 'Qwen3 Coder / GPT-5-mini', 'Gemini 2.5 Flash', '—', 'Never spend frontier pricing on routine labels or schema-safe extraction'],
+          ['Long summarisation and document understanding', 'Gemini 2.5 Flash', 'Gemini 2.5 Pro / GPT-5', 'Claude Sonnet 4 / Claude Opus 4.1', 'Route by document size, modality and risk rather than by vendor loyalty'],
+          ['Research and web synthesis', 'Gemini 2.5 Flash + retrieval', 'GPT-5 / Gemini 2.5 Pro', 'Claude Sonnet 4 / Opus + verifier', 'Ground first, then escalate for synthesis or recommendation quality'],
+          ['Coding and repository work', 'Qwen3 Coder', 'GPT-5 / Pareto Code specialist pool', 'Claude Sonnet 4 / Claude Opus 4.1', 'Use coding-specific routing instead of generic text rankings'],
+          ['Agentic automation and tool orchestration', 'GPT-5-mini / Qwen3 Coder', 'GPT-5 / Gemini 2.5 Pro', 'Claude Sonnet 4 / Opus supervisor', 'Cheap models should be workers; premium models should supervise, verify and handle exceptions'],
+          ['Business and financial analysis', 'Kimi K2', 'GPT-5 / Gemini 2.5 Pro', 'Claude Sonnet 4 / Claude Opus 4.1 + deterministic calculations', 'Optimize for cost per successful analysis, not price per million tokens'],
+          ['Writing, brand voice and public comms', 'Gemini 2.5 Flash / GPT-5-mini', 'GPT-5', 'Claude Sonnet 4', 'Pay premium only when copy quality and reputation matter materially'],
+          ['Vision and screenshot analysis', 'Gemini 2.5 Flash', 'GPT-5 / Gemini 2.5 Pro', 'Claude Sonnet 4 / Claude Opus 4.1', 'Use Gemini as worker when value matters, then escalate for harder visual reasoning'],
           ['Image / video / audio', 'Separate media routers', 'Separate media routers', 'Separate media routers', 'Do not force the text router to choose image, video or speech models'],
           ['Private or sensitive work', 'Local-only pool', 'Approved private-cloud pool', 'Human-reviewed escalation', 'Privacy classification overrides benchmark leadership'],
         ]
@@ -1649,14 +1644,14 @@
         description: 'A practical starter configuration should use stable capability bands plus specialist overrides so cron-driven model swaps remain safe.',
         cardFields: ['Route or override', 'Candidate pool', 'Best use', 'Main trade-off'],
         rows: [
-          ['SIMPLE', 'Qwen3.7 Flash / DeepSeek V4 Flash Latest / local economical model', 'Cheap worker tasks and high-volume low-risk automation', 'Important outputs still need verification or schema checks'],
-          ['MEDIUM', 'DeepSeek V4 Pro 0813 / Gemini 3.7 Flash', 'Economical reasoning, multimodal processing and general workhorse usage', 'May still underperform on the hardest planning or coding tasks'],
-          ['COMPLEX', 'Seed-2.0-Code / GPT-5.6 Terra / Qwen3.8 27B', 'Coding, planning, deeper analysis and stronger tool workflows', 'More expensive, so this tier should not absorb routine requests'],
-          ['REASONING', 'GPT-5.6 Sol / Claude Fable Latest / Claude Opus 5', 'High-risk decisions, unresolved debugging and final reviews', 'Premium tier must stay sparse'],
+          ['SIMPLE', 'Qwen3 Coder / GPT-5-mini / local economical model', 'Cheap worker tasks and high-volume low-risk automation', 'Important outputs still need verification or schema checks'],
+          ['MEDIUM', 'Gemini 2.5 Flash / Kimi K2', 'Economical reasoning, multimodal processing and general workhorse usage', 'May still underperform on the hardest planning or coding tasks'],
+          ['COMPLEX', 'GPT-5 / Gemini 2.5 Pro / Qwen3 Coder coding pool', 'Coding, planning, deeper analysis and stronger tool workflows', 'More expensive, so this tier should not absorb routine requests'],
+          ['REASONING', 'Claude Sonnet 4 / Claude Opus 4.1 / GPT-5', 'High-risk decisions, unresolved debugging and final reviews', 'Premium tier must stay sparse'],
           ['coding=true', 'Pareto Code specialist pool', 'Dynamic coding-specific selection', 'Needs its own benchmark-watch loop'],
           ['frontend=true', 'Kimi / Opus-class frontend pool', 'WebDev and reference-to-UI work', 'WebDev leadership can shift independently of generic coding'],
           ['long_document=true', 'Gemini / Claude document pool', 'Large PDFs, long reports and multi-page multimodal work', 'Context size alone should not justify premium escalation'],
-          ['vision=true', 'Gemini Flash / Fable vision pool', 'Screenshots, charts and multimodal QA', 'Vision leaders can differ from text leaders'],
+          ['vision=true', 'Gemini 2.5 Flash / Claude Sonnet 4 vision pool', 'Screenshots, charts and multimodal QA', 'Vision leaders can differ from text leaders'],
           ['local_only=true', 'Local model pool', 'Privacy-first or no-network work', 'Smaller pool and operational overhead'],
           ['risk=critical', 'Frontier + verifier', 'Important conclusions where being wrong is costly', 'Latency and spend rise sharply'],
           ['repeated=true', 'Cache before model', 'High-repeat business and support workloads', 'Requires clean cache invalidation boundaries'],
@@ -1932,7 +1927,7 @@
         id: 'repo-discovery-sites',
         title: '41. Best GitHub Repository Discovery Sites Today',
         description: 'There is no trustworthy universal 5-star rating for GitHub repositories. Better discovery combines momentum, adoption, project health and security.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['My rank', 'Platform', 'Best at', 'Trend power', 'Analytics depth', 'Health / security value', 'Overall usefulness'],
         rows: [
           ['1', 'Trendshift', 'Finding repositories while they are starting to explode', 'Excellent', 'Strong', 'Moderate', '9.5/10'],
@@ -1955,7 +1950,7 @@
         id: 'repo-source-by-segment',
         title: '42. Best Sources by Software Segment',
         description: 'Different software segments need different repo-discovery stacks. The best source for AI agents is not the same as the best source for cloud-native infra or web UI libraries.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Segment', 'Best discovery source', 'Second source', 'Third source', 'Validation gate'],
         rows: [
           ['AI agents', 'Trendshift', 'GitHub Topics', 'OSS Insight', 'GitHub activity + security review'],
@@ -1976,7 +1971,7 @@
         id: 'repo-quality-score',
         title: '43. Repository Quality Score /100',
         description: 'The page should not trust stars alone. Repositories deserve a weighted score that blends momentum, adoption, health and trust.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Recent star momentum', '15', 'Measures what is becoming important now rather than what was historically popular'],
@@ -2005,7 +2000,7 @@
         id: 'repo-stars-warning',
         title: '44. Why Stars Alone Fail',
         description: 'A repository with huge historic stars can still be a worse choice than a smaller project with stronger growth, healthier maintenance and better security.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Repository profile', 'Stars', 'Momentum', 'Maintenance health', 'Security / trust', 'Practical reading'],
         rows: [
           ['Legacy popular but slowing', '100K', 'About +100 per month', 'Few contributors, stale releases, large unresolved issue pile', 'Weak security posture', 'Do not assume this is the better deployment choice'],
@@ -2022,7 +2017,7 @@
         id: 'repo-radar-workflow',
         title: '45. GitHub Repo Radar Workflow',
         description: 'The useful workflow is to discover what is rising, confirm momentum, compare alternatives, validate health, then check security before installing anything.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Step', 'What to do', 'Best source stack', 'Decision output'],
         rows: [
           ['1', 'Discover what is rising', 'Trendshift', 'Initial candidate list'],
@@ -2040,7 +2035,7 @@
         id: 'repo-radar-leaderboard',
         title: '46. GitHub Repo Radar Leaderboard Logic',
         description: 'This leaderboard should keep changing when trend, adoption, health or security signals shift. It should never be frozen to total stars or one-time hype.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Category', 'Leaderboard should watch', 'Primary source stack', 'When leader should change', 'Security gate', 'Current score'],
         rows: [
           ['AI agents', 'Rising open agent repos and tools', 'Trendshift + GitHub Topics + OSS Insight', 'When 7-day momentum, contributor growth and health beat the current leader', 'OpenSSF + manual audit', '91/100'],
@@ -2060,7 +2055,7 @@
         id: 'mcp-vs-a2a-automation',
         title: '47. MCP vs A2A vs Automation',
         description: 'These are complementary layers, not substitutes. MCP gives capabilities, A2A gives inter-agent collaboration, and automation platforms run repeatable workflows.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Technology', 'Connection', 'What it is for', 'Best example', 'Decision rule'],
         rows: [
           ['MCP', 'Agent ↔ tool/data', 'Gives an agent capabilities', 'GitHub, Gmail, PostgreSQL, browser, CRM', 'Use MCP when an agent needs tools or data access'],
@@ -2078,7 +2073,7 @@
         id: 'mcp-discovery-ranking',
         title: '48. Best Places to Discover MCP Servers',
         description: 'MCP is large enough that popularity alone is no longer safe. The best stack combines trending discovery, broad search, security scoring and official verification.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Rank', 'Source', 'Signal', 'Security signal', 'Best use', 'Current score'],
         rows: [
           ['1', 'Glama', '65K+ broad registry search', 'Strong quality/safety scoring', 'Best broad searchable MCP registry', '97/100'],
@@ -2100,7 +2095,7 @@
         id: 'mcp-work-category-map',
         title: '49. Best MCP Source by Work Category',
         description: 'Different MCP categories need different discovery sources. Browser, payments, security and enterprise SaaS should not be sourced the same way.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Work category', 'Best first source', 'Alternative', 'Preferred rule', 'Current score'],
         rows: [
           ['GitHub / coding / dev tools', 'Docker MCP', 'Official Registry', 'Official publisher first', '92/100'],
@@ -2118,7 +2113,7 @@
         id: 'universal-mcp-platforms',
         title: '50. Universal MCP Platforms',
         description: 'Universal connectors are becoming more important because they expose thousands of applications without forcing the model to load dozens of separate single-purpose servers.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Rank', 'Platform', 'Apps / tools', 'Free availability', 'Best use', 'Current score'],
         rows: [
           ['1', 'Composio Connect', '1,000+ apps', '20K tool calls/month free', 'Best agent-native dynamic application actions', '94/100'],
@@ -2136,7 +2131,7 @@
         id: 'mcp-scoring',
         title: '51. How to Rank an MCP',
         description: 'MCP discovery should be stricter than GitHub-star browsing because vulnerable or hijackable servers can create real security and data-exfiltration risks.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Official/verified publisher', '15%', 'Publisher authenticity matters before granting tool access'],
@@ -2160,7 +2155,7 @@
         id: 'a2a-discovery-stack',
         title: '52. Best Places to Discover A2A Agents',
         description: 'A2A discovery is still early. The best approach is to start from official protocol sources and treat public registries as discovery aids rather than mature leaderboards.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Rank', 'Source', 'What it contains', 'Trending signal', 'Best use', 'Current score'],
         rows: [
           ['1', 'Official A2A Project GitHub', 'Protocol, SDKs, TCK, Inspector, samples', 'GitHub activity', 'Source of truth', '92/100'],
@@ -2178,7 +2173,7 @@
         id: 'a2a-scoring',
         title: '53. How to Rank an A2A Agent',
         description: 'Because A2A reviews are still sparse, stars and reviews should be secondary. The strongest long-term metric is cost per successful delegated job.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Task success rate', '25%', 'Actual delegated completion matters more than marketing claims'],
@@ -2199,7 +2194,7 @@
         id: 'automation-platform-comparison',
         title: '54. Automation Platform Comparison',
         description: 'Automation discovery is different again: here official template ecosystems and creator verification matter more than random marketplace bundles.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Platform', 'Type', 'Free', 'Open-source status', 'Best ecosystem signal', 'Best for'],
         rows: [
           ['n8n', 'Visual automation + AI', 'Self-host free', 'Fair-code / source-available, not truly OSS', '11K+ workflow templates', 'Powerful AI and business workflows'],
@@ -2222,7 +2217,7 @@
         id: 'workflow-template-sources',
         title: '55. Best Workflow Libraries and Template Sources',
         description: 'For workflow discovery, official libraries are usually the strongest source because they combine search, maintained examples and increasingly better trust signals.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Workflow source', 'Best current signal', 'Why it wins', 'Current score'],
         rows: [
           ['n8n Workflow Library', '11,013 official/community workflows', 'Best starting point for technical AI/business workflow discovery', '95/100'],
@@ -2243,7 +2238,7 @@
         id: 'automation-platform-segment-map',
         title: '56. Best Automation Platform by Segment',
         description: 'The best automation platform depends on whether the goal is SaaS simplicity, visual branching, self-hosting, orchestration, developer APIs, IoT or web-data work.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Segment', 'Winner', 'Alternative', 'Why'],
         rows: [
           ['Easiest no-code automation', 'Zapier', 'Make', 'Massive integration ecosystem and low learning curve'],
@@ -2264,7 +2259,7 @@
         id: 'weekly-monitoring-stack',
         title: '57. Weekly Monitoring Stack for MCP, A2A and Automation',
         description: 'These ecosystems move quickly enough that the page should keep tracking weekly movers, trusted template sources and new connector/registry shifts instead of staying frozen.',
-        updated: 'Updated 16 Aug 2026',
+        updated: 'Updated 20 Aug 2026',
         cardFields: ['Need', 'Best weekly source', 'How to use it', 'Change rule'],
         rows: [
           ['Trending MCPs', 'PulseMCP', 'Scan weekly leaders and new movers first', 'Promote only after MCPpedia + Official Registry / Docker checks'],
@@ -2452,8 +2447,8 @@
       if (favoriteKeys.has(card.dataset.compareKey)) score += 1000;
       if (hay.includes('qwen3.7 flash') || hay.includes('deepseek v4 flash latest')) score += 120;
       if (hay.includes('seed-2.0-code') || hay.includes('qwen3.8 27b')) score += 110;
-      if (hay.includes('claude sonnet 5')) score += 100;
-      if (hay.includes('gpt-5.6 sol') || hay.includes('claude fable latest')) score += 90;
+      if (hay.includes('gpt-5') || hay.includes('gemini 2.5 pro')) score += 100;
+      if (hay.includes('claude sonnet 4') || hay.includes('claude opus 4.1')) score += 90;
       if (hay.includes('vast.ai') || hay.includes('runpod')) score += 80;
       score -= parseCurrency(card.dataset.standard) / 1000;
       return score;
@@ -2516,7 +2511,7 @@
       const monthly = fields.includes('Heavy monthly workload') ? row[fields.indexOf('Heavy monthly workload')] : '';
       const context = fields.includes('Context') ? row[fields.indexOf('Context')] : (fields.includes('Context / maximum output') ? row[fields.indexOf('Context / maximum output')] : '');
       const bestFor = row[fields.indexOf('Best suited for')] || row[fields.indexOf('Best use')] || row[fields.indexOf('Reason')] || row[fields.indexOf('Tasks')] || row[fields.indexOf('Recommended model types')] || row[fields.indexOf('Rank 1')] || row[fields.indexOf('Recommended model')] || '';
-      const tradeoff = row[fields.indexOf('Main limitation')] || row[fields.indexOf('Main trade-off')] || row[fields.indexOf('Main issue')] || row[fields.indexOf('Cost observation')] || row[fields.indexOf('Rank 2')] || row[fields.indexOf('Approximate monthly cost')] || row[fields.indexOf('Approximate cost versus Qwen3.7 Flash')] || row[fields.indexOf('Approximate cost versus DeepSeek V4 Flash')] || row[fields.indexOf('Price category')] || row[fields.indexOf('Heavy monthly workload')] || '';
+      const tradeoff = row[fields.indexOf('Main limitation')] || row[fields.indexOf('Main trade-off')] || row[fields.indexOf('Main issue')] || row[fields.indexOf('Cost observation')] || row[fields.indexOf('Rank 2')] || row[fields.indexOf('Approximate monthly cost')] || row[fields.indexOf('Approximate cost versus Qwen3 Coder')] || row[fields.indexOf('Approximate cost versus Qwen3.7 Flash')] || row[fields.indexOf('Approximate cost versus DeepSeek V4 Flash')] || row[fields.indexOf('Price category')] || row[fields.indexOf('Heavy monthly workload')] || '';
       const tier = getTier(section, row);
       const compareKey = `${section.id}::${title}`;
 

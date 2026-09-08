@@ -1057,7 +1057,6 @@
     const tocShell = document.getElementById('tocShell');
     const recommendedGrid = document.getElementById('recommendedGrid');
     const freshnessGrid = document.getElementById('freshnessGrid');
-    const launchRadarGrid = document.getElementById('launchRadarGrid');
     const repoWinnerGrid = document.getElementById('repoWinnerGrid');
     const launchRadarGrid = document.getElementById('launchRadarGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
@@ -1084,7 +1083,7 @@
     const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
     const compareModalGrid = document.getElementById('compareModalGrid');
 
-    const BUILD_TIMESTAMP = '2026-09-09T01:11:56+05:30';
+    const BUILD_TIMESTAMP = '2026-09-09T01:25:00+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -1151,16 +1150,11 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Audited 9 Sep 2026', note: 'Google officially released Gemini 3.8 Flash on 2 Sep for long-horizon software engineering, autonomous agents and complex enterprise workflows. It is a shadow-evaluation candidate; no model-pool or price recommendation moved without comparable INR-normalized economics and task evidence.' },
+      { title: 'Models', value: 'Audited 9 Sep 2026', note: 'The launch radar carries a bounded ten-entry ledger of officially confirmed releases in newest-first order. Entries are refreshed independently of ranking changes, so a new release is listed as soon as an official source confirms it even when no ranked recommendation moves yet.' },
       { title: 'Routers', value: 'Audited 9 Sep 2026', note: 'LiteLLM v1.100.0 now makes Auto Router tier sets operator-defined end to end. Keep it as the production control layer, Pareto Code as the managed coding specialist, and add a new frontier candidate only through a bounded pool and shadow evidence.' },
-      { title: 'Agents', value: 'Audited 9 Sep 2026', note: 'No aligned release, benchmark and operational evidence justified a coding-agent winner flip this cycle.' },
-      { title: 'GitHub repo radar', value: 'Audited 9 Sep 2026', note: 'No tracked repo met the combined momentum, adoption, health and security threshold for a leaderboard change this cycle.' },
-      { title: 'MCP / A2A / automations', value: 'Audited 9 Sep 2026', note: 'PulseMCP now shows 22k+ listings and official browser/developer servers at the top of its traffic view; directory movement remains discovery-only. A2A joining AAIF strengthens protocol governance, but individual public agents still require identity, TCK and task-success checks.' },
-    ];
-
-    const launchRadarDefs = [
-      { category: 'Official release · 2 Sep 2026', repo: 'Google — Gemini 3.8 Flash', shift: 'GA release for long-horizon software engineering, autonomous agents and complex enterprise workflows.', confidence: 'Official', note: 'Action: shadow-evaluate in the coding and agentic pools; retain current recommendations until comparable benchmark, availability and INR-normalized cost-per-success evidence is available. No price is shown because this cycle did not independently normalize official pricing to the page rule.', metrics: [['action', 'Shadow-evaluate'], ['pricing', 'Not shown'], ['source', 'Google API release notes']], audit: ['Official Google API release notes confirm general availability on 2 Sep 2026.', 'The launch is an evaluation trigger, not a production-pool promotion.', '<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener noreferrer">Open official source ↗</a>'] },
-      { category: 'Official release · 2 Sep 2026', repo: 'Google — Gemini 3.8 Flash Cyber', shift: 'New cybersecurity-focused model for vulnerability detection and automated patching, available to trusted defenders through Google’s Fairwind Program.', confidence: 'Official', note: 'Action: watch unless you are an eligible trusted defender; do not add it to general coding or security production pools without access, scope controls and domain-specific evaluation.', metrics: [['action', 'Watch'], ['access', 'Trusted defenders'], ['pricing', 'Not shown']], audit: ['Google identifies this as a specialized, access-controlled release rather than a universal coding default.', 'Specialist security claims require independent deployment evaluation before recommendation changes.', '<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber" target="_blank" rel="noopener noreferrer">Open official source ↗</a>'] },
+      { title: 'Agents', value: '21 Aug 2026 evidence check', note: 'Agent winners should still change only after aligned benchmarks, adoption and releases; this cycle did not produce enough public evidence for a coding-agent winner flip.' },
+      { title: 'GitHub repo radar', value: '21 Aug 2026 leaderboard refresh', note: 'GitHub API activity checks kept Codex, OpenHands and LiteLLM in the lead cards while preserving the same decision rule: momentum must be paired with maintenance and security.' },
+      { title: 'MCP / A2A / automations', value: 'Audited 9 Sep 2026', note: 'MCP 2026-07-28 remains the stable official specification; A2A public trust remains immature. Activepieces added a September strict-network proxy option for self-hosted agent/MCP workflows, strengthening its governed-workflow watch position without displacing n8n.' },
     ];
 
     const repoWinnerDefs = [
@@ -1172,6 +1166,46 @@
 
     const launchRadarDefs = [
       {
+        provider: 'OpenAI',
+        model: 'GPT-6 Astra',
+        date: '3 Sep 2026',
+        changed: 'OpenAI introduced it for coding, research, computer use and complex multi-step work.',
+        action: 'Watch the limited rollout before routing production work.',
+        source: 'https://help.openai.com/en/articles/6825453-chatgpt-release-notes',
+        sourceLabel: 'ChatGPT release notes for GPT-6 Astra (help.openai.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'OpenAI',
+        model: 'GPT-6 Pro',
+        date: 'Sep 2026',
+        changed: 'Powered by GPT-6 Astra and rolling out in ChatGPT for eligible Pro, Business and Enterprise plans.',
+        action: 'Watch plan and product availability before adopting.',
+        source: 'https://help.openai.com/en/articles/20001354',
+        sourceLabel: 'OpenAI help centre article for GPT-6 Pro (help.openai.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Google',
+        model: 'Gemini 3.8 Flash',
+        date: '2 Sep 2026',
+        changed: 'Official release for long-horizon software engineering, autonomous agents and complex enterprise workflows.',
+        action: 'Shadow-evaluate before pool promotion.',
+        source: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/',
+        sourceLabel: 'Google announcement for Gemini 3.8 Flash (blog.google)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Google',
+        model: 'Gemini 3.8 Flash Cyber',
+        date: '2 Sep 2026',
+        changed: 'Specialized cybersecurity model for vulnerability detection and automated patching, available to trusted defenders through the Fairwind Program.',
+        action: 'Watch unless you are eligible for the programme.',
+        source: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/',
+        sourceLabel: 'Google announcement for Gemini 3.8 Flash Cyber (blog.google)',
+        confidence: 'Official',
+      },
+      {
         provider: 'Anthropic',
         model: 'Claude Fable 5.1',
         date: '1 Sep 2026',
@@ -1182,10 +1216,20 @@
         confidence: 'Official',
       },
       {
+        provider: 'Google',
+        model: 'Gemini 3.7 Flash',
+        date: '13 Aug 2026',
+        changed: 'Introduced as an intelligent workhorse model for coding and agents.',
+        action: 'Test against existing workhorse tasks before changing a route.',
+        source: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/',
+        sourceLabel: 'Google announcement for Gemini 3.7 Flash (blog.google)',
+        confidence: 'Official',
+      },
+      {
         provider: 'Anthropic',
         model: 'Claude Opus 5',
         date: '24 Jul 2026',
-        changed: 'Announced as officially available and described by Anthropic as near Fable 5 at half the price.',
+        changed: 'Announced by Anthropic as officially available for complex, long-running agentic work.',
         action: 'Test for high-stakes coding and research before defaulting.',
         source: 'https://www.anthropic.com/news/claude-opus-5',
         sourceLabel: 'Anthropic announcement for Claude Opus 5 (anthropic.com)',
@@ -1195,10 +1239,30 @@
         provider: 'OpenAI',
         model: 'GPT-5.6 Sol',
         date: '9 Jul 2026',
-        changed: 'OpenAI says it is rolling out in ChatGPT for complex coding, research, science, cybersecurity, and computer use and design.',
+        changed: 'OpenAI says it is rolling out in ChatGPT for complex coding, research, science, cybersecurity, computer use and design.',
         action: 'Watch availability and API / rate-card status before routing production work.',
         source: 'https://help.openai.com/en/articles/9624314-model-release-notes',
         sourceLabel: 'OpenAI model release notes for GPT-5.6 Sol (help.openai.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Meta',
+        model: 'Muse Spark 1.1',
+        date: '9 Jul 2026',
+        changed: 'Introduced as a multimodal reasoning model for agentic tasks, tool and computer use, coding and multimodal understanding.',
+        action: 'Test in the Meta Model API preview before production usage.',
+        source: 'https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/',
+        sourceLabel: 'Meta announcement for Muse Spark 1.1 (ai.meta.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Anthropic',
+        model: 'Claude Sonnet 5',
+        date: '30 Jun 2026',
+        changed: 'Announced as an agentic Sonnet model built for working with tools and autonomous execution.',
+        action: 'Test for agentic coding and tool use before a routing change.',
+        source: 'https://www.anthropic.com/news/claude-sonnet-5',
+        sourceLabel: 'Anthropic announcement for Claude Sonnet 5 (anthropic.com)',
         confidence: 'Official',
       },
     ];
@@ -1231,14 +1295,14 @@
       { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Best weekly signal for rising MCP servers because it exposes week and month popularity views.', score: '94/100', confidence: 'Verified' },
       { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100', confidence: 'Verified' },
       { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100', confidence: 'Official + verified' },
-      { title: 'A2A discovery posture', value: 'Official A2A Project + SDKs first', note: 'A2A joined the Agentic AI Foundation on 27 Aug, strengthening neutral governance and official adoption evidence. Individual public agents remain unranked until TCK, Agent Card, identity and task-success checks pass.', score: '91/100', confidence: 'Official' },
+      { title: 'A2A discovery posture', value: 'Official A2A Project + SDKs first', note: 'The official Python SDK reached v1.1.3 on 18 Aug, but public ranking quality is still too immature to trust without TCK, Agent Card and identity checks.', score: '89/100', confidence: 'Watchlist' },
       { title: 'Best workflow trust rule', value: 'Official template libraries first', note: 'Use n8n, Make and Zapier official libraries before buying random template bundles.', score: '92/100', confidence: 'Official' },
       { title: 'Best universal connector stack', value: 'Composio / Pipedream / Zapier MCP', note: 'Dynamic tool discovery and large SaaS coverage are increasingly better than hand-loading dozens of separate connectors.', score: '93/100', confidence: 'Verified' },
     ];
 
     const workflowChangeDefs = [
-      { category: 'MCP standards', repo: 'PulseMCP official traffic view', shift: 'PulseMCP now lists 22k+ servers and shows official Playwright Browser Automation, Chrome DevTools, Storybook and Context7 among its highest-traffic entries', score: '94/100', confidence: 'Discovery-only', note: 'This is a useful weekly discovery shift toward official browser and developer tooling, not an install approval. Validate publisher, permissions, provenance and scope in the Official Registry, Docker or MCPpedia before promotion.', metrics: [['directory', '22k+'], ['signal', 'Official traffic'], ['gate', 'Trust layer']], audit: ['Directory traffic discovers what is being used; it does not establish safety.', 'Official publisher labels improve provenance but do not replace permission review.', 'No directory mover is promoted to a universal winner without a separate trust check.'] },
-      { category: 'A2A governance', repo: 'A2A Protocol + Agentic AI Foundation', shift: 'A2A joined AAIF as a Growth Stage project on 27 Aug, adding neutral governance and official ecosystem-adoption evidence after the stable v1.0 release', score: '91/100', confidence: 'Official', note: 'Protocol-level confidence rises to Official for governance and maintained specification. Keep every individual agent at Watchlist until it presents verifiable identity, Agent Cards, TCK compatibility and real task-success evidence.', metrics: [['governance', 'AAIF'], ['protocol', 'v1.0'], ['agent gate', 'TCK + identity']], audit: ['Official protocol governance is stronger evidence than stars or sparse registry listings.', 'The governance upgrade does not prove an individual agent is reliable or safe.', 'Individual deployment trust remains conditional on compatibility and task-success checks.'] },
+      { category: 'MCP standards', repo: 'MCP 2026-07-28 + PulseMCP', shift: 'The official 2026-07-28 specification is stable; PulseMCP currently surfaces Edgar Tools, DuckDuckGo Search and GitMCP as high-traffic discovery movers', score: '94/100', confidence: 'Official', note: 'Treat the stable spec as a compatibility baseline. Use PulseMCP only to discover movers, then validate publisher, permissions and provenance in the Official Registry, Docker or MCPpedia before promotion.', metrics: [['stable spec', '28 Jul'], ['directory', '22k+'], ['gate', 'Official first']], audit: ['The July specification is stable, not a draft, so client/server compatibility deserves more weight.', 'PulseMCP traffic is useful discovery evidence but does not establish safety or publisher trust.', 'No directory mover is promoted to a universal winner without a separate trust check.'] },
+      { category: 'A2A watch', repo: 'a2aproject/A2A + official Python SDK', shift: 'A2A core remains on v1.0.1, while the official Python SDK reached v1.1.3 on 18 Aug; implementation momentum improved without proving broad task reliability', score: '85/100', confidence: 'Watchlist', note: 'Use official SDKs and the protocol TCK/Agent Cards first. The release cadence is a positive implementation signal, not enough evidence for a broad public-agent trust upgrade.', metrics: [['core', 'v1.0.1'], ['Python SDK', 'v1.1.3'], ['gate', 'TCK + identity']], audit: ['Official SDK maintenance is stronger evidence than stars or a sparse registry listing.', 'The core protocol still needs concrete compatibility and task-success evidence per deployment.', 'Leave the confidence badge at Watchlist until those signals become independently visible.'] },
       { category: 'Automation templates', repo: 'n8n official library + verified creators', shift: 'n8n remains the clone-first technical leader; current security and production-reliability guidance reinforces cloning only official or verified flows with explicit credentials and retries', score: '92/100', confidence: 'Official', note: 'n8n remains the first workflow library to check because official library depth and verified-creator review align with current security and reliability guidance.', metrics: [['latest guide', '8 Sep'], ['gate', 'Verified creator'], ['posture', 'Official']], audit: ['Official and verified templates still outrank random marketplace packs.', 'Current security and reliability guidance makes credential and retry review a first-class clone gate.', 'No rival produced enough evidence this cycle to displace n8n in the technical workflow lane.'] },
       { category: 'Self-hosted MCP workflows', repo: 'Activepieces strict network mode', shift: 'September adds opt-in strict network controls for self-hosted agent/MCP workflows, including a trusted-service allow-list; default enforcement is planned later', score: '88/100', confidence: 'Official', note: 'This materially improves Activepieces as a governed self-hosted workflow candidate. Enable strict mode deliberately, allow-list only required internal services and still audit every cloned flow’s credentials and write actions.', metrics: [['release', 'Sep'], ['mode', 'opt-in strict'], ['gate', 'SSRF allow-list']], audit: ['The source is the vendor’s official changelog, not marketplace popularity.', 'Strict network mode reduces exposure but does not make unreviewed templates safe.', 'n8n remains the technical clone-first leader; this is a stronger self-hosted governance watch signal, not a leader flip.'] },
       { category: 'Universal connectors', repo: 'Composio Connect / Pipedream / Zapier MCP', shift: 'Composio remained the strongest app-breadth connector while Pipedream and Zapier stayed relevant as trusted alternatives', score: '90/100', confidence: 'Verified', note: 'These platforms still reduce schema sprawl, but OAuth scope review remains the mandatory promotion gate.', metrics: [['Composio stars', '29.8k'], ['gate', 'OAuth + scope']], audit: ['Connector breadth improved without changing the core trust rule.', 'Composio kept the lead because repo activity stayed current.', 'Alternatives remain strong enough that this is a winner strip, not a monopoly.'] },
@@ -2369,11 +2433,6 @@
     function renderFreshness() {
       freshnessGrid.innerHTML = '';
       freshnessDefs.forEach(item => freshnessGrid.appendChild(makeFreshnessCard(item)));
-    }
-
-    function renderLaunchRadar() {
-      launchRadarGrid.innerHTML = '';
-      launchRadarDefs.forEach(item => launchRadarGrid.appendChild(makeRepoChangeCard(item)));
     }
 
     function makeWinnerCard(item) {

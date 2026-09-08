@@ -228,6 +228,13 @@
     .micro-box { border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); padding: 10px; }
     .micro-box .k { color: var(--muted-2); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
     .micro-box .v { margin-top: 5px; font-size: 13px; font-weight: 800; }
+    .launch-action { margin-top: 10px; color: var(--text); font-size: 13px; line-height: 1.55; }
+    .launch-source { margin-top: 10px; font-size: 13px; line-height: 1.55; }
+    .launch-source a {
+      color: var(--accent-2); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+      overflow-wrap: anywhere; word-break: break-word;
+    }
+    .launch-source a:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
     .winner-strip { display: grid; gap: 12px; }
     .winner-card {
       background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); border: 1px solid var(--line); border-radius: 20px; padding: 16px; box-shadow: var(--shadow);
@@ -929,6 +936,22 @@
     <div class="section-label">Update status</div>
     <section id="freshnessGrid" class="meta-grid freshness-grid"></section>
 
+    <details class="radar-shell" id="launchRadarShell" open>
+      <summary>
+        <div class="radar-copy">
+          <strong>Recent Model Launches &amp; Updates</strong>
+          <span>Evidence-gated launch feed: new releases remain visible even before they change a ranked recommendation.</span>
+        </div>
+        <div class="radar-meta">
+          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 9 Sep 2026</span>
+          <span class="mini-badge">Official sources only</span>
+        </div>
+      </summary>
+      <div class="radar-inner">
+        <section id="launchRadarGrid" class="change-cycle-grid" aria-label="Recent model launches and updates"></section>
+      </div>
+    </details>
+
     <div class="section-label">Repo category winners right now</div>
     <section id="repoWinnerGrid" class="winner-strip"></section>
 
@@ -1035,6 +1058,7 @@
     const recommendedGrid = document.getElementById('recommendedGrid');
     const freshnessGrid = document.getElementById('freshnessGrid');
     const repoWinnerGrid = document.getElementById('repoWinnerGrid');
+    const launchRadarGrid = document.getElementById('launchRadarGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
     const repoRadarGrid = document.getElementById('repoRadarGrid');
     const repoChangesGrid = document.getElementById('repoChangesGrid');
@@ -1059,7 +1083,7 @@
     const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
     const compareModalGrid = document.getElementById('compareModalGrid');
 
-    const BUILD_TIMESTAMP = '2026-09-08T09:30:00+05:30';
+    const BUILD_TIMESTAMP = '2026-09-09T01:08:01+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -1126,7 +1150,7 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Audited 21 Aug 2026', note: 'OpenRouter pricing was re-checked and the low-cost worker lane materially changed because GPT-5 Nano, Gemini 2.5 Flash Lite and new Qwen coder variants are now live.' },
+      { title: 'Models', value: 'Audited 9 Sep 2026', note: 'Launch-radar entries are refreshed independently of ranking changes, so a new release is listed as soon as an official source confirms it even when no ranked recommendation moves yet.' },
       { title: 'Routers', value: 'Audited 9 Sep 2026', note: 'LiteLLM v1.100.0 now makes Auto Router tier sets operator-defined end to end. Keep it as the production control layer, Pareto Code as the managed coding specialist, and add a new frontier candidate only through a bounded pool and shadow evidence.' },
       { title: 'Agents', value: '21 Aug 2026 evidence check', note: 'Agent winners should still change only after aligned benchmarks, adoption and releases; this cycle did not produce enough public evidence for a coding-agent winner flip.' },
       { title: 'GitHub repo radar', value: '21 Aug 2026 leaderboard refresh', note: 'GitHub API activity checks kept Codex, OpenHands and LiteLLM in the lead cards while preserving the same decision rule: momentum must be paired with maintenance and security.' },
@@ -1138,6 +1162,39 @@
       { title: 'Coding tools', winner: 'Best of JS + GitStar', why: 'Best combo for web-adjacent tool movement and repeatable star-velocity checks.' },
       { title: 'MCP / infra', winner: 'GitHub Topics + OpenSSF', why: 'Discovery needs topic coverage, but trust should be gated by security posture.' },
       { title: 'Self-hosted', winner: 'selfh.st/apps', why: 'Better signal than generic trending for practical self-hosted alternatives.' },
+    ];
+
+    const launchRadarDefs = [
+      {
+        provider: 'Anthropic',
+        model: 'Claude Fable 5.1',
+        date: '1 Sep 2026',
+        changed: 'The official platform release notes describe it as the successor to Fable 5 for long-running agentic coding, knowledge work and research.',
+        action: 'Shadow-evaluate before pool promotion.',
+        source: 'https://platform.claude.com/docs/en/release-notes/overview',
+        sourceLabel: 'Claude platform release notes for Claude Fable 5.1 (platform.claude.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Anthropic',
+        model: 'Claude Opus 5',
+        date: '24 Jul 2026',
+        changed: 'Announced as officially available and described by Anthropic as near Fable 5 at half the price.',
+        action: 'Test for high-stakes coding and research before defaulting.',
+        source: 'https://www.anthropic.com/news/claude-opus-5',
+        sourceLabel: 'Anthropic announcement for Claude Opus 5 (anthropic.com)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'OpenAI',
+        model: 'GPT-5.6 Sol',
+        date: '9 Jul 2026',
+        changed: 'OpenAI says it is rolling out in ChatGPT for complex coding, research, science, cybersecurity, and computer use and design.',
+        action: 'Watch availability and API / rate-card status before routing production work.',
+        source: 'https://help.openai.com/en/articles/9624314-model-release-notes',
+        sourceLabel: 'OpenAI model release notes for GPT-5.6 Sol (help.openai.com)',
+        confidence: 'Official',
+      },
     ];
 
     const agentRadarDefs = [
@@ -2375,6 +2432,25 @@
       return card;
     }
 
+    function makeLaunchCard(item) {
+      const card = document.createElement('article');
+      card.className = 'change-card';
+      card.dataset.search = `${item.provider} ${item.model} ${item.date} ${item.changed} ${item.action} ${item.confidence || ''}`.toLowerCase();
+      card.innerHTML = `<div class="topline"><div class="kicker">${item.provider}</div><div class="badge-stack">${confidenceBadge(item.confidence)}</div></div>`
+        + `<div class="repo">${item.model}</div>`
+        + `<div class="micro-metrics"><div class="micro-box"><div class="k">Launch date</div><div class="v">${item.date}</div></div><div class="micro-box"><div class="k">Provider</div><div class="v">${item.provider}</div></div></div>`
+        + `<div class="note"><strong>What changed:</strong> ${item.changed}</div>`
+        + `<div class="launch-action"><strong>Recommended action:</strong> ${item.action}</div>`
+        + `<div class="launch-source"><a href="${item.source}" target="_blank" rel="noopener noreferrer">${item.sourceLabel} (opens in a new tab)</a></div>`
+        + `<div class="fresh-time">Launch feed checked: ${formatTimestamp(BUILD_TIMESTAMP)}</div>`;
+      return card;
+    }
+
+    function renderLaunchRadar() {
+      launchRadarGrid.innerHTML = '';
+      launchRadarDefs.forEach(item => launchRadarGrid.appendChild(makeLaunchCard(item)));
+    }
+
     function makeRepoChangeCard(item) {
       const card = document.createElement('article');
       card.className = 'change-card';
@@ -2794,7 +2870,7 @@
         const empty = section.querySelector('.section-empty');
         if (empty) empty.classList.toggle('visible', visibleCards === 0);
       });
-      document.querySelectorAll('#summaryGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #protocolRadarGrid > *, #workflowChangeGrid > *, #mcpWinnerGrid > *, #workflowCloneGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
+      document.querySelectorAll('#summaryGrid > *, #launchRadarGrid > *, #agentRadarGrid > *, #repoRadarGrid > *, #repoChangesGrid > *, #protocolRadarGrid > *, #workflowChangeGrid > *, #mcpWinnerGrid > *, #workflowCloneGrid > *, #repoWinnerGrid > *, #freshnessGrid > *').forEach(el => {
         const hay = (el.dataset.search || el.textContent || '').toLowerCase();
         el.classList.toggle('hidden', !!query && !hay.includes(query));
       });
@@ -2901,6 +2977,7 @@
       loadFavorites();
       renderRecommendedGrid();
       renderFreshness();
+      renderLaunchRadar();
       renderRepoWinners();
       renderAgentRadar();
       renderRepoRadar();

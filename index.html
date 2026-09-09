@@ -396,6 +396,28 @@
     .compare-box .m, .modal-card, .modal-card h4, .summary-card, .summary-card .value { overflow-wrap: anywhere; word-break: break-word; }
     .hidden { display: none !important; }
     .footer { margin-top: 18px; padding: 18px; text-align: center; color: var(--muted-2); font-size: 12px; line-height: 1.7; }
+    /* Floating return-to-top control: hidden (and unfocusable) until the page is scrolled past the threshold. */
+    .to-top {
+      position: fixed;
+      right: calc(16px + var(--safe-r));
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      z-index: 50;
+      display: inline-flex; align-items: center; gap: 7px;
+      min-height: 44px; padding: 10px 16px;
+      border: 1px solid var(--accent-2); border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font: inherit; font-size: 13px; font-weight: 800; line-height: 1; cursor: pointer;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, .24);
+      opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px);
+      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+    }
+    .to-top.visible { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
+    .to-top:hover { background: var(--accent-2); }
+    .to-top:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+    .to-top .to-top-arrow { font-size: 14px; line-height: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .to-top { transition: none; transform: none; }
+    }
     @media (max-width: 759px) {
       .topbar-inner {
         gap: 8px;
@@ -809,6 +831,13 @@
       .num {
         white-space: normal;
       }
+      .to-top {
+        right: calc(12px + var(--safe-r));
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        gap: 6px;
+        padding: 10px 12px;
+        font-size: 12px;
+      }
     }
     @media (min-width: 760px) {
       .topbar-inner, .app { padding-left: 22px; padding-right: 22px; }
@@ -1051,6 +1080,11 @@
     </div>
   </main>
 
+  <button id="returnToTopBtn" class="to-top" type="button" aria-label="Return to top" aria-hidden="true" tabindex="-1">
+    <span class="to-top-arrow" aria-hidden="true">↑</span>
+    <span>Top</span>
+  </button>
+
   <script>
     const searchInput = document.getElementById('searchInput');
     const tocGrid = document.getElementById('tocGrid');
@@ -1082,6 +1116,7 @@
     const compareModal = document.getElementById('compareModal');
     const closeCompareModalBtn = document.getElementById('closeCompareModalBtn');
     const compareModalGrid = document.getElementById('compareModalGrid');
+    const returnToTopBtn = document.getElementById('returnToTopBtn');
 
     const BUILD_TIMESTAMP = '2026-09-09T01:25:00+05:30';
     const selectedCards = new Map();
@@ -3101,6 +3136,19 @@
         syncCompareButtons();
         renderCompareTray();
       });
+
+      const syncReturnToTop = () => {
+        const shouldShow = window.scrollY >= 500;
+        returnToTopBtn.classList.toggle('visible', shouldShow);
+        returnToTopBtn.setAttribute('aria-hidden', String(!shouldShow));
+        returnToTopBtn.tabIndex = shouldShow ? 0 : -1;
+      };
+      returnToTopBtn.addEventListener('click', () => {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+      });
+      window.addEventListener('scroll', syncReturnToTop, { passive: true });
+      syncReturnToTop();
 
       window.addEventListener('resize', syncTocShell);
       window.addEventListener('resize', syncMobileSectionDetails);

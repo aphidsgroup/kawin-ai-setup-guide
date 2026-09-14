@@ -972,7 +972,7 @@
           <span>Evidence-gated launch feed: new releases remain visible even before they change a ranked recommendation.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 9 Sep 2026</span>
+          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 15 Sep 2026</span>
           <span class="mini-badge">Official sources only</span>
         </div>
       </summary>
@@ -1092,7 +1092,6 @@
     const recommendedGrid = document.getElementById('recommendedGrid');
     const freshnessGrid = document.getElementById('freshnessGrid');
     const repoWinnerGrid = document.getElementById('repoWinnerGrid');
-    const launchRadarGrid = document.getElementById('launchRadarGrid');
     const agentRadarGrid = document.getElementById('agentRadarGrid');
     const repoRadarGrid = document.getElementById('repoRadarGrid');
     const repoChangesGrid = document.getElementById('repoChangesGrid');
@@ -1118,7 +1117,7 @@
     const compareModalGrid = document.getElementById('compareModalGrid');
     const returnToTopBtn = document.getElementById('returnToTopBtn');
 
-    const BUILD_TIMESTAMP = '2026-09-09T01:25:00+05:30';
+    const BUILD_TIMESTAMP = '2026-09-15T01:22:16+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -1185,11 +1184,11 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Audited 9 Sep 2026', note: 'The launch radar carries a bounded ten-entry ledger of officially confirmed releases in newest-first order. Entries are refreshed independently of ranking changes, so a new release is listed as soon as an official source confirms it even when no ranked recommendation moves yet.' },
-      { title: 'Routers', value: 'Audited 9 Sep 2026', note: 'LiteLLM v1.100.0 now makes Auto Router tier sets operator-defined end to end. Keep it as the production control layer, Pareto Code as the managed coding specialist, and add a new frontier candidate only through a bounded pool and shadow evidence.' },
-      { title: 'Agents', value: '21 Aug 2026 evidence check', note: 'Agent winners should still change only after aligned benchmarks, adoption and releases; this cycle did not produce enough public evidence for a coding-agent winner flip.' },
-      { title: 'GitHub repo radar', value: '21 Aug 2026 leaderboard refresh', note: 'GitHub API activity checks kept Codex, OpenHands and LiteLLM in the lead cards while preserving the same decision rule: momentum must be paired with maintenance and security.' },
-      { title: 'MCP / A2A / automations', value: 'Audited 9 Sep 2026', note: 'MCP 2026-07-28 remains the stable official specification; A2A public trust remains immature. Activepieces added a September strict-network proxy option for self-hosted agent/MCP workflows, strengthening its governed-workflow watch position without displacing n8n.' },
+      { title: 'Models', value: 'Audited 15 Sep 2026', note: 'OpenAI officially introduced GPT-6 Astra today for API, Codex and ChatGPT Work. It is a shadow-evaluation candidate; no model-pool or price recommendation moved without comparable INR-normalized economics and task evidence.' },
+      { title: 'Routers', value: 'Audited 15 Sep 2026', note: 'No official router launch or comparable routing benchmark evidence justified changing the LiteLLM control-layer or Pareto coding-specialist recommendation.' },
+      { title: 'Agents', value: 'Audited 15 Sep 2026', note: 'OpenAI introduced the Agents API in public beta with the Codex harness and managed subagents. It is a managed-agent evaluation trigger, not a category-winner flip.' },
+      { title: 'GitHub repo radar', value: 'Audited 15 Sep 2026', note: 'No tracked repo met the combined momentum, adoption, health and security threshold for a leaderboard change this cycle.' },
+      { title: 'MCP / A2A / automations', value: 'Audited 15 Sep 2026', note: 'No trust-validated MCP, A2A or workflow-platform mover warranted a recommendation, winner-card or confidence-badge change. A2A v1.0.1 is present, but public individual-agent trust remains conservative.' },
     ];
 
     const repoWinnerDefs = [
@@ -1204,38 +1203,38 @@
         provider: 'OpenAI',
         model: 'GPT-6 Astra',
         date: '3 Sep 2026',
-        changed: 'OpenAI introduced it for coding, research, computer use and complex multi-step work.',
-        action: 'Watch the limited rollout before routing production work.',
-        source: 'https://help.openai.com/en/articles/6825453-chatgpt-release-notes',
-        sourceLabel: 'ChatGPT release notes for GPT-6 Astra (help.openai.com)',
+        changed: 'OpenAI introduced its new frontier model for API, Codex and ChatGPT Work, with availability also planned through Azure and AWS Bedrock.',
+        action: 'Shadow-evaluate for high-stakes coding, computer-use and research; do not promote it into the production pool until availability, INR-normalized cost-per-success and independent task evidence are comparable.',
+        source: 'https://openai.com/index/gpt-6-astra/',
+        sourceLabel: 'OpenAI product announcement for GPT-6 Astra (openai.com)',
         confidence: 'Official',
       },
       {
         provider: 'OpenAI',
-        model: 'GPT-6 Pro',
-        date: 'Sep 2026',
-        changed: 'Powered by GPT-6 Astra and rolling out in ChatGPT for eligible Pro, Business and Enterprise plans.',
-        action: 'Watch plan and product availability before adopting.',
-        source: 'https://help.openai.com/en/articles/20001354',
-        sourceLabel: 'OpenAI help centre article for GPT-6 Pro (help.openai.com)',
+        model: 'GPT-Live-1',
+        date: '10 Sep 2026',
+        changed: 'OpenAI made its full-duplex voice model available in the API, adding native transcripts, turn detection and more voice control than the prior real-time generation.',
+        action: 'Test only for voice-agent workflows; it does not change the general text, coding or router pools.',
+        source: 'https://openai.com/index/introducing-gpt-live-1-in-the-api/',
+        sourceLabel: 'OpenAI product announcement for GPT-Live-1 (openai.com)',
         confidence: 'Official',
       },
       {
         provider: 'Google',
         model: 'Gemini 3.8 Flash',
         date: '2 Sep 2026',
-        changed: 'Official release for long-horizon software engineering, autonomous agents and complex enterprise workflows.',
-        action: 'Shadow-evaluate before pool promotion.',
-        source: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/',
-        sourceLabel: 'Google announcement for Gemini 3.8 Flash (blog.google)',
+        changed: 'Google released the GA model for long-horizon software engineering, autonomous agents and complex enterprise workflows.',
+        action: 'Shadow-evaluate before pool promotion; retain current recommendations until task and INR-normalized cost-per-success evidence is comparable.',
+        source: 'https://ai.google.dev/gemini-api/docs/changelog',
+        sourceLabel: 'Google Gemini API release notes for Gemini 3.8 Flash (ai.google.dev)',
         confidence: 'Official',
       },
       {
         provider: 'Google',
         model: 'Gemini 3.8 Flash Cyber',
         date: '2 Sep 2026',
-        changed: 'Specialized cybersecurity model for vulnerability detection and automated patching, available to trusted defenders through the Fairwind Program.',
-        action: 'Watch unless you are eligible for the programme.',
+        changed: 'Google announced a cybersecurity-focused variant for vulnerability detection and automated patching, restricted to trusted defenders through the Fairwind Program.',
+        action: 'Watch unless eligible; do not add it to a general security or coding pool without access, scope controls and domain evaluation.',
         source: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/',
         sourceLabel: 'Google announcement for Gemini 3.8 Flash Cyber (blog.google)',
         confidence: 'Official',
@@ -1306,7 +1305,7 @@
       { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents still make it the strongest open general agent in this review after the 21 Aug 2026 audit.' },
       { title: 'Managed agent leader', value: 'Manus', note: 'No stronger managed general digital worker signal displaced it in this cycle, so the leader stays unchanged.' },
       { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'Codex repo momentum stayed strong above 107k stars, but the category is still benchmark-sensitive enough that the practical winner depends on harness and workflow.' },
-      { title: 'Newest challenger this week', value: 'Muse Code', note: 'Still a valid watchlist entry, but not yet strong enough on public evidence to displace Claude Code or Codex.' },
+      { title: 'Managed-agent challenger', value: 'OpenAI Agents API (public beta)', note: 'The Codex-harness API adds managed environments, context compaction and parallel subagents. Evaluate it for managed agent workloads; beta status and absent independent reliability evidence prevent a category-winner flip.' },
       { title: 'Takeover confidence', value: 'Medium confidence only after aligned signals', note: 'Require releases, benchmarks, adoption, reliability and cost/runtime evidence before calling an overtake.' },
       { title: 'Price display rule', value: 'INR only', note: 'Any existing or future price shown anywhere on this page should remain in Indian rupees only.' },
     ];

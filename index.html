@@ -972,7 +972,7 @@
           <span>Evidence-gated launch feed: new releases remain visible even before they change a ranked recommendation.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 15 Sep 2026</span>
+          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 18 Sep 2026</span>
           <span class="mini-badge">Official sources only</span>
         </div>
       </summary>
@@ -1118,7 +1118,7 @@
     const compareModalGrid = document.getElementById('compareModalGrid');
     const returnToTopBtn = document.getElementById('returnToTopBtn');
 
-    const BUILD_TIMESTAMP = '2026-09-15T01:22:16+05:30';
+    const BUILD_TIMESTAMP = '2026-09-18T01:30:30+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -1185,11 +1185,11 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Audited 15 Sep 2026', note: 'OpenAI officially introduced GPT-6 Astra today for API, Codex and ChatGPT Work. It is a shadow-evaluation candidate; no model-pool or price recommendation moved without comparable INR-normalized economics and task evidence.' },
-      { title: 'Routers', value: 'Audited 15 Sep 2026', note: 'No official router launch or comparable routing benchmark evidence justified changing the LiteLLM control-layer or Pareto coding-specialist recommendation.' },
-      { title: 'Agents', value: 'Audited 15 Sep 2026', note: 'OpenAI introduced the Agents API in public beta with the Codex harness and managed subagents. It is a managed-agent evaluation trigger, not a category-winner flip.' },
-      { title: 'GitHub repo radar', value: 'Audited 15 Sep 2026', note: 'No tracked repo met the combined momentum, adoption, health and security threshold for a leaderboard change this cycle.' },
-      { title: 'MCP / A2A / automations', value: 'Audited 15 Sep 2026', note: 'No trust-validated MCP, A2A or workflow-platform mover warranted a recommendation, winner-card or confidence-badge change. A2A v1.0.1 is present, but public individual-agent trust remains conservative.' },
+      { title: 'Models', value: 'Audited 18 Sep 2026', note: 'Official provider release notes were rechecked. No newer general model release met the evidence gate; GPT-6 Astra, GPT-Live-1, Gemini 3.8 Flash and Claude Fable 5.1 remain visibility and shadow-evaluation candidates, not automatic pool changes.' },
+      { title: 'Routers', value: 'Audited 18 Sep 2026', note: 'No official router launch or comparable routing benchmark evidence justified changing the LiteLLM control-layer or Pareto coding-specialist recommendation.' },
+      { title: 'Agents', value: 'Audited 18 Sep 2026', note: 'Anthropic launched Claude Platform on AWS with native AWS billing and IAM for its API, managed agents, skills, code execution and tool use. It is an enterprise deployment option, not a general agent-leader flip.' },
+      { title: 'GitHub repo radar', value: 'Audited 18 Sep 2026', note: 'No tracked repo met the combined momentum, adoption, health and security threshold for a leaderboard change this cycle.' },
+      { title: 'MCP / A2A / automations', value: 'Audited 18 Sep 2026', note: 'Official n8n releases confirm further managed AI-provider access and GitHub PR lifecycle support, but no trust-validated MCP, A2A or workflow-platform mover warranted a winner or confidence-badge change. A2A public individual-agent trust remains conservative.' },
     ];
 
     const repoWinnerDefs = [
@@ -1306,7 +1306,7 @@
       { title: 'Open agent leader', value: 'Hermes Agent', note: 'Persistent memory, skills, scheduling and subagents still make it the strongest open general agent in this review after the 21 Aug 2026 audit.' },
       { title: 'Managed agent leader', value: 'Manus', note: 'No stronger managed general digital worker signal displaced it in this cycle, so the leader stays unchanged.' },
       { title: 'Coding frontier watch', value: 'Claude Code / Codex / Muse Code', note: 'Codex repo momentum stayed strong above 107k stars, but the category is still benchmark-sensitive enough that the practical winner depends on harness and workflow.' },
-      { title: 'Managed-agent challenger', value: 'OpenAI Agents API (public beta)', note: 'The Codex-harness API adds managed environments, context compaction and parallel subagents. Evaluate it for managed agent workloads; beta status and absent independent reliability evidence prevent a category-winner flip.' },
+      { title: 'Managed-agent challenger', value: 'OpenAI Agents API + Claude Platform on AWS', note: 'OpenAI remains a beta Codex-harness evaluation path. As of 18 Sep, Anthropic also offers its API, managed agents, skills, code execution and tool use through AWS-native endpoints with AWS IAM and billing. Both expand managed deployment choices; neither has enough comparable task-success evidence to flip the managed-worker leader.' },
       { title: 'Takeover confidence', value: 'Medium confidence only after aligned signals', note: 'Require releases, benchmarks, adoption, reliability and cost/runtime evidence before calling an overtake.' },
       { title: 'Price display rule', value: 'INR only', note: 'Any existing or future price shown anywhere on this page should remain in Indian rupees only.' },
     ];
@@ -1338,7 +1338,7 @@
     const workflowChangeDefs = [
       { category: 'MCP standards', repo: 'MCP 2026-07-28 + PulseMCP', shift: 'The official 2026-07-28 specification is stable; PulseMCP currently surfaces Edgar Tools, DuckDuckGo Search and GitMCP as high-traffic discovery movers', score: '94/100', confidence: 'Official', note: 'Treat the stable spec as a compatibility baseline. Use PulseMCP only to discover movers, then validate publisher, permissions and provenance in the Official Registry, Docker or MCPpedia before promotion.', metrics: [['stable spec', '28 Jul'], ['directory', '22k+'], ['gate', 'Official first']], audit: ['The July specification is stable, not a draft, so client/server compatibility deserves more weight.', 'PulseMCP traffic is useful discovery evidence but does not establish safety or publisher trust.', 'No directory mover is promoted to a universal winner without a separate trust check.'] },
       { category: 'A2A watch', repo: 'a2aproject/A2A + official Python SDK', shift: 'A2A core remains on v1.0.1, while the official Python SDK reached v1.1.3 on 18 Aug; implementation momentum improved without proving broad task reliability', score: '85/100', confidence: 'Watchlist', note: 'Use official SDKs and the protocol TCK/Agent Cards first. The release cadence is a positive implementation signal, not enough evidence for a broad public-agent trust upgrade.', metrics: [['core', 'v1.0.1'], ['Python SDK', 'v1.1.3'], ['gate', 'TCK + identity']], audit: ['Official SDK maintenance is stronger evidence than stars or a sparse registry listing.', 'The core protocol still needs concrete compatibility and task-success evidence per deployment.', 'Leave the confidence badge at Watchlist until those signals become independently visible.'] },
-      { category: 'Automation templates', repo: 'n8n official library + verified creators', shift: 'n8n remains the clone-first technical leader; current security and production-reliability guidance reinforces cloning only official or verified flows with explicit credentials and retries', score: '92/100', confidence: 'Official', note: 'n8n remains the first workflow library to check because official library depth and verified-creator review align with current security and reliability guidance.', metrics: [['latest guide', '8 Sep'], ['gate', 'Verified creator'], ['posture', 'Official']], audit: ['Official and verified templates still outrank random marketplace packs.', 'Current security and reliability guidance makes credential and retry review a first-class clone gate.', 'No rival produced enough evidence this cycle to displace n8n in the technical workflow lane.'] },
+      { category: 'Automation templates', repo: 'n8n official library + verified creators', shift: 'n8n remains the clone-first technical leader; its official changelog now confirms cloud-managed access to supported AI models and tool services without separate provider accounts, alongside a native GitHub PR lifecycle node', score: '92/100', confidence: 'Official', note: 'These official platform capabilities strengthen n8n for governed AI and engineering workflows, but do not replace the clone gate: start with official or verified flows, then review credentials, approvals and retries before adaptation.', metrics: [['official check', '18 Sep'], ['gate', 'Verified creator'], ['posture', 'Official']], audit: ['Official and verified templates still outrank random marketplace packs.', 'Managed provider access and native PR lifecycle support make n8n more useful for teams, not automatically safer for unreviewed flows.', 'No rival produced enough evidence this cycle to displace n8n in the technical workflow lane.'] },
       { category: 'Self-hosted MCP workflows', repo: 'Activepieces strict network mode', shift: 'September adds opt-in strict network controls for self-hosted agent/MCP workflows, including a trusted-service allow-list; default enforcement is planned later', score: '88/100', confidence: 'Official', note: 'This materially improves Activepieces as a governed self-hosted workflow candidate. Enable strict mode deliberately, allow-list only required internal services and still audit every cloned flow’s credentials and write actions.', metrics: [['release', 'Sep'], ['mode', 'opt-in strict'], ['gate', 'SSRF allow-list']], audit: ['The source is the vendor’s official changelog, not marketplace popularity.', 'Strict network mode reduces exposure but does not make unreviewed templates safe.', 'n8n remains the technical clone-first leader; this is a stronger self-hosted governance watch signal, not a leader flip.'] },
       { category: 'Universal connectors', repo: 'Composio Connect / Pipedream / Zapier MCP', shift: 'Composio remained the strongest app-breadth connector while Pipedream and Zapier stayed relevant as trusted alternatives', score: '90/100', confidence: 'Verified', note: 'These platforms still reduce schema sprawl, but OAuth scope review remains the mandatory promotion gate.', metrics: [['Composio stars', '29.8k'], ['gate', 'OAuth + scope']], audit: ['Connector breadth improved without changing the core trust rule.', 'Composio kept the lead because repo activity stayed current.', 'Alternatives remain strong enough that this is a winner strip, not a monopoly.'] },
     ];
@@ -2105,7 +2105,7 @@
         id: 'repo-discovery-sites',
         title: '41. Best GitHub Repository Discovery Sites Today',
         description: 'There is no trustworthy universal 5-star rating for GitHub repositories. Better discovery combines momentum, adoption, project health and security.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['My rank', 'Platform', 'Best at', 'Trend power', 'Analytics depth', 'Health / security value', 'Overall usefulness'],
         rows: [
           ['1', 'Trendshift', 'Finding repositories while they are starting to explode', 'Excellent', 'Strong', 'Moderate', '9.5/10'],
@@ -2128,7 +2128,7 @@
         id: 'repo-source-by-segment',
         title: '42. Best Sources by Software Segment',
         description: 'Different software segments need different repo-discovery stacks. The best source for AI agents is not the same as the best source for cloud-native infra or web UI libraries.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Segment', 'Best discovery source', 'Second source', 'Third source', 'Validation gate'],
         rows: [
           ['AI agents', 'Trendshift', 'GitHub Topics', 'OSS Insight', 'GitHub activity + security review'],
@@ -2149,7 +2149,7 @@
         id: 'repo-quality-score',
         title: '43. Repository Quality Score /100',
         description: 'The page should not trust stars alone. Repositories deserve a weighted score that blends momentum, adoption, health and trust.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Recent star momentum', '15', 'Measures what is becoming important now rather than what was historically popular'],
@@ -2178,7 +2178,7 @@
         id: 'repo-stars-warning',
         title: '44. Why Stars Alone Fail',
         description: 'A repository with huge historic stars can still be a worse choice than a smaller project with stronger growth, healthier maintenance and better security.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Repository profile', 'Stars', 'Momentum', 'Maintenance health', 'Security / trust', 'Practical reading'],
         rows: [
           ['Legacy popular but slowing', '100K', 'About +100 per month', 'Few contributors, stale releases, large unresolved issue pile', 'Weak security posture', 'Do not assume this is the better deployment choice'],
@@ -2195,7 +2195,7 @@
         id: 'repo-radar-workflow',
         title: '45. GitHub Repo Radar Workflow',
         description: 'The useful workflow is to discover what is rising, confirm momentum, compare alternatives, validate health, then check security before installing anything.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Step', 'What to do', 'Best source stack', 'Decision output'],
         rows: [
           ['1', 'Discover what is rising', 'Trendshift', 'Initial candidate list'],
@@ -2213,7 +2213,7 @@
         id: 'repo-radar-leaderboard',
         title: '46. GitHub Repo Radar Leaderboard Logic',
         description: 'This leaderboard should keep changing when trend, adoption, health or security signals shift. It should never be frozen to total stars or one-time hype.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Category', 'Leaderboard should watch', 'Primary source stack', 'When leader should change', 'Security gate', 'Current score'],
         rows: [
           ['AI agents', 'Rising open agent repos and tools', 'Trendshift + GitHub Topics + OSS Insight', 'When 7-day momentum, contributor growth and health beat the current leader', 'OpenSSF + manual audit', '91/100'],
@@ -2233,7 +2233,7 @@
         id: 'mcp-vs-a2a-automation',
         title: '47. MCP vs A2A vs Automation',
         description: 'These are complementary layers, not substitutes. MCP gives capabilities, A2A gives inter-agent collaboration, and automation platforms run repeatable workflows.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Technology', 'Connection', 'What it is for', 'Best example', 'Decision rule'],
         rows: [
           ['MCP', 'Agent ↔ tool/data', 'Gives an agent capabilities', 'GitHub, Gmail, PostgreSQL, browser, CRM', 'Use MCP when an agent needs tools or data access'],
@@ -2251,7 +2251,7 @@
         id: 'mcp-discovery-ranking',
         title: '48. Best Places to Discover MCP Servers',
         description: 'MCP is large enough that popularity alone is no longer safe. The best stack combines trending discovery, broad search, security scoring and official verification.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Rank', 'Source', 'Signal', 'Security signal', 'Best use', 'Current score'],
         rows: [
           ['1', 'Glama', '65K+ broad registry search', 'Strong quality/safety scoring', 'Best broad searchable MCP registry', '97/100'],
@@ -2273,7 +2273,7 @@
         id: 'mcp-work-category-map',
         title: '49. Best MCP Source by Work Category',
         description: 'Different MCP categories need different discovery sources. Browser, payments, security and enterprise SaaS should not be sourced the same way.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Work category', 'Best first source', 'Alternative', 'Preferred rule', 'Current score'],
         rows: [
           ['GitHub / coding / dev tools', 'Docker MCP', 'Official Registry', 'Official publisher first', '92/100'],
@@ -2291,7 +2291,7 @@
         id: 'universal-mcp-platforms',
         title: '50. Universal MCP Platforms',
         description: 'Universal connectors are becoming more important because they expose thousands of applications without forcing the model to load dozens of separate single-purpose servers.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Rank', 'Platform', 'Apps / tools', 'Free availability', 'Best use', 'Current score'],
         rows: [
           ['1', 'Composio Connect', '1,000+ apps', '20K tool calls/month free', 'Best agent-native dynamic application actions', '94/100'],
@@ -2309,7 +2309,7 @@
         id: 'mcp-scoring',
         title: '51. How to Rank an MCP',
         description: 'MCP discovery should be stricter than GitHub-star browsing because vulnerable or hijackable servers can create real security and data-exfiltration risks.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Official/verified publisher', '15%', 'Publisher authenticity matters before granting tool access'],
@@ -2333,7 +2333,7 @@
         id: 'a2a-discovery-stack',
         title: '52. Best Places to Discover A2A Agents',
         description: 'A2A discovery is still early. The best approach is to start from official protocol sources and treat public registries as discovery aids rather than mature leaderboards.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Rank', 'Source', 'What it contains', 'Trending signal', 'Best use', 'Current score'],
         rows: [
           ['1', 'Official A2A Project GitHub', 'Protocol, SDKs, TCK, Inspector, samples', 'GitHub activity', 'Source of truth', '92/100'],
@@ -2351,7 +2351,7 @@
         id: 'a2a-scoring',
         title: '53. How to Rank an A2A Agent',
         description: 'Because A2A reviews are still sparse, stars and reviews should be secondary. The strongest long-term metric is cost per successful delegated job.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Signal', 'Weight', 'Why it matters'],
         rows: [
           ['Task success rate', '25%', 'Actual delegated completion matters more than marketing claims'],
@@ -2372,7 +2372,7 @@
         id: 'automation-platform-comparison',
         title: '54. Automation Platform Comparison',
         description: 'Automation discovery is different again: here official template ecosystems and creator verification matter more than random marketplace bundles.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Platform', 'Type', 'Free', 'Open-source status', 'Best ecosystem signal', 'Best for'],
         rows: [
           ['n8n', 'Visual automation + AI', 'Self-host free', 'Fair-code / source-available, not truly OSS', '11K+ workflow templates', 'Powerful AI and business workflows'],
@@ -2395,7 +2395,7 @@
         id: 'workflow-template-sources',
         title: '55. Best Workflow Libraries and Template Sources',
         description: 'For workflow discovery, official libraries are usually the strongest source because they combine search, maintained examples and increasingly better trust signals.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Workflow source', 'Best current signal', 'Why it wins', 'Current score'],
         rows: [
           ['n8n Workflow Library', '11,013 official/community workflows', 'Best starting point for technical AI/business workflow discovery', '95/100'],
@@ -2416,7 +2416,7 @@
         id: 'automation-platform-segment-map',
         title: '56. Best Automation Platform by Segment',
         description: 'The best automation platform depends on whether the goal is SaaS simplicity, visual branching, self-hosting, orchestration, developer APIs, IoT or web-data work.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Segment', 'Winner', 'Alternative', 'Why'],
         rows: [
           ['Easiest no-code automation', 'Zapier', 'Make', 'Massive integration ecosystem and low learning curve'],
@@ -2437,7 +2437,7 @@
         id: 'weekly-monitoring-stack',
         title: '57. Weekly Monitoring Stack for MCP, A2A and Automation',
         description: 'These ecosystems move quickly enough that the page should keep tracking weekly movers, trusted template sources and new connector/registry shifts instead of staying frozen.',
-        updated: 'Updated 21 Aug 2026',
+        updated: 'Updated 18 Sep 2026',
         cardFields: ['Need', 'Best weekly source', 'How to use it', 'Change rule'],
         rows: [
           ['Trending MCPs', 'PulseMCP', 'Scan weekly leaders and new movers first', 'Promote only after MCPpedia + Official Registry / Docker checks'],

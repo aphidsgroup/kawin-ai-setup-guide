@@ -972,7 +972,7 @@
           <span>Evidence-gated launch feed: new releases remain visible even before they change a ranked recommendation.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 27 Sep 2026</span>
+          <span class="mini-badge" id="launchRadarUpdatedBadge">Audited 30 Sep 2026</span>
           <span class="mini-badge">Official sources only</span>
         </div>
       </summary>
@@ -991,7 +991,7 @@
           <span>Mobile-collapsible watchlist for open agents, managed workers, coding challengers, and last-known leader shifts.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="agentRadarUpdatedBadge">Audited 27 Sep 2026</span>
+          <span class="mini-badge" id="agentRadarUpdatedBadge">Audited 30 Sep 2026</span>
           <span class="mini-badge">Tap to collapse</span>
         </div>
       </summary>
@@ -1007,7 +1007,7 @@
           <span>Leaderboard-oriented repo discovery stack for new rising repositories across AI agents, coding tools, MCP, web, self-hosted, DevOps, security and research.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="repoRadarUpdatedBadge">Audited 27 Sep 2026</span>
+          <span class="mini-badge" id="repoRadarUpdatedBadge">Audited 30 Sep 2026</span>
           <span class="mini-badge">Trend shifts rotate leaders</span>
         </div>
       </summary>
@@ -1026,7 +1026,7 @@
           <span>Weekly discovery stack for trending MCP servers, A2A agents, universal connectors, automation platforms and trusted workflow libraries.</span>
         </div>
         <div class="radar-meta">
-          <span class="mini-badge" id="protocolRadarUpdatedBadge">Audited 27 Sep 2026</span>
+          <span class="mini-badge" id="protocolRadarUpdatedBadge">Audited 30 Sep 2026</span>
           <span class="mini-badge">Trend + trust gated</span>
         </div>
       </summary>
@@ -1118,7 +1118,7 @@
     const compareModalGrid = document.getElementById('compareModalGrid');
     const returnToTopBtn = document.getElementById('returnToTopBtn');
 
-    const BUILD_TIMESTAMP = '2026-09-27T01:38:09+05:30';
+    const BUILD_TIMESTAMP = '2026-09-30T01:43:36+05:30';
     const selectedCards = new Map();
     let activePreset = 'all';
     let activeTier = 'all';
@@ -1161,7 +1161,7 @@
     ];
 
     const recommendedDefs = [
-      { title: 'Budget-first setup', model: 'GPT-5 Nano / Gemini 2.5 Flash Lite', note: 'Fresh OpenRouter pricing now puts an ultra-cheap worker lane below the old GPT-5-mini / Gemini 2.5 Flash default.', match: 'GPT-5 Nano' },
+      { title: 'Budget-first setup', model: 'GPT-5 Nano / eligible Gemini 2.5 Flash Lite', note: 'Keep GPT-5 Nano as the broadly available ultra-cheap worker. Google now limits 2.5 access for new projects, so shadow-test its stated new-project successors before making Gemini 2.5 Flash Lite a fresh default.', match: 'GPT-5 Nano' },
       { title: 'Coding default', model: 'OpenRouter Pareto Router', note: 'The coding default should now stay on the Pareto coding router instead of freezing one coder while Qwen, Kimi and frontier code models keep shifting.', match: 'OpenRouter Pareto Router' },
       { title: 'Balanced premium', model: 'GPT-5 / Gemini 2.5 Pro', note: 'Current price-parity premium pair for broad agent and reasoning work.', match: 'GPT-5' },
       { title: 'Hard-problem escalation', model: 'Claude Sonnet 4 → Claude Opus 4.1', note: 'Use Anthropic escalation only when the quality gain justifies the premium jump.', match: 'Claude Sonnet 4' },
@@ -1185,11 +1185,11 @@
     ];
 
     const freshnessDefs = [
-      { title: 'Models', value: 'Audited 27 Sep 2026', note: 'OpenAI officially announced GPT-6 Sol and GPT-6 Luna on 22 Sep. They are launch-radar and shadow-evaluation candidates only: no independent benchmark, availability and INR-normalized cost-per-success evidence justified a production-pool change.' },
-      { title: 'Routers', value: 'Audited 27 Sep 2026', note: 'No official router launch or verified benchmark shift displaced LiteLLM Auto Router v2, OpenRouter Auto or the Pareto coding route. Keep new model families in shadow pools until replay evidence exists.' },
-      { title: 'Agents', value: 'Audited 27 Sep 2026', note: 'GitHub Copilot added GPT-6 Sol, GPT-6 Luna and Claude Opus 5.5 model choices plus local sandboxing and OpenTelemetry controls. This broadens managed coding-agent evaluation options, not the current category-leader recommendation.' },
-      { title: 'GitHub repo radar', value: 'Audited 27 Sep 2026', note: 'No tracked repository met the combined momentum, adoption, release health and security threshold for a leaderboard change this cycle.' },
-      { title: 'MCP / A2A / automations', value: 'Audited 27 Sep 2026', note: 'A2A Python v1.1.4 adds reliability and SSRF-hardening fixes without changing the conservative A2A posture. PulseMCP says new submissions and listing changes are paused during its ingestion rework, so its trend feed remains discovery-only until corroborated.' },
+      { title: 'Models', value: 'Audited 30 Sep 2026', note: 'Google made Gemini 3.8 Flash TTS and Flash-Lite TTS generally available on 23 Sep, and limits Gemini 2.5 access for new projects. These are launch and migration triggers only: no INR-normalized cost-per-success or independent task evidence justified a text/coding production-pool change.' },
+      { title: 'Routers', value: 'Audited 30 Sep 2026', note: 'No official router launch or verified benchmark shift displaced LiteLLM Auto Router v2, OpenRouter Auto or the Pareto coding route. Keep new model families in shadow pools until replay evidence exists.' },
+      { title: 'Agents', value: 'Audited 30 Sep 2026', note: 'No supported agent-category evidence displaced Hermes Agent, Manus or the coding-agent watch set. The new Google TTS models are voice-agent evaluation candidates, not a general-agent leader change.' },
+      { title: 'GitHub repo radar', value: 'Audited 30 Sep 2026', note: 'No tracked repository met the combined momentum, adoption, release health and security threshold for a leaderboard change this cycle.' },
+      { title: 'MCP / A2A / automations', value: 'Audited 30 Sep 2026', note: 'PulseMCP now reports 21,802 servers but still has submissions and listing changes paused during ingestion rework, so its trend feed remains discovery-only until corroborated. A2A’s official core release remains v1.0.1; no new compatibility evidence justifies a trust-posture change.' },
     ];
 
     const repoWinnerDefs = [
@@ -1200,6 +1200,26 @@
     ];
 
     const launchRadarDefs = [
+      {
+        provider: 'Google',
+        model: 'Gemini 3.8 Flash TTS + Flash-Lite TTS',
+        date: '23 Sep 2026',
+        changed: 'Google made two text-to-speech models generally available: Flash TTS for high-fidelity creative and multi-speaker output, and Flash-Lite TTS for high-throughput, real-time voice-agent cascades; Flash-Lite replaces Gemini 3.1 Flash TTS Preview.',
+        action: 'Shadow-evaluate only for voice products. Migrate prompts to the Gemini 3.8 structured speech metadata schema and validate voice-consent, latency and INR-normalized cost before adoption.',
+        source: 'https://ai.google.dev/gemini-api/docs/changelog',
+        sourceLabel: 'Google Gemini API release notes for Gemini 3.8 Flash TTS and Flash-Lite TTS (ai.google.dev)',
+        confidence: 'Official',
+      },
+      {
+        provider: 'Google',
+        model: 'Gemini 2.5 API access update',
+        date: '18 Sep 2026',
+        changed: 'Google limits Gemini 2.5 API access to projects that have actively used those models; new projects are directed to its newer model families.',
+        action: 'Watch and inventory dependencies. Do not start a new production route on Gemini 2.5 without confirming eligibility; shadow-test the current successor specified by Google before migration.',
+        source: 'https://ai.google.dev/gemini-api/docs/changelog',
+        sourceLabel: 'Google Gemini API release notes for Gemini 2.5 access (ai.google.dev)',
+        confidence: 'Official',
+      },
       {
         provider: 'OpenAI',
         model: 'GPT-6 Sol',
@@ -1347,7 +1367,7 @@
     ];
 
     const protocolRadarDefs = [
-      { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Useful weekly discovery signal, but its listing submissions and changes are currently paused during ingestion rework. Corroborate every mover through an independent registry or publisher.', score: '88/100', confidence: 'Watchlist' },
+      { title: 'Best trending MCP source', value: 'PulseMCP', note: 'Useful weekly discovery signal across 21,802 listed servers, but listing submissions and changes remain paused during ingestion rework. Corroborate every mover through an independent registry or publisher.', score: '88/100', confidence: 'Watchlist' },
       { title: 'Best MCP search layer', value: 'Glama', note: 'Best broad registry search layer when you want to compare thousands of MCP options quickly.', score: '97/100', confidence: 'Verified' },
       { title: 'Best MCP security gate', value: 'MCPpedia + Docker + Official Registry', note: 'Use security scoring, provenance and publisher verification before enabling sensitive servers.', score: '96/100', confidence: 'Official + verified' },
       { title: 'A2A discovery posture', value: 'Official A2A Project + SDKs first', note: 'The official Python SDK reached v1.1.4 on 7 Sep with reliability and SSRF-hardening fixes, but public ranking quality is still too immature to trust without TCK, Agent Card and identity checks.', score: '89/100', confidence: 'Watchlist' },
@@ -1356,15 +1376,15 @@
     ];
 
     const workflowChangeDefs = [
-      { category: 'MCP standards', repo: 'MCP 2026-07-28 + PulseMCP', shift: 'The official 2026-07-28 specification is stable; PulseMCP currently surfaces Edgar Tools, DuckDuckGo Search and GitMCP as high-traffic discovery movers', score: '94/100', confidence: 'Official', note: 'Treat the stable spec as a compatibility baseline. Use PulseMCP only to discover movers, then validate publisher, permissions and provenance in the Official Registry, Docker or MCPpedia before promotion.', metrics: [['stable spec', '28 Jul'], ['directory', '15,560+'], ['gate', 'Official first']], audit: ['The July specification is stable, not a draft, so client/server compatibility deserves more weight.', 'PulseMCP traffic is useful discovery evidence but does not establish safety or publisher trust.', 'No directory mover is promoted to a universal winner without a separate trust check.'] },
+      { category: 'MCP standards', repo: 'MCP 2026-07-28 + PulseMCP', shift: 'The official 2026-07-28 specification is stable; PulseMCP now lists 21,802 servers, but submissions and listing changes remain paused during ingestion rework', score: '94/100', confidence: 'Official', note: 'Treat the stable spec as a compatibility baseline. Use PulseMCP only to discover movers, then validate publisher, permissions and provenance in the Official Registry, Docker or MCPpedia before promotion.', metrics: [['stable spec', '28 Jul'], ['directory', '21,802'], ['gate', 'Official first']], audit: ['The July specification is stable, not a draft, so client/server compatibility deserves more weight.', 'Directory size and traffic do not establish safety, publisher trust or current rankings while listing changes are paused.', 'No directory mover is promoted to a universal winner without a separate trust check.'] },
       { category: 'A2A watch', repo: 'a2aproject/A2A + official Python SDK', shift: 'A2A core remains on v1.0.1, while the official Python SDK reached v1.1.4 on 7 Sep with reliability and SSRF-hardening fixes; implementation momentum improved without proving broad task reliability', score: '86/100', confidence: 'Watchlist', note: 'Use official SDKs and the protocol TCK/Agent Cards first. The release is a positive reliability and security signal, not enough evidence for a broad public-agent trust upgrade.', metrics: [['core', 'v1.0.1'], ['Python SDK', 'v1.1.4'], ['gate', 'TCK + identity']], audit: ['Official SDK maintenance and SSRF hardening are stronger evidence than stars or a sparse registry listing.', 'The core protocol still needs concrete compatibility and task-success evidence per deployment.', 'Leave the confidence badge at Watchlist until those signals become independently visible.'] },
       { category: 'Automation templates', repo: 'n8n official library + verified creators', shift: 'n8n remains the clone-first technical leader; its official changelog now confirms cloud-managed access to supported AI models and tool services without separate provider accounts, alongside a native GitHub PR lifecycle node', score: '92/100', confidence: 'Official', note: 'These official platform capabilities strengthen n8n for governed AI and engineering workflows, but do not replace the clone gate: start with official or verified flows, then review credentials, approvals and retries before adaptation.', metrics: [['official check', '18 Sep'], ['gate', 'Verified creator'], ['posture', 'Official']], audit: ['Official and verified templates still outrank random marketplace packs.', 'Managed provider access and native PR lifecycle support make n8n more useful for teams, not automatically safer for unreviewed flows.', 'No rival produced enough evidence this cycle to displace n8n in the technical workflow lane.'] },
-      { category: 'Self-hosted MCP workflows', repo: 'Activepieces strict network mode', shift: 'September adds opt-in strict network controls for self-hosted agent/MCP workflows, including a trusted-service allow-list; default enforcement is planned later', score: '88/100', confidence: 'Official', note: 'This materially improves Activepieces as a governed self-hosted workflow candidate. Enable strict mode deliberately, allow-list only required internal services and still audit every cloned flow’s credentials and write actions.', metrics: [['release', 'Sep'], ['mode', 'opt-in strict'], ['gate', 'SSRF allow-list']], audit: ['The source is the vendor’s official changelog, not marketplace popularity.', 'Strict network mode reduces exposure but does not make unreviewed templates safe.', 'n8n remains the technical clone-first leader; this is a stronger self-hosted governance watch signal, not a leader flip.'] },
-      { category: 'MCP trend-source posture', repo: 'PulseMCP', shift: 'PulseMCP has paused new server submissions and listing changes while it reworks ingestion, reducing confidence in its near-term ranking freshness', score: '88/100', confidence: 'Watchlist', note: 'Keep PulseMCP for early discovery, but validate every apparent mover in the Official Registry, Docker, MCPpedia or the publisher repository before promotion.', metrics: [['directory', '15,560+'], ['listing changes', 'Paused'], ['gate', 'Independent provenance']], audit: ['Directory size and traffic do not prove source freshness.', 'The site itself discloses that submissions and listing changes are paused.', 'The winner remains a discovery tool, but its confidence is temporarily downgraded rather than treated as an approval source.'] },
+      { category: 'Self-hosted MCP workflows', repo: 'Activepieces reusable agents + strict network mode', shift: 'September makes agents reusable and chattable, while strict mode provides opt-in outbound SSRF controls with an explicit allow-list for required internal services', score: '88/100', confidence: 'Official', note: 'This improves Activepieces as a governed self-hosted workflow candidate. Enable strict mode deliberately, allow-list only required internal services and audit every reused agent or cloned flow’s credentials and write actions.', metrics: [['release', 'Sep'], ['mode', 'opt-in strict'], ['gate', 'SSRF allow-list']], audit: ['The source is the vendor’s official changelog and network-security documentation, not marketplace popularity.', 'Reusable agents improve composition; strict mode reduces exposure but does not make unreviewed templates safe.', 'n8n remains the technical clone-first leader; this is a stronger self-hosted governance watch signal, not a leader flip.'] },
+      { category: 'MCP trend-source posture', repo: 'PulseMCP', shift: 'PulseMCP has paused new server submissions and listing changes while it reworks ingestion, reducing confidence in its near-term ranking freshness', score: '88/100', confidence: 'Watchlist', note: 'Keep PulseMCP for early discovery, but validate every apparent mover in the Official Registry, Docker, MCPpedia or the publisher repository before promotion.', metrics: [['directory', '21,802'], ['listing changes', 'Paused'], ['gate', 'Independent provenance']], audit: ['Directory size and traffic do not prove source freshness.', 'The site itself discloses that submissions and listing changes are paused.', 'The winner remains a discovery tool, but its confidence is temporarily downgraded rather than treated as an approval source.'] },
     ];
 
     const mcpWinnerDefs = [
-      { title: 'Trending discovery', winner: 'PulseMCP', why: 'Still the first discovery feed, but submissions and listing changes are paused during ingestion rework. Treat every result as a watchlist lead and corroborate it before approval.', confidence: 'Watchlist' },
+      { title: 'Trending discovery', winner: 'PulseMCP', why: 'Still the first discovery feed across 21,802 listed servers, but submissions and listing changes are paused during ingestion rework. Treat every result as a watchlist lead and corroborate it before approval.', confidence: 'Watchlist' },
       { title: 'Breadth search', winner: 'Glama', why: 'Best broad searchable registry when you need to compare many MCP candidates fast.', confidence: 'Verified' },
       { title: 'Security / trust gate', winner: 'MCPpedia + Docker + Official Registry', why: 'Best trio for maintenance, CVEs, provenance and publisher verification before enabling sensitive servers.', confidence: 'Official + verified' },
       { title: 'Universal connector winner', winner: 'Composio Connect', why: 'Best current balance of app breadth, dynamic discovery and agent-native tool exposure.', confidence: 'Verified' },

@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.09.30-r1",
+  "revision": "2026.10.01-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -33,10 +33,10 @@
       "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
       "accessed": "2026-09-30"
     },
-    "openai-model-gpt-6-1-sol": {
+    "openai-model-gpt-6-sol": {
       "publisher": "OpenAI",
-      "title": "GPT-6.1 Sol model page",
-      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "title": "GPT-6 Sol model page",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
       "accessed": "2026-09-30"
     },
     "openai-model-gpt-6-luna": {
@@ -275,11 +275,11 @@
       }
     },
     {
-      "id": "claude-sonnet-5-5",
+      "id": "claude-sonnet-5",
       "category": "model-pricing",
       "provider": "Anthropic",
-      "name": "Claude Sonnet 5.5",
-      "apiId": "claude-sonnet-5-5",
+      "name": "Claude Sonnet 5",
+      "apiId": "claude-sonnet-5",
       "status": "ga",
       "inputUsdPerMTok": 2,
       "outputUsdPerMTok": 10,
@@ -294,7 +294,7 @@
       "editorial": {
         "role": "balanced",
         "bestFor": "Balanced speed and intelligence for production agents and coding",
-        "watchOut": "Launched 28 Sep 2026; validate on your own tasks before migration"
+        "watchOut": "Validate on your own tasks before migration"
       }
     },
     {
@@ -344,11 +344,11 @@
       }
     },
     {
-      "id": "gpt-6-1-sol",
+      "id": "gpt-6-sol",
       "category": "model-pricing",
       "provider": "OpenAI",
-      "name": "GPT-6.1 Sol",
-      "apiId": "gpt-6.1-sol",
+      "name": "GPT-6 Sol",
+      "apiId": "gpt-6-sol",
       "status": "ga",
       "inputUsdPerMTok": 2,
       "outputUsdPerMTok": 10,
@@ -358,13 +358,12 @@
       "asOf": "2026-09-30",
       "sources": [
         "openai-pricing",
-        "openai-model-gpt-6-1-sol",
-        "openai-changelog"
+        "openai-model-gpt-6-sol"
       ],
       "editorial": {
         "role": "balanced",
         "bestFor": "Complex coding and professional work at a lower list price than GPT-6 Astra",
-        "watchOut": "Released 29 Sep 2026; long prompts over 272K input tokens cost more"
+        "watchOut": "Long prompts over 272K input tokens cost more"
       }
     },
     {
@@ -607,34 +606,6 @@
   ],
   "launches": [
     {
-      "id": "launch-gpt-6-1-sol",
-      "category": "launches",
-      "provider": "OpenAI",
-      "model": "GPT-6.1 Sol",
-      "date": "2026-09-29",
-      "changed": "OpenAI released GPT-6.1 Sol for complex coding and professional work at a lower price than GPT-6 Astra.",
-      "editorialAction": "Shadow-test against GPT-6 Astra and Claude Sonnet 5.5 on your own coding tasks before changing a route.",
-      "asOf": "2026-09-30",
-      "sources": [
-        "openai-changelog",
-        "openai-model-gpt-6-1-sol"
-      ]
-    },
-    {
-      "id": "launch-claude-sonnet-5-5",
-      "category": "launches",
-      "provider": "Anthropic",
-      "model": "Claude Sonnet 5.5",
-      "date": "2026-09-28",
-      "changed": "Anthropic launched Claude Sonnet 5.5 on the Claude API and partner clouds.",
-      "editorialAction": "Replay representative agent and coding traffic before migrating from Sonnet 5.",
-      "asOf": "2026-09-30",
-      "sources": [
-        "anthropic-release-notes",
-        "anthropic-models"
-      ]
-    },
-    {
       "id": "launch-claude-opus-5-5",
       "category": "launches",
       "provider": "Anthropic",
@@ -655,7 +626,7 @@
       "model": "GPT-6 Sol and GPT-6 Luna",
       "date": "2026-09-22",
       "changed": "OpenAI released GPT-6 Sol and GPT-6 Luna reasoning models in the Responses and Chat Completions APIs.",
-      "editorialAction": "Test GPT-6 Luna as a high-volume worker; note that GPT-6.1 Sol followed on 29 Sep.",
+      "editorialAction": "Test GPT-6 Luna as a high-volume worker before routing broad production traffic.",
       "asOf": "2026-09-30",
       "sources": [
         "openai-changelog"
@@ -853,8 +824,8 @@
       {
         "title": "Balanced default",
         "modelIds": [
-          "gpt-6-1-sol",
-          "claude-sonnet-5-5"
+          "gpt-6-sol",
+          "claude-sonnet-5"
         ],
         "note": "Same list price for the standard workload; choose by your own eval results, then keep the other as fallback."
       },
@@ -971,7 +942,7 @@
           "share": 0.25
         },
         {
-          "modelId": "gpt-6-1-sol",
+          "modelId": "gpt-6-sol",
           "share": 0.13
         },
         {
@@ -982,7 +953,7 @@
       "compareWith": [
         "claude-fable-5-1",
         "claude-opus-5-5",
-        "gpt-6-1-sol"
+        "gpt-6-sol"
       ]
     },
     "cards": {
@@ -1134,29 +1105,29 @@
           [
             "Coding and repository work",
             "OpenRouter Pareto Router",
-            "GPT-6.1 Sol",
+            "GPT-6 Sol",
             "Claude Opus 5.5",
             "Keep coding on a specialist route and test candidates on your repositories"
           ],
           [
             "Complex autonomous agents",
             "Claude Opus 5.5",
-            "GPT-6.1 Sol",
+            "GPT-6 Sol",
             "Gemini 3.8 Flash",
             "Measure cost per successful task, not price per token"
           ],
           [
             "Balanced production model",
-            "GPT-6.1 Sol",
-            "Claude Sonnet 5.5",
+            "GPT-6 Sol",
+            "Claude Sonnet 5",
             "Gemini 3.8 Flash",
-            "Sol and Sonnet 5.5 share the same list price for the standard workload"
+            "Sol and Sonnet 5 share the same list price for the standard workload"
           ],
           [
             "Million-token processing",
             "Gemini 3.8 Flash",
             "GPT-6 Luna",
-            "Claude Sonnet 5.5",
+            "Claude Sonnet 5",
             "All three list roughly 1M-token context; long-prompt surcharges differ by provider"
           ],
           [
@@ -1261,7 +1232,7 @@
           [
             "Tier 2 — Skilled agents",
             "12–25%",
-            "GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash",
+            "GPT-6 Sol, Claude Sonnet 5, Gemini 3.8 Flash",
             "Planning, analysis, stronger coding and workflow decisions"
           ],
           [
@@ -2189,7 +2160,7 @@
           ],
           [
             "Repo-wide reasoning",
-            "Claude Opus 5.5 / GPT-6.1 Sol, escalating to Claude Fable 5.1 / GPT-6 Astra",
+            "Claude Opus 5.5 / GPT-6 Sol, escalating to Claude Fable 5.1 / GPT-6 Astra",
             "Bounded frontier candidates behind internal evidence",
             "When repository or terminal-agent results shift materially"
           ],
@@ -2260,7 +2231,7 @@
           [
             "T3 Balanced",
             "Professional work",
-            "GPT-6.1 Sol, Claude Sonnet 5.5",
+            "GPT-6 Sol, Claude Sonnet 5",
             "Reliability and tooling",
             "Tool use, latency or quality change meaningfully"
           ],
@@ -2310,49 +2281,49 @@
           [
             "Long summarisation and documents",
             "Gemini 3.1 Flash-Lite",
-            "Gemini 3.8 Flash / Claude Sonnet 5.5",
+            "Gemini 3.8 Flash / Claude Sonnet 5",
             "Claude Opus 5.5",
             "Route by document size, modality and risk"
           ],
           [
             "Research and web synthesis",
             "Gemini 3.8 Flash + retrieval",
-            "GPT-6.1 Sol / Claude Sonnet 5.5",
+            "GPT-6 Sol / Claude Sonnet 5",
             "Claude Fable 5.1 / GPT-6 Astra + verifier",
             "Ground first, then escalate synthesis"
           ],
           [
             "Coding and repository work",
             "Pareto Router low-score band",
-            "GPT-6.1 Sol / Claude Sonnet 5.5",
+            "GPT-6 Sol / Claude Sonnet 5",
             "Claude Opus 5.5 / GPT-6 Astra",
             "Use coding-specific routing, not generic text rankings"
           ],
           [
             "Agentic automation",
             "GPT-6 Luna",
-            "Gemini 3.8 Flash / GPT-6.1 Sol",
+            "Gemini 3.8 Flash / GPT-6 Sol",
             "Claude Opus 5.5 supervisor + verifier",
             "Cheap models work; stronger models supervise exceptions"
           ],
           [
             "Business and financial analysis",
             "GPT-6 Luna",
-            "GPT-6.1 Sol / Claude Sonnet 5.5",
+            "GPT-6 Sol / Claude Sonnet 5",
             "Claude Opus 5.5 + deterministic calculations",
             "Optimise cost per successful analysis"
           ],
           [
             "Writing and public comms",
             "Gemini 3.8 Flash",
-            "Claude Sonnet 5.5",
+            "Claude Sonnet 5",
             "Claude Opus 5.5",
             "Pay premium only when reputation matters"
           ],
           [
             "Vision and screenshots",
             "Gemini 3.1 Flash-Lite",
-            "Gemini 3.8 Flash / GPT-6.1 Sol",
+            "Gemini 3.8 Flash / GPT-6 Sol",
             "Claude Opus 5.5",
             "Escalate for harder visual reasoning"
           ],
@@ -2578,7 +2549,7 @@
           ],
           [
             "COMPLEX",
-            "GPT-6.1 Sol / Claude Sonnet 5.5 / Pareto high-score pool",
+            "GPT-6 Sol / Claude Sonnet 5 / Pareto high-score pool",
             "Coding, planning and deeper analysis",
             "Should not absorb routine requests"
           ],
@@ -2596,7 +2567,7 @@
           ],
           [
             "long_document=true",
-            "Gemini 3.8 Flash / Claude Sonnet 5.5",
+            "Gemini 3.8 Flash / Claude Sonnet 5",
             "Large PDFs and long reports",
             "Context size alone should not justify premium escalation"
           ],

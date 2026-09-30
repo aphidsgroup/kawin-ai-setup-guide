@@ -1,0 +1,14 @@
+{
+  "name": "kawin-ai-setup-guide",
+  "private": true,
+  "description": "Static single-page AI setup guide driven by data/registry.json",
+  "scripts": {
+    "registry:build": "node scripts/build.mjs",
+    "validate": "node scripts/validate-registry.mjs",
+    "check:render": "node scripts/render-check.mjs",
+    "build": "node scripts/validate-registry.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

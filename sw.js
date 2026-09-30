@@ -1,4 +1,6 @@
-const CACHE_NAME = 'kawin-ai-setup-guide-v5';
+// CACHE_NAME is set by scripts/build.mjs from the registry revision; activate() deletes older caches.
+// HTML is network-first so a new registry revision reaches users on their next online visit.
+const CACHE_NAME = 'kawin-ai-setup-guide-2026.09.30-r1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

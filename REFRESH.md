@@ -26,7 +26,7 @@ This process is **human- and source-review-gated**. It is meant to run daily, bu
    node scripts/validate-registry.mjs  # schema, sources, staleness, language, INR-only, drift checks
    node scripts/render-check.mjs       # headless Chrome render of mobile + desktop layouts
    ```
-5. **Review the diff** (`git diff data/registry.json`). Confirm that every changed number matches its source. Then commit and push to `main`. Vercel's Git integration deploys production from `main`. `npm run build` runs the validator there, so a stale or invalid registry blocks the deploy.
+5. **Review the diff** (`git diff data/registry.json`). Confirm that every changed number matches its source. Then commit and push to `main`. Vercel's Git integration deploys production from `main`. `npm run build` (configured in `vercel.json`) runs the validator there, so a stale or invalid registry blocks the deploy.
 6. **Verify production:** the live HTML must contain `<meta name="kawin-registry-revision" content="<revision>">`. The Vercel deployment must reference the pushed commit SHA.
 
 ## What the validator enforces

@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.01-r1",
+  "revision": "2026.10.02-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -95,9 +95,9 @@
     },
     "runpod-pricing": {
       "publisher": "Runpod",
-      "title": "GPU cloud pricing (page states \"Updated September 27, 2026\")",
+      "title": "GPU cloud pricing",
       "url": "https://www.runpod.io/pricing",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-01"
     },
     "mcp-spec": {
       "publisher": "Model Context Protocol",
@@ -180,7 +180,7 @@
     "gpu-pricing": {
       "label": "Cloud GPU list prices",
       "basis": "primary-source",
-      "asOf": "2026-09-30"
+      "asOf": "2026-10-01"
     },
     "launches": {
       "label": "Model launches and access changes",
@@ -522,7 +522,7 @@
       "vramGb": 24,
       "usdPerHour": 0.5,
       "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "sources": [
         "runpod-pricing"
       ],
@@ -540,7 +540,7 @@
       "vramGb": 24,
       "usdPerHour": 0.74,
       "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "sources": [
         "runpod-pricing"
       ],
@@ -556,9 +556,9 @@
       "name": "Runpod A100 PCIe 80GB Pod",
       "gpu": "A100 PCIe 80GB",
       "vramGb": 80,
-      "usdPerHour": 1.59,
+      "usdPerHour": 1.39,
       "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "sources": [
         "runpod-pricing"
       ],
@@ -574,9 +574,9 @@
       "name": "Runpod H100 SXM 80GB Pod",
       "gpu": "H100 SXM 80GB",
       "vramGb": 80,
-      "usdPerHour": 3.49,
+      "usdPerHour": 3.29,
       "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "sources": [
         "runpod-pricing"
       ],
@@ -594,7 +594,7 @@
       "vramGb": 180,
       "usdPerHour": 6.79,
       "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-01",
       "sources": [
         "runpod-pricing"
       ],

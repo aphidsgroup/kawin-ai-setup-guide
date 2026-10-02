@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.02-r1",
+  "revision": "2026.10.02-r2",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -119,15 +119,15 @@
     },
     "a2a-python-release": {
       "publisher": "A2A Project (GitHub)",
-      "title": "a2a-python release v1.2.0",
-      "url": "https://github.com/a2aproject/a2a-python/releases/tag/v1.2.0",
-      "accessed": "2026-09-30"
+      "title": "a2a-python release v1.2.1",
+      "url": "https://github.com/a2aproject/a2a-python/releases/tag/v1.2.1",
+      "accessed": "2026-10-02"
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
-      "title": "openai/codex release rust-v0.159.2",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.159.2",
-      "accessed": "2026-09-30"
+      "title": "openai/codex release rust-v0.160.0",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.160.0",
+      "accessed": "2026-10-02"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
@@ -137,9 +137,9 @@
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
-      "title": "litellm release v1.103.1",
-      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.103.1",
-      "accessed": "2026-09-30"
+      "title": "litellm release v1.103.2",
+      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.103.2",
+      "accessed": "2026-10-02"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -190,12 +190,12 @@
     "protocols": {
       "label": "MCP and A2A versions",
       "basis": "primary-source",
-      "asOf": "2026-09-30"
+      "asOf": "2026-10-02"
     },
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-09-30"
+      "asOf": "2026-10-02"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -756,10 +756,10 @@
       "id": "a2a-python",
       "category": "protocols",
       "name": "A2A Python SDK (a2aproject/a2a-python)",
-      "version": "v1.2.0",
-      "date": "2026-09-29",
+      "version": "v1.2.1",
+      "date": "2026-09-30",
       "note": "Most recent tagged release of the official Python SDK at review time.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-02",
       "sources": [
         "a2a-python-release"
       ]
@@ -771,11 +771,11 @@
       "category": "repos",
       "repo": "openai/codex",
       "area": "AI coding tools",
-      "release": "rust-v0.159.2",
-      "date": "2026-09-29",
+      "release": "rust-v0.160.0",
+      "date": "2026-10-01",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-02",
       "sources": [
         "codex-release"
       ]
@@ -799,11 +799,11 @@
       "category": "repos",
       "repo": "BerriAI/litellm",
       "area": "Routing / agent infrastructure",
-      "release": "v1.103.1",
-      "date": "2026-09-30",
+      "release": "v1.103.2",
+      "date": "2026-10-01",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-02",
       "sources": [
         "litellm-release"
       ]

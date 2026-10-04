@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.02-r2",
+  "revision": "2026.10.04-r3",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -109,37 +109,37 @@
       "publisher": "Model Context Protocol (GitHub)",
       "title": "Release 2026-07-28",
       "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases/tag/2026-07-28",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-04"
     },
     "a2a-release": {
       "publisher": "A2A Project (GitHub)",
       "title": "A2A release v1.0.1",
       "url": "https://github.com/a2aproject/A2A/releases/tag/v1.0.1",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-04"
     },
     "a2a-python-release": {
       "publisher": "A2A Project (GitHub)",
       "title": "a2a-python release v1.2.1",
       "url": "https://github.com/a2aproject/a2a-python/releases/tag/v1.2.1",
-      "accessed": "2026-10-02"
+      "accessed": "2026-10-04"
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
       "title": "openai/codex release rust-v0.160.0",
       "url": "https://github.com/openai/codex/releases/tag/rust-v0.160.0",
-      "accessed": "2026-10-02"
+      "accessed": "2026-10-04"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
       "title": "OpenHands release v1.24.0",
       "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.24.0",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-04"
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
-      "title": "litellm release v1.103.2",
-      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.103.2",
-      "accessed": "2026-10-02"
+      "title": "litellm release v1.104.0",
+      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.104.0",
+      "accessed": "2026-10-04"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -190,12 +190,12 @@
     "protocols": {
       "label": "MCP and A2A versions",
       "basis": "primary-source",
-      "asOf": "2026-10-02"
+      "asOf": "2026-10-04"
     },
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-02"
+      "asOf": "2026-10-04"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -734,7 +734,7 @@
       "version": "2026-07-28",
       "date": "2026-07-28",
       "note": "Published as a release of the specification repository; use it as the compatibility baseline for clients and servers.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-04",
       "sources": [
         "mcp-spec",
         "mcp-spec-release"
@@ -747,7 +747,7 @@
       "version": "v1.0.1",
       "date": "2026-05-28",
       "note": "Most recent tagged release of the core A2A repository at review time.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-04",
       "sources": [
         "a2a-release"
       ]
@@ -759,7 +759,7 @@
       "version": "v1.2.1",
       "date": "2026-09-30",
       "note": "Most recent tagged release of the official Python SDK at review time.",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-04",
       "sources": [
         "a2a-python-release"
       ]
@@ -775,7 +775,7 @@
       "date": "2026-10-01",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-04",
       "sources": [
         "codex-release"
       ]
@@ -789,7 +789,7 @@
       "date": "2026-09-25",
       "licence": "MIT",
       "note": "The repository moved from All-Hands-AI/OpenHands to OpenHands/OpenHands; update bookmarks and clones.",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-04",
       "sources": [
         "openhands-release"
       ]
@@ -799,11 +799,11 @@
       "category": "repos",
       "repo": "BerriAI/litellm",
       "area": "Routing / agent infrastructure",
-      "release": "v1.103.2",
-      "date": "2026-10-01",
+      "release": "v1.104.0",
+      "date": "2026-10-03",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-04",
       "sources": [
         "litellm-release"
       ]

@@ -1,25 +1,37 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.06-r1",
+  "revision": "2026.10.10-r2",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
       "publisher": "Anthropic",
       "title": "Claude API pricing",
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-10"
     },
     "anthropic-models": {
       "publisher": "Anthropic",
       "title": "Claude models overview",
       "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-10"
     },
     "anthropic-release-notes": {
       "publisher": "Anthropic",
       "title": "Claude Platform release notes",
       "url": "https://platform.claude.com/docs/en/release-notes/overview",
       "accessed": "2026-09-30"
+    },
+    "anthropic-model-sonnet-5-5": {
+      "publisher": "Anthropic",
+      "title": "Claude Sonnet 5.5 model overview",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+      "accessed": "2026-10-10"
+    },
+    "anthropic-model-haiku-5-5": {
+      "publisher": "Anthropic",
+      "title": "Claude Haiku 5.5 model overview",
+      "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "accessed": "2026-10-10"
     },
     "openai-pricing": {
       "publisher": "OpenAI",
@@ -89,9 +101,9 @@
     },
     "frb-h10-inr": {
       "publisher": "US Federal Reserve Board",
-      "title": "H.10 historical rates: India (rupees per US dollar)",
-      "url": "https://www.federalreserve.gov/Releases/h10/hist/dat00_in.htm",
-      "accessed": "2026-09-30"
+      "title": "H.10 weekly rates: India (rupees per US dollar)",
+      "url": "https://www.federalreserve.gov/releases/h10/current/",
+      "accessed": "2026-10-10"
     },
     "runpod-pricing": {
       "publisher": "Runpod",
@@ -170,7 +182,7 @@
     "fx": {
       "label": "Currency conversion",
       "basis": "primary-source",
-      "asOf": "2026-09-30"
+      "asOf": "2026-10-10"
     },
     "model-pricing": {
       "label": "API model prices and limits",
@@ -206,10 +218,10 @@
   "fx": {
     "id": "usd-inr",
     "category": "fx",
-    "inrPerUsd": 95.81,
-    "rateDate": "2026-09-25",
+    "inrPerUsd": 96.31,
+    "rateDate": "2026-10-02",
     "label": "Federal Reserve H.10 noon buying rate in New York, rupees per US dollar",
-    "asOf": "2026-09-30",
+    "asOf": "2026-10-10",
     "sources": [
       "frb-h10-inr"
     ]
@@ -275,21 +287,22 @@
       }
     },
     {
-      "id": "claude-sonnet-5",
+      "id": "claude-sonnet-5-5",
       "category": "model-pricing",
       "provider": "Anthropic",
-      "name": "Claude Sonnet 5",
-      "apiId": "claude-sonnet-5",
+      "name": "Claude Sonnet 5.5",
+      "apiId": "claude-sonnet-5-5",
       "status": "ga",
       "inputUsdPerMTok": 2,
       "outputUsdPerMTok": 10,
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-10",
       "sources": [
         "anthropic-pricing",
-        "anthropic-models"
+        "anthropic-models",
+        "anthropic-model-sonnet-5-5"
       ],
       "editorial": {
         "role": "balanced",
@@ -298,26 +311,27 @@
       }
     },
     {
-      "id": "claude-haiku-4-5",
+      "id": "claude-haiku-5-5",
       "category": "model-pricing",
       "provider": "Anthropic",
-      "name": "Claude Haiku 4.5",
-      "apiId": "claude-haiku-4-5-20251001",
+      "name": "Claude Haiku 5.5",
+      "apiId": "claude-haiku-5-5",
       "status": "ga",
-      "inputUsdPerMTok": 1,
-      "outputUsdPerMTok": 5,
-      "contextTokens": 200000,
-      "maxOutputTokens": 64000,
+      "inputUsdPerMTok": 0.1,
+      "outputUsdPerMTok": 0.5,
+      "contextTokens": 1000000,
+      "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-10",
       "sources": [
         "anthropic-pricing",
-        "anthropic-models"
+        "anthropic-models",
+        "anthropic-model-haiku-5-5"
       ],
       "editorial": {
         "role": "economy",
-        "bestFor": "Fast, lower-cost Anthropic worker for simple agent turns",
-        "watchOut": "Anthropic lists retirement as not sooner than 15 Oct 2026; plan a migration path"
+        "bestFor": "High-volume, latency-sensitive classification, routing, extraction and subagent tasks",
+        "watchOut": "Adaptive thinking can increase token use; validate cost and quality on your workload"
       }
     },
     {
@@ -825,7 +839,7 @@
         "title": "Balanced default",
         "modelIds": [
           "gpt-6-sol",
-          "claude-sonnet-5"
+          "claude-sonnet-5-5"
         ],
         "note": "Same list price for the standard workload; choose by your own eval results, then keep the other as fallback."
       },
@@ -1119,15 +1133,15 @@
           [
             "Balanced production model",
             "GPT-6 Sol",
-            "Claude Sonnet 5",
+            "Claude Sonnet 5.5",
             "Gemini 3.8 Flash",
-            "Sol and Sonnet 5 share the same list price for the standard workload"
+            "Sol and Sonnet 5.5 share the same list price for the standard workload"
           ],
           [
             "Million-token processing",
             "Gemini 3.8 Flash",
             "GPT-6 Luna",
-            "Claude Sonnet 5",
+            "Claude Sonnet 5.5",
             "All three list roughly 1M-token context; long-prompt surcharges differ by provider"
           ],
           [
@@ -1232,7 +1246,7 @@
           [
             "Tier 2 — Skilled agents",
             "12–25%",
-            "GPT-6 Sol, Claude Sonnet 5, Gemini 3.8 Flash",
+            "GPT-6 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash",
             "Planning, analysis, stronger coding and workflow decisions"
           ],
           [
@@ -2224,14 +2238,14 @@
           [
             "T2 Economy+",
             "Reasoning at scale",
-            "Gemini 3.8 Flash, Claude Haiku 4.5",
+            "Gemini 3.8 Flash, Claude Haiku 5.5",
             "High capability per rupee",
             "Internal results or prices shift"
           ],
           [
             "T3 Balanced",
             "Professional work",
-            "GPT-6 Sol, Claude Sonnet 5",
+            "GPT-6 Sol, Claude Sonnet 5.5",
             "Reliability and tooling",
             "Tool use, latency or quality change meaningfully"
           ],
@@ -2281,21 +2295,21 @@
           [
             "Long summarisation and documents",
             "Gemini 3.1 Flash-Lite",
-            "Gemini 3.8 Flash / Claude Sonnet 5",
+            "Gemini 3.8 Flash / Claude Sonnet 5.5",
             "Claude Opus 5.5",
             "Route by document size, modality and risk"
           ],
           [
             "Research and web synthesis",
             "Gemini 3.8 Flash + retrieval",
-            "GPT-6 Sol / Claude Sonnet 5",
+            "GPT-6 Sol / Claude Sonnet 5.5",
             "Claude Fable 5.1 / GPT-6 Astra + verifier",
             "Ground first, then escalate synthesis"
           ],
           [
             "Coding and repository work",
             "Pareto Router low-score band",
-            "GPT-6 Sol / Claude Sonnet 5",
+            "GPT-6 Sol / Claude Sonnet 5.5",
             "Claude Opus 5.5 / GPT-6 Astra",
             "Use coding-specific routing, not generic text rankings"
           ],
@@ -2309,14 +2323,14 @@
           [
             "Business and financial analysis",
             "GPT-6 Luna",
-            "GPT-6 Sol / Claude Sonnet 5",
+            "GPT-6 Sol / Claude Sonnet 5.5",
             "Claude Opus 5.5 + deterministic calculations",
             "Optimise cost per successful analysis"
           ],
           [
             "Writing and public comms",
             "Gemini 3.8 Flash",
-            "Claude Sonnet 5",
+            "Claude Sonnet 5.5",
             "Claude Opus 5.5",
             "Pay premium only when reputation matters"
           ],
@@ -2543,13 +2557,13 @@
           ],
           [
             "MEDIUM",
-            "Gemini 3.8 Flash / Claude Haiku 4.5",
+            "Gemini 3.8 Flash / Claude Haiku 5.5",
             "Economical reasoning and multimodal processing",
             "May underperform on the hardest tasks"
           ],
           [
             "COMPLEX",
-            "GPT-6 Sol / Claude Sonnet 5 / Pareto high-score pool",
+            "GPT-6 Sol / Claude Sonnet 5.5 / Pareto high-score pool",
             "Coding, planning and deeper analysis",
             "Should not absorb routine requests"
           ],
@@ -2567,7 +2581,7 @@
           ],
           [
             "long_document=true",
-            "Gemini 3.8 Flash / Claude Sonnet 5",
+            "Gemini 3.8 Flash / Claude Sonnet 5.5",
             "Large PDFs and long reports",
             "Context size alone should not justify premium escalation"
           ],

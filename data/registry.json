@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.10-r2",
+  "revision": "2026.10.13-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -67,7 +67,7 @@
       "publisher": "Google",
       "title": "Gemini Developer API pricing (page footer dated 24 Sep 2026)",
       "url": "https://ai.google.dev/gemini-api/docs/pricing",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-13"
     },
     "google-model-gemini-3-8-flash": {
       "publisher": "Google",
@@ -97,7 +97,7 @@
       "publisher": "Google",
       "title": "Gemini API release notes",
       "url": "https://ai.google.dev/gemini-api/docs/changelog",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-13"
     },
     "frb-h10-inr": {
       "publisher": "US Federal Reserve Board",
@@ -107,9 +107,9 @@
     },
     "runpod-pricing": {
       "publisher": "Runpod",
-      "title": "GPU cloud pricing",
+      "title": "GPU cloud pricing (page states \"Updated October 8, 2026\")",
       "url": "https://www.runpod.io/pricing",
-      "accessed": "2026-10-01"
+      "accessed": "2026-10-13"
     },
     "mcp-spec": {
       "publisher": "Model Context Protocol",
@@ -192,7 +192,7 @@
     "gpu-pricing": {
       "label": "Cloud GPU list prices",
       "basis": "primary-source",
-      "asOf": "2026-10-01"
+      "asOf": "2026-10-13"
     },
     "launches": {
       "label": "Model launches and access changes",
@@ -527,98 +527,25 @@
     }
   ],
   "gpus": [
-    {
-      "id": "runpod-rtx-3090",
-      "category": "gpu-pricing",
-      "provider": "Runpod",
-      "name": "Runpod RTX 3090 Pod",
-      "gpu": "RTX 3090",
-      "vramGb": 24,
-      "usdPerHour": 0.5,
-      "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-10-01",
-      "sources": [
-        "runpod-pricing"
-      ],
-      "editorial": {
-        "bestFor": "Quantized 7B–32B experiments",
-        "watchOut": "Storage and stopped volumes can add cost"
-      }
-    },
-    {
-      "id": "runpod-rtx-4090",
-      "category": "gpu-pricing",
-      "provider": "Runpod",
-      "name": "Runpod RTX 4090 Pod",
-      "gpu": "RTX 4090",
-      "vramGb": 24,
-      "usdPerHour": 0.74,
-      "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-10-01",
-      "sources": [
-        "runpod-pricing"
-      ],
-      "editorial": {
-        "bestFor": "Fast 7B–32B inference tests",
-        "watchOut": "Limited to 24GB VRAM"
-      }
-    },
-    {
-      "id": "runpod-a100-pcie-80",
-      "category": "gpu-pricing",
-      "provider": "Runpod",
-      "name": "Runpod A100 PCIe 80GB Pod",
-      "gpu": "A100 PCIe 80GB",
-      "vramGb": 80,
-      "usdPerHour": 1.39,
-      "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-10-01",
-      "sources": [
-        "runpod-pricing"
-      ],
-      "editorial": {
-        "bestFor": "Quantized 70B-class models and fine-tuning trials",
-        "watchOut": "Expensive unless utilised heavily"
-      }
-    },
-    {
-      "id": "runpod-h100-sxm",
-      "category": "gpu-pricing",
-      "provider": "Runpod",
-      "name": "Runpod H100 SXM 80GB Pod",
-      "gpu": "H100 SXM 80GB",
-      "vramGb": 80,
-      "usdPerHour": 3.29,
-      "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-10-01",
-      "sources": [
-        "runpod-pricing"
-      ],
-      "editorial": {
-        "bestFor": "High-throughput large-model inference",
-        "watchOut": "Very expensive while idle"
-      }
-    },
-    {
-      "id": "runpod-b200",
-      "category": "gpu-pricing",
-      "provider": "Runpod",
-      "name": "Runpod B200 180GB Pod",
-      "gpu": "B200 180GB",
-      "vramGb": 180,
-      "usdPerHour": 6.79,
-      "pricingNote": "On-demand Pod list price shown on the pricing page; Community and Secure Cloud prices and availability can differ",
-      "asOf": "2026-10-01",
-      "sources": [
-        "runpod-pricing"
-      ],
-      "editorial": {
-        "bestFor": "Very large models and enterprise-scale jobs",
-        "watchOut": "Hard to justify for intermittent use"
-      }
-    }
+    {"id":"runpod-rtx-4090","category":"gpu-pricing","provider":"Runpod","name":"Runpod RTX 4090 Pod","gpu":"RTX 4090","usdPerHour":0.34,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"Low-cost GPU inference tests","watchOut":"Community Cloud capacity and pricing can change"}},
+    {"id":"runpod-rtx-a6000","category":"gpu-pricing","provider":"Runpod","name":"Runpod RTX A6000 Pod","gpu":"RTX A6000","usdPerHour":0.33,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"Low-cost GPU experiments","watchOut":"Community Cloud capacity and pricing can change"}},
+    {"id":"runpod-a40","category":"gpu-pricing","provider":"Runpod","name":"Runpod A40 Pod","gpu":"A40","usdPerHour":0.35,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"Cost-sensitive experimentation","watchOut":"Community Cloud capacity and pricing can change"}},
+    {"id":"runpod-rtx-6000-ada","category":"gpu-pricing","provider":"Runpod","name":"Runpod RTX 6000 Ada Pod","gpu":"RTX 6000 Ada","usdPerHour":0.74,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"Higher-capacity inference trials","watchOut":"Community Cloud capacity and pricing can change"}},
+    {"id":"runpod-h100-nvl","category":"gpu-pricing","provider":"Runpod","name":"Runpod H100 NVL Pod","gpu":"H100 NVL","usdPerHour":2.59,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"High-throughput larger-model inference","watchOut":"Community Cloud capacity and pricing can change"}},
+    {"id":"runpod-h200","category":"gpu-pricing","provider":"Runpod","name":"Runpod H200 Pod","gpu":"H200","usdPerHour":3.59,"pricingNote":"Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.","asOf":"2026-10-13","sources":["runpod-pricing"],"editorial":{"bestFor":"Large-model jobs needing H200 capacity","watchOut":"Community Cloud capacity and pricing can change"}}
   ],
   "launches": [
+    {
+      "id": "launch-gemini-4-argon",
+      "category": "launches",
+      "provider": "Google",
+      "model": "Gemini 4 Argon",
+      "date": "2026-10-13",
+      "changed": "Google released Gemini 4 Argon generally available for complex coding, agentic, math and science tasks.",
+      "editorialAction": "Evaluate it on a representative coding and agentic test set before changing production routes.",
+      "asOf": "2026-10-13",
+      "sources": ["google-changelog"]
+    },
     {
       "id": "launch-claude-opus-5-5",
       "category": "launches",
@@ -862,8 +789,8 @@
       {
         "title": "GPU experiments",
         "gpuIds": [
-          "runpod-rtx-4090",
-          "runpod-a100-pcie-80"
+          "runpod-rtx-6000-ada",
+          "runpod-h100-nvl"
         ],
         "note": "Rent before buying hardware; stop Pods when idle."
       },

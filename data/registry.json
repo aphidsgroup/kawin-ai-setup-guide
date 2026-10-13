@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.13-r1",
+  "revision": "2026.10.14-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -137,21 +137,21 @@
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
-      "title": "openai/codex release rust-v0.160.1",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.160.1",
-      "accessed": "2026-10-06"
+      "title": "openai/codex release rust-v0.162.1",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.162.1",
+      "accessed": "2026-10-14"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
-      "title": "OpenHands release v1.25.0",
-      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.25.0",
-      "accessed": "2026-10-06"
+      "title": "OpenHands release v1.27.1",
+      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.27.1",
+      "accessed": "2026-10-14"
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
-      "title": "litellm release v1.99.1",
-      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.99.1",
-      "accessed": "2026-10-06"
+      "title": "litellm release v1.105.0",
+      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.105.0",
+      "accessed": "2026-10-14"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -207,7 +207,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-06"
+      "asOf": "2026-10-14"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -712,11 +712,11 @@
       "category": "repos",
       "repo": "openai/codex",
       "area": "AI coding tools",
-      "release": "rust-v0.160.1",
-      "date": "2026-10-05",
+      "release": "rust-v0.162.1",
+      "date": "2026-10-09",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-14",
       "sources": [
         "codex-release"
       ]
@@ -726,11 +726,11 @@
       "category": "repos",
       "repo": "OpenHands/OpenHands",
       "area": "AI agents",
-      "release": "v1.25.0",
-      "date": "2026-10-06",
+      "release": "v1.27.1",
+      "date": "2026-10-12",
       "licence": "MIT",
       "note": "The repository moved from All-Hands-AI/OpenHands to OpenHands/OpenHands; update bookmarks and clones.",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-14",
       "sources": [
         "openhands-release"
       ]
@@ -740,11 +740,11 @@
       "category": "repos",
       "repo": "BerriAI/litellm",
       "area": "Routing / agent infrastructure",
-      "release": "v1.99.1",
-      "date": "2026-09-02",
+      "release": "v1.105.0",
+      "date": "2026-10-11",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-14",
       "sources": [
         "litellm-release"
       ]

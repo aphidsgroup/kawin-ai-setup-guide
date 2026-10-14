@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.13-r2",
+  "revision": "2026.10.14-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -149,9 +149,9 @@
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
-      "title": "litellm release v1.105.0",
-      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.105.0",
-      "accessed": "2026-10-13"
+      "title": "litellm release v1.105.1",
+      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.105.1",
+      "accessed": "2026-10-14"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -207,7 +207,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-13"
+      "asOf": "2026-10-14"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -740,11 +740,11 @@
       "category": "repos",
       "repo": "BerriAI/litellm",
       "area": "Routing / agent infrastructure",
-      "release": "v1.105.0",
-      "date": "2026-10-11",
+      "release": "v1.105.1",
+      "date": "2026-10-14",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-10-13",
+      "asOf": "2026-10-14",
       "sources": [
         "litellm-release"
       ]

@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.14-r1",
+  "revision": "2026.10.15-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -37,25 +37,25 @@
       "publisher": "OpenAI",
       "title": "API pricing",
       "url": "https://developers.openai.com/api/docs/pricing",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-15"
     },
     "openai-model-gpt-6-astra": {
       "publisher": "OpenAI",
       "title": "GPT-6 Astra model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-15"
     },
     "openai-model-gpt-6-sol": {
       "publisher": "OpenAI",
       "title": "GPT-6 Sol model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-15"
     },
     "openai-model-gpt-6-luna": {
       "publisher": "OpenAI",
       "title": "GPT-6 Luna model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6-luna",
-      "accessed": "2026-09-30"
+      "accessed": "2026-10-15"
     },
     "openai-changelog": {
       "publisher": "OpenAI",
@@ -103,7 +103,7 @@
       "publisher": "US Federal Reserve Board",
       "title": "H.10 weekly rates: India (rupees per US dollar)",
       "url": "https://www.federalreserve.gov/releases/h10/current/",
-      "accessed": "2026-10-10"
+      "accessed": "2026-10-15"
     },
     "runpod-pricing": {
       "publisher": "Runpod",
@@ -218,10 +218,10 @@
   "fx": {
     "id": "usd-inr",
     "category": "fx",
-    "inrPerUsd": 96.31,
-    "rateDate": "2026-10-02",
+    "inrPerUsd": 96.73,
+    "rateDate": "2026-10-09",
     "label": "Federal Reserve H.10 noon buying rate in New York, rupees per US dollar",
-    "asOf": "2026-10-10",
+    "asOf": "2026-10-15",
     "sources": [
       "frb-h10-inr"
     ]
@@ -341,12 +341,12 @@
       "name": "GPT-6 Astra",
       "apiId": "gpt-6-astra",
       "status": "ga",
-      "inputUsdPerMTok": 10,
-      "outputUsdPerMTok": 50,
+      "inputUsdPerMTok": 5,
+      "outputUsdPerMTok": 25,
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-15",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-astra"
@@ -362,14 +362,14 @@
       "category": "model-pricing",
       "provider": "OpenAI",
       "name": "GPT-6 Sol",
-      "apiId": "gpt-6-sol",
+      "apiId": "gpt-6.1-sol",
       "status": "ga",
-      "inputUsdPerMTok": 2,
-      "outputUsdPerMTok": 10,
+      "inputUsdPerMTok": 1,
+      "outputUsdPerMTok": 5,
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-15",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-sol"
@@ -392,7 +392,7 @@
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-15",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-luna"

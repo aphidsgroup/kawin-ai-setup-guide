@@ -151,7 +151,7 @@
       "publisher": "BerriAI (GitHub)",
       "title": "litellm release v1.106.0",
       "url": "https://github.com/BerriAI/litellm/releases/tag/v1.106.0",
-      "accessed": "2026-10-19"
+      "accessed": "2026-10-18"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -207,7 +207,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-19"
+      "asOf": "2026-10-18"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -744,7 +744,7 @@
       "date": "2026-10-18",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-10-19",
+      "asOf": "2026-10-18",
       "sources": [
         "litellm-release"
       ]

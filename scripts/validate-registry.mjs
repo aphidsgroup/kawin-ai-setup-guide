@@ -16,7 +16,17 @@ import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(process.argv.slice(2).map(a => a.replace(/^--/, '').split('=')));
-const today = args.today || new Date().toISOString().slice(0, 10);
+// The guide is maintained on an India calendar. Using UTC here made a source
+// reviewed after midnight IST fail the Vercel build while it was still the
+// preceding UTC date.
+const indiaToday = () => {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date());
+  const get = type => parts.find(part => part.type === type)?.value;
+  return `${get('year')}-${get('month')}-${get('day')}`;
+};
+const today = args.today || indiaToday();
 const maxAgeDays = Number(args['max-age-days'] ?? process.env.REGISTRY_MAX_AGE_DAYS ?? 30);
 
 const errors = [];

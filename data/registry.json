@@ -1,224 +1,230 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.28-r1",
+  "revision": "2026.10.29-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
       "publisher": "Anthropic",
       "title": "Claude API pricing",
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "anthropic-models": {
       "publisher": "Anthropic",
       "title": "Claude models overview",
       "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "anthropic-release-notes": {
       "publisher": "Anthropic",
       "title": "Claude Platform release notes",
       "url": "https://platform.claude.com/docs/en/release-notes/overview",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "anthropic-model-sonnet-5-5": {
       "publisher": "Anthropic",
       "title": "Claude Sonnet 5.5 model overview",
       "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "anthropic-model-haiku-5-5": {
       "publisher": "Anthropic",
       "title": "Claude Haiku 5.5 model overview",
       "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-pricing": {
       "publisher": "OpenAI",
       "title": "API pricing",
       "url": "https://developers.openai.com/api/docs/pricing",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-model-gpt-6-astra": {
       "publisher": "OpenAI",
       "title": "GPT-6 Astra model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-model-gpt-6-sol": {
       "publisher": "OpenAI",
       "title": "GPT-6.1 Sol model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-model-gpt-6-luna": {
       "publisher": "OpenAI",
       "title": "GPT-6 Luna model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6-luna",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-model-gpt-6-1-terra": {
       "publisher": "OpenAI",
       "title": "GPT-6.1 Terra model page",
       "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openai-changelog": {
       "publisher": "OpenAI",
       "title": "API changelog",
       "url": "https://developers.openai.com/api/docs/changelog",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "google-pricing": {
       "publisher": "Google",
       "title": "Gemini Developer API pricing (page footer dated 24 Sep 2026)",
       "url": "https://ai.google.dev/gemini-api/docs/pricing",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
+    },
+    "google-model-gemini-4-argon": {
+      "publisher": "Google",
+      "title": "Gemini 4 Argon model guide and introductory pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "accessed": "2026-10-29"
     },
     "google-model-gemini-3-8-flash": {
       "publisher": "Google",
       "title": "Gemini 3.8 Flash model page",
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "google-model-gemini-3-5-flash-lite": {
       "publisher": "Google",
       "title": "Gemini 3.5 Flash-Lite model page",
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "google-model-gemini-3-1-flash-lite": {
       "publisher": "Google",
       "title": "Gemini 3.1 Flash-Lite model page",
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "google-model-gemini-3-1-pro-preview": {
       "publisher": "Google",
       "title": "Gemini 3.1 Pro Preview model page",
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "google-changelog": {
       "publisher": "Google",
       "title": "Gemini API release notes",
       "url": "https://ai.google.dev/gemini-api/docs/changelog",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "frb-h10-inr": {
       "publisher": "US Federal Reserve Board",
       "title": "H.10 weekly rates: India (rupees per US dollar)",
       "url": "https://www.federalreserve.gov/releases/h10/current/",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "runpod-pricing": {
       "publisher": "Runpod",
       "title": "GPU cloud pricing (page states \"Updated October 8, 2026\")",
       "url": "https://www.runpod.io/pricing",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "mcp-spec": {
       "publisher": "Model Context Protocol",
       "title": "Specification 2026-07-28",
       "url": "https://modelcontextprotocol.io/specification/2026-07-28",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "mcp-spec-release": {
       "publisher": "Model Context Protocol (GitHub)",
       "title": "Release 2026-07-28",
       "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases/tag/2026-07-28",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "a2a-release": {
       "publisher": "A2A Project (GitHub)",
       "title": "A2A release v1.0.1",
       "url": "https://github.com/a2aproject/A2A/releases/tag/v1.0.1",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "a2a-python-release": {
       "publisher": "A2A Project (GitHub)",
       "title": "a2a-python release v1.3.0",
       "url": "https://github.com/a2aproject/a2a-python/releases/tag/v1.3.0",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
       "title": "openai/codex release rust-v0.165.0",
       "url": "https://github.com/openai/codex/releases/tag/rust-v0.165.0",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
       "title": "OpenHands release v1.34.0",
       "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.34.0",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
       "title": "litellm release v1.106.5",
       "url": "https://github.com/BerriAI/litellm/releases/tag/v1.106.5",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
       "title": "Auto Router documentation",
       "url": "https://openrouter.ai/docs/guides/routing/routers/auto-router",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openrouter-pareto": {
       "publisher": "OpenRouter",
       "title": "Pareto Router documentation",
       "url": "https://openrouter.ai/docs/guides/routing/routers/pareto-router",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "openrouter-fusion": {
       "publisher": "OpenRouter",
       "title": "Fusion server tool documentation",
       "url": "https://openrouter.ai/docs/guides/features/server-tools/fusion",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     },
     "litellm-auto-routing": {
       "publisher": "LiteLLM",
       "title": "Auto Routing (beta) documentation",
       "url": "https://docs.litellm.ai/docs/proxy/auto_routing",
-      "accessed": "2026-10-28"
+      "accessed": "2026-10-29"
     }
   },
   "categories": {
     "fx": {
       "label": "Currency conversion",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "model-pricing": {
       "label": "API model prices and limits",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "gpu-pricing": {
       "label": "Cloud GPU list prices",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "launches": {
       "label": "Model launches and access changes",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "protocols": {
       "label": "MCP and A2A versions",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
       "basis": "editorial",
-      "asOf": "2026-10-28"
+      "asOf": "2026-10-29"
     }
   },
   "fx": {
@@ -227,7 +233,7 @@
     "inrPerUsd": 94.94,
     "rateDate": "2026-10-23",
     "label": "Federal Reserve H.10 noon buying rate in New York, rupees per US dollar",
-    "asOf": "2026-10-28",
+    "asOf": "2026-10-29",
     "sources": [
       "frb-h10-inr"
     ]
@@ -258,7 +264,7 @@
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-pricing",
         "anthropic-models"
@@ -281,7 +287,7 @@
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-pricing",
         "anthropic-models"
@@ -304,7 +310,7 @@
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-pricing",
         "anthropic-models",
@@ -328,7 +334,7 @@
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-pricing",
         "anthropic-models",
@@ -347,12 +353,12 @@
       "name": "GPT-6 Astra",
       "apiId": "gpt-6-astra",
       "status": "ga",
-      "inputUsdPerMTok": 5,
-      "outputUsdPerMTok": 25,
+      "inputUsdPerMTok": 10,
+      "outputUsdPerMTok": 50,
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-astra"
@@ -361,6 +367,29 @@
         "role": "frontier",
         "bestFor": "Complex reasoning, coding, computer use and research, per OpenAI’s model page",
         "watchOut": "Prompts over 272K input tokens are billed at 2× input and 1.5× output rates"
+      }
+    },
+    {
+      "id": "gpt-6-1-terra",
+      "category": "model-pricing",
+      "provider": "OpenAI",
+      "name": "GPT-6.1 Terra",
+      "apiId": "gpt-6.1-terra",
+      "status": "ga",
+      "inputUsdPerMTok": 1,
+      "outputUsdPerMTok": 5,
+      "contextTokens": 1050000,
+      "maxOutputTokens": 128000,
+      "pricingNote": "Standard tier, prompts up to 272K input tokens",
+      "asOf": "2026-10-29",
+      "sources": [
+        "openai-pricing",
+        "openai-model-gpt-6-1-terra"
+      ],
+      "editorial": {
+        "role": "balanced",
+        "bestFor": "Visual reasoning, precise computer use and clear writing, per OpenAI’s model guide",
+        "watchOut": "Prompts over 272K input tokens cost more; evaluate on computer-use tasks before routing production traffic"
       }
     },
     {
@@ -375,7 +404,7 @@
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-sol"
@@ -398,7 +427,7 @@
       "contextTokens": 1050000,
       "maxOutputTokens": 128000,
       "pricingNote": "Standard tier, prompts up to 272K input tokens",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-pricing",
         "openai-model-gpt-6-luna"
@@ -421,7 +450,7 @@
       "contextTokens": 1048576,
       "maxOutputTokens": 65536,
       "pricingNote": "Paid tier, standard processing",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-pricing",
         "google-model-gemini-3-8-flash"
@@ -439,6 +468,35 @@
       }
     },
     {
+      "id": "gemini-4-argon",
+      "category": "model-pricing",
+      "provider": "Google",
+      "name": "Gemini 4 Argon",
+      "apiId": "gemini-4-argon",
+      "status": "ga",
+      "inputUsdPerMTok": 2,
+      "outputUsdPerMTok": 10,
+      "contextTokens": 1048576,
+      "maxOutputTokens": 1048576,
+      "pricingNote": "Paid tier; input, thinking and output share a unified 1M-token window",
+      "asOf": "2026-10-29",
+      "sources": [
+        "google-pricing",
+        "google-model-gemini-4-argon"
+      ],
+      "editorial": {
+        "role": "premium",
+        "bestFor": "Complex software engineering, autonomous multi-step agents, math, science and long-decode generation, per Google",
+        "watchOut": "No Free tier; introductory list price ends 30 Nov 2026 and doubles from 1 Dec 2026"
+      },
+      "priceValidUntil": "2026-11-30",
+      "scheduledPrice": {
+        "from": "2026-12-01",
+        "inputUsdPerMTok": 4,
+        "outputUsdPerMTok": 20
+      }
+    },
+    {
       "id": "gemini-3-5-flash-lite",
       "category": "model-pricing",
       "provider": "Google",
@@ -450,7 +508,7 @@
       "contextTokens": 1048576,
       "maxOutputTokens": 65536,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-pricing",
         "google-model-gemini-3-5-flash-lite",
@@ -474,7 +532,7 @@
       "contextTokens": 1048576,
       "maxOutputTokens": 65536,
       "pricingNote": "",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-pricing",
         "google-model-gemini-3-1-flash-lite"
@@ -497,7 +555,7 @@
       "contextTokens": 1048576,
       "maxOutputTokens": 65536,
       "pricingNote": "Prompts up to 200K tokens",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-pricing",
         "google-model-gemini-3-1-pro-preview"
@@ -520,7 +578,7 @@
       "contextTokens": null,
       "maxOutputTokens": null,
       "pricingNote": "Text, image and video input rate",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-pricing",
         "google-changelog"
@@ -541,7 +599,7 @@
       "gpu": "RTX 4090",
       "usdPerHour": 0.89,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -558,7 +616,7 @@
       "gpu": "RTX A6000",
       "usdPerHour": 0.59,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -575,7 +633,7 @@
       "gpu": "A40",
       "usdPerHour": 0.59,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -592,7 +650,7 @@
       "gpu": "RTX 6000 Ada",
       "usdPerHour": 0.99,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -609,7 +667,7 @@
       "gpu": "H100 NVL",
       "usdPerHour": 3.19,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -626,7 +684,7 @@
       "gpu": "H200",
       "usdPerHour": 5.29,
       "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "runpod-pricing"
       ],
@@ -645,7 +703,7 @@
       "date": "2026-10-26",
       "changed": "OpenAI released GPT-6.1 Terra; its model page documents reasoning effort through max and tool calling through the Responses API.",
       "editorialAction": "Evaluate it on representative complex coding and end-to-end agent tasks before adding it to a production route.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-changelog",
         "openai-model-gpt-6-1-terra"
@@ -659,7 +717,7 @@
       "date": "2026-10-13",
       "changed": "Google released Gemini 4 Argon generally available for complex coding, agentic, math and science tasks.",
       "editorialAction": "Evaluate it on a representative coding and agentic test set before changing production routes.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-changelog"
       ]
@@ -672,7 +730,7 @@
       "date": "2026-09-22",
       "changed": "Anthropic launched Claude Opus 5.5 for long-running agentic coding and knowledge work, with a 1M-token context window and 128K max output.",
       "editorialAction": "Evaluate as the premium escalation tier; compare cost per successful task with Fable 5.1.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-release-notes",
         "anthropic-pricing"
@@ -686,7 +744,7 @@
       "date": "2026-09-22",
       "changed": "OpenAI released GPT-6 Sol and GPT-6 Luna reasoning models in the Responses and Chat Completions APIs.",
       "editorialAction": "Test GPT-6 Luna as a high-volume worker before routing broad production traffic.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-changelog"
       ]
@@ -699,7 +757,7 @@
       "date": "2026-09-22",
       "changed": "Google made two text-to-speech models generally available; Flash-Lite TTS replaces gemini-3.1-flash-tts-preview.",
       "editorialAction": "Relevant to voice products only; no change to text or coding routes.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-changelog"
       ]
@@ -712,7 +770,7 @@
       "date": "2026-09-18",
       "changed": "Google limits Gemini 2.5 access to projects that used those models before and directs new projects to 3.5 Flash-Lite or 3.8 Flash.",
       "editorialAction": "Inventory 2.5 dependencies; do not start new routes on 2.5 models.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-changelog"
       ]
@@ -725,7 +783,7 @@
       "date": "2026-09-15",
       "changed": "Google made Gemini 3.8 Live and Gemini 3.8 Live Extended Thinking generally available for real-time voice applications.",
       "editorialAction": "Voice-agent candidates only.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-changelog"
       ]
@@ -738,7 +796,7 @@
       "date": "2026-09-10",
       "changed": "OpenAI made GPT-Live 1 generally available in the API for full-duplex voice conversations.",
       "editorialAction": "Voice-agent candidate only.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-changelog"
       ]
@@ -751,7 +809,7 @@
       "date": "2026-09-03",
       "changed": "OpenAI released GPT-6 Astra for reasoning, coding, computer use, research and document creation.",
       "editorialAction": "Treat as a frontier escalation candidate alongside Claude Fable 5.1.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openai-changelog",
         "openai-model-gpt-6-astra"
@@ -765,7 +823,7 @@
       "date": "2026-09-02",
       "changed": "Google made Gemini 3.8 Flash generally available for long-horizon software engineering and agents.",
       "editorialAction": "Shadow-test as a balanced worker; its listed price doubles from 1 Jan 2027.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "google-changelog",
         "google-pricing"
@@ -779,7 +837,7 @@
       "date": "2026-09-01",
       "changed": "Anthropic launched Claude Fable 5.1 as the successor to Claude Fable 5 for long-running agentic coding, knowledge work and research.",
       "editorialAction": "Frontier escalation candidate; keep usage sparse.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "anthropic-release-notes"
       ]
@@ -793,7 +851,7 @@
       "version": "2026-07-28",
       "date": "2026-07-28",
       "note": "Published as a release of the specification repository; use it as the compatibility baseline for clients and servers.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "mcp-spec",
         "mcp-spec-release"
@@ -806,7 +864,7 @@
       "version": "v1.0.1",
       "date": "2026-05-28",
       "note": "Most recent tagged release of the core A2A repository at review time.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "a2a-release"
       ]
@@ -818,7 +876,7 @@
       "version": "v1.3.0",
       "date": "2026-10-27",
       "note": "Most recent tagged release of the official Python SDK at review time.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "a2a-python-release"
       ]
@@ -834,7 +892,7 @@
       "date": "2026-10-27",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "codex-release"
       ]
@@ -848,7 +906,7 @@
       "date": "2026-10-27",
       "licence": "MIT",
       "note": "The repository moved from All-Hands-AI/OpenHands to OpenHands/OpenHands; update bookmarks and clones.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "openhands-release"
       ]
@@ -862,7 +920,7 @@
       "date": "2026-10-27",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "sources": [
         "litellm-release"
       ]

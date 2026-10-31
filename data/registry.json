@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.10.31-r1",
+  "revision": "2026.11.01-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -121,7 +121,7 @@
       "publisher": "Runpod",
       "title": "GPU cloud pricing (page states \"Updated October 8, 2026\")",
       "url": "https://www.runpod.io/pricing",
-      "accessed": "2026-10-29"
+      "accessed": "2026-11-01"
     },
     "mcp-spec": {
       "publisher": "Model Context Protocol",
@@ -204,7 +204,7 @@
     "gpu-pricing": {
       "label": "Cloud GPU list prices",
       "basis": "primary-source",
-      "asOf": "2026-10-29"
+      "asOf": "2026-11-01"
     },
     "launches": {
       "label": "Model launches and access changes",
@@ -598,14 +598,14 @@
       "name": "Runpod RTX 4090 Pod",
       "gpu": "RTX 4090",
       "usdPerHour": 0.89,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "Low-cost GPU inference tests",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     },
     {
@@ -615,14 +615,14 @@
       "name": "Runpod RTX A6000 Pod",
       "gpu": "RTX A6000",
       "usdPerHour": 0.59,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "Low-cost GPU experiments",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     },
     {
@@ -632,14 +632,14 @@
       "name": "Runpod A40 Pod",
       "gpu": "A40",
       "usdPerHour": 0.59,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "Cost-sensitive experimentation",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     },
     {
@@ -649,14 +649,14 @@
       "name": "Runpod RTX 6000 Ada Pod",
       "gpu": "RTX 6000 Ada",
       "usdPerHour": 0.99,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "Higher-capacity inference trials",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     },
     {
@@ -666,14 +666,14 @@
       "name": "Runpod H100 NVL Pod",
       "gpu": "H100 NVL",
       "usdPerHour": 3.19,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "High-throughput larger-model inference",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     },
     {
@@ -683,14 +683,14 @@
       "name": "Runpod H200 Pod",
       "gpu": "H200",
       "usdPerHour": 5.29,
-      "pricingNote": "Community Cloud on-demand Pod list price; Secure Cloud prices and availability can differ.",
-      "asOf": "2026-10-29",
+      "pricingNote": "Secure Cloud on-demand Pod list price; Community Cloud prices and availability can differ.",
+      "asOf": "2026-11-01",
       "sources": [
         "runpod-pricing"
       ],
       "editorial": {
         "bestFor": "Large-model jobs needing H200 capacity",
-        "watchOut": "Community Cloud capacity and pricing can change"
+        "watchOut": "Secure Cloud capacity and pricing can change"
       }
     }
   ],

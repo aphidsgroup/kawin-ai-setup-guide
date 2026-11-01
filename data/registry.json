@@ -1,19 +1,19 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.11.01-r1",
+  "revision": "2026.11.02-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
       "publisher": "Anthropic",
       "title": "Claude API pricing",
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
-      "accessed": "2026-10-29"
+      "accessed": "2026-11-02"
     },
     "anthropic-models": {
       "publisher": "Anthropic",
       "title": "Claude models overview",
-      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
-      "accessed": "2026-10-29"
+      "url": "https://platform.claude.com/docs/en/models/overview",
+      "accessed": "2026-11-02"
     },
     "anthropic-release-notes": {
       "publisher": "Anthropic",
@@ -31,7 +31,7 @@
       "publisher": "Anthropic",
       "title": "Claude Haiku 5.5 model overview",
       "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
-      "accessed": "2026-10-29"
+      "accessed": "2026-11-02"
     },
     "openai-pricing": {
       "publisher": "OpenAI",
@@ -333,8 +333,8 @@
       "outputUsdPerMTok": 0.5,
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
-      "pricingNote": "",
-      "asOf": "2026-10-29",
+      "pricingNote": "The displayed standard rate applies to prompts up to 100K input tokens; longer prompts use Anthropic's higher long-context rate.",
+      "asOf": "2026-11-02",
       "sources": [
         "anthropic-pricing",
         "anthropic-models",

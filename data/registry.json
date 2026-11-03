@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.11.02-r1",
+  "revision": "2026.11.04-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -155,9 +155,9 @@
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
-      "title": "OpenHands release v1.34.0",
-      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.34.0",
-      "accessed": "2026-10-31"
+      "title": "OpenHands release v1.35.0",
+      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.35.0",
+      "accessed": "2026-11-04"
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
@@ -219,7 +219,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-10-31"
+      "asOf": "2026-11-04"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -902,11 +902,11 @@
       "category": "repos",
       "repo": "OpenHands/OpenHands",
       "area": "AI agents",
-      "release": "v1.34.0",
-      "date": "2026-10-27",
+      "release": "v1.35.0",
+      "date": "2026-11-03",
       "licence": "MIT",
       "note": "The repository moved from All-Hands-AI/OpenHands to OpenHands/OpenHands; update bookmarks and clones.",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-04",
       "sources": [
         "openhands-release"
       ]

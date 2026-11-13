@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.11.13-r1",
+  "revision": "2026.11.14-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -155,9 +155,9 @@
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
-      "title": "openai/codex release rust-v0.167.2",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.167.2",
-      "accessed": "2026-11-13"
+      "title": "openai/codex release rust-v0.169.0",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.169.0",
+      "accessed": "2026-11-14"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
@@ -225,7 +225,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-11-13"
+      "asOf": "2026-11-14"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -895,11 +895,11 @@
       "category": "repos",
       "repo": "openai/codex",
       "area": "AI coding tools",
-      "release": "rust-v0.167.2",
-      "date": "2026-11-11",
+      "release": "rust-v0.169.0",
+      "date": "2026-11-13",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-11-13",
+      "asOf": "2026-11-14",
       "sources": [
         "codex-release"
       ]

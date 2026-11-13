@@ -1,6 +1,6 @@
 {
   "schema": "kawin-ai-registry/2",
-  "revision": "2026.11.10-r1",
+  "revision": "2026.11.13-r1",
   "displayCurrency": "INR",
   "sources": {
     "anthropic-pricing": {
@@ -32,6 +32,12 @@
       "title": "Claude Haiku 5.5 model overview",
       "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
       "accessed": "2026-11-02"
+    },
+    "anthropic-model-fable-5-2": {
+      "publisher": "Anthropic",
+      "title": "Claude Fable 5.2 model overview",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+      "accessed": "2026-11-13"
     },
     "openai-pricing": {
       "publisher": "OpenAI",
@@ -115,7 +121,7 @@
       "publisher": "US Federal Reserve Board",
       "title": "H.10 weekly rates: India (rupees per US dollar)",
       "url": "https://www.federalreserve.gov/releases/h10/current/",
-      "accessed": "2026-10-29"
+      "accessed": "2026-11-13"
     },
     "runpod-pricing": {
       "publisher": "Runpod",
@@ -149,21 +155,21 @@
     },
     "codex-release": {
       "publisher": "OpenAI (GitHub)",
-      "title": "openai/codex release rust-v0.167.0",
-      "url": "https://github.com/openai/codex/releases/tag/rust-v0.167.0",
-      "accessed": "2026-11-10"
+      "title": "openai/codex release rust-v0.167.2",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.167.2",
+      "accessed": "2026-11-13"
     },
     "openhands-release": {
       "publisher": "OpenHands (GitHub)",
-      "title": "OpenHands release v1.37.0",
-      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.37.0",
-      "accessed": "2026-11-10"
+      "title": "OpenHands release v1.40.0",
+      "url": "https://github.com/OpenHands/OpenHands/releases/tag/v1.40.0",
+      "accessed": "2026-11-13"
     },
     "litellm-release": {
       "publisher": "BerriAI (GitHub)",
-      "title": "litellm release v1.108.3",
-      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.108.3",
-      "accessed": "2026-11-10"
+      "title": "litellm release v1.109.1",
+      "url": "https://github.com/BerriAI/litellm/releases/tag/v1.109.1",
+      "accessed": "2026-11-13"
     },
     "openrouter-auto": {
       "publisher": "OpenRouter",
@@ -194,7 +200,7 @@
     "fx": {
       "label": "Currency conversion",
       "basis": "primary-source",
-      "asOf": "2026-10-29"
+      "asOf": "2026-11-13"
     },
     "model-pricing": {
       "label": "API model prices and limits",
@@ -219,7 +225,7 @@
     "repos": {
       "label": "Tracked repository releases",
       "basis": "primary-source",
-      "asOf": "2026-11-10"
+      "asOf": "2026-11-13"
     },
     "editorial": {
       "label": "Editorial guidance (opinion, not measured data)",
@@ -230,10 +236,10 @@
   "fx": {
     "id": "usd-inr",
     "category": "fx",
-    "inrPerUsd": 94.94,
-    "rateDate": "2026-10-23",
+    "inrPerUsd": 93.91,
+    "rateDate": "2026-11-06",
     "label": "Federal Reserve H.10 noon buying rate in New York, rupees per US dollar",
-    "asOf": "2026-10-29",
+    "asOf": "2026-11-13",
     "sources": [
       "frb-h10-inr"
     ]
@@ -253,26 +259,26 @@
   },
   "models": [
     {
-      "id": "claude-fable-5-1",
+      "id": "claude-fable-5-2",
       "category": "model-pricing",
       "provider": "Anthropic",
-      "name": "Claude Fable 5.1",
-      "apiId": "claude-fable-5-1",
+      "name": "Claude Fable 5.2",
+      "apiId": "claude-fable-5-2",
       "status": "ga",
-      "inputUsdPerMTok": 10,
-      "outputUsdPerMTok": 50,
+      "inputUsdPerMTok": 8,
+      "outputUsdPerMTok": 40,
       "contextTokens": 1000000,
       "maxOutputTokens": 128000,
       "pricingNote": "",
-      "asOf": "2026-10-29",
+      "asOf": "2026-11-13",
       "sources": [
-        "anthropic-pricing",
-        "anthropic-models"
+        "anthropic-model-fable-5-2",
+        "anthropic-release-notes"
       ],
       "editorial": {
         "role": "frontier",
         "bestFor": "Demanding reasoning and long-horizon agentic work, per Anthropic’s model guidance",
-        "watchOut": "Highest list price among tracked Anthropic models; keep behind an escalation gate"
+        "watchOut": "Premium list price; keep behind an escalation gate"
       }
     },
     {
@@ -729,7 +735,7 @@
       "model": "Claude Opus 5.5",
       "date": "2026-09-22",
       "changed": "Anthropic launched Claude Opus 5.5 for long-running agentic coding and knowledge work, with a 1M-token context window and 128K max output.",
-      "editorialAction": "Evaluate as the premium escalation tier; compare cost per successful task with Fable 5.1.",
+      "editorialAction": "Evaluate as the premium escalation tier; compare cost per successful task with Fable 5.2.",
       "asOf": "2026-10-29",
       "sources": [
         "anthropic-release-notes",
@@ -808,7 +814,7 @@
       "model": "GPT-6 Astra",
       "date": "2026-09-03",
       "changed": "OpenAI released GPT-6 Astra for reasoning, coding, computer use, research and document creation.",
-      "editorialAction": "Treat as a frontier escalation candidate alongside Claude Fable 5.1.",
+      "editorialAction": "Treat as a frontier escalation candidate alongside Claude Fable 5.2.",
       "asOf": "2026-10-29",
       "sources": [
         "openai-changelog",
@@ -830,16 +836,17 @@
       ]
     },
     {
-      "id": "launch-claude-fable-5-1",
+      "id": "launch-claude-fable-5-2",
       "category": "launches",
       "provider": "Anthropic",
-      "model": "Claude Fable 5.1",
-      "date": "2026-09-01",
-      "changed": "Anthropic launched Claude Fable 5.1 as the successor to Claude Fable 5 for long-running agentic coding, knowledge work and research.",
+      "model": "Claude Fable 5.2",
+      "date": "2026-11-12",
+      "changed": "Anthropic launched Claude Fable 5.2 for demanding reasoning and long-horizon agentic work, with a 1M-token context window and 128K max output.",
       "editorialAction": "Frontier escalation candidate; keep usage sparse.",
-      "asOf": "2026-10-29",
+      "asOf": "2026-11-13",
       "sources": [
-        "anthropic-release-notes"
+        "anthropic-release-notes",
+        "anthropic-model-fable-5-2"
       ]
     }
   ],
@@ -888,11 +895,11 @@
       "category": "repos",
       "repo": "openai/codex",
       "area": "AI coding tools",
-      "release": "rust-v0.167.0",
-      "date": "2026-11-06",
+      "release": "rust-v0.167.2",
+      "date": "2026-11-11",
       "licence": "Apache-2.0",
       "note": "Frequent stable and pre-release tags; pin versions and read release notes before upgrading.",
-      "asOf": "2026-11-10",
+      "asOf": "2026-11-13",
       "sources": [
         "codex-release"
       ]
@@ -902,11 +909,11 @@
       "category": "repos",
       "repo": "OpenHands/OpenHands",
       "area": "AI agents",
-      "release": "v1.37.0",
-      "date": "2026-11-06",
+      "release": "v1.40.0",
+      "date": "2026-11-12",
       "licence": "MIT",
       "note": "The repository moved from All-Hands-AI/OpenHands to OpenHands/OpenHands; update bookmarks and clones.",
-      "asOf": "2026-11-10",
+      "asOf": "2026-11-13",
       "sources": [
         "openhands-release"
       ]
@@ -916,11 +923,11 @@
       "category": "repos",
       "repo": "BerriAI/litellm",
       "area": "Routing / agent infrastructure",
-      "release": "v1.108.3",
-      "date": "2026-11-07",
+      "release": "v1.109.1",
+      "date": "2026-11-12",
       "licence": "Not detected by GitHub",
       "note": "Several release lines ship in parallel; choose one and test upgrades before production.",
-      "asOf": "2026-11-10",
+      "asOf": "2026-11-13",
       "sources": [
         "litellm-release"
       ]
@@ -957,10 +964,10 @@
         "title": "Hard-problem escalation",
         "modelIds": [
           "claude-opus-5-5",
-          "claude-fable-5-1",
+          "claude-fable-5-2",
           "gpt-6-astra"
         ],
-        "note": "Escalate to Opus 5.5 first; reserve Fable 5.1 or GPT-6 Astra for failures and high-stakes work."
+        "note": "Escalate to Opus 5.5 first; reserve Fable 5.2 or GPT-6 Astra for failures and high-stakes work."
       },
       {
         "title": "GPU experiments",
@@ -1063,12 +1070,12 @@
           "share": 0.13
         },
         {
-          "modelId": "claude-fable-5-1",
+          "modelId": "claude-fable-5-2",
           "share": 0.02
         }
       ],
       "compareWith": [
-        "claude-fable-5-1",
+        "claude-fable-5-2",
         "claude-opus-5-5",
         "gpt-6-sol"
       ]
@@ -1214,10 +1221,10 @@
         "rows": [
           [
             "Frontier escalation",
-            "Claude Fable 5.1",
+            "Claude Fable 5.2",
             "GPT-6 Astra",
             "Claude Opus 5.5",
-            "Fable 5.1 and Astra share the highest tracked list price; escalate only after cheaper tiers fail"
+            "Astra has the highest tracked list price; Fable 5.2 is also a premium escalation tier"
           ],
           [
             "Coding and repository work",
@@ -1355,7 +1362,7 @@
           [
             "Tier 3 — Expert escalation",
             "2–5%",
-            "Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra",
+            "Claude Opus 5.5, Claude Fable 5.2, GPT-6 Astra",
             "Critical reasoning, difficult debugging, architecture and final verification"
           ]
         ],
@@ -2277,7 +2284,7 @@
           ],
           [
             "Repo-wide reasoning",
-            "Claude Opus 5.5 / GPT-6.1 Sol, escalating to Claude Fable 5.1 / GPT-6 Astra",
+            "Claude Opus 5.5 / GPT-6.1 Sol, escalating to Claude Fable 5.2 / GPT-6 Astra",
             "Bounded frontier candidates behind internal evidence",
             "When repository or terminal-agent results shift materially"
           ],
@@ -2362,7 +2369,7 @@
           [
             "T5 Frontier",
             "Difficult or high-risk work",
-            "Claude Opus 5.5, Claude Fable 5.1, GPT-6 Astra",
+            "Claude Opus 5.5, Claude Fable 5.2, GPT-6 Astra",
             "Maximum capability, highest cost",
             "Shadow-test by work type before promotion"
           ],
@@ -2406,7 +2413,7 @@
             "Research and web synthesis",
             "Gemini 3.8 Flash + retrieval",
             "GPT-6.1 Sol / Claude Sonnet 5.5",
-            "Claude Fable 5.1 / GPT-6 Astra + verifier",
+            "Claude Fable 5.2 / GPT-6 Astra + verifier",
             "Ground first, then escalate synthesis"
           ],
           [
@@ -2672,7 +2679,7 @@
           ],
           [
             "REASONING",
-            "Claude Opus 5.5 / Claude Fable 5.1 / GPT-6 Astra",
+            "Claude Opus 5.5 / Claude Fable 5.2 / GPT-6 Astra",
             "High-risk decisions and final reviews",
             "Keep sparse; evaluate per workload"
           ],
